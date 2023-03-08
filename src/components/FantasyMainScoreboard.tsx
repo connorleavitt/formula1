@@ -30,8 +30,15 @@ export function FantasyMainScoreboard() {
         return (points = value.points);
       }
     });
-    return points;
+
+    return Number(points);
   }
+
+  // function sumPlayerDriverPoints(nickName) {
+  //   fantasy.filter((value) => {
+  //     if (nickName === value.nickName) return value.mainDrivers;
+  //   });
+  // }
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -70,15 +77,26 @@ export function FantasyMainScoreboard() {
                   {getDriverPoints(person.mainDrivers[0])}
                 </td>
                 <td className="py-3 px-6">{person.mainDrivers[1]}</td>
-                <td className="py-3 px-6">3</td>
+                <td className="py-3 px-6">
+                  {getDriverPoints(person.mainDrivers[1])}
+                </td>
 
                 <td className="py-3 px-6">{person.mainDrivers[2]}</td>
-                <td className="py-3 px-6">3</td>
+                <td className="py-3 px-6">
+                  {getDriverPoints(person.mainDrivers[2])}
+                </td>
 
                 <td className="py-3 px-6 ">{person.mainDrivers[3]}</td>
-                <td className="py-3 px-6">3</td>
+                <td className="py-3 px-6">
+                  {getDriverPoints(person.mainDrivers[3])}
+                </td>
 
-                <td className="py-3 px-6">0</td>
+                <td className="py-3 px-6">
+                  {getDriverPoints(person.mainDrivers[0]) +
+                    getDriverPoints(person.mainDrivers[1]) +
+                    getDriverPoints(person.mainDrivers[2]) +
+                    getDriverPoints(person.mainDrivers[3])}
+                </td>
               </tr>
             ))}
           </tbody>
