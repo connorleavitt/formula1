@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "name": "Max Verstappen",
+    "driverId": "max_verstappen",
+    "code": "VER",
+    "team": "red_bull",
+    "permanentNumber": "33"
+  },
+  {
+    "id": 2,
+    "name": "Sergio Pérez",
+    "driverId": "perez",
+    "code": "PER",
+    "team": "red_bull",
+    "permanentNumber": "11"
+  },
+  {
+    "id": 3,
+    "name": "Charles Leclerc",
+    "driverId": "leclerc",
+    "code": "LEC",
+    "team": "ferrari",
+    "permanentNumber": "16"
+  },
+  {
+    "id": 4,
+    "name": "Carlos Sainz",
+    "driverId": "sainz",
+    "code": "SAI",
+    "team": "ferrari",
+    "permanentNumber": "55"
+  },
+  {
+    "id": 5,
+    "name": "Lewis Hamilton",
+    "driverId": "hamilton",
+    "code": "HAM",
+    "team": "mercedes",
+    "permanentNumber": "44"
+  },
+  {
+    "id": 6,
+    "name": "George Russell",
+    "driverId": "russell",
+    "code": "RUS",
+    "team": "mercedes",
+    "permanentNumber": "64"
+  },
+  {
+    "id": 7,
+    "name": "Fernando Alonso",
+    "driverId": "alonso",
+    "code": "ALO",
+    "team": "aston_martin",
+    "permanentNumber": "14"
+  },
+  {
+    "id": 8,
+    "name": "Lance Stroll",
+    "driverId": "stroll",
+    "code": "STR",
+    "team": "aston_martin",
+    "permanentNumber": "18"
+  },
+  {
+    "id": 9,
+    "name": "Valtteri Bottas",
+    "driverId": "bottas",
+    "code": "BOT",
+    "team": "alfa",
+    "permanentNumber": "77"
+  },
+  {
+    "id": 10,
+    "name": "Guanyu Zhou",
+    "driverId": "zhou",
+    "code": "ZHO",
+    "team": "alfa",
+    "permanentNumber": "24"
+  },
+  {
+    "id": 11,
+    "name": "Lando Norris",
+    "driverId": "norris",
+    "code": "NOR",
+    "team": "mclaren",
+    "permanentNumber": "4"
+  },
+  {
+    "id": 12,
+    "name": "Oscar Piastri",
+    "driverId": "piastri",
+    "code": "PIA",
+    "team": "mclaren",
+    "permanentNumber": "81"
+  },
+  {
+    "id": 13,
+    "name": "Pierre Gasly",
+    "driverId": "gasly",
+    "code": "GAS",
+    "team": "alpine",
+    "permanentNumber": "10"
+  },
+  {
+    "id": 14,
+    "name": "Esteban Ocon",
+    "driverId": "ocon",
+    "code": "OCO",
+    "team": "alpine",
+    "permanentNumber": "31"
+  },
+  {
+    "id": 15,
+    "name": "Nico Hülkenberg",
+    "driverId": "hulkenberg",
+    "code": "HUL",
+    "team": "haas",
+    "permanentNumber": "27"
+  },
+  {
+    "id": 16,
+    "name": "Kevin Magnussen",
+    "driverId": "kevin_magnussen",
+    "code": "MAG",
+    "team": "haas",
+    "permanentNumber": "20"
+  },
+  {
+    "id": 17,
+    "name": "Yuki Tsunoda",
+    "driverId": "tsunoda",
+    "code": "TSU",
+    "team": "alphatauri",
+    "permanentNumber": "22"
+  },
+  {
+    "id": 18,
+    "name": "Nyck de Vries",
+    "driverId": "de_vries",
+    "code": "DEV",
+    "team": "alphatauri",
+    "permanentNumber": "45"
+  },
+  {
+    "id": 19,
+    "name": "Alexander Albon",
+    "driverId": "albon",
+    "code": "ALB",
+    "team": "williams",
+    "permanentNumber": "23"
+  },
+  {
+    "id": 20,
+    "name": "Logan Sargeant",
+    "driverId": "sargeant",
+    "code": "SAR",
+    "team": "williams",
+    "permanentNumber": "2"
+  }
+]
