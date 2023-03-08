@@ -3,75 +3,100 @@
     "id": 1,
     "name": "Connor Leavitt",
     "nickName": "corn",
-    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "mainDrivers": [
+      "Sergio Pérez",
+      "Fernando Alonso",
+      "Kevin Magnussen",
+      "Yuki Tsunoda"
+    ],
     "draftOrder": "4",
     "propBets": {
       "topConstructor": "Ferrari",
-      "bottomConstructor": "Ferrari",
-      "mostDidNotFinish": "Ferrari",
-      "mostPoles": "Ferrari",
-      "mostFastestLaps": "Ferrari",
-      "mostDriverOfTheDay": "Ferrari"
+      "bottomConstructor": "Williams",
+      "mostDidNotFinish": "Alpha Tauri",
+      "mostPoles": "Charles Leclerc",
+      "mostFastestLaps": "Max Verstappen",
+      "mostDriverOfTheDay": "Carlos Sainz"
     }
   },
   {
     "id": 2,
     "name": "Matthew Hoffman",
     "nickName": "hoff",
-    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "mainDrivers": [
+      "Max Verstappen",
+      "Esteban Ocon",
+      "Pierre Gasly",
+      "Nyck de Vries"
+    ],
     "draftOrder": "1",
     "propBets": {
-      "topConstructor": "Ferrari",
-      "bottomConstructor": "Ferrari",
-      "mostDidNotFinish": "Ferrari",
-      "mostPoles": "Ferrari",
-      "mostFastestLaps": "Ferrari",
-      "mostDriverOfTheDay": "Ferrari"
+      "topConstructor": "Red Bull",
+      "bottomConstructor": "Alpha Tauri",
+      "mostDidNotFinish": "Alfa Romeo",
+      "mostPoles": "Max Verstappen",
+      "mostFastestLaps": "Lewis Hamilton",
+      "mostDriverOfTheDay": "Lando Norris"
     }
   },
   {
     "id": 3,
     "name": "Michael Chappelear",
     "nickName": "chap",
-    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "mainDrivers": [
+      "Lewis Hamilton",
+      "George Russell",
+      "Oscar Piastri",
+      "Nico Hülkenberg"
+    ],
     "draftOrder": "5",
     "propBets": {
-      "topConstructor": "Ferrari",
-      "bottomConstructor": "Ferrari",
-      "mostDidNotFinish": "Ferrari",
-      "mostPoles": "Ferrari",
-      "mostFastestLaps": "Ferrari",
-      "mostDriverOfTheDay": "Ferrari"
+      "topConstructor": "Red Bull",
+      "bottomConstructor": "Haas",
+      "mostDidNotFinish": "Haas",
+      "mostPoles": "Charles Leclerc",
+      "mostFastestLaps": "Max Verstappen",
+      "mostDriverOfTheDay": "Charles Leclerc"
     }
   },
   {
     "id": 4,
     "name": "Jim Cunningham",
     "nickName": "jim",
-    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "mainDrivers": [
+      "Charles Leclerc",
+      "Lance Stroll",
+      "Guanyu Zhou",
+      "Alexander Albon"
+    ],
     "draftOrder": "3",
     "propBets": {
       "topConstructor": "Ferrari",
-      "bottomConstructor": "Ferrari",
-      "mostDidNotFinish": "Ferrari",
-      "mostPoles": "Ferrari",
-      "mostFastestLaps": "Ferrari",
-      "mostDriverOfTheDay": "Ferrari"
+      "bottomConstructor": "Williams",
+      "mostDidNotFinish": "Williams",
+      "mostPoles": "Carlos Sainz",
+      "mostFastestLaps": "Carlos Sainz",
+      "mostDriverOfTheDay": "Lewis Hamilton"
     }
   },
   {
     "id": 5,
     "name": "Ben Graham",
     "nickName": "ben",
-    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "mainDrivers": [
+      "Carlos Sainz",
+      "Lando Norris",
+      "Valtteri Bottas",
+      "Logan Sargeant"
+    ],
     "draftOrder": "2",
     "propBets": {
       "topConstructor": "Ferrari",
-      "bottomConstructor": "Ferrari",
-      "mostDidNotFinish": "Ferrari",
-      "mostPoles": "Ferrari",
-      "mostFastestLaps": "Ferrari",
-      "mostDriverOfTheDay": "Ferrari"
+      "bottomConstructor": "Alpha Tauri",
+      "mostDidNotFinish": "Williams",
+      "mostPoles": "Carlos Sainz",
+      "mostFastestLaps": "George Russell",
+      "mostDriverOfTheDay": "George Russell"
     }
   }
 ]
