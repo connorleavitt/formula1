@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1,
+    "name": "Connor Leavitt",
+    "nickName": "corn",
+    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "draftOrder": "4",
+    "propBets": {
+      "topConstructor": "Ferrari",
+      "bottomConstructor": "Ferrari",
+      "mostDidNotFinish": "Ferrari",
+      "mostPoles": "Ferrari",
+      "mostFastestLaps": "Ferrari",
+      "mostDriverOfTheDay": "Ferrari"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Matthew Hoffman",
+    "nickName": "hoff",
+    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "draftOrder": "1",
+    "propBets": {
+      "topConstructor": "Ferrari",
+      "bottomConstructor": "Ferrari",
+      "mostDidNotFinish": "Ferrari",
+      "mostPoles": "Ferrari",
+      "mostFastestLaps": "Ferrari",
+      "mostDriverOfTheDay": "Ferrari"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Michael Chappelear",
+    "nickName": "chap",
+    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "draftOrder": "5",
+    "propBets": {
+      "topConstructor": "Ferrari",
+      "bottomConstructor": "Ferrari",
+      "mostDidNotFinish": "Ferrari",
+      "mostPoles": "Ferrari",
+      "mostFastestLaps": "Ferrari",
+      "mostDriverOfTheDay": "Ferrari"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Jim Cunningham",
+    "nickName": "jim",
+    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "draftOrder": "3",
+    "propBets": {
+      "topConstructor": "Ferrari",
+      "bottomConstructor": "Ferrari",
+      "mostDidNotFinish": "Ferrari",
+      "mostPoles": "Ferrari",
+      "mostFastestLaps": "Ferrari",
+      "mostDriverOfTheDay": "Ferrari"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Ben Graham",
+    "nickName": "ben",
+    "mainDrivers": ["Name 1", "Name 2", "Name 3", "Name 4"],
+    "draftOrder": "2",
+    "propBets": {
+      "topConstructor": "Ferrari",
+      "bottomConstructor": "Ferrari",
+      "mostDidNotFinish": "Ferrari",
+      "mostPoles": "Ferrari",
+      "mostFastestLaps": "Ferrari",
+      "mostDriverOfTheDay": "Ferrari"
+    }
+  }
+]
