@@ -27,15 +27,19 @@ export function CurrentConstructorStandings() {
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "position",
+      width: 106,
+
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    { field: "Constructor.name" },
+    { headerName: "Constructor", field: "Constructor.name", width: 140 },
     {
       field: "points",
+      width: 106,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       field: "wins",
+      width: 106,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ]);
@@ -44,7 +48,6 @@ export function CurrentConstructorStandings() {
     () => ({
       sortable: true,
       filter: true,
-      resizable: true,
     }),
     []
   );
@@ -54,7 +57,7 @@ export function CurrentConstructorStandings() {
   }, []);
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 500 }}>
+    <div className="ag-theme-alpine" style={{ height: 472, width: 465 }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}
