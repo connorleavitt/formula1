@@ -5,7 +5,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-export function FantasyPropsScoreboard() {
+export function CurrentConstructorStandings() {
   const [constructorStandings, setConstructorStandings] = useState([]);
 
   const getConstructorStandings = async () => {
@@ -17,7 +17,6 @@ export function FantasyPropsScoreboard() {
       const constructorStandings =
         response.data.MRData.StandingsTable.StandingsLists[0]
           .ConstructorStandings;
-      console.log("Constructor Standings:", constructorStandings);
       setConstructorStandings(constructorStandings);
       setRowData(constructorStandings);
     }
@@ -26,15 +25,26 @@ export function FantasyPropsScoreboard() {
   const [rowData, setRowData] = useState([]);
 
   const [columnDefs, setColumnDefs] = useState([
-    { field: "position" },
+    {
+      field: "position",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
     { field: "Constructor.name" },
-    { field: "points" },
+    {
+      field: "points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "wins",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
   ]);
 
   const defaultColDef = useMemo(
     () => ({
       sortable: true,
       filter: true,
+      resizable: true,
     }),
     []
   );
@@ -44,7 +54,7 @@ export function FantasyPropsScoreboard() {
   }, []);
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 500, width: 800 }}>
+    <div className="ag-theme-alpine" style={{ height: 500 }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}
