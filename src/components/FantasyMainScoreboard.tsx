@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export function FantasyMainScoreboard() {
   const [standings, setStandings] = useState<any[]>([]);
+  // const [sorting, setSorting] = useState({ order: "asc" });
 
   const getStandings = async () => {
     return await axios
@@ -93,9 +94,9 @@ export function FantasyMainScoreboard() {
               <td>
                 <button
                   className="py-3 px-6"
-                  // onClick={() => orderColumn()}
+                  // onClick={() => setTable()}
                 >
-                  &#9660;
+                  &#9650; &#9660;
                 </button>
               </td>
               <td className="py-3 px-6 border-l-4 border-pink-400">Driver</td>
