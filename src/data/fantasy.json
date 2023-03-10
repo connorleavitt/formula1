@@ -13,7 +13,7 @@
     "propBets": {
       "topConstructor": "Ferrari",
       "bottomConstructor": "Williams",
-      "mostDidNotFinish": "Alpha Tauri",
+      "mostDidNotFinish": "AlphaTauri",
       "mostPoles": "Charles Leclerc",
       "mostFastestLaps": "Max Verstappen",
       "mostDriverOfTheDay": "Carlos Sainz"
@@ -32,7 +32,7 @@
     "draftOrder": "1",
     "propBets": {
       "topConstructor": "Red Bull",
-      "bottomConstructor": "Alpha Tauri",
+      "bottomConstructor": "AlphaTauri",
       "mostDidNotFinish": "Alfa Romeo",
       "mostPoles": "Max Verstappen",
       "mostFastestLaps": "Lewis Hamilton",
@@ -52,8 +52,8 @@
     "draftOrder": "5",
     "propBets": {
       "topConstructor": "Red Bull",
-      "bottomConstructor": "Haas",
-      "mostDidNotFinish": "Haas",
+      "bottomConstructor": "Haas F1 Team",
+      "mostDidNotFinish": "Haas F1 Team",
       "mostPoles": "Charles Leclerc",
       "mostFastestLaps": "Max Verstappen",
       "mostDriverOfTheDay": "Charles Leclerc"
@@ -92,7 +92,7 @@
     "draftOrder": "2",
     "propBets": {
       "topConstructor": "Ferrari",
-      "bottomConstructor": "Alpha Tauri",
+      "bottomConstructor": "AlphaTauri",
       "mostDidNotFinish": "Williams",
       "mostPoles": "Carlos Sainz",
       "mostFastestLaps": "George Russell",

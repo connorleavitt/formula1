@@ -5,7 +5,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-export function FantasyPropsTopConstructorWidget({ constructorStandings }) {
+export function FantasyPropsBottomConstructorWidget({ constructorStandings }) {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -16,7 +16,7 @@ export function FantasyPropsTopConstructorWidget({ constructorStandings }) {
     },
     {
       headerName: "Choice",
-      field: "propBetsTopConstructor",
+      field: "propBetsBottomConstructor",
       width: 100,
     },
     {
@@ -32,16 +32,15 @@ export function FantasyPropsTopConstructorWidget({ constructorStandings }) {
       position: value.position,
     };
   });
-
   const newPlayerArray = fantasy.map((value) => {
-    let propBetsTopConstructor = value.propBets.topConstructor;
+    let propBetsBottomConstructor = value.propBets.bottomConstructor;
     let thing = constructorInfo.find(
-      (v) => v.constructor === propBetsTopConstructor
+      (v) => v.constructor === value.propBets.bottomConstructor
     );
     return {
       name: value.name,
       nickName: value.nickName,
-      propBetsTopConstructor: propBetsTopConstructor,
+      propBetsBottomConstructor: propBetsBottomConstructor,
       currentConstructorPosition: thing.position,
     };
   });
@@ -57,7 +56,6 @@ export function FantasyPropsTopConstructorWidget({ constructorStandings }) {
   useEffect(() => {
     setRowData(newPlayerArray);
   }, []);
-  //   console.log(constructorStandings, newPlayerArray);
 
   return (
     <div

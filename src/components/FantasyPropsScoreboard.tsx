@@ -1,6 +1,7 @@
 import { getCurrentConstructorStandings } from "../hooks/getCurrentConstructorStandings";
 import { getCurrentDriverStandings } from "../hooks/getCurrentDriverStandings";
 import { FantasyMainScoreboardWidget } from "../widgets/FantasyMainScoreboardWidget";
+import { FantasyPropsBottomConstructorWidget } from "../widgets/FantasyPropsBottomConstructorWidget";
 import { FantasyPropsTopConstructorWidget } from "../widgets/FantasyPropsTopConstructorWidget";
 
 export function FantasyPropsScoreboard() {
@@ -29,7 +30,9 @@ export function FantasyPropsScoreboard() {
       <FantasyPropsTopConstructorWidget
         constructorStandings={constructorStandings}
       />
-      {/* <FantasyPropsBottomConstructorWidget constructorStandings={constructorStandings} /> */}
+      <FantasyPropsBottomConstructorWidget
+        constructorStandings={constructorStandings}
+      />
       {/* <FantasyPropsMostDidNotFinishesWidget constructorStandings={constructorStandings} /> */}
     </div>
   );
