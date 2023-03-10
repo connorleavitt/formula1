@@ -17,7 +17,7 @@ export function FantasyPropsScoreboard() {
       const constructorStandings =
         response.data.MRData.StandingsTable.StandingsLists[0]
           .ConstructorStandings;
-      console.log("Constructor Standings:", constructorStandings);
+      // console.log("Constructor Standings:", constructorStandings);
       setConstructorStandings(constructorStandings);
       setRowData(constructorStandings);
     }

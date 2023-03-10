@@ -6,7 +6,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 export function CurrentConstructorStandings() {
-  const [constructorStandings, setConstructorStandings] = useState([]);
+  // const [constructorStandings, setConstructorStandings] = useState([]);
 
   const getConstructorStandings = async () => {
     const response = await axios
@@ -17,7 +17,7 @@ export function CurrentConstructorStandings() {
       const constructorStandings =
         response.data.MRData.StandingsTable.StandingsLists[0]
           .ConstructorStandings;
-      setConstructorStandings(constructorStandings);
+      // setConstructorStandings(constructorStandings);
       setRowData(constructorStandings);
     }
   };

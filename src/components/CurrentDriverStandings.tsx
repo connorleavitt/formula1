@@ -15,7 +15,7 @@ export function CurrentDriverStandings() {
       const driverStandings =
         response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
       setRowData(driverStandings);
-      console.log("Driver:", driverStandings);
+      // console.log("Driver:", driverStandings);
     }
   };
 

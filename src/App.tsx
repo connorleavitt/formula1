@@ -3,13 +3,13 @@ import { Fantasy } from "./pages/Fantasy";
 import { Home } from "./pages/Home";
 import "./index.css";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/fantasy" element={<Fantasy />} />
     </Routes>
   );
-}
+};
 
 export default App;

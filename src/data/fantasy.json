@@ -4,10 +4,10 @@
     "name": "Connor Leavitt",
     "nickName": "corn",
     "mainDrivers": [
-      "Sergio Pérez",
-      "Fernando Alonso",
-      "Kevin Magnussen",
-      "Yuki Tsunoda"
+      { "fullName": "Sergio Pérez", "code": "PER" },
+      { "fullName": "Fernando Alonso", "code": "ALO" },
+      { "fullName": "Kevin Magnussen", "code": "MAG" },
+      { "fullName": "Yuki Tsunoda", "code": "TSU" }
     ],
     "draftOrder": "4",
     "propBets": {
@@ -24,10 +24,10 @@
     "name": "Matt Hoffman",
     "nickName": "hoff",
     "mainDrivers": [
-      "Max Verstappen",
-      "Esteban Ocon",
-      "Pierre Gasly",
-      "Nyck de Vries"
+      { "fullName": "Max Verstappen", "code": "VER" },
+      { "fullName": "Esteban Ocon", "code": "OCO" },
+      { "fullName": "Pierre Gasly", "code": "GAS" },
+      { "fullName": "Nyck de Vries", "code": "DEV" }
     ],
     "draftOrder": "1",
     "propBets": {
@@ -44,10 +44,10 @@
     "name": "Michael Chappelear",
     "nickName": "chap",
     "mainDrivers": [
-      "Lewis Hamilton",
-      "George Russell",
-      "Oscar Piastri",
-      "Nico Hülkenberg"
+      { "fullName": "Lewis Hamilton", "code": "HAM" },
+      { "fullName": "George Russell", "code": "RUS" },
+      { "fullName": "Oscar Piastri", "code": "PIA" },
+      { "fullName": "Nico Hülkenberg", "code": "HUL" }
     ],
     "draftOrder": "5",
     "propBets": {
@@ -64,10 +64,10 @@
     "name": "Jim Cunningham",
     "nickName": "jim",
     "mainDrivers": [
-      "Charles Leclerc",
-      "Lance Stroll",
-      "Guanyu Zhou",
-      "Alexander Albon"
+      { "fullName": "Charles Leclerc", "code": "LEC" },
+      { "fullName": "Lance Stroll", "code": "STR" },
+      { "fullName": "Guanyu Zhou", "code": "ZHO" },
+      { "fullName": "Alexander Albon", "code": "ALB" }
     ],
     "draftOrder": "3",
     "propBets": {
@@ -84,10 +84,10 @@
     "name": "Ben Graham",
     "nickName": "ben",
     "mainDrivers": [
-      "Carlos Sainz",
-      "Lando Norris",
-      "Valtteri Bottas",
-      "Logan Sargeant"
+      { "fullName": "Carlos Sainz", "code": "SAI" },
+      { "fullName": "Lando Norris", "code": "NOR" },
+      { "fullName": "Valtteri Bottas", "code": "BOT" },
+      { "fullName": "Logan Sargeant", "code": "SAR" }
     ],
     "draftOrder": "2",
     "propBets": {
