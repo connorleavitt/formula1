@@ -1,29 +1,31 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
+import fantasy from "../data/fantasy.json";
 
-export const getCurrentDriverStandings = <T>(
+export const getCurrentConstructorStandings = <T>(
   config: AxiosRequestConfig<any>,
   loadOnStart: boolean = true
 ): [boolean, T | undefined, string, () => void] => {
-  const [driverStandings, setDriverStandings] = useState<T>();
+  const [constructorStandings, setConstructorStandings] = useState<T>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (loadOnStart) getDriverStandings();
+    if (loadOnStart) getConstructorStandings();
   }, []);
 
   const request = () => {
-    getDriverStandings();
+    getConstructorStandings();
   };
 
-  const getDriverStandings = () => {
+  const getConstructorStandings = () => {
     setLoading(true);
     axios(config)
       .then((response) => {
         setError("");
-        setDriverStandings(
-          response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+        setConstructorStandings(
+          response.data.MRData.StandingsTable.StandingsLists[0]
+            .ConstructorStandings
         );
       })
       .catch((error) => {
@@ -32,5 +34,5 @@ export const getCurrentDriverStandings = <T>(
       .finally(() => setLoading(false));
   };
 
-  return [loading, driverStandings, error, request];
+  return [loading, constructorStandings, error, request];
 };

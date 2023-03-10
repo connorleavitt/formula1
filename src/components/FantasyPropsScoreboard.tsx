@@ -1,61 +1,36 @@
-import axios from "axios";
-import React, { useEffect, useMemo, useState } from "react";
-
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import { getCurrentConstructorStandings } from "../hooks/getCurrentConstructorStandings";
+import { getCurrentDriverStandings } from "../hooks/getCurrentDriverStandings";
+import { FantasyMainScoreboardWidget } from "../widgets/FantasyMainScoreboardWidget";
+import { FantasyPropsTopConstructorWidget } from "../widgets/FantasyPropsTopConstructorWidget";
 
 export function FantasyPropsScoreboard() {
-  const [constructorStandings, setConstructorStandings] = useState([]);
-
-  const getConstructorStandings = async () => {
-    const response = await axios
-      .get("http://ergast.com/api/f1/2023/constructorStandings.json")
-      .catch((err) => console.log(err));
-
-    if (response) {
-      const constructorStandings =
-        response.data.MRData.StandingsTable.StandingsLists[0]
-          .ConstructorStandings;
-      // console.log("Constructor Standings:", constructorStandings);
-      setConstructorStandings(constructorStandings);
-      setRowData(constructorStandings);
-    }
-  };
-
-  const [rowData, setRowData] = useState([]);
-
-  const [columnDefs, setColumnDefs] = useState([
-    {
-      field: "position",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    { field: "Constructor.name" },
-    {
-      field: "points",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-  ]);
-
-  const defaultColDef = useMemo(
-    () => ({
-      sortable: true,
-      filter: true,
-    }),
-    []
-  );
-
-  useEffect(() => {
-    getConstructorStandings();
-  }, []);
+  const [loading, constructorStandings, error, request] =
+    getCurrentConstructorStandings({
+      method: "get",
+      url: "http://ergast.com/api/f1/current/constructorStandings.json",
+    });
+  // console.log(loading, constructorStandings, error, request);
+  if (loading) {
+    console.log("Loading...");
+    return <p>Loading...</p>;
+  }
+  if (error !== "") {
+    console.log("Error...");
+    return <p>{Error}...</p>;
+  }
+  if (!constructorStandings) {
+    console.log("null");
+    return <p>Data is null</p>;
+  }
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 500, width: 800 }}>
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefs}
-        defaultColDef={defaultColDef}
+    <div className="ml-auto mr-auto w-min pb-20">
+      <h1 className="text-lg">Prop Bets</h1>
+      <FantasyPropsTopConstructorWidget
+        constructorStandings={constructorStandings}
       />
+      {/* <FantasyPropsBottomConstructorWidget constructorStandings={constructorStandings} /> */}
+      {/* <FantasyPropsMostDidNotFinishesWidget constructorStandings={constructorStandings} /> */}
     </div>
   );
 }
