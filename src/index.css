@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.test {
+  border: 2px solid green;
+  height: 350px;
+  width: 1120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ag-theme-name {
+  color: darkblue;
+  background-color: lightblue;
+}
+
+.ag-theme-points {
+  color: black;
+  background-color: lightcoral;
+}
+
+.ag-theme-groups-even,
+.ag-theme-groups-odd {
+  color: white;
+  background-color: darkblue;
+}
+
+.my-class {
+  font-weight: bold;
+  color: black;
+  background-color: rgb(217, 217, 217);
+}

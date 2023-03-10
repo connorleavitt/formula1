@@ -12,7 +12,6 @@ export const Fantasy: React.FC = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold">FANTASY PAGE</h1>
-      {/* <FantasyMainScoreboard /> */}
       <FantasyMainScoreboardTest />
       <h2 className="text-lg">Current Season Data</h2>
       <h4>Driver Standings</h4>

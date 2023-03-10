@@ -13,7 +13,7 @@ export function FantasyMainScoreboardTest() {
     method: "get",
     url: "http://ergast.com/api/f1/2023/driverStandings.json",
   });
-  console.log(loading, driverStandings, error, request);
+  // console.log(loading, driverStandings, error, request);
   if (loading) {
     console.log("Loading...");
     return <p>Loading...</p>;
@@ -30,8 +30,7 @@ export function FantasyMainScoreboardTest() {
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="underline">Main Scoreboard</h1>
-      <div className="ag-theme-alpine" style={{ height: 892, width: 660 }}>
-        {/* <AgGridReact rowData={rowData} columnDefs={columnDefs} /> */}
+      <div className="test">
         <TestingWidget driverData={driverStandings} />
       </div>
     </div>

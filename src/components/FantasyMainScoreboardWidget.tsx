@@ -12,64 +12,94 @@ export function TestingWidget({ driverData }) {
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "name",
+      width: 168,
+      sortingOrder: ["desc"],
+      headerClass: "ag-theme-name",
     },
-    // { field: "nickName" },
     {
       headerName: "Group 1",
+      headerClass: "ag-theme-groups-odd",
       children: [
         {
           headerName: "Driver 1",
+          width: 160,
           field: "drivers.0.driverName",
         },
         {
           headerName: "Points",
+          width: 80,
           field: "drivers.0.driverPoints",
         },
       ],
     },
     {
       headerName: "Group 2",
+      headerClass: "ag-theme-groups-even",
+
       children: [
         {
           headerName: "Driver 2",
-          field: "drivers.1.driverName",
+          width: 100,
+          field: "drivers.1.driverCode",
         },
         {
           headerName: "Points",
+          width: 80,
           field: "drivers.1.driverPoints",
         },
       ],
     },
     {
       headerName: "Group 3",
+      headerClass: "ag-theme-groups-odd",
+
       children: [
         {
           headerName: "Driver 3",
-          field: "drivers.2.driverName",
+          width: 100,
+          field: "drivers.2.driverCode",
         },
         {
           headerName: "Points",
+          width: 80,
           field: "drivers.2.driverPoints",
         },
       ],
     },
     {
       headerName: "Group 4",
+      headerClass: "ag-theme-groups-even",
+
       children: [
         {
           headerName: "Driver 4",
-          field: "drivers.3.driverName",
+          width: 100,
+          field: "drivers.3.driverCode",
         },
         {
           headerName: "Points",
+          width: 80,
           field: "drivers.3.driverPoints",
         },
       ],
     },
     {
       field: "totalPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      sort: "desc",
+      width: 130,
+      headerClass: "ag-theme-points",
+      cellClass: "my-class",
     },
   ]);
+
+  const defaultColDef = useMemo(
+    () => ({
+      sortable: true,
+      suppressMovable: true,
+    }),
+    []
+  );
 
   const newDriverArray = driverData.map((value) => {
     return {
@@ -122,13 +152,16 @@ export function TestingWidget({ driverData }) {
   useEffect(() => {
     setRowData(newPlayerArray);
   }, []);
-  console.log(rowData);
+
   return (
-    <div className="ag-theme-alpine" style={{ height: 500, width: 800 }}>
+    <div
+      className="ag-theme-alpine"
+      style={{ height: "310px", width: "1082px" }}
+    >
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}
-        // defaultColDef={defaultColDef}
+        defaultColDef={defaultColDef}
       />
     </div>
   );
