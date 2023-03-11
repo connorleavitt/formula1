@@ -63,7 +63,6 @@ export function FantasyPropsBottomConstructorWidget({ constructorStandings }) {
       style={{ height: "261px", width: "302px" }}
     >
       <h3>Bottom Contructor</h3>
-
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}
