@@ -10,7 +10,7 @@ export function CurrentConstructorStandings() {
 
   const getConstructorStandings = async () => {
     const response = await axios
-      .get("http://ergast.com/api/f1/2023/constructorStandings.json")
+      .get("https://ergast.com/api/f1/2023/constructorStandings.json")
       .catch((err) => console.log(err));
 
     if (response) {

@@ -10,7 +10,7 @@ export function FantasyPropsScoreboard() {
   const [loading, constructorStandings, error, request] =
     getCurrentConstructorStandings({
       method: "get",
-      url: "http://ergast.com/api/f1/current/constructorStandings.json",
+      url: "https://ergast.com/api/f1/current/constructorStandings.json",
     });
   console.log(error);
   const dnfChoice = fantasy.map((value) => {
@@ -19,11 +19,11 @@ export function FantasyPropsScoreboard() {
     if (code?.urlId)
       return {
         constructor: playerChoice,
-        url: `http://ergast.com/api/f1/current/constructors/${code?.urlId}/status.json`,
+        url: `https://ergast.com/api/f1/current/constructors/${code?.urlId}/status.json`,
       };
     return {
       constructor: playerChoice,
-      url: `http://ergast.com/api/f1/current/constructors/${code?.constructorId}/status.json`,
+      url: `https://ergast.com/api/f1/current/constructors/${code?.constructorId}/status.json`,
     };
   });
   const dnfChoice1 = getCurrentConstructorDNFs({

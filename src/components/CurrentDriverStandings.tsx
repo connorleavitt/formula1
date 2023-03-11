@@ -8,7 +8,7 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 export function CurrentDriverStandings() {
   const getDriverStandings = async () => {
     const response = await axios
-      .get("http://ergast.com/api/f1/2023/driverStandings.json")
+      .get("https://ergast.com/api/f1/2023/driverStandings.json")
       .catch((err) => console.log(err));
 
     if (response) {

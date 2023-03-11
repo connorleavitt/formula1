@@ -34,7 +34,7 @@ interface DriverStandings {
 export function FantasyMainScoreboard() {
   const [loading, driverStandings, error, request] = getCurrentDriverStandings({
     method: "get",
-    url: "http://ergast.com/api/f1/2023/driverStandings.json",
+    url: "https://ergast.com/api/f1/2023/driverStandings.json",
   });
   // console.log(driverStandings);
   // console.log(loading, driverStandings, error, request);
