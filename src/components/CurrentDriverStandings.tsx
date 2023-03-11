@@ -30,7 +30,9 @@ export function CurrentDriverStandings() {
     {
       headerName: "Driver",
       width: 160,
-      valueGetter: (p) => {
+      valueGetter: (p: {
+        data: { Driver: { givenName: string; familyName: string } };
+      }) => {
         return p.data.Driver.givenName + " " + p.data.Driver.familyName;
       },
       comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -64,7 +66,7 @@ export function CurrentDriverStandings() {
       <div className="ag-theme-alpine" style={{ height: 892, width: 660 }}>
         <AgGridReact
           rowData={rowData}
-          columnDefs={columnDefs}
+          columnDefs={columnDefs as any}
           defaultColDef={defaultColDef}
         />
       </div>

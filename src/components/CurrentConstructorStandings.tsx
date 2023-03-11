@@ -28,7 +28,6 @@ export function CurrentConstructorStandings() {
     {
       field: "position",
       width: 106,
-
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     { headerName: "Constructor", field: "Constructor.name", width: 140 },

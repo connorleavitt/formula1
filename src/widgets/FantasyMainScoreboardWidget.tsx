@@ -1,94 +1,112 @@
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import fantasy from "../data/fantasy.json";
-import driverInfo from "../data/driverInfo.json";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-export function FantasyMainScoreboardWidget({ driverData }) {
+type DriverProps = {
+  driverData: [];
+};
+
+type newPlayerArrayType = {
+  name: string;
+  nickName: string;
+  totalPoints: number;
+  drivers: {
+    driverName: string;
+    driverCode: string;
+    driverPoints: number;
+  };
+};
+
+export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "name",
       width: 168,
       // sortingOrder: ["desc"],
-      headerClass: "ag-theme-name",
+      headerClass: "ag-theme-name" as string,
     },
     {
-      headerName: "Group 1",
-      headerClass: "ag-theme-groups-odd",
+      headerName: "Group 1" as string,
+      headerClass: "ag-theme-groups-odd" as string,
       children: [
         {
-          headerName: "Driver 1",
+          headerName: "Driver 1" as string,
           width: 160,
           field: "drivers.0.driverName",
         },
         {
-          headerName: "Points",
+          headerName: "Points" as string,
           width: 80,
           field: "drivers.0.driverPoints",
+          comparator: (valueA: number, valueB: number) => valueA - valueB,
         },
       ],
     },
     {
-      headerName: "Group 2",
-      headerClass: "ag-theme-groups-even",
+      headerName: "Group 2" as string,
+      headerClass: "ag-theme-groups-even" as string,
 
       children: [
         {
-          headerName: "Driver 2",
+          headerName: "Driver 2" as string,
           width: 100,
           field: "drivers.1.driverCode",
         },
         {
-          headerName: "Points",
+          headerName: "Points" as string,
           width: 80,
           field: "drivers.1.driverPoints",
+          comparator: (valueA: number, valueB: number) => valueA - valueB,
         },
       ],
     },
     {
-      headerName: "Group 3",
-      headerClass: "ag-theme-groups-odd",
+      headerName: "Group 3" as string,
+      headerClass: "ag-theme-groups-odd" as string,
 
       children: [
         {
-          headerName: "Driver 3",
+          headerName: "Driver 3" as string,
           width: 100,
           field: "drivers.2.driverCode",
         },
         {
-          headerName: "Points",
+          headerName: "Points" as string,
           width: 80,
           field: "drivers.2.driverPoints",
+          comparator: (valueA: number, valueB: number) => valueA - valueB,
         },
       ],
     },
     {
-      headerName: "Group 4",
-      headerClass: "ag-theme-groups-even",
+      headerName: "Group 4" as string,
+      headerClass: "ag-theme-groups-even" as string,
 
       children: [
         {
-          headerName: "Driver 4",
+          headerName: "Driver 4" as string,
           width: 100,
           field: "drivers.3.driverCode",
         },
         {
-          headerName: "Points",
+          headerName: "Points" as string,
           width: 80,
           field: "drivers.3.driverPoints",
+          comparator: (valueA: number, valueB: number) => valueA - valueB,
         },
       ],
     },
     {
       field: "totalPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
-      sort: "desc",
+      sort: "desc" as string,
       width: 130,
-      headerClass: "ag-theme-points",
+      headerClass: "ag-theme-points" as string,
       cellClass: "my-class",
     },
   ]);
@@ -103,8 +121,8 @@ export function FantasyMainScoreboardWidget({ driverData }) {
 
   const newDriverArray = driverData.map((value) => {
     return {
-      code: value.Driver.code,
-      points: value.points,
+      code: value["Driver"]["code"],
+      points: value["points"],
     };
   });
 
@@ -149,9 +167,7 @@ export function FantasyMainScoreboardWidget({ driverData }) {
     };
   });
 
-  useEffect(() => {
-    setRowData(newPlayerArray);
-  }, []);
+  useEffect(() => setRowData(newPlayerArray as any), []);
 
   return (
     <div
@@ -160,7 +176,7 @@ export function FantasyMainScoreboardWidget({ driverData }) {
     >
       <AgGridReact
         rowData={rowData}
-        columnDefs={columnDefs}
+        columnDefs={columnDefs as any}
         defaultColDef={defaultColDef}
       />
     </div>

@@ -5,7 +5,24 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-export function FantasyPropsBottomConstructorWidget({ constructorStandings }) {
+type constructorStandings = {
+  constructorStandings: {
+    position: number;
+    positionText: string;
+    points: number;
+    wins: number;
+    Constructor: {
+      constructorId: string;
+      url: string;
+      name: string;
+      nationality: string;
+    };
+  };
+};
+
+export function FantasyPropsBottomConstructorWidget({
+  constructorStandings,
+}: constructorStandings) {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -25,26 +42,28 @@ export function FantasyPropsBottomConstructorWidget({ constructorStandings }) {
       width: 100,
     },
   ]);
+  if (constructorStandings instanceof Array) {
+    const constructorInfo = constructorStandings.map((value) => {
+      return {
+        constructor: value.Constructor.name,
+        position: value.position,
+      };
+    });
+    const newPlayerArray = fantasy.map((value) => {
+      let propBetsBottomConstructor = value.propBets.bottomConstructor;
+      let thing = constructorInfo.find(
+        (v) => v.constructor === value.propBets.bottomConstructor
+      );
+      return {
+        name: value.name,
+        nickName: value.nickName,
+        propBetsBottomConstructor: propBetsBottomConstructor,
+        currentConstructorPosition: thing?.position,
+      };
+    });
 
-  const constructorInfo = constructorStandings.map((value) => {
-    return {
-      constructor: value.Constructor.name,
-      position: value.position,
-    };
-  });
-  const newPlayerArray = fantasy.map((value) => {
-    let propBetsBottomConstructor = value.propBets.bottomConstructor;
-    let thing = constructorInfo.find(
-      (v) => v.constructor === value.propBets.bottomConstructor
-    );
-    return {
-      name: value.name,
-      nickName: value.nickName,
-      propBetsBottomConstructor: propBetsBottomConstructor,
-      currentConstructorPosition: thing.position,
-    };
-  });
-
+    useEffect(() => setRowData(newPlayerArray as any), []);
+  }
   const defaultColDef = useMemo(
     () => ({
       sortable: true,
@@ -52,10 +71,6 @@ export function FantasyPropsBottomConstructorWidget({ constructorStandings }) {
     }),
     []
   );
-
-  useEffect(() => {
-    setRowData(newPlayerArray);
-  }, []);
 
   return (
     <div
@@ -65,7 +80,7 @@ export function FantasyPropsBottomConstructorWidget({ constructorStandings }) {
       <h3>Bottom Contructor</h3>
       <AgGridReact
         rowData={rowData}
-        columnDefs={columnDefs}
+        columnDefs={columnDefs as any}
         defaultColDef={defaultColDef}
       />
     </div>

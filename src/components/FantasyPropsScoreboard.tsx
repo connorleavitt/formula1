@@ -1,6 +1,4 @@
 import { getCurrentConstructorStandings } from "../hooks/getCurrentConstructorStandings";
-import { getCurrentDriverStandings } from "../hooks/getCurrentDriverStandings";
-import { FantasyMainScoreboardWidget } from "../widgets/FantasyMainScoreboardWidget";
 import { FantasyPropsBottomConstructorWidget } from "../widgets/FantasyPropsBottomConstructorWidget";
 import { FantasyPropsConstructorDNFsWidget } from "../widgets/FantasyPropsConstructorDNFsWidget";
 import { FantasyPropsTopConstructorWidget } from "../widgets/FantasyPropsTopConstructorWidget";
@@ -14,7 +12,7 @@ export function FantasyPropsScoreboard() {
       method: "get",
       url: "http://ergast.com/api/f1/current/constructorStandings.json",
     });
-
+  console.log(error);
   const dnfChoice = fantasy.map((value) => {
     let playerChoice = value.propBets.mostDidNotFinish;
     let code = constructors.find((v) => v.name === playerChoice);
@@ -53,7 +51,7 @@ export function FantasyPropsScoreboard() {
   }
   if (error !== "") {
     console.log("Error...");
-    return <p>{Error}...</p>;
+    return <p>{error}</p>;
   }
   if (!constructorStandings) {
     console.log("null");
@@ -69,12 +67,14 @@ export function FantasyPropsScoreboard() {
       <h1 className="text-lg pb-2">Prop Bets</h1>
       <div className="flex justify-between">
         <FantasyPropsTopConstructorWidget
-          constructorStandings={constructorStandings}
+          constructorStandings={constructorStandings as any}
         />
         <FantasyPropsBottomConstructorWidget
-          constructorStandings={constructorStandings}
+          constructorStandings={constructorStandings as any}
         />
-        <FantasyPropsConstructorDNFsWidget finalDnfTable={finalDnfTable} />
+        <FantasyPropsConstructorDNFsWidget
+          finalDnfTable={finalDnfTable as any}
+        />
       </div>
     </div>
   );
