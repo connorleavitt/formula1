@@ -64,6 +64,8 @@ export function FantasyPropsTopConstructorWidget({ constructorStandings }) {
       className="ag-theme-alpine"
       style={{ height: "261px", width: "302px" }}
     >
+      <h3>Top Contructor</h3>
+
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}

@@ -65,15 +65,17 @@ export function FantasyPropsScoreboard() {
   finalDnfTable.push(dnfChoice4[1]);
 
   return (
-    <div className="ml-auto mr-auto w-min pb-20">
-      <h1 className="text-lg">Prop Bets</h1>
-      <FantasyPropsTopConstructorWidget
-        constructorStandings={constructorStandings}
-      />
-      <FantasyPropsBottomConstructorWidget
-        constructorStandings={constructorStandings}
-      />
-      <FantasyPropsConstructorDNFsWidget finalDnfTable={finalDnfTable} />
+    <div className="ml-20 mr-20 pb-20">
+      <h1 className="text-lg pb-2">Prop Bets</h1>
+      <div className="flex justify-between">
+        <FantasyPropsTopConstructorWidget
+          constructorStandings={constructorStandings}
+        />
+        <FantasyPropsBottomConstructorWidget
+          constructorStandings={constructorStandings}
+        />
+        <FantasyPropsConstructorDNFsWidget finalDnfTable={finalDnfTable} />
+      </div>
     </div>
   );
 }

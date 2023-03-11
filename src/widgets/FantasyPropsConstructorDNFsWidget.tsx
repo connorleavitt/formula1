@@ -96,6 +96,7 @@ export function FantasyPropsConstructorDNFsWidget({ finalDnfTable }) {
       className="ag-theme-alpine"
       style={{ height: "261px", width: "302px" }}
     >
+      <h3>Most DNFs (Team)</h3>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs}

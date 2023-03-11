@@ -13,7 +13,7 @@ export function FantasyMainScoreboardWidget({ driverData }) {
     {
       field: "name",
       width: 168,
-      sortingOrder: ["desc"],
+      // sortingOrder: ["desc"],
       headerClass: "ag-theme-name",
     },
     {
