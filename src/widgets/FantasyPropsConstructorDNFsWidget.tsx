@@ -7,7 +7,6 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 export function FantasyPropsConstructorDNFsWidget({ finalDnfTable }) {
-  console.log(finalDnfTable);
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -18,90 +17,90 @@ export function FantasyPropsConstructorDNFsWidget({ finalDnfTable }) {
     },
     {
       headerName: "Choice",
-      field: "mostDidNotFinish",
+      field: "propBetsMostDidNotFinish",
       width: 100,
     },
     {
       headerName: "Placing",
-      field: "...",
+      field: "currentConstructorPlacing",
       width: 100,
     },
   ]);
 
-  const constructorInfo = finalDnfTable.map((value) => {
-    // console.log(value);
-    const team = constructors.find(
-      (input) => input.constructorId === value?.constructorId
-    );
+  const constructorInfo = finalDnfTable.map((value?) => {
+    let code = constructors.find((v) => {
+      // console.log(v);
+      if (v?.urlId && v?.urlId === value?.constructorId) {
+        return v;
+      } else if (v.constructorId === value?.constructorId) {
+        return v;
+      }
+    });
 
-    // let count = 0;
-    // if (value.Status.length === 0) return 0;
-    // value.Status.forEach((e) => {
-    //   console.log(e.statusId);
-    //   if (
-    //     e.statusId === "1" ||
-    //     e.statusId === "11" ||
-    //     e.statusId === "12" ||
-    //     e.statusId === "13" ||
-    //     e.statusId === "14" ||
-    //     e.statusId === "15" ||
-    //     e.statusId === "16" ||
-    //     e.statusId === "17" ||
-    //     e.statusId === "18" ||
-    //     e.statusId === "19"
-    //   )
-    //     return 0;
-    //   else count++;
-    // });
+    let count = 0;
+    if (value.Status.length === 0) return (count = 0); //edge case?
+
+    value.Status.forEach((e) => {
+      if (
+        e.statusId === "1" ||
+        e.statusId === "11" ||
+        e.statusId === "12" ||
+        e.statusId === "13" ||
+        e.statusId === "14" ||
+        e.statusId === "15" ||
+        e.statusId === "16" ||
+        e.statusId === "17" ||
+        e.statusId === "18" ||
+        e.statusId === "19"
+      ) {
+        return;
+      }
+      console.log(count);
+      count++;
+    });
 
     return {
-      constructor: team?.name,
-      // didNotFinish: result,
+      constructor: code?.name,
+      didNotFinish: count,
     };
-    // if (value.constructorId === XYZ) {
-    // return {
-    //   constructor: value.constructorId.name,
-    //   position: value.position,
-    // };
-    // }
   });
 
-  // const newPlayerArray = fantasy.map((value) => {
-  //   let propBetsTopConstructor = value.propBets.topConstructor;
-  //   let thing = constructorInfo.find(
-  //     (v) => v.constructor === propBetsTopConstructor
-  //   );
-  //   return {
-  //     name: value.name,
-  //     nickName: value.nickName,
-  //     propBetsTopConstructor: propBetsTopConstructor,
-  //     currentConstructorPosition: thing.position,
-  //   };
-  // });
+  const newPlayerArray = fantasy.map((value) => {
+    let propBetsMostDidNotFinish = value.propBets.mostDidNotFinish;
 
-  // const defaultColDef = useMemo(
-  //   () => ({
-  //     sortable: true,
-  //     suppressMovable: true,
-  //   }),
-  //   []
-  // );
+    let thing = constructorInfo.find(
+      (v) => v.constructor === propBetsMostDidNotFinish
+    );
+    return {
+      name: value.name,
+      nickName: value.nickName,
+      propBetsMostDidNotFinish: propBetsMostDidNotFinish,
+      currentConstructorPlacing: thing.didNotFinish,
+    };
+  });
 
-  // useEffect(() => {
-  //   setRowData(newPlayerArray);
-  // }, []);
-  // //   console.log(constructorStandings, newPlayerArray);
+  const defaultColDef = useMemo(
+    () => ({
+      sortable: true,
+      suppressMovable: true,
+    }),
+    []
+  );
 
-  // return (
-  //   <div
-  //     className="ag-theme-alpine"
-  //     style={{ height: "261px", width: "302px" }}
-  //   >
-  //     <AgGridReact
-  //       rowData={rowData}
-  //       columnDefs={columnDefs}
-  //       defaultColDef={defaultColDef}
-  //     />
-  //   </div>
-  // );
+  useEffect(() => {
+    setRowData(newPlayerArray);
+  }, []);
+
+  return (
+    <div
+      className="ag-theme-alpine"
+      style={{ height: "261px", width: "302px" }}
+    >
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs}
+        defaultColDef={defaultColDef}
+      />
+    </div>
+  );
 }
