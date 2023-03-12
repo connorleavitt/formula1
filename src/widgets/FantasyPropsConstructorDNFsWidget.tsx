@@ -33,14 +33,13 @@ type value = {
 export function FantasyPropsConstructorDNFsWidget({
   finalDnfTable,
 }: finalDnfTableProps) {
-  console.log(finalDnfTable);
+  // console.log(finalDnfTable);
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
       field: "nickName",
       width: 100,
-      sortingOrder: ["desc"],
     },
     {
       headerName: "Choice",
@@ -51,6 +50,7 @@ export function FantasyPropsConstructorDNFsWidget({
       headerName: "Placing",
       field: "currentConstructorPlacing",
       width: 100,
+      sort: "desc" as string,
     },
   ]);
   if (finalDnfTable instanceof Array) {

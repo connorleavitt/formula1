@@ -6,27 +6,24 @@ export const getQualiResults = <T>(
   config: AxiosRequestConfig<any>,
   loadOnStart: boolean = true
 ): [boolean, T | undefined, string, () => void] => {
-  const [constructorStandings, setConstructorStandings] = useState<T>();
+  const [qualiStandings, setQualiStandings] = useState<T>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (loadOnStart) getConstructorStandings();
+    if (loadOnStart) getCurrentQualiResults();
   }, []);
 
   const request = () => {
-    getConstructorStandings();
+    getCurrentQualiResults();
   };
 
-  const getConstructorStandings = () => {
+  const getCurrentQualiResults = () => {
     setLoading(true);
     axios(config)
       .then((response) => {
         setError("");
-        setConstructorStandings(
-          response.data.MRData.StandingsTable.StandingsLists[0]
-            .ConstructorStandings
-        );
+        setQualiStandings(response.data.MRData.RaceTable.Races);
       })
       .catch((error) => {
         setError(error.message);
@@ -34,5 +31,5 @@ export const getQualiResults = <T>(
       .finally(() => setLoading(false));
   };
 
-  return [loading, constructorStandings, error, request];
+  return [loading, qualiStandings as any, error, request];
 };

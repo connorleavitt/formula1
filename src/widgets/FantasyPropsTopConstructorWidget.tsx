@@ -29,7 +29,6 @@ export function FantasyPropsTopConstructorWidget({
       headerName: "Name",
       field: "nickName",
       width: 100,
-      sortingOrder: ["desc"],
     },
     {
       headerName: "Choice",
@@ -40,6 +39,7 @@ export function FantasyPropsTopConstructorWidget({
       headerName: "Placing",
       field: "currentConstructorPosition",
       width: 100,
+      sort: "asc" as string,
     },
   ]);
 

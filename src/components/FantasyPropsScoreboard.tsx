@@ -5,6 +5,9 @@ import { FantasyPropsTopConstructorWidget } from "../widgets/FantasyPropsTopCons
 import fantasy from "../data/fantasy.json";
 import { getCurrentConstructorDNFs } from "../hooks/getCurrentConstructorDNFs";
 import constructors from "../data/constructors.json";
+import { getQualiResults } from "../hooks/getQualiResults";
+import { FantasyPropsMostPolesWidget } from "../widgets/FantasyPropsMostPolesWidget";
+import { FantasyPropsFastestLapWidget } from "../widgets/FantasyPropsFastestLapWidget";
 
 export function FantasyPropsScoreboard() {
   const [loading, constructorStandings, error, request] =
@@ -12,7 +15,12 @@ export function FantasyPropsScoreboard() {
       method: "get",
       url: "https://ergast.com/api/f1/current/constructorStandings.json",
     });
-  console.log(error);
+
+  const [, qualiStandings] = getQualiResults({
+    method: "get",
+    url: "http://ergast.com/api/f1/current/qualifying/1.json",
+  });
+  // console.log(error);
   const dnfChoice = fantasy.map((value) => {
     let playerChoice = value.propBets.mostDidNotFinish;
     let code = constructors.find((v) => v.name === playerChoice);
@@ -46,15 +54,12 @@ export function FantasyPropsScoreboard() {
   let finalDnfTable = [];
 
   if (loading) {
-    console.log("Loading...");
     return <p>Loading...</p>;
   }
   if (error !== "") {
-    console.log("Error...");
     return <p>{error}</p>;
   }
   if (!constructorStandings) {
-    console.log("null");
     return <p>Data is null</p>;
   }
   finalDnfTable.push(dnfChoice1[1]);
@@ -75,6 +80,8 @@ export function FantasyPropsScoreboard() {
         <FantasyPropsConstructorDNFsWidget
           finalDnfTable={finalDnfTable as any}
         />
+        <FantasyPropsMostPolesWidget qualiStandings={qualiStandings as any} />
+        <FantasyPropsFastestLapWidget />
       </div>
     </div>
   );

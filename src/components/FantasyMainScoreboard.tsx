@@ -39,15 +39,12 @@ export function FantasyMainScoreboard() {
   // console.log(driverStandings);
   // console.log(loading, driverStandings, error, request);
   if (loading) {
-    console.log("Loading...");
     return <p>Loading...</p>;
   }
   if (error !== "") {
-    console.log("Error...");
     return <p>{error}</p>;
   }
   if (!driverStandings) {
-    console.log("null");
     return <p>Data is null</p>;
   }
 

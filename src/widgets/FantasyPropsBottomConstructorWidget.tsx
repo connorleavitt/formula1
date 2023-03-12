@@ -29,7 +29,6 @@ export function FantasyPropsBottomConstructorWidget({
       headerName: "Name",
       field: "nickName",
       width: 100,
-      sortingOrder: ["desc"],
     },
     {
       headerName: "Choice",
@@ -40,6 +39,8 @@ export function FantasyPropsBottomConstructorWidget({
       headerName: "Placing",
       field: "currentConstructorPosition",
       width: 100,
+      sort: "desc" as string,
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ]);
   if (constructorStandings instanceof Array) {
