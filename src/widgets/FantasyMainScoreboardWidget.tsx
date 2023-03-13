@@ -151,21 +151,25 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
     return sum;
   }
 
-  const newPlayerArray = fantasy.map((value) => {
-    return {
-      name: value.name,
-      nickName: value.nickName,
-      drivers: value.mainDrivers.map((v) => {
-        let thing = newDriverArray.find((t) => t.code == v.code);
-        return {
-          driverName: v.fullName,
-          driverCode: v.code,
-          driverPoints: thing?.points,
-        };
-      }),
-      totalPoints: sumTeamPoints(value.nickName),
-    };
-  });
+  const newPlayerArray = fantasy
+    .map((value) => {
+      return {
+        name: value.name,
+        nickName: value.nickName,
+        drivers: value.mainDrivers.map((v) => {
+          let thing = newDriverArray.find((t) => t.code == v.code);
+          return {
+            driverName: v.fullName,
+            driverCode: v.code,
+            driverPoints: thing?.points,
+          };
+        }),
+        totalPoints: sumTeamPoints(value.nickName),
+      };
+    })
+    .sort((a, b) => {
+      return b.totalPoints - a.totalPoints;
+    });
 
   useEffect(() => setRowData(newPlayerArray as any), []);
 

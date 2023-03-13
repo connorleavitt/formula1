@@ -138,7 +138,7 @@ export function FantasyPropsFastestLapWidget({ fastestLaps }: fastestLaps) {
       className="ag-theme-alpine"
       style={{ height: "261px", width: "302px" }}
     >
-      <h3>Most Lap</h3>
+      <h3>Most DHL Fastest Laps (Driver)</h3>
 
       <AgGridReact
         rowData={rowData}

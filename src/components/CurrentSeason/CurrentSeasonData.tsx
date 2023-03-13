@@ -1,5 +1,5 @@
-import { CurrentConstructorStandings } from "../components/CurrentConstructorStandings";
-import { CurrentDriverStandings } from "../components/CurrentDriverStandings";
+import { CurrentConstructorStandings } from "./CurrentConstructorStandings";
+import { CurrentDriverStandings } from "./CurrentDriverStandings";
 
 export const CurrentSeasonData: React.FC = () => {
   // const test: [] | undefined = driverStandings;

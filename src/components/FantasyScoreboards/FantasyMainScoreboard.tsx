@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { getCurrentDriverStandings } from "../hooks/getCurrentDriverStandings";
-import { FantasyMainScoreboardWidget } from "../widgets/FantasyMainScoreboardWidget";
+import { getCurrentDriverStandings } from "../../hooks/getCurrentDriverStandings";
+import { FantasyMainScoreboardWidget } from "../../widgets/FantasyMainScoreboardWidget";
 
 interface driverData {
   driverStandings: DriverStandings[];

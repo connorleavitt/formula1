@@ -1,18 +1,22 @@
-import { getCurrentConstructorStandings } from "../hooks/getCurrentConstructorStandings";
-import { FantasyPropsBottomConstructorWidget } from "../widgets/FantasyPropsBottomConstructorWidget";
-import { FantasyPropsConstructorDNFsWidget } from "../widgets/FantasyPropsConstructorDNFsWidget";
-import { FantasyPropsTopConstructorWidget } from "../widgets/FantasyPropsTopConstructorWidget";
-import fantasy from "../data/fantasy.json";
-import { getCurrentConstructorDNFs } from "../hooks/getCurrentConstructorDNFs";
-import constructors from "../data/constructors.json";
-import { getQualiResults } from "../hooks/getQualiResults";
-import { FantasyPropsMostPolesWidget } from "../widgets/FantasyPropsMostPolesWidget";
-import { FantasyPropsFastestLapWidget } from "../widgets/FantasyPropsFastestLapWidget";
-import { getFastestLaps } from "../hooks/getFastestLaps";
+// hooks
+import { getCurrentConstructorStandings } from "../../hooks/getCurrentConstructorStandings";
+import { getCurrentConstructorDNFs } from "../../hooks/getCurrentConstructorDNFs";
+import { getQualiResults } from "../../hooks/getQualiResults";
+import { getFastestLaps } from "../../hooks/getFastestLaps";
+
+// widgets
+import { FantasyPropsBottomConstructorWidget } from "../../widgets/FantasyPropsBottomConstructorWidget";
+import { FantasyPropsConstructorDNFsWidget } from "../../widgets/FantasyPropsConstructorDNFsWidget";
+import { FantasyPropsTopConstructorWidget } from "../../widgets/FantasyPropsTopConstructorWidget";
+import { FantasyPropsMostPolesWidget } from "../../widgets/FantasyPropsMostPolesWidget";
+import { FantasyPropsFastestLapWidget } from "../../widgets/FantasyPropsFastestLapWidget";
+
+// data
+import fantasy from "../../data/fantasy.json";
+import constructors from "../../data/constructors.json";
 
 export function FantasyPropsScoreboard() {
   const fastestLaps = getFastestLaps();
-
   const [loading, constructorStandings, error, request] =
     getCurrentConstructorStandings({
       method: "get",
