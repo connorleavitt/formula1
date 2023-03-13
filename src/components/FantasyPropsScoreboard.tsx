@@ -86,7 +86,7 @@ export function FantasyPropsScoreboard() {
       </div>
       <div className="flex justify-between mt-10">
         <FantasyPropsMostPolesWidget qualiStandings={qualiStandings as any} />
-        <FantasyPropsFastestLapWidget fastestLaps={fastestLaps} />
+        <FantasyPropsFastestLapWidget fastestLaps={fastestLaps as any} />
       </div>
     </div>
   );
