@@ -12,19 +12,17 @@ export function FantasyPropsFastestLapWidget() {
   useEffect(() => {
     async function fetchFastestLaps() {
       const roundNumbers = [
-        1,
-        2,
-        3 /* ... add more round numbers here ... */,
-        ,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23,
       ];
       const fastestLapsByRound = await Promise.all(
         roundNumbers.map(async (round) => {
           const response = await fetch(
-            `http://ergast.com/api/f1/2022/${round}/fastest/1/results.json`
+            `http://ergast.com/api/f1/current/${round}/fastest/1/results.json`
           );
           const data = await response.json();
-          console.log(data);
-          // return { round, fastestLaps: data.MRData.RaceTable.Races[0].Results };
+          if (data.MRData.RaceTable.Races[0] === undefined) return;
+          return { round, fastestLaps: data.MRData.RaceTable.Races[0].Results };
         })
       );
       setFastestLaps(fastestLapsByRound);
@@ -32,12 +30,36 @@ export function FantasyPropsFastestLapWidget() {
 
     fetchFastestLaps();
   }, []);
-  console.log(fastestLaps);
+
+  const fastestLapsByRound = fastestLaps.map((race) => {
+    if (race === undefined) return;
+    const driverTest = race.fastestLaps[0].Driver;
+    return {
+      driver: driverTest.givenName + " " + driverTest.familyName,
+    };
+  });
+
+  const fastestLapCountByDriver = fastestLapsByRound.reduce((acc, curr) => {
+    if (curr === undefined) return acc;
+    else {
+      if (curr.driver in acc) {
+        acc[curr.driver]++;
+      } else {
+        acc[curr.driver] = 1;
+      }
+      return acc;
+    }
+  }, {});
+
+  const sortedTable = Object.entries(fastestLapCountByDriver)
+    .map(([driver, count]) => ({ driver, count }))
+    .sort((a, b) => b.count - a.count);
+  console.log(sortedTable);
 
   return (
     <div>
       <h1>Fastest Laps By Driver</h1>
-      <ul>
+      {/* <ul>
         {fastestLaps.map((race) => (
           <li key={race.round}>
             <h2>Round {race.round}</h2>
@@ -51,7 +73,7 @@ export function FantasyPropsFastestLapWidget() {
             </ul>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

@@ -80,6 +80,8 @@ export function FantasyPropsScoreboard() {
         <FantasyPropsConstructorDNFsWidget
           finalDnfTable={finalDnfTable as any}
         />
+      </div>
+      <div className="flex justify-between mt-10">
         <FantasyPropsMostPolesWidget qualiStandings={qualiStandings as any} />
         <FantasyPropsFastestLapWidget />
       </div>
