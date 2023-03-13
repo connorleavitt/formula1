@@ -13,7 +13,7 @@ export const getFastestLaps = <T>() => {
       const fastestLapsByRound = await Promise.all(
         roundNumbers.map(async (round) => {
           const response = await fetch(
-            `http://ergast.com/api/f1/current/${round}/fastest/1/results.json`
+            `https://ergast.com/api/f1/current/${round}/fastest/1/results.json`
           );
           const data = await response.json();
           if (data.MRData.RaceTable.Races[0] === undefined) return;

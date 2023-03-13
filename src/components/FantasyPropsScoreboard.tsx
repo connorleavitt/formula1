@@ -21,7 +21,7 @@ export function FantasyPropsScoreboard() {
 
   const [, qualiStandings] = getQualiResults({
     method: "get",
-    url: "http://ergast.com/api/f1/current/qualifying/1.json",
+    url: "https://ergast.com/api/f1/current/qualifying/1.json",
   });
   const dnfChoice = fantasy.map((value) => {
     let playerChoice = value.propBets.mostDidNotFinish;
