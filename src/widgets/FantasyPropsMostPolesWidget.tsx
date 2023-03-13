@@ -134,7 +134,7 @@ export function FantasyPropsMostPolesWidget({
       };
     });
 
-    setRowData(newPlayerArray);
+    setRowData(newPlayerArray as any);
   }, []);
 
   const defaultColDef = useMemo(
@@ -151,7 +151,7 @@ export function FantasyPropsMostPolesWidget({
       style={{ height: "261px", width: "302px" }}
     >
       <h3>Most Pirelli Poles (Driver)</h3>
-      <AgGridReact rowData={rowData} columnDefs={columnDefs} />
+      <AgGridReact rowData={rowData} columnDefs={columnDefs as any} />
     </div>
   );
 }

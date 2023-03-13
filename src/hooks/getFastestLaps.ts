@@ -23,11 +23,10 @@ export const getFastestLaps = <T>() => {
           };
         })
       );
-      setFastestLaps(fastestLapsByRound);
+      setFastestLaps(fastestLapsByRound as any);
     }
     fetchFastestLaps();
   }, []);
-  //   console.log(fastestLaps);
 
   return fastestLaps;
 };
