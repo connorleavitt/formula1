@@ -1,35 +1,56 @@
-import { Link, NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export function Nav() {
   return (
-    <nav className="bg-gray-800 h-full w-64">
-      <div className="flex flex-col h-full justify-between">
-        <div className="text-white font-bold text-xl py-2 px-4">
-          Formula 1 Dashboard
+    <nav>
+      <div className="flex flex-col justify-between">
+        <div className="font-bold text-xl py-2 px-4">
+          <Link to="/">Formula 1 Dashboard</Link>
         </div>
-        <ul className="flex flex-col justify-between">
-          <li>
+        <div className="flex m-2">
+          <input
+            type="text"
+            // placeholder={props.placeholder}
+            // value={searchTerm}
+            // onChange={handleInputChange}
+            className="w-full px-4 py-2 pr-8 rounded-md rounded-r-none bg-gray-100 border-2 border-gray-200 focus:outline-none focus:border-gray-300"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 rounded-md rounded-l-none bg-gray-800 text-white hover:bg-gray-700 focus:outline-none"
+          >
+            Search
+          </button>
+        </div>
+        <ul className="flex flex-col justify-between text-xl">
+          <li className="py-2">
             <Link
-              to="/"
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              to="/current"
+              className="text-gray-800 hover:text-blue-800 px-3 py-2 rounded-md font-medium"
             >
-              Home
+              <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
+              Current Season
             </Link>
           </li>
-          <li>
+
+          <li className="py-2">
             <Link
               to="/fantasy"
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-800 hover:text-white px-3 py-2 rounded-md font-medium"
             >
+              <FontAwesomeIcon icon="chart-column" className="pr-2" />
               Fantasy
             </Link>
+            {/* &#8595; */}
           </li>
-          <li>
+          <li className="py-2">
             <Link
-              to="/contact"
-              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              to="/"
+              className="text-gray-800 hover:text-white px-3 py-2 rounded-md font-medium"
             >
-              Contact
+              <FontAwesomeIcon icon="book" className="pr-2" />
+              Historical Data
             </Link>
           </li>
         </ul>

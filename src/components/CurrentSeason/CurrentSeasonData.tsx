@@ -4,9 +4,8 @@ import { CurrentDriverStandings } from "./CurrentDriverStandings";
 export const CurrentSeasonData: React.FC = () => {
   // const test: [] | undefined = driverStandings;
   return (
-    <div className="ml-auto mr-auto w-min mt-10 mb-10">
-      <h2 className="text-center text-2xl">Current Season Data</h2>
-      <div className="flex mt-4">
+    <div className="w-min">
+      <div className="flex">
         <div className="flex-col">
           <h4 className="text-center mb-2 text-lg">Driver Standings</h4>
           <CurrentDriverStandings />
