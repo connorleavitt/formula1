@@ -8,8 +8,11 @@ import constructors from "../data/constructors.json";
 import { getQualiResults } from "../hooks/getQualiResults";
 import { FantasyPropsMostPolesWidget } from "../widgets/FantasyPropsMostPolesWidget";
 import { FantasyPropsFastestLapWidget } from "../widgets/FantasyPropsFastestLapWidget";
+import { getFastestLaps } from "../hooks/getFastestLaps";
 
 export function FantasyPropsScoreboard() {
+  const fastestLaps = getFastestLaps();
+
   const [loading, constructorStandings, error, request] =
     getCurrentConstructorStandings({
       method: "get",
@@ -20,7 +23,6 @@ export function FantasyPropsScoreboard() {
     method: "get",
     url: "http://ergast.com/api/f1/current/qualifying/1.json",
   });
-  // console.log(error);
   const dnfChoice = fantasy.map((value) => {
     let playerChoice = value.propBets.mostDidNotFinish;
     let code = constructors.find((v) => v.name === playerChoice);
@@ -34,6 +36,7 @@ export function FantasyPropsScoreboard() {
       url: `https://ergast.com/api/f1/current/constructors/${code?.constructorId}/status.json`,
     };
   });
+
   const dnfChoice1 = getCurrentConstructorDNFs({
     method: "get",
     url: dnfChoice[0].url,
@@ -83,7 +86,7 @@ export function FantasyPropsScoreboard() {
       </div>
       <div className="flex justify-between mt-10">
         <FantasyPropsMostPolesWidget qualiStandings={qualiStandings as any} />
-        <FantasyPropsFastestLapWidget />
+        <FantasyPropsFastestLapWidget fastestLaps={fastestLaps} />
       </div>
     </div>
   );
