@@ -38,7 +38,8 @@ export function FantasyPropsTopConstructorWidget({
     {
       headerName: "Placing",
       field: "currentConstructorPosition",
-      width: 100,
+      cellClass: "my-class",
+      width: 120,
       sort: "asc" as string,
     },
   ]);
@@ -76,17 +77,15 @@ export function FantasyPropsTopConstructorWidget({
   );
 
   return (
-    <div
-      className="ag-theme-alpine"
-      style={{ height: "261px", width: "302px" }}
-    >
+    <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-2">
       <h3>Top Contructor</h3>
-
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefs as any}
-        defaultColDef={defaultColDef}
-      />
+      <div className="ag-theme-f1" style={{ height: "261px", width: "322px" }}>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs as any}
+          defaultColDef={defaultColDef}
+        />
+      </div>
     </div>
   );
 }

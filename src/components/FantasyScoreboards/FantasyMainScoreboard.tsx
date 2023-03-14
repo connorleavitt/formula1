@@ -38,7 +38,14 @@ export function FantasyMainScoreboard() {
   // console.log(driverStandings);
   // console.log(loading, driverStandings, error, request);
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="ml-auto mr-auto w-min">
+        <h1 className="text-2xl font-bold mb-4">Main Scoreboard</h1>
+        <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-4">
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
   }
   if (error !== "") {
     return <p>{error}</p>;
@@ -49,8 +56,10 @@ export function FantasyMainScoreboard() {
 
   return (
     <div className="ml-auto mr-auto w-min">
-      <h1 className="text-lg">Main Scoreboard</h1>
-      <FantasyMainScoreboardWidget driverData={driverStandings as any} />
+      <h1 className="text-2xl font-bold mb-4">Main Scoreboard</h1>
+      <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-4">
+        <FantasyMainScoreboardWidget driverData={driverStandings as any} />
+      </div>
     </div>
   );
 }

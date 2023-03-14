@@ -27,20 +27,21 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
     {
       field: "name",
       width: 168,
-      // sortingOrder: ["desc"],
-      headerClass: "ag-theme-name" as string,
+      headerClass: "sub-headers-name" as string,
     },
     {
       headerName: "Group 1" as string,
-      headerClass: "ag-theme-groups-odd" as string,
+      headerClass: "ag-theme-groups-odd left-group" as string,
       children: [
         {
-          headerName: "Driver 1" as string,
-          width: 160,
-          field: "drivers.0.driverName",
+          headerName: "Driver" as string,
+          headerClass: "sub-headers" as string,
+          width: 80,
+          field: "drivers.0.driverCode",
         },
         {
-          headerName: "Points" as string,
+          headerName: "Pts" as string,
+          headerClass: "sub-headers" as string,
           width: 80,
           field: "drivers.0.driverPoints",
           comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -50,15 +51,16 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
     {
       headerName: "Group 2" as string,
       headerClass: "ag-theme-groups-even" as string,
-
       children: [
         {
-          headerName: "Driver 2" as string,
-          width: 100,
+          headerName: "Driver" as string,
+          headerClass: "sub-headers" as string,
+          width: 80,
           field: "drivers.1.driverCode",
         },
         {
-          headerName: "Points" as string,
+          headerName: "Pts" as string,
+          headerClass: "sub-headers" as string,
           width: 80,
           field: "drivers.1.driverPoints",
           comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -68,15 +70,16 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
     {
       headerName: "Group 3" as string,
       headerClass: "ag-theme-groups-odd" as string,
-
       children: [
         {
-          headerName: "Driver 3" as string,
-          width: 100,
+          headerName: "Driver" as string,
+          headerClass: "sub-headers" as string,
+          width: 80,
           field: "drivers.2.driverCode",
         },
         {
-          headerName: "Points" as string,
+          headerName: "Pts" as string,
+          headerClass: "sub-headers" as string,
           width: 80,
           field: "drivers.2.driverPoints",
           comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -85,28 +88,32 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
     },
     {
       headerName: "Group 4" as string,
-      headerClass: "ag-theme-groups-even" as string,
-
+      headerClass: "ag-theme-groups-even right-group" as string,
       children: [
         {
-          headerName: "Driver 4" as string,
-          width: 100,
+          headerName: "Driver" as string,
+          headerClass: "sub-headers" as string,
+          width: 80,
           field: "drivers.3.driverCode",
+          cellClass: "centered",
         },
         {
-          headerName: "Points" as string,
+          headerName: "Pts" as string,
+          headerClass: "sub-headers" as string,
           width: 80,
           field: "drivers.3.driverPoints",
           comparator: (valueA: number, valueB: number) => valueA - valueB,
+          cellClass: "centered",
         },
       ],
     },
     {
       field: "totalPoints",
+      headerName: "Total",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       sort: "desc" as string,
-      width: 130,
-      headerClass: "ag-theme-points" as string,
+      width: 100,
+      headerClass: "sub-headers" as string,
       cellClass: "my-class",
     },
   ]);
@@ -114,7 +121,7 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
   const defaultColDef = useMemo(
     () => ({
       sortable: true,
-      suppressMovable: true,
+      // suppressMovable: true,
     }),
     []
   );
@@ -174,10 +181,7 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
   useEffect(() => setRowData(newPlayerArray as any), []);
 
   return (
-    <div
-      className="ag-theme-alpine"
-      style={{ height: "310px", width: "1082px" }}
-    >
+    <div className="ag-theme-f1" style={{ height: "310px", width: "910px" }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs as any}

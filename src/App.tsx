@@ -12,10 +12,8 @@ library.add(fas);
 const App: React.FC = () => {
   return (
     <div className="grid grid-cols-[250px_1fr] h-screen">
-      <div className="bg-gray-300">
-        <Nav />
-      </div>
-      <div className="bg-gray-100">
+      <Nav />
+      <div className="bg-neutral-200">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/current" element={<CurrentSeason />} />

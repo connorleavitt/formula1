@@ -105,6 +105,14 @@ export const Home: React.FC = () => {
                 Historical Data
               </a>
             </li>
+            <li className="list-decimal">
+              <a
+                href="./"
+                className="block w-max text-lg cursor-pointer rounded-lg p-2 hover:underline"
+              >
+                Home: add snapshot of fantasy?
+              </a>
+            </li>
           </ul>
         </div>
       </div>
