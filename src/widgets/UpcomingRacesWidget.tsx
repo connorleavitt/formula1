@@ -1,42 +1,50 @@
-type raceSchedule = {
-  raceSchedule: {
-    season: number;
-    round: number;
+type RaceSchedule = {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
     url: string;
-    raceName: string;
-    Circuit: {
-      circuitId: string;
-      url: string;
-      circuitName: string;
-      Location: {
-        lat: number;
-        long: number;
-        locality: string;
-        country: string;
-      };
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
     };
+  };
+  date: string;
+  time: string;
+  FirstPractice: {
     date: string;
     time: string;
-    FirstPractice: {
-      date: string;
-      time: string;
-    };
-    Qualifying: {
-      date: string;
-      time: string;
-    };
-    SecondPractice: {
-      date: string;
-      time: string;
-    };
-    Sprint: {
-      date: string;
-      time: string;
-    };
+  };
+  SecondPractice: {
+    date: string;
+    time: string;
+  };
+  ThirdPractice: {
+    date: string;
+    time: string;
+  };
+  Qualifying: {
+    date: string;
+    time: string;
+  };
+  Sprint: {
+    date: string;
+    time: string;
   };
 };
 
-export function UpcomingRacesWidget({ raceSchedule }: raceSchedule) {
+type UpcomingRacesWidgetProps = {
+  raceSchedule: RaceSchedule[];
+};
+
+export function UpcomingRacesWidget({
+  raceSchedule,
+}: UpcomingRacesWidgetProps) {
   const truncatedRaceSchedule = raceSchedule.map((value: any) => {
     return {
       raceName: value["raceName"],
@@ -56,7 +64,6 @@ export function UpcomingRacesWidget({ raceSchedule }: raceSchedule) {
   // Sort future races by round (ascending order)
   futureRaces.sort((a: any, b: any) => a.round - b.round);
   // Next race will be the first race in the sorted array
-
   return (
     <div className="p-2">
       <h3 className="p-2 font-bold">Upcoming</h3>
