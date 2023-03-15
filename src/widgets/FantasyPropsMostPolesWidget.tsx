@@ -146,7 +146,7 @@ export function FantasyPropsMostPolesWidget({
   );
 
   return (
-    <div className="p-2 m-4 rounded-2xl border-gray-300 border-2">
+    <div className="p-2 rounded-2xl border-gray-300 border-2">
       <h3 className="p-2 font-bold">Most Pirelli Poles (Driver)</h3>
       <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
         <AgGridReact
