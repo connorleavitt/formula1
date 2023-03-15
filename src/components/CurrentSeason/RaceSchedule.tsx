@@ -31,12 +31,12 @@ export function RaceSchedule() {
     <div>
       <div className="flex">
         <NextRaceWidget raceSchedule={raceSchedule as any} />
-        <PreviousRaceWidget raceSchedule={raceSchedule as any} />
+        <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
       </div>
-      <div>
+      <div className="flex overflow-auto">
+        <PreviousRaceWidget raceSchedule={raceSchedule as any} />
         <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
       </div>
-      <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
     </div>
   );
 }

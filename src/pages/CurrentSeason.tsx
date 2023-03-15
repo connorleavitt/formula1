@@ -8,8 +8,8 @@ export const CurrentSeason: React.FC = () => {
       <h1 className="text-3xl font-bold py-6 mb-6 border-b-2 border-gray-400 ">
         Current Season
       </h1>
-      <CurrentSeasonData />
       <RaceSchedule />
+      <CurrentSeasonData />
     </div>
   );
 };

@@ -1,3 +1,7 @@
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 type RaceSchedule = {
   season: number;
   round: number;
@@ -67,11 +71,17 @@ export function UpcomingRacesWidget({
   return (
     <div className="p-2">
       <h3 className="p-2 font-bold">Upcoming</h3>
-      <div className="flex">
+      <Slider
+        className="w-[800px]"
+        slidesToShow={3}
+        slidesToScroll={3}
+        arrows={true}
+        variableWidth={true}
+      >
         {futureRaces.map((race: any) => (
           <div
             key={race.round}
-            className="p-2 mr-4 rounded-2xl w-64 border-gray-300 border-2"
+            className="p-2 rounded-2xl w-64 border-gray-300 border-2"
           >
             <div className="text-gray-500 text-xs">{`Round ${race.round}`}</div>
             <div className="font-bold">{race.raceName}</div>
@@ -88,7 +98,7 @@ export function UpcomingRacesWidget({
             </div>
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 }

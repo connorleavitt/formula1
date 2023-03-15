@@ -1,15 +1,21 @@
+import { useState } from "react";
+
+// hooks
 import { getCurrentConstructorStandings } from "../../hooks/getCurrentConstructorStandings";
+import { getCurrentConstructorDNFs } from "../../hooks/getCurrentConstructorDNFs";
+import { getQualiResults } from "../../hooks/getQualiResults";
+import { getFastestLaps } from "../../hooks/getFastestLaps";
+
+// widgets
 import { FantasyPropsBottomConstructorWidget } from "../../widgets/FantasyPropsBottomConstructorWidget";
 import { FantasyPropsConstructorDNFsWidget } from "../../widgets/FantasyPropsConstructorDNFsWidget";
 import { FantasyPropsTopConstructorWidget } from "../../widgets/FantasyPropsTopConstructorWidget";
-import fantasy from "../../data/fantasy.json";
-import { getCurrentConstructorDNFs } from "../../hooks/getCurrentConstructorDNFs";
-import constructors from "../../data/constructors.json";
-import { getQualiResults } from "../../hooks/getQualiResults";
 import { FantasyPropsMostPolesWidget } from "../../widgets/FantasyPropsMostPolesWidget";
 import { FantasyPropsFastestLapWidget } from "../../widgets/FantasyPropsFastestLapWidget";
-import { getFastestLaps } from "../../hooks/getFastestLaps";
-import { useState } from "react";
+
+// data
+import fantasy from "../../data/fantasy.json";
+import constructors from "../../data/constructors.json";
 
 export function FantasyPropsScoreboard() {
   const fastestLaps = getFastestLaps();
@@ -81,52 +87,11 @@ export function FantasyPropsScoreboard() {
   return (
     <div className="pb-20">
       <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
-      <div className="my-4 flex">
-        <button
-          className={`p-2 bg-gray-200 rounded-lg hover:bg-black hover:text-white ${
-            activeWidget === "top" ? "font-bold" : ""
-          }`}
-          onClick={() => setActiveWidget("top")}
-        >
-          Top Contructor
-        </button>
-        <button
-          className={`p-2 mx-2 bg-gray-200 rounded-lg hover:bg-black hover:text-white ${
-            activeWidget === "bottom" ? "font-bold" : ""
-          }`}
-          onClick={() => setActiveWidget("bottom")}
-        >
-          Bottom Contructor
-        </button>
-        <button
-          className={`p-2 mx-2 bg-gray-200 rounded-lg hover:bg-black hover:text-white ${
-            activeWidget === "dnfs" ? "font-bold" : ""
-          }`}
-          onClick={() => setActiveWidget("dnfs")}
-        >
-          Most DNFs (Team)
-        </button>
-        <button
-          className={`p-2 mx-2 bg-gray-200 rounded-lg hover:bg-black hover:text-white ${
-            activeWidget === "poles" ? "font-bold" : ""
-          }`}
-          onClick={() => setActiveWidget("poles")}
-        >
-          Most Pirelli Poles (Driver)
-        </button>
-        <button
-          className={`p-2 mx-2 bg-gray-200 border-2 rounded-lg hover:bg-black hover:text-white ${
-            activeWidget === "fastest" ? "font-bold" : ""
-          }`}
-          onClick={() => setActiveWidget("fastest")}
-        >
-          Most DHL Fastest Laps (Driver)
-        </button>
-      </div>
-      <div className="my-4">
-        {/* <label htmlFor="widget-select" className="mr-2 font-bold">
+      <div className="flex">
+        {/* <div className="my-4">
+        <label htmlFor="widget-select" className="mr-2 font-bold">
           Select Prop Bet:
-        </label> */}
+        </label>
         <select
           id="widget-select"
           value={activeWidget}
@@ -139,29 +104,78 @@ export function FantasyPropsScoreboard() {
           <option value="poles">Most Pirelli Poles (Driver)</option>
           <option value="fastest">Most DHL Fastest Laps (Driver)</option>
         </select>
-      </div>
+      </div> */}
 
-      <div className="flex flex-wrap">
-        <div style={{ display: activeWidget === "top" ? "block" : "none" }}>
-          <FantasyPropsTopConstructorWidget
-            constructorStandings={constructorStandings as any}
-          />
+        <div className="flex flex-wrap">
+          <div style={{ display: activeWidget === "top" ? "block" : "none" }}>
+            <FantasyPropsTopConstructorWidget
+              constructorStandings={constructorStandings as any}
+            />
+          </div>
+          <div
+            style={{ display: activeWidget === "bottom" ? "block" : "none" }}
+          >
+            <FantasyPropsBottomConstructorWidget
+              constructorStandings={constructorStandings as any}
+            />
+          </div>
+          <div style={{ display: activeWidget === "dnfs" ? "block" : "none" }}>
+            <FantasyPropsConstructorDNFsWidget
+              finalDnfTable={finalDnfTable as any}
+            />
+          </div>
+          <div style={{ display: activeWidget === "poles" ? "block" : "none" }}>
+            <FantasyPropsMostPolesWidget
+              qualiStandings={qualiStandings as any}
+            />
+          </div>
+          <div
+            style={{ display: activeWidget === "fastest" ? "block" : "none" }}
+          >
+            <FantasyPropsFastestLapWidget fastestLaps={fastestLaps as any} />
+          </div>
         </div>
-        <div style={{ display: activeWidget === "bottom" ? "block" : "none" }}>
-          <FantasyPropsBottomConstructorWidget
-            constructorStandings={constructorStandings as any}
-          />
-        </div>
-        <div style={{ display: activeWidget === "dnfs" ? "block" : "none" }}>
-          <FantasyPropsConstructorDNFsWidget
-            finalDnfTable={finalDnfTable as any}
-          />
-        </div>
-        <div style={{ display: activeWidget === "poles" ? "block" : "none" }}>
-          <FantasyPropsMostPolesWidget qualiStandings={qualiStandings as any} />
-        </div>
-        <div style={{ display: activeWidget === "fastest" ? "block" : "none" }}>
-          <FantasyPropsFastestLapWidget fastestLaps={fastestLaps as any} />
+        <div className="flex flex-col ml-2">
+          <button
+            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
+              activeWidget === "top" ? "border-gray-800" : ""
+            }`}
+            onClick={() => setActiveWidget("top")}
+          >
+            Top Contructor
+          </button>
+          <button
+            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
+              activeWidget === "bottom" ? "border-gray-800" : ""
+            }`}
+            onClick={() => setActiveWidget("bottom")}
+          >
+            Bottom Contructor
+          </button>
+          <button
+            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
+              activeWidget === "dnfs" ? "border-gray-800" : ""
+            }`}
+            onClick={() => setActiveWidget("dnfs")}
+          >
+            Most DNFs (Team)
+          </button>
+          <button
+            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
+              activeWidget === "poles" ? "border-gray-800" : ""
+            }`}
+            onClick={() => setActiveWidget("poles")}
+          >
+            Most Pirelli Poles (Driver)
+          </button>
+          <button
+            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
+              activeWidget === "fastest" ? "border-gray-800" : ""
+            }`}
+            onClick={() => setActiveWidget("fastest")}
+          >
+            Most DHL Fastest Laps (Driver)
+          </button>
         </div>
       </div>
     </div>

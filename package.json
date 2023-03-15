@@ -17,13 +17,16 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
+    "react-slick": "^0.29.0",
     "react-table": "^7.8.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.8",
     "twin.macro": "^3.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-slick": "^0.23.10",
     "@types/react-table": "^7.7.14",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.13",
