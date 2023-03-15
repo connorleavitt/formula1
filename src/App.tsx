@@ -7,6 +7,7 @@ import { CurrentSeason } from "./pages/CurrentSeason";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { About } from "./pages/About";
 library.add(fas);
 
 const App: React.FC = () => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/current" element={<CurrentSeason />} />
           <Route path="/fantasy" element={<Fantasy />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </div>
     </div>

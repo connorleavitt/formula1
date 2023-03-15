@@ -1,4 +1,5 @@
 import { CurrentSeasonData } from "../components/CurrentSeason/CurrentSeasonData";
+import { RaceSchedule } from "../components/CurrentSeason/RaceSchedule";
 
 export const CurrentSeason: React.FC = () => {
   // const test: [] | undefined = driverStandings;
@@ -8,6 +9,7 @@ export const CurrentSeason: React.FC = () => {
         Current Season
       </h1>
       <CurrentSeasonData />
+      <RaceSchedule />
     </div>
   );
 };

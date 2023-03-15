@@ -10,18 +10,6 @@ export function Nav() {
             Formula 1 Dashboard
           </Link>
         </div>
-        <div className="flex m-2 my-6">
-          <input
-            type="text"
-            className="w-full px-4 py-2 pr-8 rounded-md rounded-r-none bg-gray-100 border-2 border-gray-200 focus:outline-none focus:border-gray-300"
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 rounded-md rounded-l-none bg-gray-800 text-white hover:bg-gray-700 focus:outline-none"
-          >
-            Search
-          </button>
-        </div>
         <ul className="flex flex-col justify-between text-xl">
           <li>
             <Link
@@ -50,6 +38,15 @@ export function Nav() {
             >
               <FontAwesomeIcon icon="book" className="pr-3" />
               Historical Data
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/about"
+              className="block hover:bg-black pl-6 py-4 font-medium  w-full"
+            >
+              {/* <FontAwesomeIcon icon="book" className="pr-3" /> */}
+              About
             </Link>
           </li>
         </ul>
