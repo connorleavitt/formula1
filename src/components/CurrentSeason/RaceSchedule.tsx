@@ -5,6 +5,7 @@ import { PreviousRaceWidget } from "../../widgets/PreviousRaceWidget";
 import { getRaceSchedule } from "../../hooks/getRaceSchedule";
 import { NextRaceWidget } from "../../widgets/NextRaceWidget";
 import { UpcomingRacesWidget } from "../../widgets/UpcomingRacesWidget";
+import { NextRaceDetailedWidget } from "../../widgets/NextRaceDetailedWidget";
 
 export function RaceSchedule() {
   const [loading, raceSchedule, error, request] = getRaceSchedule({
@@ -35,6 +36,7 @@ export function RaceSchedule() {
       <div>
         <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
       </div>
+      <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
     </div>
   );
 }

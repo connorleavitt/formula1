@@ -21,11 +21,15 @@ type raceSchedule = {
       date: string;
       time: string;
     };
-    Qualifying: {
+    SecondPractice: {
       date: string;
       time: string;
     };
-    SecondPractice: {
+    ThirdPractice: {
+      date: string;
+      time: string;
+    };
+    Qualifying: {
       date: string;
       time: string;
     };
