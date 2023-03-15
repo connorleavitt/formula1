@@ -33,14 +33,15 @@ export function FantasyPropsBottomConstructorWidget({
     {
       headerName: "Choice",
       field: "propBetsBottomConstructor",
-      width: 100,
+      width: 130,
     },
     {
       headerName: "Placing",
       field: "currentConstructorPosition",
-      width: 100,
+      cellClass: "my-class",
+      width: 120,
       sort: "desc" as string,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      // comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ]);
   if (constructorStandings instanceof Array) {
@@ -74,16 +75,20 @@ export function FantasyPropsBottomConstructorWidget({
   );
 
   return (
-    <div
-      className="ag-theme-alpine"
-      style={{ height: "261px", width: "302px" }}
-    >
-      <h3>Bottom Contructor</h3>
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefs as any}
-        defaultColDef={defaultColDef}
-      />
+    <div className="m-4">
+      <h3 className="font-bold">Bottom Constructor</h3>
+      <div className="bg-neutral-100 p-2 mt-2 rounded-2xl border-red-500 border-2">
+        <div
+          className="ag-theme-f1"
+          style={{ height: "265px", width: "350px" }}
+        >
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={columnDefs as any}
+            defaultColDef={defaultColDef}
+          />
+        </div>
+      </div>
     </div>
   );
 }

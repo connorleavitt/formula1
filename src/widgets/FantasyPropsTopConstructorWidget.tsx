@@ -77,9 +77,9 @@ export function FantasyPropsTopConstructorWidget({
   );
 
   return (
-    <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-2">
-      <h3>Top Contructor</h3>
-      <div className="ag-theme-f1" style={{ height: "261px", width: "322px" }}>
+    <div className="bg-neutral-100 p-2  m-4 rounded-2xl border-red-500 border-2">
+      <h3 className="p-2 font-bold">Top Constructor</h3>
+      <div className="ag-theme-f1" style={{ height: "265px", width: "320px" }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

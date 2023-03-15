@@ -44,12 +44,13 @@ export function FantasyPropsConstructorDNFsWidget({
     {
       headerName: "Choice",
       field: "propBetsMostDidNotFinish",
-      width: 100,
+      width: 130,
     },
     {
       headerName: "Placing",
       field: "currentConstructorPlacing",
-      width: 100,
+      cellClass: "my-class",
+      width: 120,
       sort: "desc" as string,
     },
   ]);
@@ -121,16 +122,15 @@ export function FantasyPropsConstructorDNFsWidget({
   );
 
   return (
-    <div
-      className="ag-theme-alpine"
-      style={{ height: "261px", width: "302px" }}
-    >
+    <div className="bg-neutral-100 p-2  m-4 rounded-2xl border-red-500 border-2">
       <h3>Most DNFs (Team)</h3>
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefs as any}
-        defaultColDef={defaultColDef}
-      />
+      <div className="ag-theme-f1" style={{ height: "265px", width: "375px" }}>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs as any}
+          defaultColDef={defaultColDef}
+        />
+      </div>
     </div>
   );
 }

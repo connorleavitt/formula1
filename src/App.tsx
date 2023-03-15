@@ -13,7 +13,7 @@ const App: React.FC = () => {
   return (
     <div className="grid grid-cols-[250px_1fr] h-screen">
       <Nav />
-      <div className="bg-neutral-200">
+      <div className="bg-neutral-100">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/current" element={<CurrentSeason />} />

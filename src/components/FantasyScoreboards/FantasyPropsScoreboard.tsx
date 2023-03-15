@@ -56,7 +56,12 @@ export function FantasyPropsScoreboard() {
   let finalDnfTable = [];
 
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="ml-20 mr-20 pb-20">
+        <h1 className="text-lg pb-2">Prop Bets</h1>
+        <p>Loading...</p>
+      </div>
+    );
   }
   if (error !== "") {
     return <p>{error}</p>;
@@ -70,9 +75,9 @@ export function FantasyPropsScoreboard() {
   finalDnfTable.push(dnfChoice4[1]);
 
   return (
-    <div className="ml-20 mr-20 pb-20">
-      <h1 className="text-lg pb-2">Prop Bets</h1>
-      <div className="flex justify-between">
+    <div className="pb-20">
+      <h1 className="text-2xl font-bold mb-4">Prop Bets</h1>
+      <div className="flex flex-wrap">
         <FantasyPropsTopConstructorWidget
           constructorStandings={constructorStandings as any}
         />
@@ -82,8 +87,6 @@ export function FantasyPropsScoreboard() {
         <FantasyPropsConstructorDNFsWidget
           finalDnfTable={finalDnfTable as any}
         />
-      </div>
-      <div className="flex justify-between mt-10">
         <FantasyPropsMostPolesWidget qualiStandings={qualiStandings as any} />
         <FantasyPropsFastestLapWidget fastestLaps={fastestLaps as any} />
       </div>

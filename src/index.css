@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-f1-red {
-  background-color: #ee0000;
+:root {
+  --f1-color: #ee0000;
 }
 
-.ag-theme-points {
-  color: black;
-  background-color: lightcoral;
+.bg-f1-red {
+  background-color: var(--f1-color);
+}
+
+.leader-points {
+  border-bottom: 3px solid var(--f1-color);
 }
 
 .ag-theme-groups-even,
