@@ -27,13 +27,13 @@ export function FantasyPropsBottomConstructorWidget({
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
-      field: "nickName",
-      width: 100,
+      field: "name",
+      width: 168,
     },
     {
       headerName: "Choice",
       field: "propBetsBottomConstructor",
-      width: 130,
+      width: 150,
     },
     {
       headerName: "Placing",
@@ -75,19 +75,14 @@ export function FantasyPropsBottomConstructorWidget({
   );
 
   return (
-    <div className="m-4">
-      <h3 className="font-bold">Bottom Constructor</h3>
-      <div className="bg-neutral-100 p-2 mt-2 rounded-2xl border-red-500 border-2">
-        <div
-          className="ag-theme-f1"
-          style={{ height: "265px", width: "350px" }}
-        >
-          <AgGridReact
-            rowData={rowData}
-            columnDefs={columnDefs as any}
-            defaultColDef={defaultColDef}
-          />
-        </div>
+    <div className="p-2 m-4 rounded-2xl border-gray-300 border-2">
+      <h3 className="p-2 font-bold">Bottom Constructor</h3>
+      <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs as any}
+          defaultColDef={defaultColDef}
+        />
       </div>
     </div>
   );

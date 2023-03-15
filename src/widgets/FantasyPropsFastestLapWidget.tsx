@@ -59,8 +59,8 @@ export function FantasyPropsFastestLapWidget({ fastestLaps }: fastestLaps) {
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
-      field: "nickName",
-      width: 100,
+      field: "name",
+      width: 168,
     },
     {
       headerName: "Choice",
@@ -135,9 +135,9 @@ export function FantasyPropsFastestLapWidget({ fastestLaps }: fastestLaps) {
   );
 
   return (
-    <div className="bg-neutral-100 p-2  m-4  rounded-2xl border-red-500 border-2">
-      <h3>Most DHL Fastest Laps (Driver)</h3>
-      <div className="ag-theme-f1" style={{ height: "265px", width: "375px" }}>
+    <div className="p-2 m-4 rounded-2xl border-gray-300 border-2">
+      <h3 className="p-2 font-bold">Most DHL Fastest Laps (Driver)</h3>
+      <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

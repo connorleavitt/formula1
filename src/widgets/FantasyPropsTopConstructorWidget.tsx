@@ -27,13 +27,13 @@ export function FantasyPropsTopConstructorWidget({
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
-      field: "nickName",
-      width: 100,
+      field: "name",
+      width: 168,
     },
     {
       headerName: "Choice",
       field: "propBetsTopConstructor",
-      width: 100,
+      width: 150,
     },
     {
       headerName: "Placing",
@@ -77,9 +77,9 @@ export function FantasyPropsTopConstructorWidget({
   );
 
   return (
-    <div className="bg-neutral-100 p-2  m-4 rounded-2xl border-red-500 border-2">
+    <div className="p-2 m-4 rounded-2xl border-gray-300 border-2">
       <h3 className="p-2 font-bold">Top Constructor</h3>
-      <div className="ag-theme-f1" style={{ height: "265px", width: "320px" }}>
+      <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

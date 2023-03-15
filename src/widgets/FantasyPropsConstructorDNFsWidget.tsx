@@ -38,13 +38,13 @@ export function FantasyPropsConstructorDNFsWidget({
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
-      field: "nickName",
-      width: 100,
+      field: "name",
+      width: 168,
     },
     {
       headerName: "Choice",
       field: "propBetsMostDidNotFinish",
-      width: 130,
+      width: 150,
     },
     {
       headerName: "Placing",
@@ -122,9 +122,9 @@ export function FantasyPropsConstructorDNFsWidget({
   );
 
   return (
-    <div className="bg-neutral-100 p-2  m-4 rounded-2xl border-red-500 border-2">
-      <h3>Most DNFs (Team)</h3>
-      <div className="ag-theme-f1" style={{ height: "265px", width: "375px" }}>
+    <div className="p-2 m-4 rounded-2xl border-gray-300 border-2">
+      <h3 className="p-2 font-bold">Most DNFs (Team)</h3>
+      <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}
