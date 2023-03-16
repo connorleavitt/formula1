@@ -10,7 +10,7 @@ import { NextRaceDetailedWidget } from "../../widgets/NextRaceDetailedWidget";
 export function RaceSchedule() {
   const [loading, raceSchedule, error, request] = getRaceSchedule({
     method: "get",
-    url: "http://ergast.com/api/f1/current.json",
+    url: "https://ergast.com/api/f1/current.json",
   });
 
   if (loading) {
