@@ -3,7 +3,7 @@ import { FantasyMainScoreboardLeader } from "../components/FantasyScoreboards/Fa
 export const Home: React.FC = () => {
   // const test: [] | undefined = driverStandings;
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 m-2">
       <FantasyMainScoreboardLeader />
     </div>
   );
