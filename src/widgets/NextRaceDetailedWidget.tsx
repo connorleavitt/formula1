@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { parseISO } from "date-fns";
 
 type RaceSchedule = {
   season: number;
@@ -67,8 +68,28 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   }
 
   // format the race date range
-  const firstPracticeDate = new Date(nextRace.FirstPractice.date);
-  const raceDate = new Date(nextRace.date);
+  // const firstPracticeDate = new Date(nextRace.FirstPractice.date);
+  // const raceDate = new Date(nextRace.date);
+
+  //using date-fns
+  const firstPracticeDate = parseISO(
+    nextRace.FirstPractice.date + "T" + nextRace.FirstPractice.time
+  );
+  const secondPracticeDate = parseISO(
+    nextRace.SecondPractice.date + "T" + nextRace.SecondPractice.time
+  );
+  const thirdPracticeDate = parseISO(
+    nextRace.ThirdPractice.date + "T" + nextRace.ThirdPractice.time
+  );
+  const qualifyingDate = parseISO(
+    nextRace.Qualifying.date + "T" + nextRace.Qualifying.time
+  );
+  // if (nextRace.Sprint) {
+  //   const sprintDate = parseISO(
+  //     nextRace.Sprint.date + "T" + nextRace.Sprint.time
+  //   );
+  // }
+  const raceDate = parseISO(nextRace.date + "T" + nextRace.time);
 
   const firstPracticeDayOfWeek = firstPracticeDate.toLocaleString("en-US", {
     weekday: "short",
@@ -83,17 +104,17 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
     day: "numeric",
   });
 
-  const raceDateRange = `${firstPracticeDayOfWeek} (${firstPracticeDayOfMonth}) - ${raceDayOfWeek} (${raceDayOfMonth})`;
-
+  const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
+  const raceDateRangeDates = `${raceMonth} ${firstPracticeDayOfMonth} - ${raceMonth} ${raceDayOfMonth}`;
 
   return (
     <div className="p-2 w-max border-t-4 border-r-8 border-red-500 border-double">
       <h3 className="p-2 font-bold">{`Round ${nextRace.round} - ${nextRace.raceName}`}</h3>
       <div className="flex m-2 justify-between">
         <div className="flex flex-col items-center">
-          <p className="px-4">{raceDateRange}</p>
-          <div className="px-2 my-2">{raceMonth}</div>
+          <p className="px-4">{raceDateRangeDays}</p>
+          <div className="px-2 my-2">{raceDateRangeDates}</div>
         </div>
         <div className="flex flex-col items-center">
           <div className="font-bold">{nextRace.Circuit.Location.locality}</div>
@@ -104,16 +125,14 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
         <div className="flex p-2 justify-between">
           <div className="w-[100px]">Practice 1</div>
           <div className="w-[100px] text-center">
-            {new Date(nextRace.FirstPractice.date).toLocaleString("en-US", {
+            {new Date(firstPracticeDate).toLocaleString("en-US", {
               weekday: "short",
               month: "short",
               day: "numeric",
             })}
           </div>
           <div className="w-[100px] text-right">
-            {new Date(
-              nextRace.FirstPractice.date + " " + nextRace.FirstPractice.time
-            ).toLocaleString("en-US", {
+            {new Date(firstPracticeDate).toLocaleString("en-US", {
               hour: "numeric",
               minute: "numeric",
               hour12: true,
@@ -123,16 +142,14 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
         <div className="flex p-2 justify-between">
           <div className="w-[100px]">Practice 2</div>
           <div className="w-[100px] text-center">
-            {new Date(nextRace.SecondPractice.date).toLocaleString("en-US", {
+            {new Date(secondPracticeDate).toLocaleString("en-US", {
               weekday: "short",
               month: "short",
               day: "numeric",
             })}
           </div>
           <div className="w-[100px] text-right">
-            {new Date(
-              nextRace.SecondPractice.date + " " + nextRace.SecondPractice.time
-            ).toLocaleString("en-US", {
+            {new Date(secondPracticeDate).toLocaleString("en-US", {
               hour: "numeric",
               minute: "numeric",
               hour12: true,
@@ -142,16 +159,14 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
         <div className="flex p-2 justify-between">
           <div className="w-[100px]">Practice 3</div>
           <div className="w-[100px] text-center">
-            {new Date(nextRace.ThirdPractice.date).toLocaleString("en-US", {
+            {new Date(thirdPracticeDate).toLocaleString("en-US", {
               weekday: "short",
               month: "short",
               day: "numeric",
             })}
           </div>
           <div className="w-[100px] text-right">
-            {new Date(
-              nextRace.ThirdPractice.date + " " + nextRace.ThirdPractice.time
-            ).toLocaleString("en-US", {
+            {new Date(thirdPracticeDate).toLocaleString("en-US", {
               hour: "numeric",
               minute: "numeric",
               hour12: true,
@@ -161,16 +176,14 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
         <div className="flex p-2 justify-between">
           <div className="w-[100px]">Qualifying</div>
           <div className="w-[100px] text-center">
-            {new Date(nextRace.Qualifying.date).toLocaleString("en-US", {
+            {new Date(qualifyingDate).toLocaleString("en-US", {
               weekday: "short",
               month: "short",
               day: "numeric",
             })}
           </div>
           <div className="w-[100px] text-right">
-            {new Date(
-              nextRace.Qualifying.date + " " + nextRace.Qualifying.time
-            ).toLocaleString("en-US", {
+            {new Date(qualifyingDate).toLocaleString("en-US", {
               hour: "numeric",
               minute: "numeric",
               hour12: true,
@@ -181,7 +194,9 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
           <div className="flex p-2 justify-between">
             <div className="w-[100px]">Sprint</div>
             <div className="w-[100px]">
-              {new Date(nextRace.Sprint.date).toLocaleString("en-US", {
+              {new Date(
+                parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
+              ).toLocaleString("en-US", {
                 weekday: "short",
                 month: "short",
                 day: "numeric",
@@ -189,7 +204,7 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
             </div>
             <div className="w-[100px] text-right">
               {new Date(
-                nextRace.Sprint.date + " " + nextRace.Sprint.time
+                parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
               ).toLocaleString("en-US", {
                 hour: "numeric",
                 minute: "numeric",
@@ -201,21 +216,18 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
         <div className="flex p-2 justify-between">
           <div className="w-[100px]">Race</div>
           <div className="w-[100px] text-center">
-            {new Date(nextRace.date).toLocaleString("en-US", {
+            {new Date(raceDate).toLocaleString("en-US", {
               weekday: "short",
               month: "short",
               day: "numeric",
             })}
           </div>
           <div className="w-[100px] text-right">
-            {new Date(nextRace.date + " " + nextRace.time).toLocaleString(
-              "en-US",
-              {
-                hour: "numeric",
-                minute: "numeric",
-                hour12: true,
-              }
-            )}
+            {new Date(raceDate).toLocaleString("en-US", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })}
           </div>
         </div>
       </div>
