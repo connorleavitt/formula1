@@ -1,6 +1,8 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "../index.css";
+
 import { useState } from "react";
 import { CircuitDetailedWidget } from "./CircuitDetailedWidget";
 
@@ -87,16 +89,17 @@ export function UpcomingRacesWidget({
   const handleRaceClick = (race: any) => {
     setSelectedCircuit(race);
   };
+  const test = 5;
 
   const settings = {
     dots: true,
     infinite: false,
     swipeToSlide: true,
-    speed: 500,
+    speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
-    variableWidth: true,
-    // initialSlide: 4,  FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
+    // variableWidth: true,
+    // initialSlide: test, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
     responsive: [
       {
         breakpoint: 1024,
@@ -126,79 +129,77 @@ export function UpcomingRacesWidget({
   };
 
   return (
-    <div className="">
-      <div className="p-2 mb-10">
-        {/* <h3 className="p-2 font-bold">Upcoming</h3> */}
-        <Slider className="w-[1100px]" {...settings}>
-          {/* <div className="flex p-2"> */}
+    <div className="flex flex-col items-center w-full">
+      <div className="mb-10 flex w-full justify-center">
+        <Slider className="w-11/12" {...settings}>
           {truncatedRaceSchedule.map(
-            (race: any) =>
-              selectedCircuit && (
-                <button
-                  key={race.round}
-                  className={`relative text-left p-2 mr-2 rounded-2xl w-64 border-gray-300 border-2 ${
-                    race.round === selectedCircuit.round ? "bg-black first" : ""
+            (race: any) => (
+              // selectedCircuit && (
+              <button
+                key={race.round}
+                className={`w-[100px] relative circuit-info--button text-left p-2 rounded-2xl border-gray-300 border-2 hover:border-gray-400 ${
+                  race.round === selectedCircuit.round ? "bg-black first" : ""
+                }`}
+                onClick={() => handleRaceClick(race)}
+              >
+                <div
+                  className={`text-gray-500 text-xs ${
+                    race.round === selectedCircuit.round
+                      ? "text-white first"
+                      : ""
                   }`}
-                  onClick={() => handleRaceClick(race)}
+                >{`Round ${race.round}`}</div>
+                <div
+                  className={` ${
+                    race.round === selectedCircuit.round
+                      ? "text-white font-bold first"
+                      : "text-gray-800"
+                  }`}
                 >
-                  <div
-                    className={`text-gray-500 text-xs ${
-                      race.round === selectedCircuit.round
-                        ? "text-white first"
-                        : ""
-                    }`}
-                  >{`Round ${race.round}`}</div>
-                  <div
-                    className={` ${
-                      race.round === selectedCircuit.round
-                        ? "text-white font-bold first"
-                        : "text-gray-800"
-                    }`}
-                  >
-                    {race.raceName}
+                  {race.raceName}
+                </div>
+                <div
+                  className={`text-gray-500 text-xs ${
+                    race.round === selectedCircuit.round
+                      ? "text-white first"
+                      : ""
+                  }`}
+                >
+                  {new Date(race.date + "T" + race.time)
+                    .toLocaleString("en-US", {
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                    })
+                    .replace(/,/, " at")}
+                </div>
+                {race.round === futureRaces[0].round ? (
+                  <div className="absolute top-[5px] right-[5px]">
+                    <p className="text-red-600 px-1 py-[2px] font-bold bg-neutral-200 rounded-lg text-xs">
+                      NEXT
+                    </p>
                   </div>
-                  <div
-                    className={`text-gray-500 text-xs ${
-                      race.round === selectedCircuit.round
-                        ? "text-white first"
-                        : ""
-                    }`}
-                  >
-                    {new Date(race.date + "T" + race.time)
-                      .toLocaleString("en-US", {
-                        month: "2-digit",
-                        day: "2-digit",
-                        hour: "numeric",
-                        minute: "numeric",
-                        hour12: true,
-                      })
-                      .replace(/,/, " at")}
+                ) : (
+                  ""
+                )}
+                {race.round === previousRace.round ? (
+                  <div className="absolute top-[5px] right-[5px]">
+                    <p className="text-black px-1 py-[2px] font-bold bg-neutral-200 rounded-lg text-xs">
+                      PREVIOUS
+                    </p>
                   </div>
-                  {race.round === futureRaces[0].round ? (
-                    <div className="absolute top-[5px] right-[5px]">
-                      <p className="text-red-600 px-1 py-[2px] font-bold bg-neutral-200 rounded-lg text-xs">
-                        NEXT
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                  {race.round === previousRace.round ? (
-                    <div className="absolute top-[5px] right-[5px]">
-                      <p className="text-black px-1 py-[2px] font-bold bg-neutral-200 rounded-lg text-xs">
-                        PREVIOUS
-                      </p>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </button>
-              )
+                ) : (
+                  ""
+                )}
+              </button>
+            )
+            // )
           )}
-          {/* </div> */}
         </Slider>
       </div>
-      <div>
+      <div className="mb-10">
         {selectedCircuit && (
           <CircuitDetailedWidget
             circuit={selectedCircuit}

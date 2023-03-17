@@ -141,10 +141,10 @@ export function CircuitDetailedWidget({
             </div>
             <div className="flex flex-col items-center">
               <div className="font-bold">
-                {selectedRaceCombined.Circuit.Location.locality}
+                {selectedRaceCombined.Circuit?.Location?.locality}
               </div>
               <div className="mt-2">
-                {selectedRaceCombined.Circuit.Location.country}
+                {selectedRaceCombined.Circuit?.Location?.country}
               </div>
             </div>
           </div>

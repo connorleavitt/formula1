@@ -32,16 +32,9 @@ export function RaceSchedule() {
     return <p>Data is null</p>;
   }
   return (
-    <div className="flex">
-      {/* <NextRaceWidget raceSchedule={raceSchedule as any} /> */}
-      <div className="flex-col">
-        {/* <PreviousRaceWidget raceSchedule={raceSchedule as any} /> */}
-        <UpcomingRacesWidgetVertical raceSchedule={raceSchedule as any} />
-        <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
-      </div>
-      <div className="mr-auto ml-4">
-        {/* <NextRaceDetailedWidget raceSchedule={raceSchedule as any} /> */}
-      </div>
+    <div className="race-schedule-container">
+      <h2 className="p-2 font-bold ml-12">Race Schedule</h2>
+      <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
     </div>
   );
 }

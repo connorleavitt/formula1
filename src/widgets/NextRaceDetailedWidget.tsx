@@ -137,10 +137,10 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
             </div>
             <div className="flex flex-col items-center">
               <div className="font-bold">
-                {combinedNextRace.Circuit.Location.locality}
+                {combinedNextRace.Circuit?.Location?.locality}
               </div>
               <div className="mt-2">
-                {combinedNextRace.Circuit.Location.country}
+                {combinedNextRace.Circuit?.Location?.country}
               </div>
             </div>
           </div>

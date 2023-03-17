@@ -4,6 +4,17 @@
 
 :root {
   --f1-color: #ee0000;
+
+  --h-header: 60px;
+  --w-nav: 244px;
+}
+
+header {
+  height: var(--h-header);
+}
+
+nav {
+  width: var(--w-nav);
 }
 
 .bg-f1-red {
@@ -146,3 +157,35 @@
 .ag-theme-f1 .ag-row {
   font-size: var(--ag-font-size);
 }
+
+.slick-slider > .slick-dots > li > button:before {
+  color: var(--f1-color);
+}
+
+/* .slick-slider > .slick-dots > li.slick-active > button:before {
+  color: red;
+} */
+
+.slick-slider > .slick-dots > li.slick-active:hover > button:before {
+  color: red;
+}
+
+.slick-arrow.slick-prev:before,
+.slick-arrow.slick-next:before {
+  color: var(--f1-color);
+}
+
+.circuit-info--button {
+  margin-right: 10px;
+}
+
+.slick-slide {
+  padding: 0 5px;
+}
+
+.race-schedule-container {
+  width: 1000px;
+}
+
+/* //back to upcoming next race button
+//view all instead dots? */
