@@ -148,7 +148,7 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
 
   return (
     <div className="my-4 flex">
-      <div className="w-max countdown-container flex flex-col justify-around rounded-lg p-2">
+      <div className="countdown-container flex flex-col justify-around rounded-lg p-2">
         {/* <p className="p-2 font-bold">Countdown to Race:</p> */}
         <div className="flex flex-col items-center p-2">
           <p className="text-2xl font-bold">{formattedCountdown.days}</p>

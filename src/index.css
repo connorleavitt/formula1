@@ -82,6 +82,7 @@ main {
 .countdown-container {
   background-color: var(--clr-f1-red);
   color: white;
+  width: 75px;
 }
 
 .current-season {
