@@ -15,7 +15,7 @@ const App: React.FC = () => {
   return (
     <div>
       <Header />
-      <div className="grid grid-cols-[244px_1fr] h-screen">
+      <div className="flex">
         <Nav />
         <main className="main">
           <Routes>

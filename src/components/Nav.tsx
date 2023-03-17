@@ -20,7 +20,6 @@ export function Nav() {
       setActiveNav("about");
     }
   }, [location]);
-  console.log(activeNav);
   return (
     <nav className="bg-f1-red">
       <ul className="flex flex-col justify-between text-md m-4">

@@ -34,6 +34,19 @@ main {
   background-color: var(--clr-main-background);
 }
 
+.current-season {
+  width: calc(100vw - var(--w-nav));
+}
+
+.race-schedule-container > h2 {
+  margin-left: 110px;
+}
+
+.race-schedule--next-tag,
+.race-schedule--prev-tag {
+  background-color: var(--clr-f1-gray-background);
+}
+
 .leader-points {
   border-bottom: 3px solid var(--clr-f1-red);
 }
@@ -194,10 +207,6 @@ main {
 
 .slick-slide {
   padding: 0 5px;
-}
-
-.race-schedule-container {
-  width: 1000px;
 }
 
 /* //back to upcoming next race button

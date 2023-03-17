@@ -129,9 +129,9 @@ export function UpcomingRacesWidget({
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center">
       <div className="mb-10 flex w-full justify-center">
-        <Slider className="w-11/12" {...settings}>
+        <Slider className="w-10/12" {...settings}>
           {truncatedRaceSchedule.map(
             (race: any) => (
               // selectedCircuit && (
@@ -177,7 +177,7 @@ export function UpcomingRacesWidget({
                 </div>
                 {race.round === futureRaces[0].round ? (
                   <div className="absolute top-[5px] right-[5px]">
-                    <p className="text-red-600 px-1 py-[2px] font-bold bg-neutral-200 rounded-lg text-xs">
+                    <p className="race-schedule--next-tag text-red-600 px-2 py-[1px] font-bold rounded-lg text-xs">
                       NEXT
                     </p>
                   </div>
@@ -186,7 +186,7 @@ export function UpcomingRacesWidget({
                 )}
                 {race.round === previousRace.round ? (
                   <div className="absolute top-[5px] right-[5px]">
-                    <p className="text-black px-1 py-[2px] font-bold bg-neutral-200 rounded-lg text-xs">
+                    <p className="race-schedule--prev-tag text-gray-400 px-2 py-[1px] font-bold rounded-lg text-xs">
                       PREVIOUS
                     </p>
                   </div>

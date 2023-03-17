@@ -1,7 +1,7 @@
 export const About: React.FC = () => {
   // const test: [] | undefined = driverStandings;
   return (
-    <div className="bg-gray-100">
+    <div className="">
       <div className="m-10 max-w-3xl">
         <h1 className="text-3xl font-bold">About</h1>
         <p className="my-4 ">
