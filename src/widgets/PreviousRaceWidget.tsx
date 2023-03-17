@@ -64,11 +64,11 @@ export function PreviousRaceWidget({ raceSchedule }: PreviousRaceWidgetProps) {
   const previousRace = previousRaces[0];
 
   return (
-    <div className="p-2">
+    <div className="p-2 pb-0">
       <h3 className="p-2 font-bold">Previous</h3>
       <div className="p-2 rounded-2xl w-64 border-gray-300 border-2 bg-gray-">
         <div className="text-gray-500 text-xs">Round {previousRace.round}</div>
-        <div className="font-bold">{previousRace.raceName}</div>
+        <div className="text-gray-800">{previousRace.raceName}</div>
         <div className="text-gray-500 text-xs">
           {new Date(previousRace.date + "T" + previousRace.time)
             .toLocaleString("en-US", {

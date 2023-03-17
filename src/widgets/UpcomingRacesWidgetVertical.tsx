@@ -1,6 +1,5 @@
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { useMemo, useState } from "react";
+import { CircuitDetailedWidget } from "./CircuitDetailedWidget";
 
 type RaceSchedule = {
   season: number;
@@ -46,7 +45,7 @@ type UpcomingRacesWidgetProps = {
   raceSchedule: RaceSchedule[];
 };
 
-export function UpcomingRacesWidget({
+export function UpcomingRacesWidgetVertical({
   raceSchedule,
 }: UpcomingRacesWidgetProps) {
   const truncatedRaceSchedule = raceSchedule.map((value: any) => {
@@ -55,67 +54,47 @@ export function UpcomingRacesWidget({
       date: value["date"],
       time: value["time"],
       round: value["round"],
+      circuitId: value.Circuit.circuitId,
     };
   });
 
   const currentDate = new Date();
-
   // Filter races with date greater than current date
-  const futureRaces = truncatedRaceSchedule.filter((race: any) => {
-    const raceDate = new Date(race.date + "T" + race.time);
-    return raceDate > currentDate;
-  });
+  const futureRaces = useMemo(() => {
+    return truncatedRaceSchedule
+      .filter((race: any) => {
+        const raceDate = new Date(race.date + "T" + race.time);
+        return raceDate > currentDate;
+      })
+      .sort((a: any, b: any) => a.round - b.round);
+  }, [truncatedRaceSchedule, currentDate]);
+  //need to make an onclick button state var for the selected race with at least the circuitId
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    swipeToSlide: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    variableWidth: true,
-    // initialSlide: 4,  FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+  const test = {
+    raceName: "Australian Grand Prix",
+    date: "2023-04-02",
+    time: "05:00:00Z",
+    round: "3",
+    circuitId: "albert_park",
+  };
+  const [selectedCircuit, setSelectedCircuit] = useState(null);
+
+  const handleRaceClick = (race: any) => {
+    setSelectedCircuit(race);
   };
 
-  // Sort future races by round (ascending order)
-  futureRaces.sort((a: any, b: any) => a.round - b.round);
-  // Next race will be the first race in the sorted array
   return (
-    <div className="p-2 mb-10">
-      <h3 className="p-2 font-bold">Upcoming</h3>
-      <Slider className="w-[1100px]" {...settings}>
-        {truncatedRaceSchedule.map((race: any) => (
-          <div className="w-64" key={race.round}>
+    <div className="">
+      <div className="p-2">
+        {/* <h3 className="p-2 font-bold">Race Schedule</h3> */}
+        <div className="flex p-2">
+          {truncatedRaceSchedule.map((race: any) => (
             <button
-              className={`relative text-left p-2 rounded-2xl w-64 border-gray-300 border-2 ${
+              key={race.round}
+              className={`relative text-left p-2 mr-2 rounded-2xl w-64 border-gray-300 border-2 ${
                 race.round === futureRaces[0].round ? "bg-black first" : ""
               }`}
+              onClick={() => handleRaceClick(race)}
             >
               <div
                 className={`text-gray-500 text-xs ${
@@ -156,9 +135,29 @@ export function UpcomingRacesWidget({
                 ""
               )}
             </button>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </div>
+      </div>
+      {/* showing the detailed track Info */}
+      <div>
+        {selectedCircuit && (
+          <CircuitDetailedWidget
+            circuit={selectedCircuit}
+            raceSchedule={raceSchedule}
+            key={selectedCircuit.round} // Add key prop to force re-render
+          />
+        )}
+      </div>
     </div>
   );
 }
+
+// const circuitInfoFromParent = {
+//   raceName: "Australian Grand Prix",
+//   date: "2023-04-02",
+//   time: "05:00:00Z",
+//   round: "3",
+//   circuitId: "albert_park",
+// };
+
+// const;

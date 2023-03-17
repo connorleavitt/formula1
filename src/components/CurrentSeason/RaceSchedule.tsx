@@ -6,8 +6,12 @@ import { getRaceSchedule } from "../../hooks/getRaceSchedule";
 import { NextRaceWidget } from "../../widgets/NextRaceWidget";
 import { UpcomingRacesWidget } from "../../widgets/UpcomingRacesWidget";
 import { NextRaceDetailedWidget } from "../../widgets/NextRaceDetailedWidget";
+import { UpcomingRacesWidgetVertical } from "../../widgets/UpcomingRacesWidgetVertical";
+import { Carousel } from "../../widgets/RaceScheduleCarouselWidget";
 
 export function RaceSchedule() {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+
   const [loading, raceSchedule, error, request] = getRaceSchedule({
     method: "get",
     url: "https://ergast.com/api/f1/current.json",
@@ -28,14 +32,15 @@ export function RaceSchedule() {
     return <p>Data is null</p>;
   }
   return (
-    <div>
-      <div className="flex">
-        <NextRaceWidget raceSchedule={raceSchedule as any} />
-        <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
-      </div>
-      <div className="flex overflow-auto">
+    <div className="flex">
+      {/* <NextRaceWidget raceSchedule={raceSchedule as any} /> */}
+      <div className="flex-col">
         <PreviousRaceWidget raceSchedule={raceSchedule as any} />
+        <UpcomingRacesWidgetVertical raceSchedule={raceSchedule as any} />
         <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
+      </div>
+      <div className="mr-auto ml-4">
+        {/* <NextRaceDetailedWidget raceSchedule={raceSchedule as any} /> */}
       </div>
     </div>
   );
