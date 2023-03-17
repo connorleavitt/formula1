@@ -79,11 +79,11 @@ export function FantasyMainScoreboardLeaderWidget({ driverData }: DriverProps) {
       <div className="flex flex-col items-start justify-between py-4 px-4 rounded-l-lg">
         <div className="flex items-center">
           <p className="px-2">FANTASY TOP 3</p>
-          <div className="text-sm px-2">
-            <Link to="/fantasy" className="hover:font-bold">
+          <Link to="/fantasy">
+            <div className="text-sm px-2">
               <FontAwesomeIcon icon="up-right-from-square" />
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
         <div className="flex text-right">
           <div className="p-2 pr-4">

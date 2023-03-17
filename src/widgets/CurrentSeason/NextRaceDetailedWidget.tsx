@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { parseISO } from "date-fns";
+import { differenceInSeconds, formatDuration, parseISO } from "date-fns";
 import trackInfo from "../../data/trackInfo.json";
 
 type RaceSchedule = {
@@ -48,7 +48,7 @@ type NextRaceWidgetProps = {
 
 export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
-  const [nextRaceUrl, setNextRaceUrl] = useState<RaceSchedule | null>(null);
+  const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
   useEffect(() => {
     const now = new Date();
@@ -62,13 +62,40 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
 
     if (race) {
       setNextRace(race);
+      const raceDate = parseISO(race.date + "T" + race.time);
+      const diffInSeconds = differenceInSeconds(raceDate, now);
+      setRemainingSeconds(diffInSeconds);
+      const intervalId = setInterval(() => {
+        setRemainingSeconds((prevRemainingSeconds) =>
+          prevRemainingSeconds ? prevRemainingSeconds - 1 : null
+        );
+      }, 1000);
+      return () => clearInterval(intervalId);
     }
   }, [raceSchedule]);
+
+  function secondsToHms(d: number) {
+    d = Number(d);
+    const days = Math.floor(d / (3600 * 24));
+    const hours = Math.floor((d % (3600 * 24)) / 3600);
+    const minutes = Math.floor((d % 3600) / 60);
+    const seconds = Math.floor(d % 60);
+    return {
+      days,
+      hours,
+      minutes,
+      seconds,
+    };
+    // return `${days > 0 ? days : ""}${("0" + hours).slice(-2)}:${(
+    //   "0" + minutes
+    // ).slice(-2)}:${("0" + seconds).slice(-2)}`;
+  }
+
+  const formattedCountdown = secondsToHms(remainingSeconds as number);
 
   if (!nextRace) {
     return null; // no next race found
   }
-  // console.log(nextRace);
 
   const macthedNextRace = trackInfo.find(
     (track) => track.circuitId === nextRace.Circuit.circuitId
@@ -98,11 +125,6 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   const qualifyingDate = parseISO(
     nextRace.Qualifying.date + "T" + nextRace.Qualifying.time
   );
-  // if (nextRace.Sprint) {
-  //   const sprintDate = parseISO(
-  //     nextRace.Sprint.date + "T" + nextRace.Sprint.time
-  //   );
-  // }
   const raceDate = parseISO(
     combinedNextRace.date + "T" + combinedNextRace.time
   );
@@ -125,25 +147,33 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
 
   return (
-    <div>
-      <h2 className="p-2 text-lg font-bold">Circuit Info</h2>
-      <div className="flex p-2 border-t-4 border-r-8 border-red-500 border-double">
-        <div className="w-96">
-          <h3 className="p-2 font-bold">{`Round ${combinedNextRace.round} - ${combinedNextRace.raceName}`}</h3>
-          <div className="flex m-2 justify-between">
-            <div className="flex flex-col items-center">
-              <p className="px-4">{raceDateRangeDays}</p>
-              <div className="px-2 my-2">{raceDateRangeDates}</div>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="font-bold">
-                {combinedNextRace.Circuit?.Location?.locality}
-              </div>
-              <div className="mt-2">
-                {combinedNextRace.Circuit?.Location?.country}
-              </div>
-            </div>
-          </div>
+    <div className="my-4 flex">
+      <div className="w-max countdown-container flex flex-col justify-around rounded-lg p-2">
+        {/* <p className="p-2 font-bold">Countdown to Race:</p> */}
+        <div className="flex flex-col items-center p-2">
+          <p className="text-2xl font-bold">{formattedCountdown.days}</p>
+          <p className="text-xs">DAYS</p>
+        </div>
+        <div className="flex flex-col items-center p-2">
+          <p className="text-2xl font-bold">{formattedCountdown.hours}</p>
+          <p className="text-xs">HRS</p>
+        </div>
+        <div className="flex flex-col items-center p-2">
+          <p className="text-2xl font-bold">{formattedCountdown.minutes}</p>
+          <p className="text-xs">MINS</p>
+        </div>
+        <div className="flex flex-col items-center p-2">
+          <p className="text-2xl font-bold">{formattedCountdown.seconds}</p>
+          <p className="text-xs">SECS</p>
+        </div>
+      </div>
+      <div className="ml-4">
+        <h3 className="p-2 text-2xl">
+          <span className="font-bold"> Next Race </span>
+          (Round {combinedNextRace.round})
+        </h3>
+        <div className="flex flex-col p-2 pr-4 border-t-4 border-r-8 border-red-500 border-double w-96">
+          <h3 className="p-1 mb-1 font-bold">{`${combinedNextRace.raceName}`}</h3>
           <div className="bg-gray-200 rounded-md">
             <div className="flex p-2 justify-between">
               <div className="w-[100px]">Practice 1</div>
@@ -263,13 +293,6 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
             </div>
           </div>
         </div>
-
-        <img
-          src={combinedNextRace.Circuit.imgUrl}
-          alt={combinedNextRace.Circuit.circuitName}
-          height="100%"
-          width="100%"
-        />
       </div>
     </div>
   );

@@ -60,8 +60,12 @@ main {
   font-weight: bold;
 }
 
-.home-leader-widget > div > div:first-child > div {
+.home-leader-widget > div > div:first-child > a > div {
   color: var(--clr-text-light);
+}
+
+.home-leader-widget > div > div:first-child > a > div:hover {
+  color: var(--clr-f1-gray-background);
 }
 
 .home-leader-widget > div:first-child {
@@ -73,6 +77,11 @@ main {
   height: 200px;
   width: 100%;
   object-fit: cover;
+}
+
+.countdown-container {
+  background-color: var(--clr-f1-red);
+  color: white;
 }
 
 .current-season {

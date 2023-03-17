@@ -1,5 +1,6 @@
 import { FantasyMainScoreboardLeader } from "../components/FantasyScoreboards/FantasyMainScoreboardLeader";
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
+import { NextRaceDetailedWidget } from "../widgets/CurrentSeason/NextRaceDetailedWidget";
 import { NextRaceWidget } from "../widgets/CurrentSeason/NextRaceWidget";
 
 export const Home: React.FC = () => {
@@ -25,7 +26,7 @@ export const Home: React.FC = () => {
     <div className="home m-6">
       <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
       <FantasyMainScoreboardLeader />
-      <NextRaceWidget raceSchedule={raceSchedule as any} />
+      <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
     </div>
   );
 };
