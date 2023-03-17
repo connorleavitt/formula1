@@ -7,6 +7,8 @@
   --clr-main-background: #ffffff;
   --clr-f1-gray-background: #f6f6f6;
   --clr-f1-gray-highlighted: #dedede;
+  --clr-text-light: #66737d;
+  --clr-text-mid: #24313a;
   --h-header: 60px;
   --w-nav: 244px;
 }
@@ -39,13 +41,31 @@ main {
   width: calc(100vw - var(--w-nav));
 }
 
-.race-schedule-container > h2 {
-  margin-left: 110px;
+.race-schedule-container,
+.current-season--container {
+  margin-left: 3rem;
 }
 
 .race-schedule--next-tag,
 .race-schedule--prev-tag {
   background-color: var(--clr-f1-gray-background);
+}
+
+.circuit-times-table {
+  background-color: var(--clr-f1-gray-background);
+}
+
+.circuit-img--container {
+  width: auto;
+  margin-left: 2rem;
+}
+
+.circuit-location > p:first-child {
+  color: var(--clr-text-light);
+}
+
+.circuit-laps > p:last-child {
+  color: var(--clr-text-light);
 }
 
 .leader-points {

@@ -33,7 +33,7 @@ export function RaceSchedule() {
   }
   return (
     <div className="race-schedule-container">
-      <h2 className="p-2 font-bold">Race Schedule</h2>
+      <h2 className="p-2 text-lg font-bold">Race Schedule</h2>
       <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
     </div>
   );

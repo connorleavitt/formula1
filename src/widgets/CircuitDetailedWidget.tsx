@@ -131,26 +131,28 @@ export function CircuitDetailedWidget({
   return (
     <div>
       <h2 className="p-2 text-lg font-bold">Circuit Info</h2>
-      <div className="flex p-2 w-[1000px] border-t-4 border-r-8 border-red-500 border-double">
-        <div className="w-96">
+      <div className="flex p-2 w-[1000px] border-t-4 rounded-sm border-r-8 border-red-500">
+        <div>
           <h3 className="p-2 font-bold">{`Round ${selectedRaceCombined.round} - ${selectedRaceCombined.raceName}`}</h3>
-          <div className="flex m-2 justify-between">
-            <div className="flex flex-col items-center">
-              <p className="px-4">{raceDateRangeDays}</p>
-              <div className="px-2 my-2">{raceDateRangeDates}</div>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="font-bold">
+          <div className="flex justify-around mb-4">
+            <div className="my-2 circuit-location">
+              <p className="text-lg">
                 {selectedRaceCombined.Circuit?.Location?.locality}
-              </div>
-              <div className="mt-2">
+              </p>
+              <p className="font-bold text-4xl">
                 {selectedRaceCombined.Circuit?.Location?.country}
-              </div>
+              </p>
+            </div>
+            <div className="circuit-laps ml-2 my-2 flex items-end">
+              <p className="font-bold text-4xl mr-1">
+                {selectedRaceCombined.Circuit.laps}
+              </p>
+              <p>LAPS</p>
             </div>
           </div>
-          <div className="bg-gray-200 rounded-md">
+          <div className="circuit-times-table rounded-md">
             <div className="flex p-2 justify-between">
-              <div className="w-[100px]">Practice 1</div>
+              <div className="w-[100px] font-bold">Practice 1</div>
               <div className="w-[100px] text-center">
                 {new Date(firstPracticeDate).toLocaleString("en-US", {
                   weekday: "short",
@@ -167,7 +169,7 @@ export function CircuitDetailedWidget({
               </div>
             </div>
             <div className="flex p-2 justify-between">
-              <div className="w-[100px]">Practice 2</div>
+              <div className="w-[100px] font-bold">Practice 2</div>
               <div className="w-[100px] text-center">
                 {new Date(secondPracticeDate).toLocaleString("en-US", {
                   weekday: "short",
@@ -185,7 +187,7 @@ export function CircuitDetailedWidget({
             </div>
             {selectedRace.ThirdPractice && (
               <div className="flex p-2 justify-between">
-                <div className="w-[100px]">Practice 3</div>
+                <div className="w-[100px] font-bold">Practice 3</div>
                 <div className="w-[100px] text-center">
                   {new Date(
                     selectedRaceCombined.ThirdPractice.date +
@@ -211,7 +213,7 @@ export function CircuitDetailedWidget({
               </div>
             )}
             <div className="flex p-2 justify-between">
-              <div className="w-[100px]">Qualifying</div>
+              <div className="w-[100px] font-bold">Qualifying</div>
               <div className="w-[100px] text-center">
                 {new Date(qualifyingDate).toLocaleString("en-US", {
                   weekday: "short",
@@ -229,7 +231,7 @@ export function CircuitDetailedWidget({
             </div>
             {selectedRaceCombined.Sprint && (
               <div className="flex p-2 justify-between">
-                <div className="w-[100px]">Sprint</div>
+                <div className="w-[100px] font-bold">Sprint</div>
                 <div className="w-[100px]">
                   {new Date(
                     parseISO(
@@ -259,7 +261,7 @@ export function CircuitDetailedWidget({
               </div>
             )}
             <div className="flex p-2 justify-between">
-              <div className="w-[100px]">Race</div>
+              <div className="w-[100px] font-bold">Race</div>
               <div className="w-[100px] text-center">
                 {new Date(raceDate).toLocaleString("en-US", {
                   weekday: "short",
@@ -277,12 +279,12 @@ export function CircuitDetailedWidget({
             </div>
           </div>
         </div>
-        <img
-          src={selectedRaceCombined.Circuit.imgUrl}
-          alt={selectedRaceCombined.Circuit.circuitName}
-          height="200px"
-          width="100%"
-        />
+        <div className="circuit-img--container">
+          <img
+            src={selectedRaceCombined.Circuit.imgUrl}
+            alt={selectedRaceCombined.Circuit.circuitName}
+          />
+        </div>
       </div>
     </div>
   );

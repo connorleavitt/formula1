@@ -4,7 +4,7 @@ import { FantasyPropsScoreboard } from "../components/FantasyScoreboards/Fantasy
 
 export const Fantasy: React.FC = () => {
   return (
-    <div className="max-w-6xl ml-10 mt-8">
+    <div className="max-w-6xl ml-10 mt-4">
       <FantasyMainScoreboard />
       <FantasyPropsScoreboard />
     </div>

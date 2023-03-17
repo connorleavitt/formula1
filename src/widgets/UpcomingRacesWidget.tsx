@@ -129,8 +129,8 @@ export function UpcomingRacesWidget({
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="mb-10 flex w-full justify-center">
+    <div className="flex flex-col w-full">
+      <div className="mb-10 flex w-full">
         <Slider className="w-10/12" {...settings}>
           {truncatedRaceSchedule.map(
             (race: any) => (
