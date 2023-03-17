@@ -24,6 +24,7 @@ header > div {
 nav {
   width: var(--w-nav);
   background-color: var(--clr-f1-gray-background);
+  min-height: calc(100vh - var(--h-header));
 }
 
 nav .active {
