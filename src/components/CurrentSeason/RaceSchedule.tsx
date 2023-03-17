@@ -35,7 +35,7 @@ export function RaceSchedule() {
     <div className="flex">
       {/* <NextRaceWidget raceSchedule={raceSchedule as any} /> */}
       <div className="flex-col">
-        <PreviousRaceWidget raceSchedule={raceSchedule as any} />
+        {/* <PreviousRaceWidget raceSchedule={raceSchedule as any} /> */}
         <UpcomingRacesWidgetVertical raceSchedule={raceSchedule as any} />
         <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
       </div>

@@ -68,7 +68,6 @@ export function CircuitDetailedWidget({
     const selected = raceSchedule.find(
       (race) => race.Circuit.circuitId === circuit.circuitId
     );
-    console.log(selected);
 
     setSelectedRace(selected as RaceSchedule);
   }, [raceSchedule]);
@@ -133,7 +132,7 @@ export function CircuitDetailedWidget({
     <div>
       <h2 className="p-2 text-lg font-bold">Circuit Info</h2>
       <div className="flex p-2 w-[1000px] border-t-4 border-r-8 border-red-500 border-double">
-        <div className="w-72">
+        <div className="w-96">
           <h3 className="p-2 font-bold">{`Round ${selectedRaceCombined.round} - ${selectedRaceCombined.raceName}`}</h3>
           <div className="flex m-2 justify-between">
             <div className="flex flex-col items-center">
@@ -281,7 +280,7 @@ export function CircuitDetailedWidget({
         <img
           src={selectedRaceCombined.Circuit.imgUrl}
           alt={selectedRaceCombined.Circuit.circuitName}
-          height="100%"
+          height="200px"
           width="100%"
         />
       </div>
