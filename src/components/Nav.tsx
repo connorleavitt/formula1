@@ -26,33 +26,33 @@ export function Nav() {
         <li className="mb-2">
           <Link
             to="/"
-            className={`block hover:font-bold rounded-xl py-3 pl-6 ${
+            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
               activeNav === "home" ? "active" : ""
             }`}
           >
-            <FontAwesomeIcon icon="flag-checkered" className="pr-3" />
+            <FontAwesomeIcon icon="house" className="pr-2" />
             Home
           </Link>
         </li>
         <li className="mb-2">
           <Link
             to="/current"
-            className={`block hover:font-bold rounded-xl py-3 pl-6 ${
+            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
               activeNav === "current" ? "active" : ""
             }`}
           >
-            <FontAwesomeIcon icon="flag-checkered" className="pr-3" />
+            <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
             Current Season
           </Link>
         </li>
         <li className="mb-2">
           <Link
             to="/fantasy"
-            className={`block hover:font-bold rounded-xl py-3 pl-6 ${
+            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
               activeNav === "fantasy" ? "active" : ""
             }`}
           >
-            <FontAwesomeIcon icon="chart-column" className="pr-3" />
+            <FontAwesomeIcon icon="chart-column" className="pr-2" />
             Fantasy
           </Link>
           {/* &#8595; */}
@@ -60,22 +60,22 @@ export function Nav() {
         <li className="mb-2">
           <Link
             to="/historical"
-            className={`block hover:font-bold rounded-xl py-3 pl-6 ${
+            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
               activeNav === "historical" ? "active" : ""
             }`}
           >
-            <FontAwesomeIcon icon="clock-rotate-left" className="pr-3" />
+            <FontAwesomeIcon icon="clock-rotate-left" className="pr-2" />
             Historical Data
           </Link>
         </li>
         <li className="mb-2">
           <Link
             to="/about"
-            className={`block hover:font-bold rounded-xl py-3 pl-6 ${
+            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
               activeNav === "about" ? "active" : ""
             }`}
           >
-            <FontAwesomeIcon icon="book" className="pr-3" />
+            <FontAwesomeIcon icon="book" className="pr-2" />
             About
           </Link>
         </li>
