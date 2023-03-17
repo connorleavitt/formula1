@@ -15,16 +15,18 @@ const App: React.FC = () => {
   return (
     <div>
       <Header />
-      <div className="grid grid-cols-[250px_1fr] h-screen">
+      <div className="grid grid-cols-[244px_1fr] h-screen">
         <Nav />
-        <div className="bg-neutral-100">
+        <main className="main">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/current" element={<CurrentSeason />} />
             <Route path="/fantasy" element={<Fantasy />} />
+            <Route path="/historical" element={<About />} />
             <Route path="/about" element={<About />} />
           </Routes>
-        </div>
+        </main>
       </div>
     </div>
   );

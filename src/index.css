@@ -3,26 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --f1-color: #ee0000;
-
+  --clr-f1-red: #cf2828;
+  --clr-main-background: #ffffff;
+  --clr-f1-gray-background: #f6f6f6;
+  --clr-f1-gray-highlighted: #dedede;
   --h-header: 60px;
   --w-nav: 244px;
 }
 
 header {
   height: var(--h-header);
+  background-color: var(--clr-f1-red);
+}
+
+header > div {
+  width: var(--w-nav);
+  margin-left: 2.25rem;
 }
 
 nav {
   width: var(--w-nav);
+  background-color: var(--clr-f1-gray-background);
 }
 
-.bg-f1-red {
-  background-color: var(--f1-color);
+nav .active {
+  background-color: var(--clr-f1-gray-highlighted);
+}
+
+main {
+  background-color: var(--clr-main-background);
 }
 
 .leader-points {
-  border-bottom: 3px solid var(--f1-color);
+  border-bottom: 3px solid var(--clr-f1-red);
 }
 
 .ag-theme-groups-even,
@@ -159,7 +172,7 @@ nav {
 }
 
 .slick-slider > .slick-dots > li > button:before {
-  color: var(--f1-color);
+  color: var(--clr-f1-red);
 }
 
 /* .slick-slider > .slick-dots > li.slick-active > button:before {
@@ -172,7 +185,7 @@ nav {
 
 .slick-arrow.slick-prev:before,
 .slick-arrow.slick-next:before {
-  color: var(--f1-color);
+  color: var(--clr-f1-red);
 }
 
 .circuit-info--button {
