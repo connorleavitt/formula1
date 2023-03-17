@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import fantasy from "../data/fantasy.json";
-import constructors from "../data/constructors.json";
+import fantasy from "../../data/fantasy.json";
+import constructors from "../../data/constructors.json";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";

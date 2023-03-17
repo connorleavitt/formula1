@@ -7,11 +7,11 @@ import { getQualiResults } from "../../hooks/getQualiResults";
 import { getFastestLaps } from "../../hooks/getFastestLaps";
 
 // widgets
-import { FantasyPropsBottomConstructorWidget } from "../../widgets/FantasyPropsBottomConstructorWidget";
-import { FantasyPropsConstructorDNFsWidget } from "../../widgets/FantasyPropsConstructorDNFsWidget";
-import { FantasyPropsTopConstructorWidget } from "../../widgets/FantasyPropsTopConstructorWidget";
-import { FantasyPropsMostPolesWidget } from "../../widgets/FantasyPropsMostPolesWidget";
-import { FantasyPropsFastestLapWidget } from "../../widgets/FantasyPropsFastestLapWidget";
+import { FantasyPropsBottomConstructorWidget } from "../../widgets/Fantasy/FantasyPropsBottomConstructorWidget";
+import { FantasyPropsConstructorDNFsWidget } from "../../widgets/Fantasy/FantasyPropsConstructorDNFsWidget";
+import { FantasyPropsTopConstructorWidget } from "../../widgets/Fantasy/FantasyPropsTopConstructorWidget";
+import { FantasyPropsMostPolesWidget } from "../../widgets/Fantasy/FantasyPropsMostPolesWidget";
+import { FantasyPropsFastestLapWidget } from "../../widgets/Fantasy/FantasyPropsFastestLapWidget";
 
 // data
 import fantasy from "../../data/fantasy.json";

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import fantasy from "../data/fantasy.json";
 
 export const getFastestLaps = <T>() => {
   const [fastestLaps, setFastestLaps] = useState([]);

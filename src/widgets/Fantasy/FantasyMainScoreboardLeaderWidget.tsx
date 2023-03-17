@@ -1,10 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useMemo, useState } from "react";
-import fantasy from "../data/fantasy.json";
-
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
+import fantasy from "../../data/fantasy.json";
 
 type DriverProps = {
   driverData: [];

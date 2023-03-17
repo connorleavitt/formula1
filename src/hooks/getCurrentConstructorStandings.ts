@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { useEffect, useState } from "react";
-import fantasy from "../data/fantasy.json";
 
 export const getCurrentConstructorStandings = <T>(
   config: AxiosRequestConfig<any>,

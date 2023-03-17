@@ -1,6 +1,5 @@
 import { getCurrentDriverStandings } from "../../hooks/getCurrentDriverStandings";
-import { FantasyMainScoreboardLeaderWidget } from "../../widgets/FantasyMainScoreboardLeaderWidget";
-import { FantasyMainScoreboardWidget } from "../../widgets/FantasyMainScoreboardWidget";
+import { FantasyMainScoreboardLeaderWidget } from "../../widgets/Fantasy/FantasyMainScoreboardLeaderWidget";
 
 interface driverData {
   driverStandings: DriverStandings[];
@@ -57,8 +56,7 @@ export function FantasyMainScoreboardLeader() {
 
   return (
     <div className="w-max mb-10">
-      <h1 className="text-2xl font-bold mb-4">Current Leader</h1>
-      <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-4">
+      <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-2">
         <FantasyMainScoreboardLeaderWidget
           driverData={driverStandings as any}
         />

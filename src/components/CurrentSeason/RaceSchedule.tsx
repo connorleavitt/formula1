@@ -1,17 +1,7 @@
-import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
-import { AgGridReact } from "ag-grid-react";
-import { PreviousRaceWidget } from "../../widgets/PreviousRaceWidget";
 import { getRaceSchedule } from "../../hooks/getRaceSchedule";
-import { NextRaceWidget } from "../../widgets/NextRaceWidget";
-import { UpcomingRacesWidget } from "../../widgets/UpcomingRacesWidget";
-import { NextRaceDetailedWidget } from "../../widgets/NextRaceDetailedWidget";
-import { UpcomingRacesWidgetVertical } from "../../widgets/UpcomingRacesWidgetVertical";
-import { Carousel } from "../../widgets/RaceScheduleCarouselWidget";
+import { RaceScheduleWidget } from "../../widgets/CurrentSeason/RaceScheduleWidget";
 
 export function RaceSchedule() {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-
   const [loading, raceSchedule, error, request] = getRaceSchedule({
     method: "get",
     url: "https://ergast.com/api/f1/current.json",
@@ -34,7 +24,7 @@ export function RaceSchedule() {
   return (
     <div className="race-schedule-container">
       <h2 className="p-2 text-lg font-bold">Race Schedule</h2>
-      <UpcomingRacesWidget raceSchedule={raceSchedule as any} />
+      <RaceScheduleWidget raceSchedule={raceSchedule as any} />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import fantasy from "../data/fantasy.json";
-import driver from "../data/driver.json";
-import axios from "axios";
+import fantasy from "../../data/fantasy.json";
+import driver from "../../data/driver.json";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";

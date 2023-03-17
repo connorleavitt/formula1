@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import fantasy from "../data/fantasy.json";
+import fantasy from "../../data/fantasy.json";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";

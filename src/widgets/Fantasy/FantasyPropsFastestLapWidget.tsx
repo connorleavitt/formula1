@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import fantasy from "../data/fantasy.json";
-import axios from "axios";
-import { getFastestLaps } from "../hooks/getFastestLaps";
+import fantasy from "../../data/fantasy.json";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
