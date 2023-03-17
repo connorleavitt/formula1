@@ -1,4 +1,7 @@
 import fantasy from "../../data/fantasy.json";
+import headerImg from "../../../public/img/marcel-heil-bJaMVy23gvc-unsplash.jpg";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type DriverProps = {
   driverData: [];
@@ -68,14 +71,44 @@ export function FantasyMainScoreboardLeaderWidget({ driverData }: DriverProps) {
       return b.totalPoints - a.totalPoints;
     });
   const leader = newPlayerArray[0];
+  const second = newPlayerArray[1];
+  const third = newPlayerArray[2];
 
   return (
-    <div className="flex p-2">
-      <p className="text-lg">
-        <span className="font-bold">{leader.name}</span> is winning with{" "}
-        <span className="font-bold leader-points">{leader.totalPoints}</span>{" "}
-        total points!
-      </p>
+    <div className="home-leader-widget flex">
+      <div className="flex flex-col items-start justify-between py-4 px-4 rounded-l-lg">
+        <div className="flex items-center">
+          <p className="px-2">FANTASY TOP 3</p>
+          <div className="text-sm px-2">
+            <Link to="/fantasy" className="hover:font-bold">
+              <FontAwesomeIcon icon="up-right-from-square" />
+            </Link>
+          </div>
+        </div>
+        <div className="flex text-right">
+          <div className="p-2 pr-4">
+            <p className="text-3xl mb-2 text-white">
+              {leader.name.toUpperCase()}
+            </p>
+            <p className="text-2xl mb-2 text-gray-400">
+              {second.name.toUpperCase()}
+            </p>
+            <p className="text-sm text-gray-500">{third.name.toUpperCase()}</p>
+          </div>
+          <div className="p-2">
+            <p className="text-3xl font-bold mb-2 text-white">
+              {leader.totalPoints} pts
+            </p>
+            <p className="text-2xl mb-2 text-gray-400">
+              {second.totalPoints} pts
+            </p>
+            <p className="text-sm text-gray-500">{third.totalPoints} pts</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex-1">
+        <img src={headerImg} alt={headerImg} className="rounded-r-lg" />
+      </div>
     </div>
   );
 }

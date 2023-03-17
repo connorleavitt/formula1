@@ -65,7 +65,7 @@ export function NextRaceWidget({ raceSchedule }: NextRaceWidgetProps) {
   const nextRace = futureRaces[0];
 
   return (
-    <div className="p-2">
+    <div className="">
       <h3 className="p-2 font-bold">Next</h3>
       <div className="p-2 rounded-2xl w-64 border-red-300 border-2 bg-red-100">
         <div className="text-gray-500 text-xs">Round {nextRace.round}</div>

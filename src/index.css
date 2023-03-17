@@ -11,6 +11,7 @@
   --clr-text-mid: #24313a;
   --h-header: 50px;
   --w-nav: 244px;
+  --clr-dashboard-background: #24313a;
 }
 
 header {
@@ -24,7 +25,7 @@ header > div {
 }
 
 nav {
-  width: var(--w-nav);
+  min-width: var(--w-nav);
   background-color: var(--clr-f1-gray-background);
   min-height: calc(100vh - var(--h-header));
 }
@@ -40,15 +41,47 @@ nav > ul > li > a > svg {
 
 main {
   background-color: var(--clr-main-background);
+  width: calc(100vw - var(--w-nav));
+  /* margin: 2rem; */
+  overflow-x: hidden;
+}
+
+.home {
+  /* width: 100%; */
+}
+
+.home-leader-widget {
+  width: 100%;
+  height: 200px;
+}
+
+.home-leader-widget > div > div > p {
+  color: var(--clr-f1-gray-background);
+  font-weight: bold;
+}
+
+.home-leader-widget > div > div:first-child > div {
+  color: var(--clr-text-light);
+}
+
+.home-leader-widget > div:first-child {
+  background-color: var(--clr-dashboard-background);
+  width: max-content;
+}
+
+.home-leader-widget > div:last-child > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
 }
 
 .current-season {
-  width: calc(100vw - var(--w-nav));
+  width: 100%;
 }
 
 .race-schedule-container,
 .current-season--container {
-  margin-left: 3rem;
+  padding-left: 3rem;
 }
 
 .race-schedule--next-tag,
@@ -65,10 +98,7 @@ main {
   margin-left: 2rem;
 }
 
-.circuit-location > p:first-child {
-  color: var(--clr-text-light);
-}
-
+.circuit-location > p:first-child,
 .circuit-laps > p:last-child {
   color: var(--clr-text-light);
 }

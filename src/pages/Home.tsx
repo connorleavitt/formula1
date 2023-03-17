@@ -22,7 +22,7 @@ export const Home: React.FC = () => {
     return <p>Data is null</p>;
   }
   return (
-    <div className="m-6">
+    <div className="home m-6">
       <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
       <FantasyMainScoreboardLeader />
       <NextRaceWidget raceSchedule={raceSchedule as any} />

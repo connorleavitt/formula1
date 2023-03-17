@@ -55,12 +55,8 @@ export function FantasyMainScoreboardLeader() {
   }
 
   return (
-    <div className="w-max mb-10">
-      <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-2">
-        <FantasyMainScoreboardLeaderWidget
-          driverData={driverStandings as any}
-        />
-      </div>
+    <div className="">
+      <FantasyMainScoreboardLeaderWidget driverData={driverStandings as any} />
     </div>
   );
 }

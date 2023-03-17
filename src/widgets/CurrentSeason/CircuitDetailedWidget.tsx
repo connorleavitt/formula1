@@ -134,8 +134,8 @@ export function CircuitDetailedWidget({
       <div className="flex p-2 w-[1000px] border-t-4 rounded-sm border-r-8 border-red-500">
         <div>
           <h3 className="p-2 font-bold">{`Round ${selectedRaceCombined.round} - ${selectedRaceCombined.raceName}`}</h3>
-          <div className="flex justify-around mb-4">
-            <div className="my-2 circuit-location">
+          <div className="flex justify-between mb-4">
+            <div className="circuit-location">
               <p className="text-lg">
                 {selectedRaceCombined.Circuit?.Location?.locality}
               </p>
@@ -143,11 +143,11 @@ export function CircuitDetailedWidget({
                 {selectedRaceCombined.Circuit?.Location?.country}
               </p>
             </div>
-            <div className="circuit-laps ml-2 my-2 flex items-end">
-              <p className="font-bold text-4xl mr-1">
+            <div className="flex flex-col circuit-laps justify-center items-end">
+              <p className="font-bold text-4xl">
                 {selectedRaceCombined.Circuit.laps}
               </p>
-              <p>LAPS</p>
+              <p className="text-sm">LAPS</p>
             </div>
           </div>
           <div className="circuit-times-table rounded-md">
