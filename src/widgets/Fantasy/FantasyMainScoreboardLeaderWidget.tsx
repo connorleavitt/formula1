@@ -1,5 +1,5 @@
 import fantasy from "../../data/fantasy.json";
-import headerImg from "../../../public/img/marcel-heil-bJaMVy23gvc-unsplash.jpg";
+import headerImg from "../../assets/img/marcel-heil-bJaMVy23gvc-unsplash.jpg";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

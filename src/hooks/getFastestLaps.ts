@@ -22,6 +22,7 @@ export const getFastestLaps = <T>() => {
           };
         })
       );
+      // console.log(fastestLapsByRound);
       setFastestLaps(fastestLapsByRound as any);
     }
     fetchFastestLaps();

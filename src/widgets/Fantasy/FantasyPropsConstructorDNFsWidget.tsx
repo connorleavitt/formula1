@@ -58,18 +58,17 @@ export function FantasyPropsConstructorDNFsWidget({
     const constructorInfo = finalDnfTable.map(
       (value: { constructorId: string; Status: value[] }) => {
         let code = constructors.find((v) => {
-          // console.log(v);
           if (v?.urlId && v?.urlId === value?.constructorId) {
             return v;
           } else if (v.constructorId === value?.constructorId) {
             return v;
           }
         });
-
         let count = 0;
         if (value?.Status.length === 0) return (count = 0); //edge case?
         if (value instanceof Object) {
           value?.Status.forEach((e: any) => {
+            count++;
             if (
               e.statusId === "1" ||
               e.statusId === "11" ||
@@ -82,10 +81,8 @@ export function FantasyPropsConstructorDNFsWidget({
               e.statusId === "18" ||
               e.statusId === "19"
             ) {
-              return;
+              return count--;
             }
-            console.log(count);
-            count++;
           });
 
           return {
@@ -120,7 +117,6 @@ export function FantasyPropsConstructorDNFsWidget({
     }),
     []
   );
-
   return (
     <div className="p-2 rounded-2xl border-gray-300 border-2">
       <h3 className="p-2 font-bold">Most DNFs (Team)</h3>

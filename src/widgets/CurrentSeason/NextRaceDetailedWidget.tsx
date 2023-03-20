@@ -147,35 +147,31 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
 
   return (
-    <div className="my-4 flex">
-      <div className="countdown-container flex flex-col justify-around rounded-lg p-2">
-        {/* <p className="p-2 font-bold">Countdown to Race:</p> */}
-        <div className="flex flex-col items-center p-2">
-          <p className="text-2xl font-bold">{formattedCountdown.days}</p>
-          <p className="text-xs">DAYS</p>
-        </div>
-        <div className="flex flex-col items-center p-2">
-          <p className="text-2xl font-bold">{formattedCountdown.hours}</p>
-          <p className="text-xs">HRS</p>
-        </div>
-        <div className="flex flex-col items-center p-2">
-          <p className="text-2xl font-bold">{formattedCountdown.minutes}</p>
-          <p className="text-xs">MINS</p>
-        </div>
-        <div className="flex flex-col items-center p-2">
-          <p className="text-2xl font-bold">{formattedCountdown.seconds}</p>
-          <p className="text-xs">SECS</p>
-        </div>
-      </div>
-      <div className="ml-4">
-        <h3 className="p-2 text-2xl">
-          <span className="font-bold"> Next Race </span>
-          (Round {combinedNextRace.round})
-        </h3>
-        <div className="flex flex-col p-2 pr-4 border-t-4 border-r-8 border-red-500 border-double w-96">
-          <h3 className="p-1 mb-1 font-bold">{`${combinedNextRace.raceName}`}</h3>
-          <div className="bg-gray-200 rounded-md">
-            <div className="flex p-2 justify-between">
+    <div className="my-4">
+      <div className="w-max">
+        <h3 className="p-2 text-2xl font-bold">Next Race</h3>
+        <div className="home-next-race--container flex flex-col rounded-lg w-96">
+          <h3 className="px-3 mt-5 font-bold my-1">{`${combinedNextRace.raceName} - Round ${combinedNextRace.round}`}</h3>
+          <div className="w-max home-next-race--countdown-container my-1 flex justify-start">
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.days}</p>
+              <p className="text-md">days</p>
+            </div>
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.hours}</p>
+              <p className="text-md">hrs</p>
+            </div>
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.minutes}</p>
+              <p className="text-md">mins</p>
+            </div>
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.seconds}</p>
+              <p className="text-md">secs</p>
+            </div>
+          </div>
+          <div className="home-next-race--times-container my-1">
+            <div className="flex p-2 justify-between border-b-2 border-gray-300">
               <div className="w-[100px]">Practice 1</div>
               <div className="w-[100px] text-center">
                 {new Date(firstPracticeDate).toLocaleString("en-US", {
@@ -192,7 +188,7 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
                 })}
               </div>
             </div>
-            <div className="flex p-2 justify-between">
+            <div className="flex p-2 justify-between border-b-2 border-gray-300">
               <div className="w-[100px]">Practice 2</div>
               <div className="w-[100px] text-center">
                 {new Date(secondPracticeDate).toLocaleString("en-US", {
@@ -209,24 +205,26 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
                 })}
               </div>
             </div>
-            <div className="flex p-2 justify-between">
-              <div className="w-[100px]">Practice 3</div>
-              <div className="w-[100px] text-center">
-                {new Date(thirdPracticeDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
+            {combinedNextRace.ThirdPractice && (
+              <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                <div className="w-[100px]">Practice 3</div>
+                <div className="w-[100px] text-center">
+                  {new Date(thirdPracticeDate).toLocaleString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </div>
+                <div className="w-[100px] text-right">
+                  {new Date(thirdPracticeDate).toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                  })}
+                </div>
               </div>
-              <div className="w-[100px] text-right">
-                {new Date(thirdPracticeDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-              </div>
-            </div>
-            <div className="flex p-2 justify-between">
+            )}
+            <div className="flex p-2 justify-between border-b-2 border-gray-300">
               <div className="w-[100px]">Qualifying</div>
               <div className="w-[100px] text-center">
                 {new Date(qualifyingDate).toLocaleString("en-US", {
@@ -244,7 +242,7 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
               </div>
             </div>
             {combinedNextRace.Sprint && (
-              <div className="flex p-2 justify-between">
+              <div className="flex p-2 justify-between border-b-2 border-gray-300">
                 <div className="w-[100px]">Sprint</div>
                 <div className="w-[100px]">
                   {new Date(

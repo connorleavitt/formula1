@@ -27,7 +27,7 @@ export function FantasyPropsScoreboard() {
       url: "https://ergast.com/api/f1/current/constructorStandings.json",
     });
 
-  const [, qualiStandings] = getQualiResults({
+  const [qualiLoading, qualiStandings] = getQualiResults({
     method: "get",
     url: "https://ergast.com/api/f1/current/qualifying/1.json",
   });
@@ -61,10 +61,19 @@ export function FantasyPropsScoreboard() {
     method: "get",
     url: dnfChoice[3].url,
   });
-
   let finalDnfTable = [];
-
-  if (loading) {
+  finalDnfTable.push(dnfChoice1[1]);
+  finalDnfTable.push(dnfChoice2[1]);
+  finalDnfTable.push(dnfChoice3[1]);
+  finalDnfTable.push(dnfChoice4[1]);
+  if (
+    loading ||
+    dnfChoice1[0] ||
+    dnfChoice2[0] ||
+    dnfChoice3[0] ||
+    dnfChoice4[0] ||
+    qualiLoading
+  ) {
     return (
       <div className="ml-20 mr-20 pb-20">
         <h1 className="text-lg pb-2">Prop Bets</h1>
@@ -78,12 +87,7 @@ export function FantasyPropsScoreboard() {
   if (!constructorStandings) {
     return <p>Data is null</p>;
   }
-  finalDnfTable.push(dnfChoice1[1]);
-  finalDnfTable.push(dnfChoice2[1]);
-  finalDnfTable.push(dnfChoice3[1]);
-  finalDnfTable.push(dnfChoice4[1]);
 
-  // console.log(activeWidget);
   return (
     <div className="pb-20">
       <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
@@ -142,7 +146,7 @@ export function FantasyPropsScoreboard() {
             }`}
             onClick={() => setActiveWidget("top")}
           >
-            Top Contructor
+            Top Constructor
           </button>
           <button
             className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
@@ -150,7 +154,7 @@ export function FantasyPropsScoreboard() {
             }`}
             onClick={() => setActiveWidget("bottom")}
           >
-            Bottom Contructor
+            Bottom Constructor
           </button>
           <button
             className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${

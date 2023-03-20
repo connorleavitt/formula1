@@ -79,10 +79,18 @@ main {
   object-fit: cover;
 }
 
-.countdown-container {
+.home-next-race--container {
   background-color: var(--clr-f1-red);
   color: white;
-  width: 75px;
+}
+
+.home-next-race--countdown-container {
+  background-color: var(--clr-f1-red);
+}
+
+.home-next-race--times-container {
+  color: black;
+  background-color: var(--clr-f1-gray-background);
 }
 
 .current-season {
