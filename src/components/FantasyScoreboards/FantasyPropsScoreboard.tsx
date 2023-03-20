@@ -62,10 +62,6 @@ export function FantasyPropsScoreboard() {
     url: dnfChoice[3].url,
   });
   let finalDnfTable = [];
-  finalDnfTable.push(dnfChoice1[1]);
-  finalDnfTable.push(dnfChoice2[1]);
-  finalDnfTable.push(dnfChoice3[1]);
-  finalDnfTable.push(dnfChoice4[1]);
   if (
     loading ||
     dnfChoice1[0] ||
@@ -87,7 +83,10 @@ export function FantasyPropsScoreboard() {
   if (!constructorStandings) {
     return <p>Data is null</p>;
   }
-
+  finalDnfTable.push(dnfChoice1[1]);
+  finalDnfTable.push(dnfChoice2[1]);
+  finalDnfTable.push(dnfChoice3[1]);
+  finalDnfTable.push(dnfChoice4[1]);
   return (
     <div className="pb-20">
       <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>

@@ -285,3 +285,10 @@ main {
 
 /* //back to upcoming next race button
 //view all instead dots? */
+
+img.testing-icons {
+  color: red;
+  border: solid 2px black;
+  background-color: blue;
+  filter: hue-rotate(30deg);
+}

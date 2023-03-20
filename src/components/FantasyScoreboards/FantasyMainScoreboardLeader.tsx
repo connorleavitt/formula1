@@ -1,5 +1,5 @@
 import { getCurrentDriverStandings } from "../../hooks/getCurrentDriverStandings";
-import { FantasyMainScoreboardLeaderWidget } from "../../widgets/Fantasy/FantasyMainScoreboardLeaderWidget";
+import { FantasyMainScoreboardLeaderWidget } from "../../widgets/HomeWidgets/FantasyMainScoreboardLeaderWidget";
 
 interface driverData {
   driverStandings: DriverStandings[];

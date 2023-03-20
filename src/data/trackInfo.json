@@ -10,7 +10,8 @@
       "lat": "-37.8497",
       "long": "144.968",
       "locality": "Melbourne",
-      "country": "Australia"
+      "country": "Australia",
+      "timezone": "Australia/Melbourne"
     }
   },
   {
@@ -24,7 +25,8 @@
       "lat": "30.1328",
       "long": "-97.6411",
       "locality": "Austin",
-      "country": "USA"
+      "country": "USA",
+      "timezone": "America/Chicago"
     }
   },
   {
@@ -38,7 +40,8 @@
       "lat": "26.0325",
       "long": "50.5106",
       "locality": "Sakhir",
-      "country": "Bahrain"
+      "country": "Bahrain",
+      "timezone": "Asia/Qatar"
     }
   },
   {
@@ -52,7 +55,8 @@
       "lat": "40.3725",
       "long": "49.8533",
       "locality": "Baku",
-      "country": "Azerbaijan"
+      "country": "Azerbaijan",
+      "timezone": "Asia/Baku"
     }
   },
   {
@@ -66,7 +70,8 @@
       "lat": "41.57",
       "long": "2.26111",
       "locality": "Montmeló",
-      "country": "Spain"
+      "country": "Spain",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -80,7 +85,8 @@
       "lat": "47.5789",
       "long": "19.2486",
       "locality": "Budapest",
-      "country": "Hungary"
+      "country": "Hungary",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -94,7 +100,8 @@
       "lat": "44.3439",
       "long": "11.7167",
       "locality": "Imola",
-      "country": "Italy"
+      "country": "Italy",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -108,7 +115,8 @@
       "lat": "-23.7036",
       "long": "-46.6997",
       "locality": "São Paulo",
-      "country": "Brazil"
+      "country": "Brazil",
+      "timezone": "America/Sao_Paulo"
     }
   },
   {
@@ -122,7 +130,8 @@
       "lat": "21.6319",
       "long": "39.1044",
       "locality": "Jeddah",
-      "country": "Saudi Arabia"
+      "country": "Saudi Arabia",
+      "timezone": "Asia/Riyadh"
     }
   },
   {
@@ -136,7 +145,8 @@
       "lat": "25.49",
       "long": "51.4542",
       "locality": "Al Daayen",
-      "country": "Qatar"
+      "country": "Qatar",
+      "timezone": "Asia/Qatar"
     }
   },
   {
@@ -150,7 +160,8 @@
       "lat": "1.2914",
       "long": "103.864",
       "locality": "Marina Bay",
-      "country": "Singapore"
+      "country": "Singapore",
+      "timezone": "Asia/Singapore"
     }
   },
   {
@@ -164,7 +175,8 @@
       "lat": "25.9581",
       "long": "-80.2389",
       "locality": "Miami",
-      "country": "USA"
+      "country": "USA",
+      "timezone": "America/New_York"
     }
   },
   {
@@ -178,7 +190,8 @@
       "lat": "43.7347",
       "long": "7.42056",
       "locality": "Monte-Carlo",
-      "country": "Monaco"
+      "country": "Monaco",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -192,7 +205,8 @@
       "lat": "45.6156",
       "long": "9.28111",
       "locality": "Monza",
-      "country": "Italy"
+      "country": "Italy",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -206,7 +220,8 @@
       "lat": "47.2197",
       "long": "14.7647",
       "locality": "Spielberg",
-      "country": "Austria"
+      "country": "Austria",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -220,7 +235,8 @@
       "lat": "19.4042",
       "long": "-99.0907",
       "locality": "Mexico City",
-      "country": "Mexico"
+      "country": "Mexico",
+      "timezone": "America/Mexico_City"
     }
   },
   {
@@ -234,7 +250,8 @@
       "lat": "52.0786",
       "long": "-1.01694",
       "locality": "Silverstone",
-      "country": "UK"
+      "country": "UK",
+      "timezone": "Europe/London"
     }
   },
   {
@@ -248,7 +265,8 @@
       "lat": "50.4372",
       "long": "5.97139",
       "locality": "Spa",
-      "country": "Belgium"
+      "country": "Belgium",
+      "timezone": "Europe/Paris"
     }
   },
   {
@@ -262,7 +280,8 @@
       "lat": "34.8431",
       "long": "136.541",
       "locality": "Suzuka",
-      "country": "Japan"
+      "country": "Japan",
+      "timezone": "Asia/Tokyo"
     }
   },
   {
@@ -276,7 +295,8 @@
       "lat": "36.1147",
       "long": "-115.173",
       "locality": "Las Vegas",
-      "country": "United States"
+      "country": "United States",
+      "timezone": "America/Los_Angeles"
     }
   },
   {
@@ -290,7 +310,8 @@
       "lat": "45.5",
       "long": "-73.5228",
       "locality": "Montreal",
-      "country": "Canada"
+      "country": "Canada",
+      "timezone": "America/Toronto"
     }
   },
   {
@@ -304,7 +325,8 @@
       "lat": "24.4672",
       "long": "54.6031",
       "locality": "Abu Dhabi",
-      "country": "UAE"
+      "country": "UAE",
+      "timezone": "Asia/Dubai"
     }
   },
   {
@@ -318,7 +340,8 @@
       "lat": "52.3888",
       "long": "4.54092",
       "locality": "Zandvoort",
-      "country": "Netherlands"
+      "country": "Netherlands",
+      "timezone": "Europe/Paris"
     }
   }
 ]

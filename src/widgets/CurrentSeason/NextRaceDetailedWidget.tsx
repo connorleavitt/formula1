@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { differenceInSeconds, formatDuration, parseISO } from "date-fns";
 import trackInfo from "../../data/trackInfo.json";
+import { ICON_MAP } from "../../utilities/Weather/iconMap";
+import icons from "../../utilities/Weather/icons.json";
+import { getWeather } from "../../utilities/Weather/getWeather";
 
 type RaceSchedule = {
   season: number;
@@ -44,27 +47,85 @@ type RaceSchedule = {
 
 type NextRaceWidgetProps = {
   raceSchedule: RaceSchedule[];
+  // trackWeather: TrackWeather;
 };
 
-export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
+type TrackWeather = {
+  current: {
+    currentTemp: number;
+    highTemp: number;
+    lowTemp: number;
+    feelsLikeHigh: number;
+    feelsLikeLow: number;
+    windSpeed: number;
+    precip: number;
+    iconCode: number;
+  };
+  daily: [
+    {
+      timestamp: number;
+      iconCode: number;
+      maxTemp: number;
+    }
+  ];
+  hourly: [
+    {
+      timestamp: number;
+      iconCode: number;
+      temp: number;
+      feelsLike: number;
+      windSpeed: number;
+      precip: number;
+    }
+  ];
+};
+
+type WeatherIcon = {
+  weather: string;
+  viewBox: string;
+  d: string;
+};
+
+export function NextRaceDetailedWidget({
+  raceSchedule,
+}: // trackWeather,
+NextRaceWidgetProps) {
   const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
+  const [currentTrackWeather, setCurrentTrackWeather] =
+    useState<TrackWeather | null>(null);
+  const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
   useEffect(() => {
     const now = new Date();
-    console.log(now);
     // sort the races by date in ascending order
     const sortedRaces = raceSchedule.sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
-
-    // find the first race that is in the future compared to the current date
+    // find the first race that is in the future compared to the current date + time
     const race = sortedRaces.find(
       (race) => new Date(race.date + "T" + race.time) >= now
     );
 
     if (race) {
       setNextRace(race);
+      const nextRace = trackInfo.find(
+        (track) => track.circuitId === race.Circuit.circuitId
+      );
+      const lat = nextRace?.Location.lat as string;
+      const long = nextRace?.Location.long as string;
+      const timezone = nextRace?.Location.timezone as string;
+      getWeather(parseFloat(lat), parseFloat(long), timezone)
+        .then((res) => {
+          // console.log(res);
+          setCurrentTrackWeather(res as TrackWeather);
+          setWeatherIcon(getIcon(res.current.iconCode) as WeatherIcon);
+        })
+        .catch((e) => {
+          console.error(e);
+          alert("Problem getting weather data!");
+        });
+
       const raceDate = parseISO(race.date + "T" + race.time);
       const diffInSeconds = differenceInSeconds(raceDate, now);
       setRemainingSeconds(diffInSeconds);
@@ -76,6 +137,16 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
       return () => clearInterval(intervalId);
     }
   }, [raceSchedule]);
+
+  function getIcon(iconCode: string) {
+    const weatherName = ICON_MAP.get(iconCode);
+    const weather = icons.find((type) => type.weather === weatherName);
+    return {
+      weather: weather?.weather,
+      viewBox: weather?.viewBox,
+      d: weather?.d,
+    };
+  }
 
   function secondsToHms(d: number) {
     d = Number(d);
@@ -98,6 +169,9 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   // console.log(formattedCountdown);
   if (!nextRace) {
     return null; // no next race found
+  }
+  if (!currentTrackWeather) {
+    return null; // no next race weather set
   }
 
   const macthedNextRace = trackInfo.find(
@@ -150,7 +224,6 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
-
   return (
     <div className="my-4">
       <div className="w-max">
@@ -293,6 +366,21 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
                   hour12: true,
                 })}
               </div>
+            </div>
+          </div>
+          <div className="flex">
+            <p>Current Weather: </p>
+            <div className="text-3xl">
+              {currentTrackWeather?.current.currentTemp}
+            </div>
+            <div className="w-[40px]">
+              <svg
+                className="fill-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox={weatherIcon?.viewBox}
+              >
+                <path d={weatherIcon?.d} />
+              </svg>
             </div>
           </div>
         </div>
