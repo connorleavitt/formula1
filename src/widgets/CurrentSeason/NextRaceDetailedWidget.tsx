@@ -52,13 +52,16 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
 
   useEffect(() => {
     const now = new Date();
+    console.log(now);
     // sort the races by date in ascending order
     const sortedRaces = raceSchedule.sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
 
     // find the first race that is in the future compared to the current date
-    const race = sortedRaces.find((race) => new Date(race.date) > now);
+    const race = sortedRaces.find(
+      (race) => new Date(race.date + "T" + race.time) >= now
+    );
 
     if (race) {
       setNextRace(race);
@@ -92,7 +95,7 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
   }
 
   const formattedCountdown = secondsToHms(remainingSeconds as number);
-
+  // console.log(formattedCountdown);
   if (!nextRace) {
     return null; // no next race found
   }
@@ -107,6 +110,8 @@ export function NextRaceDetailedWidget({ raceSchedule }: NextRaceWidgetProps) {
       ...macthedNextRace,
     },
   };
+
+  // console.log(combinedNextRace);
 
   // format the race date range
   // const firstPracticeDate = new Date(nextRace.FirstPractice.date);
