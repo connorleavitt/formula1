@@ -161,7 +161,7 @@ export function UpcomingRacesWidgetVertical({
         {selectedCircuit && (
           <CircuitDetailedWidget
             circuit={selectedCircuit}
-            raceSchedule={raceSchedule}
+            raceSchedule={raceSchedule as any}
             key={selectedCircuit.round} // Add key prop to force re-render
           />
         )}
@@ -169,13 +169,3 @@ export function UpcomingRacesWidgetVertical({
     </div>
   );
 }
-
-// const circuitInfoFromParent = {
-//   raceName: "Australian Grand Prix",
-//   date: "2023-04-02",
-//   time: "05:00:00Z",
-//   round: "3",
-//   circuitId: "albert_park",
-// };
-
-// const;
