@@ -128,7 +128,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     slidesToShow: 4,
     slidesToScroll: 1,
     // variableWidth: true,
-    // initialSlide: test, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
+    initialSlide: previousRace.round - 1, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
     responsive: [
       {
         breakpoint: 1024,
