@@ -60,8 +60,8 @@ type CircuitInfo = {
 type CircuitDetailedWidgetProps = {
   raceSchedule: RaceSchedule[];
   circuit: CircuitInfo;
-  raceDayTrackWeather: TrackWeather;
-  weatherIcon: WeatherIcon;
+  // raceDayTrackWeather: TrackWeather;
+  // weatherIcon: WeatherIcon;
 };
 
 type TrackWeather = {
@@ -94,7 +94,7 @@ type TrackWeather = {
   ];
 };
 
-type WeatherIcon = {
+type WeatherIconProps = {
   weather: string;
   viewBox: string;
   d: string;
@@ -103,43 +103,145 @@ type WeatherIcon = {
 export function CircuitDetailedWidget({
   circuit,
   raceSchedule,
-  raceDayTrackWeather,
-  weatherIcon,
 }: CircuitDetailedWidgetProps) {
   const [selectedRace, setSelectedRace] = useState<RaceSchedule | null>(null);
   const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
-  // const [raceDayTrackWeather, setRaceDayTrackWeather] =
-  //   useState<TrackWeather | null>(null);
-  // const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
+  const [raceDayTrackWeather, setRaceDayTrackWeather] =
+    useState<TrackWeather | null>(null);
+  const [weatherIcon, setWeatherIcon] = useState<WeatherIconProps | null>(null);
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
   useEffect(() => {
-    const selected = raceSchedule.find(
+    const truncatedRaceSchedule = raceSchedule.map((value: any) => {
+      return {
+        ...value,
+        circuitId: value.Circuit.circuitId,
+      };
+    });
+    const updatedRaceSchedule = truncatedRaceSchedule.map((value) => {
+      const offsetAtTrack = trackInfo.find(
+        (race) => race.circuitId === value.Circuit.circuitId
+      )?.Location.gmtOffset;
+      const trackLocation = trackInfo.find(
+        (race) => race.circuitId === value.Circuit.circuitId
+      )?.Location;
+      return {
+        ...value,
+        trackLocation,
+        localRaceDateTime: getLocalTime(
+          value.date,
+          value.time,
+          Number(offsetAtTrack)
+        ),
+      };
+    });
+    const now = new Date();
+    const race = raceSchedule.find(
       (race) => race.Circuit.circuitId === circuit.circuitId
     );
-    const currentDate = new Date();
 
-    // Filter races with date greater than current date
-    const futureRaces = raceSchedule.filter((race: any) => {
-      const raceDate = new Date(race.date + "T" + race.time);
-      return raceDate > currentDate;
-    });
-    const nextRaceDate = new Date(
-      futureRaces[0].date + "T" + futureRaces[0].time
-    );
-    console.log(nextRaceDate, currentDate);
-    // Sort future races by round (ascending order)
-    futureRaces.sort((a: any, b: any) => a.round - b.round);
+    if (race) {
+      setSelectedRace(race as RaceSchedule);
+      setNextRace(race as RaceSchedule);
+      const raceDate = parseISO(race.date + "T" + race.time);
+      const diffInSeconds = differenceInSeconds(raceDate, now);
+      setRemainingSeconds(diffInSeconds);
+      const days = Math.floor(diffInSeconds / (3600 * 24));
 
-    if (selected) {
-      setSelectedRace(selected as RaceSchedule);
-      if (nextRaceDate - currentDate) setNextRace(futureRaces[0]);
+      const nextRace = trackInfo.find(
+        (track) => track.circuitId === race.Circuit.circuitId
+      );
+      const lat = nextRace?.Location.lat as string;
+      const long = nextRace?.Location.long as string;
+      const timezone = nextRace?.Location.timezone as string;
+      const mainHourWeather = Number(race?.localRaceDateTime.slice(11, 13));
+      if (days < 15 && days > 0) {
+        //checking for under 15 days since api can't call exact dates further than 16 days out
+        getRaceDayWeather(
+          race.date,
+          parseFloat(lat),
+          parseFloat(long),
+          timezone
+        )
+          .then((res) => {
+            setRaceDayTrackWeather(res as TrackWeather);
+            setWeatherIcon(
+              getIcon(
+                res.hourly[mainHourWeather - 1].iconCode
+              ) as WeatherIconProps
+            );
+          })
+          .catch((e) => {
+            console.error(e);
+            alert("Problem getting raceday weather data!");
+          });
+
+        const intervalId = setInterval(() => {
+          setRemainingSeconds((prevRemainingSeconds) =>
+            prevRemainingSeconds ? prevRemainingSeconds - 1 : null
+          );
+        }, 1000);
+        return () => clearInterval(intervalId);
+      } else {
+        const intervalId = setInterval(() => {
+          setRemainingSeconds((prevRemainingSeconds) =>
+            prevRemainingSeconds ? prevRemainingSeconds - 1 : null
+          );
+        }, 1000);
+        return () => clearInterval(intervalId);
+      }
     }
   }, [raceSchedule]);
 
   if (!selectedRace) {
     return null; // no next race found
   }
+
+  function getIcon(iconCode: string) {
+    const weatherName = ICON_MAP.get(iconCode);
+    const weather = icons.find((type) => type.weather === weatherName);
+    return {
+      weather: weather?.weather,
+      viewBox: weather?.viewBox,
+      d: weather?.d,
+    };
+  }
+  function getLocalTime(date: string, time: string, offset: number) {
+    // need to add the mins, etc back on
+    const mainHour = Number(time.split(":")[0]);
+    let result = mainHour + offset;
+    const timeArr = time.split(":");
+    if (result < 0) {
+      result = 24 + result;
+      const updatedTime =
+        result + ":" + time.split(":")[1] + ":" + time.split(":")[2];
+      const updatedDateDay = (date.slice(8) as any) - 1;
+      const updatedDate = date.slice(0, 8) + updatedDateDay;
+      return updatedDate + "T" + updatedTime;
+    }
+    const updatedTime =
+      result + ":" + time.split(":")[1] + ":" + time.split(":")[2];
+
+    return date + "T" + updatedTime;
+  }
+  function secondsToHms(d: number) {
+    d = Number(d);
+    const days = Math.floor(d / (3600 * 24));
+    const hours = Math.floor((d % (3600 * 24)) / 3600);
+    const minutes = Math.floor((d % 3600) / 60);
+    const seconds = Math.floor(d % 60);
+    return {
+      days,
+      hours,
+      minutes,
+      seconds,
+    };
+    // return `${days > 0 ? days : ""}${("0" + hours).slice(-2)}:${(
+    //   "0" + minutes
+    // ).slice(-2)}:${("0" + seconds).slice(-2)}`;
+  }
+
+  const formattedCountdown = secondsToHms(remainingSeconds as number);
 
   //using date-fns
   const firstPracticeDate = parseISO(
@@ -180,16 +282,32 @@ export function CircuitDetailedWidget({
   const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
-
-  const mainHourWeather = selectedRace.localRaceDateTime.slice(11, 13);
-  console.log(mainHourWeather, raceDayTrackWeather);
-
+  const mainHourWeather = Number(nextRace?.localRaceDateTime.slice(11, 13)) - 1;
+  const weatherTemp = raceDayTrackWeather?.hourly[mainHourWeather].temp;
   return (
     <div>
       <h2 className="p-2 text-lg font-bold">Circuit Info</h2>
       <div className="flex p-2 w-[1000px] border-t-4 rounded-sm border-r-8 border-red-500">
         <div>
           <h3 className="p-2 font-bold">{`Round ${selectedRaceCombined.round} - ${selectedRaceCombined.raceName}`}</h3>
+          <div className="w-max current-season-next-race--countdown-container my-1 flex justify-start">
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.days}</p>
+              <p className="text-md">days</p>
+            </div>
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.hours}</p>
+              <p className="text-md">hrs</p>
+            </div>
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.minutes}</p>
+              <p className="text-md">mins</p>
+            </div>
+            <div className="flex flex-col items-center p-2 w-[75px]">
+              <p className="text-3xl font-bold">{formattedCountdown.seconds}</p>
+              <p className="text-md">secs</p>
+            </div>
+          </div>
           <div className="flex justify-between mb-4">
             <div className="circuit-location">
               <p className="text-lg">
@@ -334,23 +452,22 @@ export function CircuitDetailedWidget({
               </div>
             </div>
           </div>
-          {selectedRaceCombined.round === nextRace?.round && (
-            <div className="flex items-center justify-between">
-              <p>Forcasted Race Weather: </p>
-              <div className="text-3xl">
-                {raceDayTrackWeather?.daily[0].maxTemp}
+          {selectedRaceCombined.round === nextRace?.round &&
+            weatherIcon !== null && (
+              <div className="flex items-center justify-between">
+                <p>Forcasted Race Weather: </p>
+                <div className="text-3xl">{weatherTemp}&deg;</div>
+                <div className="w-[40px]">
+                  <svg
+                    className="fill-black"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox={weatherIcon?.viewBox}
+                  >
+                    <path d={weatherIcon?.d} />
+                  </svg>
+                </div>
               </div>
-              <div className="w-[40px]">
-                <svg
-                  className="fill-black"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox={weatherIcon?.viewBox}
-                >
-                  <path d={weatherIcon?.d} />
-                </svg>
-              </div>
-            </div>
-          )}
+            )}
         </div>
         <div className="circuit-img--container">
           <img

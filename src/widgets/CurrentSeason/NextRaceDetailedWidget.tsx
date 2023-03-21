@@ -148,7 +148,7 @@ NextRaceWidgetProps) {
       const lat = nextRace?.Location.lat as string;
       const long = nextRace?.Location.long as string;
       const timezone = nextRace?.Location.timezone as string;
-      const mainHourWeather = race?.localRaceDateTime.slice(11, 13);
+      const mainHourWeather = Number(race?.localRaceDateTime.slice(11, 13));
       if (days < 15) {
         //checking for under 15 days since api can't call exact dates further than 16 days out
         getRaceDayWeather(
@@ -278,7 +278,8 @@ NextRaceWidgetProps) {
   const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
-
+  const mainHourWeather = Number(nextRace?.localRaceDateTime.slice(11, 13)) - 1;
+  const weatherTemp = raceDayTrackWeather?.hourly[mainHourWeather].temp;
   return (
     <div className="my-4">
       <div className="w-max">
@@ -426,12 +427,10 @@ NextRaceWidgetProps) {
           {combinedNextRace.round === nextRace?.round && weatherIcon !== null && (
             <div className="flex">
               <p>Forcasted Race Weather: </p>
-              <div className="text-3xl">
-                {raceDayTrackWeather?.daily[0].maxTemp}
-              </div>
+              <div className="text-3xl">{weatherTemp}&deg;</div>
               <div className="w-[40px]">
                 <svg
-                  className="fill-black"
+                  className="fill-white"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox={weatherIcon?.viewBox}
                 >

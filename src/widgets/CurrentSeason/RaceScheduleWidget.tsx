@@ -54,41 +54,41 @@ type RaceScheduleWidgetProps = {
   raceSchedule: RaceSchedule[];
 };
 
-type TrackWeather = {
-  current: {
-    currentTemp: number;
-    highTemp: number;
-    lowTemp: number;
-    feelsLikeHigh: number;
-    feelsLikeLow: number;
-    windSpeed: number;
-    precip: number;
-    iconCode: number;
-  };
-  daily: [
-    {
-      timestamp: number;
-      iconCode: number;
-      maxTemp: number;
-    }
-  ];
-  hourly: [
-    {
-      timestamp: number;
-      iconCode: number;
-      temp: number;
-      feelsLike: number;
-      windSpeed: number;
-      precip: number;
-    }
-  ];
-};
+// type TrackWeather = {
+//   current: {
+//     currentTemp: number;
+//     highTemp: number;
+//     lowTemp: number;
+//     feelsLikeHigh: number;
+//     feelsLikeLow: number;
+//     windSpeed: number;
+//     precip: number;
+//     iconCode: number;
+//   };
+//   daily: [
+//     {
+//       timestamp: number;
+//       iconCode: number;
+//       maxTemp: number;
+//     }
+//   ];
+//   hourly: [
+//     {
+//       timestamp: number;
+//       iconCode: number;
+//       temp: number;
+//       feelsLike: number;
+//       windSpeed: number;
+//       precip: number;
+//     }
+//   ];
+// };
 
-type WeatherIcon = {
-  weather: string;
-  viewBox: string;
-  d: string;
-};
+// type WeatherIcon = {
+//   weather: string;
+//   viewBox: string;
+//   d: string;
+// };
 
 export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   const truncatedRaceSchedule = raceSchedule.map((value: any) => {
@@ -115,7 +115,6 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
       ),
     };
   });
-  // console.log(updatedRaceSchedule);
 
   const currentDate = new Date();
 
@@ -139,48 +138,9 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   const previousRace = previousRaces[0];
   const [selectedCircuit, setSelectedCircuit] = useState(futureRaces[0]);
 
-  const [raceDayTrackWeather, setRaceDayTrackWeather] =
-    useState<TrackWeather | null>(null);
-  const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
-
-  useEffect(() => {
-    const nextRaceDate = new Date(
-      futureRaces[0].date + "T" + futureRaces[0].time
-    );
-
-    const localRaceDate = futureRaces[0].localRaceDateTime.slice(0, 10);
-    const lat = futureRaces[0].trackLocation.lat as string;
-    const long = futureRaces[0].trackLocation.long as string;
-    const timezone = futureRaces[0].trackLocation.timezone as string;
-    getRaceDayWeather(
-      localRaceDate,
-      parseFloat(lat),
-      parseFloat(long),
-      timezone
-    )
-      .then((res) => {
-        setRaceDayTrackWeather(res as TrackWeather);
-        setWeatherIcon(getIcon(res.daily[0].iconCode) as WeatherIcon);
-      })
-      .catch((e) => {
-        console.error(e);
-        alert("Problem getting raceday weather data!");
-      });
-  }, []);
-
   const handleRaceClick = (race: any) => {
     setSelectedCircuit(race);
   };
-
-  function getIcon(iconCode: string) {
-    const weatherName = ICON_MAP.get(iconCode);
-    const weather = icons.find((type) => type.weather === weatherName);
-    return {
-      weather: weather?.weather,
-      viewBox: weather?.viewBox,
-      d: weather?.d,
-    };
-  }
 
   function getLocalTime(date: string, time: string, offset: number) {
     // need to add the mins, etc back on
@@ -314,8 +274,8 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
           <CircuitDetailedWidget
             circuit={selectedCircuit}
             raceSchedule={updatedRaceSchedule}
-            raceDayTrackWeather={raceDayTrackWeather as any}
-            weatherIcon={weatherIcon as any}
+            // raceDayTrackWeather={raceDayTrackWeather as any}
+            // weatherIcon={weatherIcon as any}
             key={selectedCircuit.round} // Add key prop to force re-render
           />
         )}

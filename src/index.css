@@ -88,6 +88,8 @@ main {
   background-color: var(--clr-f1-red);
 }
 
+/* .current-season-next-race--countdown-container */
+
 .home-next-race--times-container {
   color: black;
   background-color: var(--clr-f1-gray-background);
