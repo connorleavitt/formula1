@@ -168,7 +168,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
-    // variableWidth: true,
+    // variableWidth: false,
     initialSlide: previousRace.round - 1, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
     responsive: [
       {
@@ -199,9 +199,9 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   };
 
   return (
-    <div className="flex flex-col w-full">
-      <div className="mb-10 flex w-full">
-        <Slider className="w-10/12" {...settings}>
+    <div className="flex flex-col race-schedule--main-container">
+      <div className="mb-10 flex w-full justify-center">
+        <Slider className="w-11/12" {...settings}>
           {updatedRaceSchedule.map(
             (race: any) => (
               // selectedCircuit && (

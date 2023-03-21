@@ -334,7 +334,9 @@ NextRaceWidgetProps) {
                       </svg>
                     </div>
                   </div>
-                  <p className="text-xs font-light ">up to {rainProb} inches</p>
+                  <p className="text-xs font-light ">
+                    up to {rainProb} in of rain
+                  </p>
                 </div>
               )}
           </div>

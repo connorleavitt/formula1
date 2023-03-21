@@ -9,6 +9,8 @@
   --clr-f1-gray-highlighted: #dedede;
   --clr-text-light: #66737d;
   --clr-text-mid: #24313a;
+  --clr-rolex-green: #006341;
+  --clr-rolex-gray: #8dada2;
   --h-header: 50px;
   --w-nav: 244px;
   --clr-dashboard-background: #24313a;
@@ -88,8 +90,6 @@ main {
   background-color: var(--clr-f1-red);
 }
 
-/* .current-season-next-race--countdown-container */
-
 .home-next-race--times-container {
   color: black;
   background-color: var(--clr-f1-gray-background);
@@ -101,7 +101,13 @@ main {
 
 .race-schedule-container,
 .current-season--container {
-  padding-left: 3rem;
+  margin-left: 2rem;
+}
+
+/* .current-season-next-race--countdown-container */
+.race-schedule--main-container {
+  width: calc(100vw - var(--w-nav) - 80px);
+  max-width: 1300px;
 }
 
 .race-schedule--next-tag,
@@ -109,17 +115,45 @@ main {
   background-color: var(--clr-f1-gray-background);
 }
 
+.circuit-countdown--contianer {
+  background-color: var(--clr-rolex-green);
+  color: var(--clr-f1-gray-background);
+}
+
+.circuit-countdown--contianer > div > div:nth-child(2n + 1) {
+  border-left: 2px solid var(--clr-rolex-gray);
+  border-right: 2px solid var(--clr-rolex-gray);
+}
+
+/* .circuit-countdown--contianer {
+  background-color: var(--clr-rolex-green);
+  width: max-content;
+  color: var(--clr-f1-gray-background);
+}
+
+.circuit-countdown--contianer > h3 {
+  border-bottom: 2px solid var(--clr-rolex-gray);
+}
+
+.circuit-countdown--contianer > div > div:nth-child(2n + 2) {
+  border-left: 2px solid var(--clr-rolex-gray);
+  border-right: 2px solid var(--clr-rolex-gray);
+} */
+
 .circuit-times-table {
   background-color: var(--clr-f1-gray-background);
 }
 
 .circuit-img--container {
   width: auto;
-  margin-left: 2rem;
+  margin: 1rem;
 }
 
+.circuit-round > p:first-child,
 .circuit-location > p:first-child,
-.circuit-laps > p:last-child {
+.circuit-laps > p:first-child,
+.circuit-weather > p:first-child,
+.circuit-weather > div > p {
   color: var(--clr-text-light);
 }
 
