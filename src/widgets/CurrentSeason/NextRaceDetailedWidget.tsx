@@ -281,7 +281,7 @@ NextRaceWidgetProps) {
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
   const mainHourWeather = Number(nextRace?.localRaceDateTime.slice(11, 13)) - 1;
   const weatherTemp = raceDayTrackWeather?.hourly[mainHourWeather].temp;
-  const rainProb = raceDayTrackWeather?.daily[0].precipitationSum[0];
+  const rainProb = raceDayTrackWeather?.daily[0].precipitationSum;
 
   return (
     <div className="my-4">

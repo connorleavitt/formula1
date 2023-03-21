@@ -291,7 +291,7 @@ export function CircuitDetailedWidget({
       <div className="flex p-2 w-[1000px] border-t-4 rounded-sm border-r-8 border-red-500">
         <div>
           <h3 className="p-2 font-bold">{`Round ${selectedRaceCombined.round} - ${selectedRaceCombined.raceName}`}</h3>
-          {formattedCountdown.seconds > 0 && (
+          {formattedCountdown.days > 0 && (
             <div className="w-max current-season-next-race--countdown-container my-1 flex justify-start">
               <div className="flex flex-col items-center p-2 w-[75px]">
                 <p className="text-3xl font-bold">{formattedCountdown.days}</p>
