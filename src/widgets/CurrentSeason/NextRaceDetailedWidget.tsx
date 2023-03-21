@@ -26,6 +26,7 @@ type RaceSchedule = {
   };
   date: string;
   time: string;
+  localRaceDateTime: string;
   FirstPractice: {
     date: string;
     time: string;
@@ -94,17 +95,38 @@ export function NextRaceDetailedWidget({
 }: // trackWeather,
 NextRaceWidgetProps) {
   const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
-  const [currentTrackWeather, setCurrentTrackWeather] =
-    useState<TrackWeather | null>(null);
   const [raceDayTrackWeather, setRaceDayTrackWeather] =
     useState<TrackWeather | null>(null);
   const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
   useEffect(() => {
+    const truncatedRaceSchedule = raceSchedule.map((value: any) => {
+      return {
+        ...value,
+        circuitId: value.Circuit.circuitId,
+      };
+    });
+    const updatedRaceSchedule = truncatedRaceSchedule.map((value) => {
+      const offsetAtTrack = trackInfo.find(
+        (race) => race.circuitId === value.Circuit.circuitId
+      )?.Location.gmtOffset;
+      const trackLocation = trackInfo.find(
+        (race) => race.circuitId === value.Circuit.circuitId
+      )?.Location;
+      return {
+        ...value,
+        trackLocation,
+        localRaceDateTime: getLocalTime(
+          value.date,
+          value.time,
+          Number(offsetAtTrack)
+        ),
+      };
+    });
     const now = new Date();
     // sort the races by date in ascending order
-    const sortedRaces = raceSchedule.sort(
+    const sortedRaces = updatedRaceSchedule.sort(
       (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
     );
     // find the first race that is in the future compared to the current date + time
@@ -114,42 +136,53 @@ NextRaceWidgetProps) {
 
     if (race) {
       setNextRace(race);
+
+      const raceDate = parseISO(race.date + "T" + race.time);
+      const diffInSeconds = differenceInSeconds(raceDate, now);
+      setRemainingSeconds(diffInSeconds);
+      const days = Math.floor(diffInSeconds / (3600 * 24));
+
       const nextRace = trackInfo.find(
         (track) => track.circuitId === race.Circuit.circuitId
       );
       const lat = nextRace?.Location.lat as string;
       const long = nextRace?.Location.long as string;
       const timezone = nextRace?.Location.timezone as string;
-      getWeather(parseFloat(lat), parseFloat(long), timezone)
-        .then((res) => {
-          // console.log(res);
-          setCurrentTrackWeather(res as TrackWeather);
-          setWeatherIcon(getIcon(res.current.iconCode) as WeatherIcon);
-        })
-        .catch((e) => {
-          console.error(e);
-          alert("Problem getting weather data!");
-        });
-      getRaceDayWeather(race.date, parseFloat(lat), parseFloat(long), timezone)
-        .then((res) => {
-          console.log(res);
-          setRaceDayTrackWeather(res as TrackWeather);
-          // setWeatherIcon(getIcon(res.current.iconCode) as WeatherIcon);
-        })
-        .catch((e) => {
-          console.error(e);
-          alert("Problem getting raceday weather data!");
-        });
+      const mainHourWeather = race?.localRaceDateTime.slice(11, 13);
+      if (days < 15) {
+        //checking for under 15 days since api can't call exact dates further than 16 days out
+        getRaceDayWeather(
+          race.date,
+          parseFloat(lat),
+          parseFloat(long),
+          timezone
+        )
+          .then((res) => {
+            console.log(res);
+            setRaceDayTrackWeather(res as TrackWeather);
+            setWeatherIcon(
+              getIcon(res.hourly[mainHourWeather - 1].iconCode) as WeatherIcon
+            );
+          })
+          .catch((e) => {
+            console.error(e);
+            alert("Problem getting raceday weather data!");
+          });
 
-      const raceDate = parseISO(race.date + "T" + race.time);
-      const diffInSeconds = differenceInSeconds(raceDate, now);
-      setRemainingSeconds(diffInSeconds);
-      const intervalId = setInterval(() => {
-        setRemainingSeconds((prevRemainingSeconds) =>
-          prevRemainingSeconds ? prevRemainingSeconds - 1 : null
-        );
-      }, 1000);
-      return () => clearInterval(intervalId);
+        const intervalId = setInterval(() => {
+          setRemainingSeconds((prevRemainingSeconds) =>
+            prevRemainingSeconds ? prevRemainingSeconds - 1 : null
+          );
+        }, 1000);
+        return () => clearInterval(intervalId);
+      } else {
+        const intervalId = setInterval(() => {
+          setRemainingSeconds((prevRemainingSeconds) =>
+            prevRemainingSeconds ? prevRemainingSeconds - 1 : null
+          );
+        }, 1000);
+        return () => clearInterval(intervalId);
+      }
     }
   }, [raceSchedule]);
 
@@ -162,7 +195,24 @@ NextRaceWidgetProps) {
       d: weather?.d,
     };
   }
+  function getLocalTime(date: string, time: string, offset: number) {
+    // need to add the mins, etc back on
+    const mainHour = Number(time.split(":")[0]);
+    let result = mainHour + offset;
+    const timeArr = time.split(":");
+    if (result < 0) {
+      result = 24 + result;
+      const updatedTime =
+        result + ":" + time.split(":")[1] + ":" + time.split(":")[2];
+      const updatedDateDay = (date.slice(8) as any) - 1;
+      const updatedDate = date.slice(0, 8) + updatedDateDay;
+      return updatedDate + "T" + updatedTime;
+    }
+    const updatedTime =
+      result + ":" + time.split(":")[1] + ":" + time.split(":")[2];
 
+    return date + "T" + updatedTime;
+  }
   function secondsToHms(d: number) {
     d = Number(d);
     const days = Math.floor(d / (3600 * 24));
@@ -181,14 +231,9 @@ NextRaceWidgetProps) {
   }
 
   const formattedCountdown = secondsToHms(remainingSeconds as number);
-  // console.log(formattedCountdown);
   if (!nextRace) {
     return null; // no next race found
   }
-  if (!currentTrackWeather) {
-    return null; // no next race weather set
-  }
-  // console.log(currentTrackWeather);
   const macthedNextRace = trackInfo.find(
     (track) => track.circuitId === nextRace.Circuit.circuitId
   );
@@ -233,8 +278,6 @@ NextRaceWidgetProps) {
   const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
-
-  // console.log(originalDateMainHour, offsetAtTrack, raceTimeAtTrack);
 
   return (
     <div className="my-4">
@@ -380,21 +423,23 @@ NextRaceWidgetProps) {
               </div>
             </div>
           </div>
-          <div className="flex">
-            <p>Forcasted Race Weather: </p>
-            <div className="text-3xl">
-              {currentTrackWeather?.current.currentTemp}
+          {combinedNextRace.round === nextRace?.round && weatherIcon !== null && (
+            <div className="flex">
+              <p>Forcasted Race Weather: </p>
+              <div className="text-3xl">
+                {raceDayTrackWeather?.daily[0].maxTemp}
+              </div>
+              <div className="w-[40px]">
+                <svg
+                  className="fill-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox={weatherIcon?.viewBox}
+                >
+                  <path d={weatherIcon?.d} />
+                </svg>
+              </div>
             </div>
-            <div className="w-[40px]">
-              <svg
-                className="fill-white"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox={weatherIcon?.viewBox}
-              >
-                <path d={weatherIcon?.d} />
-              </svg>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </div>

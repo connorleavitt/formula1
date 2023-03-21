@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
-import { parseISO } from "date-fns";
+import { differenceInSeconds, parseISO } from "date-fns";
 import trackInfo from "../../data/trackInfo.json";
+import { ICON_MAP } from "../../utilities/Weather/iconMap";
+import icons from "../../utilities/Weather/icons.json";
+import {
+  getRaceDayWeather,
+  // getWeather,
+} from "../../utilities/Weather/getWeather";
 
 type RaceSchedule = {
   season: number;
@@ -20,6 +26,7 @@ type RaceSchedule = {
   };
   date: string;
   time: string;
+  localRaceDateTime: string;
   FirstPractice: {
     date: string;
     time: string;
@@ -53,28 +60,82 @@ type CircuitInfo = {
 type CircuitDetailedWidgetProps = {
   raceSchedule: RaceSchedule[];
   circuit: CircuitInfo;
+  raceDayTrackWeather: TrackWeather;
+  weatherIcon: WeatherIcon;
+};
+
+type TrackWeather = {
+  current: {
+    currentTemp: number;
+    highTemp: number;
+    lowTemp: number;
+    feelsLikeHigh: number;
+    feelsLikeLow: number;
+    windSpeed: number;
+    precip: number;
+    iconCode: number;
+  };
+  daily: [
+    {
+      timestamp: number;
+      iconCode: number;
+      maxTemp: number;
+    }
+  ];
+  hourly: [
+    {
+      timestamp: number;
+      iconCode: number;
+      temp: number;
+      feelsLike: number;
+      windSpeed: number;
+      precip: number;
+    }
+  ];
+};
+
+type WeatherIcon = {
+  weather: string;
+  viewBox: string;
+  d: string;
 };
 
 export function CircuitDetailedWidget({
   circuit,
   raceSchedule,
+  raceDayTrackWeather,
+  weatherIcon,
 }: CircuitDetailedWidgetProps) {
   const [selectedRace, setSelectedRace] = useState<RaceSchedule | null>(null);
-  // const [selectedRaceUrl, setselectedRaceUrl] = useState<RaceSchedule | null>(null);
-
-  // console.log(circuit.circuitId);
+  const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
+  // const [raceDayTrackWeather, setRaceDayTrackWeather] =
+  //   useState<TrackWeather | null>(null);
+  // const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
+  const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
   useEffect(() => {
     const selected = raceSchedule.find(
       (race) => race.Circuit.circuitId === circuit.circuitId
     );
+    const currentDate = new Date();
 
-    setSelectedRace(selected as RaceSchedule);
+    // Filter races with date greater than current date
+    const futureRaces = raceSchedule.filter((race: any) => {
+      const raceDate = new Date(race.date + "T" + race.time);
+      return raceDate > currentDate;
+    });
+    const nextRaceDate = new Date(
+      futureRaces[0].date + "T" + futureRaces[0].time
+    );
+    console.log(nextRaceDate, currentDate);
+    // Sort future races by round (ascending order)
+    futureRaces.sort((a: any, b: any) => a.round - b.round);
+
+    if (selected) {
+      setSelectedRace(selected as RaceSchedule);
+      if (nextRaceDate - currentDate) setNextRace(futureRaces[0]);
+    }
   }, [raceSchedule]);
-
-  // format the race date range
-  // const firstPracticeDate = new Date(selectedRace.FirstPractice.date);
-  // const raceDate = new Date(selectedRace.date);
 
   if (!selectedRace) {
     return null; // no next race found
@@ -87,17 +148,9 @@ export function CircuitDetailedWidget({
   const secondPracticeDate = parseISO(
     selectedRace.SecondPractice.date + "T" + selectedRace.SecondPractice.time
   );
-  // const thirdPracticeDate = parseISO(
-  //   selectedRace.ThirdPractice.date + "T" + selectedRace.ThirdPractice.time
-  // );
   const qualifyingDate = parseISO(
     selectedRace.Qualifying.date + "T" + selectedRace.Qualifying.time
   );
-  // if (selectedRace.Sprint) {
-  //   const sprintDate = parseISO(
-  //     selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
-  //   );
-  // }
   const raceDate = parseISO(selectedRace.date + "T" + selectedRace.time);
 
   const macthedNextRace = trackInfo.find(
@@ -127,6 +180,9 @@ export function CircuitDetailedWidget({
   const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
+
+  const mainHourWeather = selectedRace.localRaceDateTime.slice(11, 13);
+  console.log(mainHourWeather, raceDayTrackWeather);
 
   return (
     <div>
@@ -278,6 +334,23 @@ export function CircuitDetailedWidget({
               </div>
             </div>
           </div>
+          {selectedRaceCombined.round === nextRace?.round && (
+            <div className="flex items-center justify-between">
+              <p>Forcasted Race Weather: </p>
+              <div className="text-3xl">
+                {raceDayTrackWeather?.daily[0].maxTemp}
+              </div>
+              <div className="w-[40px]">
+                <svg
+                  className="fill-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox={weatherIcon?.viewBox}
+                >
+                  <path d={weatherIcon?.d} />
+                </svg>
+              </div>
+            </div>
+          )}
         </div>
         <div className="circuit-img--container">
           <img

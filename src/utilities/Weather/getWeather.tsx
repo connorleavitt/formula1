@@ -3,7 +3,7 @@ import axios from "axios";
 export function getWeather(lat: number, long: number, timezone: string) {
   return axios
     .get(
-      `https://api.open-meteo.com/v1/forecast?&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=16`,
+      `https://api.open-meteo.com/v1/forecast?&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime&forecast_days=16&temperature_unit=fahrenheit`,
       {
         params: {
           latitude: lat,
@@ -30,7 +30,7 @@ export function getRaceDayWeather(
 ) {
   return axios
     .get(
-      `https://api.open-meteo.com/v1/forecast?&latitude=${lat}&longitude=${long}&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&timeformat=unixtime&start_date=${race_date}&end_date=${race_date}`,
+      `https://api.open-meteo.com/v1/forecast?&latitude=${lat}&longitude=${long}&hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&timeformat=unixtime&start_date=${race_date}&end_date=${race_date}&temperature_unit=fahrenheit`,
       {
         params: {
           timezone,

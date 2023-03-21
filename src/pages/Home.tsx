@@ -2,7 +2,7 @@ import { FantasyMainScoreboardLeader } from "../components/FantasyScoreboards/Fa
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
 import { NextRaceDetailedWidget } from "../widgets/CurrentSeason/NextRaceDetailedWidget";
 
-type UpdatedRaceSchedule = {
+type RaceSchedule = {
   season: number;
   round: number;
   url: string;
@@ -20,8 +20,7 @@ type UpdatedRaceSchedule = {
   };
   date: string;
   time: string;
-  localDate: string;
-  localTime: string;
+  localRaceDateTime: string;
   FirstPractice: {
     date: string;
     time: string;
