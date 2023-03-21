@@ -80,6 +80,7 @@ type TrackWeather = {
       timestamp: number;
       iconCode: number;
       maxTemp: number;
+      precipitationSum: number;
     }
   ];
   hourly: [

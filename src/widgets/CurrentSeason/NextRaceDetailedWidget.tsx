@@ -70,6 +70,7 @@ type TrackWeather = {
       timestamp: number;
       iconCode: number;
       maxTemp: number;
+      precipitationSum: number;
     }
   ];
   hourly: [
@@ -280,31 +281,65 @@ NextRaceWidgetProps) {
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
   const mainHourWeather = Number(nextRace?.localRaceDateTime.slice(11, 13)) - 1;
   const weatherTemp = raceDayTrackWeather?.hourly[mainHourWeather].temp;
+  const rainProb = raceDayTrackWeather?.daily[0].precipitationSum[0];
+
   return (
     <div className="my-4">
       <div className="w-max">
         <h3 className="p-2 text-2xl font-bold">Next Race</h3>
-        <div className="home-next-race--container flex flex-col rounded-lg w-96">
-          <h3 className="px-3 mt-5 font-bold my-1">{`${combinedNextRace.raceName} - Round ${combinedNextRace.round}`}</h3>
-          <div className="w-max home-next-race--countdown-container my-1 flex justify-start">
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.days}</p>
-              <p className="text-md">days</p>
+        <div className="home-next-race--container flex flex-col rounded-lg border-2 border-gray-700">
+          <div className="flex">
+            <div className="flex flex-col my-5">
+              <h3 className="px-3 font-bold">{`${combinedNextRace.raceName} - Round ${combinedNextRace.round}`}</h3>
+              <div className="w-max home-next-race--countdown-container flex justify-start">
+                <div className="flex flex-col items-center p-1 w-[75px]">
+                  <p className="text-3xl font-bold">
+                    {formattedCountdown.days}
+                  </p>
+                  <p className="text-md">days</p>
+                </div>
+                <div className="flex flex-col items-center p-1 w-[75px]">
+                  <p className="text-3xl font-bold">
+                    {formattedCountdown.hours}
+                  </p>
+                  <p className="text-md">hrs</p>
+                </div>
+                <div className="flex flex-col items-center p-1 w-[75px]">
+                  <p className="text-3xl font-bold">
+                    {formattedCountdown.minutes}
+                  </p>
+                  <p className="text-md">mins</p>
+                </div>
+                <div className="flex flex-col items-center p-1 w-[75px]">
+                  <p className="text-3xl font-bold">
+                    {formattedCountdown.seconds}
+                  </p>
+                  <p className="text-md">secs</p>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.hours}</p>
-              <p className="text-md">hrs</p>
-            </div>
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.minutes}</p>
-              <p className="text-md">mins</p>
-            </div>
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.seconds}</p>
-              <p className="text-md">secs</p>
-            </div>
+            {combinedNextRace.round === nextRace?.round &&
+              weatherIcon !== null && (
+                <div className="flex flex-col px-4 items-center my-5">
+                  <p className="text-md font-light mb-1">Race Weather</p>
+                  <div className="items-center flex">
+                    <div className="text-3xl mr-2">{weatherTemp}&deg;</div>
+                    <div className="w-[40px] h-full">
+                      <svg
+                        className="fill-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox={weatherIcon?.viewBox}
+                      >
+                        <path d={weatherIcon?.d} />
+                      </svg>
+                    </div>
+                  </div>
+                  <p className="text-xs font-light ">up to {rainProb} inches</p>
+                </div>
+              )}
           </div>
-          <div className="home-next-race--times-container my-1">
+
+          <div className="home-next-race--times-container rounded-b-md">
             <div className="flex p-2 justify-between border-b-2 border-gray-300">
               <div className="w-[100px]">Practice 1</div>
               <div className="w-[100px] text-center">
@@ -424,21 +459,6 @@ NextRaceWidgetProps) {
               </div>
             </div>
           </div>
-          {combinedNextRace.round === nextRace?.round && weatherIcon !== null && (
-            <div className="flex">
-              <p>Forcasted Race Weather: </p>
-              <div className="text-3xl">{weatherTemp}&deg;</div>
-              <div className="w-[40px]">
-                <svg
-                  className="fill-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox={weatherIcon?.viewBox}
-                >
-                  <path d={weatherIcon?.d} />
-                </svg>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

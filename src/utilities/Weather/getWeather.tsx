@@ -80,6 +80,7 @@ function parseDailyWeather({ daily }: any) {
       timestamp: time * 1000,
       iconCode: daily.weathercode[index],
       maxTemp: Math.round(daily.temperature_2m_max[index]),
+      precipitationSum: daily.precipitation_sum,
     };
   });
 }
