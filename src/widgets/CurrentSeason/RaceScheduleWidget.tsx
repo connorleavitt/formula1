@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../index.css";
+import trackInfo from "../../data/trackInfo.json";
 import { CircuitDetailedWidget } from "./CircuitDetailedWidget";
 
 type RaceSchedule = {
@@ -76,7 +77,6 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     const raceDate = new Date(race.date + "T" + race.time);
     return raceDate < currentDate;
   });
-
   // Sort previous races by round (ascending order)
   previousRaces.sort((a: any, b: any) => b.round - a.round);
 
@@ -86,7 +86,39 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   const handleRaceClick = (race: any) => {
     setSelectedCircuit(race);
   };
-  const test = 5;
+
+  const UpdatedRaceSchedule = raceSchedule.map((value) => {
+    const offsetAtTrack = trackInfo.find(
+      (race) => race.circuitId === value.Circuit.circuitId
+    )?.Location.gmtOffset;
+    return {
+      ...value,
+      localRaceDateTime: getLocalTime(
+        value.date,
+        value.time,
+        Number(offsetAtTrack)
+      ),
+    };
+  });
+
+  function getLocalTime(date: string, time: string, offset: number) {
+    // need to add the mins, etc back on
+    const mainHour = Number(time.split(":")[0]);
+    let result = mainHour + offset;
+    const timeArr = time.split(":");
+    if (result < 0) {
+      result = 24 + result;
+      const updatedTime =
+        result + ":" + time.split(":")[1] + ":" + time.split(":")[2];
+      const updatedDateDay = (date.slice(8) as any) - 1;
+      const updatedDate = date.slice(0, 8) + updatedDateDay;
+      return updatedDate + "T" + updatedTime;
+    }
+    const updatedTime =
+      result + ":" + time.split(":")[1] + ":" + time.split(":")[2];
+
+    return date + "T" + updatedTime;
+  }
 
   const settings = {
     dots: true,
@@ -200,7 +232,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
         {selectedCircuit && (
           <CircuitDetailedWidget
             circuit={selectedCircuit}
-            raceSchedule={raceSchedule}
+            raceSchedule={UpdatedRaceSchedule}
             key={selectedCircuit.round} // Add key prop to force re-render
           />
         )}

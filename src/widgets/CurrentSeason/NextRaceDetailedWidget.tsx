@@ -3,7 +3,10 @@ import { differenceInSeconds, formatDuration, parseISO } from "date-fns";
 import trackInfo from "../../data/trackInfo.json";
 import { ICON_MAP } from "../../utilities/Weather/iconMap";
 import icons from "../../utilities/Weather/icons.json";
-import { getWeather } from "../../utilities/Weather/getWeather";
+import {
+  getRaceDayWeather,
+  getWeather,
+} from "../../utilities/Weather/getWeather";
 
 type RaceSchedule = {
   season: number;
@@ -93,6 +96,8 @@ NextRaceWidgetProps) {
   const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
   const [currentTrackWeather, setCurrentTrackWeather] =
     useState<TrackWeather | null>(null);
+  const [raceDayTrackWeather, setRaceDayTrackWeather] =
+    useState<TrackWeather | null>(null);
   const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
@@ -124,6 +129,16 @@ NextRaceWidgetProps) {
         .catch((e) => {
           console.error(e);
           alert("Problem getting weather data!");
+        });
+      getRaceDayWeather(race.date, parseFloat(lat), parseFloat(long), timezone)
+        .then((res) => {
+          console.log(res);
+          setRaceDayTrackWeather(res as TrackWeather);
+          // setWeatherIcon(getIcon(res.current.iconCode) as WeatherIcon);
+        })
+        .catch((e) => {
+          console.error(e);
+          alert("Problem getting raceday weather data!");
         });
 
       const raceDate = parseISO(race.date + "T" + race.time);
@@ -173,7 +188,7 @@ NextRaceWidgetProps) {
   if (!currentTrackWeather) {
     return null; // no next race weather set
   }
-
+  // console.log(currentTrackWeather);
   const macthedNextRace = trackInfo.find(
     (track) => track.circuitId === nextRace.Circuit.circuitId
   );
@@ -184,12 +199,6 @@ NextRaceWidgetProps) {
       ...macthedNextRace,
     },
   };
-
-  // console.log(combinedNextRace);
-
-  // format the race date range
-  // const firstPracticeDate = new Date(nextRace.FirstPractice.date);
-  // const raceDate = new Date(nextRace.date);
 
   //using date-fns
   const firstPracticeDate = parseISO(
@@ -207,7 +216,7 @@ NextRaceWidgetProps) {
   const raceDate = parseISO(
     combinedNextRace.date + "T" + combinedNextRace.time
   );
-
+  // console.log(combinedNextRace.date + "T" + combinedNextRace.time);
   const firstPracticeDayOfWeek = firstPracticeDate.toLocaleString("en-US", {
     weekday: "short",
   });
@@ -224,6 +233,9 @@ NextRaceWidgetProps) {
   const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
   const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
   const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
+
+  // console.log(originalDateMainHour, offsetAtTrack, raceTimeAtTrack);
+
   return (
     <div className="my-4">
       <div className="w-max">
@@ -369,7 +381,7 @@ NextRaceWidgetProps) {
             </div>
           </div>
           <div className="flex">
-            <p>Current Weather: </p>
+            <p>Forcasted Race Weather: </p>
             <div className="text-3xl">
               {currentTrackWeather?.current.currentTemp}
             </div>

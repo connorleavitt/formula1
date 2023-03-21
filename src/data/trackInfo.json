@@ -11,7 +11,8 @@
       "long": "144.968",
       "locality": "Melbourne",
       "country": "Australia",
-      "timezone": "Australia/Melbourne"
+      "timezone": "Australia/Melbourne",
+      "gmtOffset": "10"
     }
   },
   {
@@ -26,7 +27,8 @@
       "long": "-97.6411",
       "locality": "Austin",
       "country": "USA",
-      "timezone": "America/Chicago"
+      "timezone": "America/Chicago",
+      "gmtOffset": "-5"
     }
   },
   {
@@ -41,7 +43,8 @@
       "long": "50.5106",
       "locality": "Sakhir",
       "country": "Bahrain",
-      "timezone": "Asia/Qatar"
+      "timezone": "Asia/Qatar",
+      "gmtOffset": "3"
     }
   },
   {
@@ -56,7 +59,8 @@
       "long": "49.8533",
       "locality": "Baku",
       "country": "Azerbaijan",
-      "timezone": "Asia/Baku"
+      "timezone": "Asia/Baku",
+      "gmtOffset": "4"
     }
   },
   {
@@ -71,7 +75,8 @@
       "long": "2.26111",
       "locality": "Montmeló",
       "country": "Spain",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -86,7 +91,8 @@
       "long": "19.2486",
       "locality": "Budapest",
       "country": "Hungary",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -101,7 +107,8 @@
       "long": "11.7167",
       "locality": "Imola",
       "country": "Italy",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -116,7 +123,8 @@
       "long": "-46.6997",
       "locality": "São Paulo",
       "country": "Brazil",
-      "timezone": "America/Sao_Paulo"
+      "timezone": "America/Sao_Paulo",
+      "gmtOffset": "-3"
     }
   },
   {
@@ -131,7 +139,8 @@
       "long": "39.1044",
       "locality": "Jeddah",
       "country": "Saudi Arabia",
-      "timezone": "Asia/Riyadh"
+      "timezone": "Asia/Riyadh",
+      "gmtOffset": "3"
     }
   },
   {
@@ -146,7 +155,8 @@
       "long": "51.4542",
       "locality": "Al Daayen",
       "country": "Qatar",
-      "timezone": "Asia/Qatar"
+      "timezone": "Asia/Qatar",
+      "gmtOffset": "3"
     }
   },
   {
@@ -161,7 +171,8 @@
       "long": "103.864",
       "locality": "Marina Bay",
       "country": "Singapore",
-      "timezone": "Asia/Singapore"
+      "timezone": "Asia/Singapore",
+      "gmtOffset": "8"
     }
   },
   {
@@ -176,7 +187,8 @@
       "long": "-80.2389",
       "locality": "Miami",
       "country": "USA",
-      "timezone": "America/New_York"
+      "timezone": "America/New_York",
+      "gmtOffset": "-4"
     }
   },
   {
@@ -191,7 +203,8 @@
       "long": "7.42056",
       "locality": "Monte-Carlo",
       "country": "Monaco",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -206,7 +219,8 @@
       "long": "9.28111",
       "locality": "Monza",
       "country": "Italy",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -221,7 +235,8 @@
       "long": "14.7647",
       "locality": "Spielberg",
       "country": "Austria",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -236,7 +251,8 @@
       "long": "-99.0907",
       "locality": "Mexico City",
       "country": "Mexico",
-      "timezone": "America/Mexico_City"
+      "timezone": "America/Mexico_City",
+      "gmtOffset": "-6"
     }
   },
   {
@@ -251,7 +267,8 @@
       "long": "-1.01694",
       "locality": "Silverstone",
       "country": "UK",
-      "timezone": "Europe/London"
+      "timezone": "Europe/London",
+      "gmtOffset": "1"
     }
   },
   {
@@ -266,7 +283,8 @@
       "long": "5.97139",
       "locality": "Spa",
       "country": "Belgium",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   },
   {
@@ -281,7 +299,8 @@
       "long": "136.541",
       "locality": "Suzuka",
       "country": "Japan",
-      "timezone": "Asia/Tokyo"
+      "timezone": "Asia/Tokyo",
+      "gmtOffset": "9"
     }
   },
   {
@@ -296,7 +315,8 @@
       "long": "-115.173",
       "locality": "Las Vegas",
       "country": "United States",
-      "timezone": "America/Los_Angeles"
+      "timezone": "America/Los_Angeles",
+      "gmtOffset": "-8"
     }
   },
   {
@@ -311,7 +331,8 @@
       "long": "-73.5228",
       "locality": "Montreal",
       "country": "Canada",
-      "timezone": "America/Toronto"
+      "timezone": "America/Toronto",
+      "gmtOffset": "-4"
     }
   },
   {
@@ -326,7 +347,8 @@
       "long": "54.6031",
       "locality": "Abu Dhabi",
       "country": "UAE",
-      "timezone": "Asia/Dubai"
+      "timezone": "Asia/Dubai",
+      "gmtOffset": "4"
     }
   },
   {
@@ -341,7 +363,8 @@
       "long": "4.54092",
       "locality": "Zandvoort",
       "country": "Netherlands",
-      "timezone": "Europe/Paris"
+      "timezone": "Europe/Paris",
+      "gmtOffset": "2"
     }
   }
 ]

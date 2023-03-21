@@ -2,6 +2,48 @@ import { FantasyMainScoreboardLeader } from "../components/FantasyScoreboards/Fa
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
 import { NextRaceDetailedWidget } from "../widgets/CurrentSeason/NextRaceDetailedWidget";
 
+type UpdatedRaceSchedule = {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  localDate: string;
+  localTime: string;
+  FirstPractice: {
+    date: string;
+    time: string;
+  };
+  SecondPractice: {
+    date: string;
+    time: string;
+  };
+  ThirdPractice: {
+    date: string;
+    time: string;
+  };
+  Qualifying: {
+    date: string;
+    time: string;
+  };
+  Sprint: {
+    date: string;
+    time: string;
+  };
+};
+
 export const Home: React.FC = () => {
   const [loading, raceSchedule, error, request] = getRaceSchedule({
     method: "get",
@@ -21,6 +63,7 @@ export const Home: React.FC = () => {
   if (!raceSchedule) {
     return <p>Data is null</p>;
   }
+
   return (
     <div className="home m-6">
       <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
