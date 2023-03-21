@@ -290,24 +290,30 @@ export function CircuitDetailedWidget({
       <div className="flex p-2 w-[1000px] border-t-4 rounded-sm border-r-8 border-red-500">
         <div>
           <h3 className="p-2 font-bold">{`Round ${selectedRaceCombined.round} - ${selectedRaceCombined.raceName}`}</h3>
-          <div className="w-max current-season-next-race--countdown-container my-1 flex justify-start">
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.days}</p>
-              <p className="text-md">days</p>
+          {formattedCountdown.seconds > 0 && (
+            <div className="w-max current-season-next-race--countdown-container my-1 flex justify-start">
+              <div className="flex flex-col items-center p-2 w-[75px]">
+                <p className="text-3xl font-bold">{formattedCountdown.days}</p>
+                <p className="text-md">days</p>
+              </div>
+              <div className="flex flex-col items-center p-2 w-[75px]">
+                <p className="text-3xl font-bold">{formattedCountdown.hours}</p>
+                <p className="text-md">hrs</p>
+              </div>
+              <div className="flex flex-col items-center p-2 w-[75px]">
+                <p className="text-3xl font-bold">
+                  {formattedCountdown.minutes}
+                </p>
+                <p className="text-md">mins</p>
+              </div>
+              <div className="flex flex-col items-center p-2 w-[75px]">
+                <p className="text-3xl font-bold">
+                  {formattedCountdown.seconds}
+                </p>
+                <p className="text-md">secs</p>
+              </div>
             </div>
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.hours}</p>
-              <p className="text-md">hrs</p>
-            </div>
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.minutes}</p>
-              <p className="text-md">mins</p>
-            </div>
-            <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.seconds}</p>
-              <p className="text-md">secs</p>
-            </div>
-          </div>
+          )}
           <div className="flex justify-between mb-4">
             <div className="circuit-location">
               <p className="text-lg">
