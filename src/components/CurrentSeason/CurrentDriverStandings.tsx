@@ -15,7 +15,7 @@ export function CurrentDriverStandings() {
       const driverStandings =
         response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
       setRowData(driverStandings);
-      // console.log("Driver:", driverStandings);
+      console.log("Driver:", driverStandings);
     }
   };
 
@@ -24,12 +24,17 @@ export function CurrentDriverStandings() {
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "position",
-      width: 106,
+      headerName: "",
+      width: 50,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       headerName: "Driver",
-      width: 160,
+      width: 140,
+      headerClass: "sub-headers-name" as string,
+      cellClass: "cell-left",
       valueGetter: (p: {
         data: { Driver: { givenName: string; familyName: string } };
       }) => {
@@ -39,12 +44,31 @@ export function CurrentDriverStandings() {
     },
     {
       field: "Driver.code",
-      width: 150,
+      headerName: "Code",
+      width: 50,
+      cellClass: "centered",
+      headerClass: "sub-headers" as string,
     },
-    { headerName: "Constructor", field: "Constructors.0.name", width: 140 },
+    {
+      headerName: "Constructor",
+      field: "Constructors.0.name",
+      width: 140,
+      cellClass: "centered",
+      headerClass: "sub-headers" as string,
+    },
+    {
+      field: "wins",
+      width: 50,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
     {
       field: "points",
-      width: 100,
+      width: 80,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
+      sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ]);
@@ -62,9 +86,8 @@ export function CurrentDriverStandings() {
   }, []);
 
   return (
-    <div className="w-max">
-      <h4 className="text-center mb-2 text-lg">Driver Standings</h4>
-      <div className="ag-theme-alpine" style={{ height: 892, width: 660 }}>
+    <div className="mt-4">
+      <div className="ag-theme-f1-medium" style={{ height: 650, width: 530 }}>
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

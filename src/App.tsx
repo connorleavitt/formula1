@@ -12,6 +12,7 @@ import { RaceSchedulePage } from "./pages/RaceSchedule";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import { CurrentSeasonData } from "./components/CurrentSeason/CurrentSeasonData";
 
 library.add(fas);
 
@@ -25,7 +26,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/current" element={<CurrentSeason />} />
+            <Route path="/standings" element={<CurrentSeasonData />} />
             <Route path="/schedule" element={<RaceSchedulePage />} />
             <Route path="/fantasy" element={<Fantasy />} />
             <Route path="/historical" element={<About />} />

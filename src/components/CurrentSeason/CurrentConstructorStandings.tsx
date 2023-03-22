@@ -27,18 +27,32 @@ export function CurrentConstructorStandings() {
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "position",
-      width: 106,
+      headerName: "",
+      width: 100,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    { headerName: "Constructor", field: "Constructor.name", width: 140 },
     {
-      field: "points",
-      width: 106,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      headerName: "Constructor",
+      field: "Constructor.name",
+      width: 150,
+      cellClass: "cell-left",
+      headerClass: "sub-headers-name" as string,
     },
     {
       field: "wins",
-      width: 106,
+      width: 80,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "points",
+      width: 100,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
+      sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ]);
@@ -56,12 +70,11 @@ export function CurrentConstructorStandings() {
   }, []);
 
   return (
-    <div className="w-max">
-      <h4 className="text-center mb-2 text-lg">Constructor Standings</h4>
-      <div className="ag-theme-alpine" style={{ height: 472, width: 465 }}>
+    <div className="mt-4">
+      <div className="ag-theme-f1-medium" style={{ height: 395, width: 435 }}>
         <AgGridReact
           rowData={rowData}
-          columnDefs={columnDefs}
+          columnDefs={columnDefs as any}
           defaultColDef={defaultColDef}
         />
       </div>

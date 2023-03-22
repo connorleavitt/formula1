@@ -95,6 +95,7 @@ interface DriverInfo {
     time: string;
     points: string;
     raceName: string;
+    hide: boolean;
   };
 }
 
@@ -105,336 +106,200 @@ export function CurrentDriverRaceStandingsWidget({
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "driverName",
-      width: 150,
+      headerName: "Driver",
+      width: 120,
     },
     {
-      headerName: "Bahrain" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.0.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "BHR" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.0.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Jeddah" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.1.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "KSA" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.1.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Albert Park" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.2.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "AUS" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.2.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Baku" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.3.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "AZE" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.3.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Miami" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.4.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "MIA" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.4.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Imola" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.5.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "IMOL" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.5.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Monaco" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.6.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "MON" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.6.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Spain" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.7.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "ESP" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.7.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Canada" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.8.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "CAN" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.8.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Austria" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.9.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "AUT" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.9.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Britian" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.10.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "ENG" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.10.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Hungary" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.11.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "HUN" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.11.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Belgium" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.12.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "BEL" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.12.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Netherlands" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.13.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "NED" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.13.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Monza" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.14.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "ITA" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.14.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Singapore" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.15.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "SGP" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.15.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Japan" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.16.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "JPN" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.16.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Qatar" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.17.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "QAT" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.17.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
       headerName: "COTA" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.18.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.18.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Mexico" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.19.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "MEX" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.19.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Brazil" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.20.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "BRA" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.20.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Vegas" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.21.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "VEG" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.21.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
-      headerName: "Abu Dhabi" as string,
-      headerClass: "ag-theme-groups-even right-group" as string,
-      children: [
-        {
-          headerName: "Points" as string,
-          headerClass: "sub-headers" as string,
-          width: 100,
-          field: "results.22.points",
-          comparator: (valueA: number, valueB: number) => valueA - valueB,
-          cellClass: "centered",
-        },
-      ],
+      headerName: "ABU" as string,
+      headerClass: "sub-headers" as string,
+      width: 40,
+      field: "results.22.points",
+      hide: "results.22.hide",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
     },
     {
       field: "totalPoints",
       headerName: "Total",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       sort: "desc" as string,
-      width: 100,
+      width: 50,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
     },
@@ -454,6 +319,7 @@ export function CurrentDriverRaceStandingsWidget({
         );
         return {
           round: result.round,
+          hide: result.raceResults.date ? false : true,
           position: raceResult?.position ?? "DNF",
           time: raceResult?.Time?.time ?? "DNF",
           points: raceResult?.points,
@@ -479,8 +345,6 @@ export function CurrentDriverRaceStandingsWidget({
       };
     });
 
-    // console.log(driversWithTotalPoints);
-
     setRowData(driversWithTotalPoints as any);
   }, [raceResults]);
 
@@ -493,9 +357,11 @@ export function CurrentDriverRaceStandingsWidget({
   );
   if (!rowData) return null;
   return (
-    <div className="p-2 rounded-2xl border-gray-300 border-2">
-      <h3 className="p-2 font-bold">Race Overview (Driver)</h3>
-      <div className="ag-theme-f1" style={{ height: "950px", width: "800px" }}>
+    <div className="mt-4">
+      <div
+        className="ag-theme-f1-small"
+        style={{ height: "650px", width: "1162px" }}
+      >
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

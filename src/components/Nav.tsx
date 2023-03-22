@@ -38,13 +38,13 @@ export function Nav() {
         </li>
         <li className="mb-2">
           <Link
-            to="/current"
+            to="/standings"
             className={`block hover:font-bold rounded-xl py-3 pl-4 ${
-              activeNav === "current" ? "active" : ""
+              activeNav === "standings" ? "active" : ""
             }`}
           >
             <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
-            Current Season
+            Current Standings
           </Link>
         </li>
         <li className="mb-2">
@@ -54,8 +54,8 @@ export function Nav() {
               activeNav === "schedule" ? "active" : ""
             }`}
           >
-            <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
-            Race Scedule
+            <FontAwesomeIcon icon="calendar" className="pr-2" />
+            Race Schedule
           </Link>
         </li>
         <li className="mb-2">
