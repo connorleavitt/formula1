@@ -62,7 +62,8 @@ export function CurrentDriverStandings() {
   }, []);
 
   return (
-    <div>
+    <div className="w-max">
+      <h4 className="text-center mb-2 text-lg">Driver Standings</h4>
       <div className="ag-theme-alpine" style={{ height: 892, width: 660 }}>
         <AgGridReact
           rowData={rowData}

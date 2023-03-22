@@ -12,6 +12,8 @@ export function Nav() {
       setActiveNav("home");
     } else if (location.pathname === "/current") {
       setActiveNav("current");
+    } else if (location.pathname === "/schedule") {
+      setActiveNav("schedule");
     } else if (location.pathname === "/fantasy") {
       setActiveNav("fantasy");
     } else if (location.pathname === "/historical") {
@@ -43,6 +45,17 @@ export function Nav() {
           >
             <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
             Current Season
+          </Link>
+        </li>
+        <li className="mb-2">
+          <Link
+            to="/schedule"
+            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+              activeNav === "schedule" ? "active" : ""
+            }`}
+          >
+            <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
+            Race Scedule
           </Link>
         </li>
         <li className="mb-2">

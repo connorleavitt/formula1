@@ -301,11 +301,11 @@ export function CircuitDetailedWidget({
                 <p className="text-2xl font-bold">{formattedCountdown.days}</p>
                 <p className="self-start ml-1 text-sm labels">days</p>
               </div>
-              <div className="items-center justify-center flex w-[75px] my-2">
+              <div className="items-center justify-center flex w-[100px] my-2">
                 <p className="text-2xl font-bold">{formattedCountdown.hours}</p>
                 <p className="self-start ml-1 text-sm font-light labels">hrs</p>
               </div>
-              <div className="items-center justify-center flex w-[75px] my-2">
+              <div className="items-center justify-center flex w-[100px] my-2">
                 <p className="text-2xl font-bold">
                   {formattedCountdown.minutes}
                 </p>
@@ -319,11 +319,18 @@ export function CircuitDetailedWidget({
           </div>
         )}
       </div>
-      <div className="flex p-2 border-t-4 rounded-sm border-r-8 border-red-500">
-        <div className="w-96">
-          <h3 className="p-2 font-bold">
-            {selectedRaceCombined.Circuit.circuitName}
-          </h3>
+      <div className="flex p-2 border-t-8 rounded-sm border-r-[20px] rounded-tr-2xl border-red-500 circuit-info--main-container">
+        <div className="">
+          <div className="flex items-center">
+            <img
+              className="rounded-sm w-12 h-full border-2 border-gray-200"
+              src={selectedRaceCombined.Circuit.flagUrl}
+              alt={selectedRaceCombined.Circuit.circuitName}
+            />
+            <h3 className="p-2 text-2xl font-bold">
+              {selectedRaceCombined.Circuit.circuitName}
+            </h3>
+          </div>
           <div className="circuit-times-table rounded-md">
             <div className="flex p-2 justify-between">
               <div className="w-[100px] font-bold">Practice 1</div>
@@ -484,14 +491,8 @@ export function CircuitDetailedWidget({
             </div>
           )} */}
         </div>
-        <div className="circuit-img--container">
-          <img
-            src={selectedRaceCombined.Circuit.imgUrl}
-            alt={selectedRaceCombined.Circuit.circuitName}
-          />
-        </div>
-        <div className="min-w-[200px]">
-          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+        <div className="">
+          <div className="w-full my-4 circuit-round border-2 pl-2 p-1 rounded-2xl border-red-300">
             <p className="text-sm">Round</p>
             <p className="font-bold text-3xl">{selectedRaceCombined.round}</p>
           </div>
@@ -507,6 +508,26 @@ export function CircuitDetailedWidget({
             <p className="text-sm">Number of Laps</p>
             <p className="font-bold text-3xl">
               {selectedRaceCombined.Circuit.laps}
+            </p>
+          </div>
+          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">First Grand Prix</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.firstGrandPrix}
+            </p>
+          </div>
+          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Circuit Length</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.circuitLength}{" "}
+              <span className="text-sm">km</span>
+            </p>
+          </div>
+          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Race Distance</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.raceLength}
+              <span className="text-sm">km</span>
             </p>
           </div>
           {selectedRaceCombined.round === nextRace?.round &&
@@ -532,6 +553,12 @@ export function CircuitDetailedWidget({
                 </div>
               </div>
             )}
+        </div>
+        <div className="circuit-img--container">
+          <img
+            src={selectedRaceCombined.Circuit.imgUrl}
+            alt={selectedRaceCombined.Circuit.circuitName}
+          />
         </div>
       </div>
     </div>

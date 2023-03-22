@@ -56,12 +56,15 @@ export function CurrentConstructorStandings() {
   }, []);
 
   return (
-    <div className="ag-theme-alpine" style={{ height: 472, width: 465 }}>
-      <AgGridReact
-        rowData={rowData}
-        columnDefs={columnDefs}
-        defaultColDef={defaultColDef}
-      />
+    <div className="w-max">
+      <h4 className="text-center mb-2 text-lg">Constructor Standings</h4>
+      <div className="ag-theme-alpine" style={{ height: 472, width: 465 }}>
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs}
+          defaultColDef={defaultColDef}
+        />
+      </div>
     </div>
   );
 }

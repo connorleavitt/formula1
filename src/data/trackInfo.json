@@ -2,10 +2,19 @@
   {
     "circuitId": "albert_park",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Australia_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/australia-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Australia/Circuit.html",
     "circuitName": "Albert Park Grand Prix Circuit",
     "laps": "58",
+    "circuitLength": "5.278",
+    "raceLength": "306.124",
+    "firstGrandPrix": "1996",
+    "lapRecord": {
+      "time": "1:20.260",
+      "driver": "Charles Leclerc",
+      "year": "2022"
+    },
     "Location": {
       "lat": "-37.8497",
       "long": "144.968",
@@ -18,10 +27,19 @@
   {
     "circuitId": "americas",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244984/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/USA_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/united-states-of-america-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Circuit_of_the_Americas",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/United_States/Circuit.html",
     "circuitName": "Circuit of the Americas",
     "laps": "56",
+    "circuitLength": "5.513",
+    "raceLength": "308.405",
+    "firstGrandPrix": "2012",
+    "lapRecord": {
+      "time": "1:36.169",
+      "driver": "Charles Leclerc",
+      "year": "2019"
+    },
     "Location": {
       "lat": "30.1328",
       "long": "-97.6411",
@@ -34,10 +52,19 @@
   {
     "circuitId": "bahrain",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Bahrain_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244973/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/bahrain-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Bahrain/Circuit.html",
     "circuitName": "Bahrain International Circuit",
     "laps": "57",
+    "circuitLength": "5.412",
+    "raceLength": "308.238",
+    "firstGrandPrix": "2004",
+    "lapRecord": {
+      "time": "1:31.447",
+      "driver": "Pedro de la Rosa",
+      "year": "2005"
+    },
     "Location": {
       "lat": "26.0325",
       "long": "50.5106",
@@ -50,10 +77,19 @@
   {
     "circuitId": "baku",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244987/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Baku_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244975/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/azerbaijan-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Baku_City_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Azerbaijan/Circuit.html",
     "circuitName": "Baku City Circuit",
     "laps": "51",
+    "circuitLength": "6.003",
+    "raceLength": "306.049",
+    "firstGrandPrix": "2016",
+    "lapRecord": {
+      "time": "1:43.009",
+      "driver": "Charles Leclerc",
+      "year": "2019"
+    },
     "Location": {
       "lat": "40.3725",
       "long": "49.8533",
@@ -66,10 +102,19 @@
   {
     "circuitId": "catalunya",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244986/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Spain_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244972/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/spain-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Spain/Circuit.html",
     "circuitName": "Circuit de Barcelona-Catalunya",
     "laps": "66",
+    "circuitLength": "4.675",
+    "raceLength": "308.424",
+    "firstGrandPrix": "1991",
+    "lapRecord": {
+      "time": "1:18.149",
+      "driver": "Max Verstappen",
+      "year": "2021"
+    },
     "Location": {
       "lat": "41.57",
       "long": "2.26111",
@@ -82,10 +127,19 @@
   {
     "circuitId": "hungaroring",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Hungary_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/hungary-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Hungaroring",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Hungary/Circuit.html",
     "circuitName": "Hungaroring",
     "laps": "70",
+    "circuitLength": "4.381",
+    "raceLength": "306.63",
+    "firstGrandPrix": "1986",
+    "lapRecord": {
+      "time": "1:16.627",
+      "driver": "Lewis Hamilton",
+      "year": "2020"
+    },
     "Location": {
       "lat": "47.5789",
       "long": "19.2486",
@@ -98,10 +152,19 @@
   {
     "circuitId": "imola",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244984/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Emilia_Romagna_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244973/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/italy-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Autodromo_Enzo_e_Dino_Ferrari",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/EmiliaRomagna/Circuit.html",
     "circuitName": "Autodromo Enzo e Dino Ferrari",
     "laps": "63",
+    "circuitLength": "4.909",
+    "raceLength": "309.049",
+    "firstGrandPrix": "1980",
+    "lapRecord": {
+      "time": "1:15.484",
+      "driver": "Lewis Hamilton",
+      "year": "2020"
+    },
     "Location": {
       "lat": "44.3439",
       "long": "11.7167",
@@ -114,10 +177,19 @@
   {
     "circuitId": "interlagos",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Brazil_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/brazil-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Brazil/Circuit.html",
     "circuitName": "Autódromo José Carlos Pace",
     "laps": "71",
+    "circuitLength": "4.309",
+    "raceLength": "305.879",
+    "firstGrandPrix": "1973",
+    "lapRecord": {
+      "time": "1:10.540",
+      "driver": "Valtteri Bottas",
+      "year": "2018"
+    },
     "Location": {
       "lat": "-23.7036",
       "long": "-46.6997",
@@ -130,10 +202,19 @@
   {
     "circuitId": "jeddah",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Saudi_Arabia_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244973/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/saudi-arabia-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Jeddah_Street_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Saudi_Arabia/Circuit.html",
     "circuitName": "Jeddah Corniche Circuit",
     "laps": "50",
+    "circuitLength": "6.174",
+    "raceLength": "308.45",
+    "firstGrandPrix": "2021",
+    "lapRecord": {
+      "time": "1:30.734",
+      "driver": "Lewis Hamilton",
+      "year": "2021"
+    },
     "Location": {
       "lat": "21.6319",
       "long": "39.1044",
@@ -146,10 +227,19 @@
   {
     "circuitId": "losail",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Qatar_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244974/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/qatar-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Losail_International_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Qatar/Circuit.html",
     "circuitName": "Losail International Circuit",
     "laps": "57",
+    "circuitLength": "5.418",
+    "raceLength": "308.826",
+    "firstGrandPrix": "2021",
+    "lapRecord": {
+      "time": "1:20.827",
+      "driver": " Lewis Hamilton ",
+      "year": "2021"
+    },
     "Location": {
       "lat": "25.49",
       "long": "51.4542",
@@ -162,10 +252,19 @@
   {
     "circuitId": "marina_bay",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677249949/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Singapore_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244974/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/singapore-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Singapore/Circuit.html",
     "circuitName": "Marina Bay Street Circuit",
     "laps": "61",
+    "circuitLength": "5.063",
+    "raceLength": "308.706",
+    "firstGrandPrix": "2008",
+    "lapRecord": {
+      "time": "1:41.905",
+      "driver": "Kevin Magnussen",
+      "year": "2018"
+    },
     "Location": {
       "lat": "1.2914",
       "long": "103.864",
@@ -178,10 +277,19 @@
   {
     "circuitId": "miami",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244985/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Miami_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/united-states-of-america-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Miami_International_Autodrome",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Miami/Circuit.html",
     "circuitName": "Miami International Autodrome",
     "laps": "57",
+    "circuitLength": "5.412",
+    "raceLength": "308.326",
+    "firstGrandPrix": "2022",
+    "lapRecord": {
+      "time": "1:31.361",
+      "driver": "Max Verstappen",
+      "year": "2022"
+    },
     "Location": {
       "lat": "25.9581",
       "long": "-80.2389",
@@ -194,10 +302,19 @@
   {
     "circuitId": "monaco",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244984/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Monoco_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244972/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/monaco-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Circuit_de_Monaco",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Monaco/Circuit.html",
     "circuitName": "Circuit de Monaco",
     "laps": "78",
+    "circuitLength": "3.337",
+    "raceLength": "260.286",
+    "firstGrandPrix": "1950",
+    "lapRecord": {
+      "time": "1:12.909",
+      "driver": "Lewis Hamilton",
+      "year": "2021"
+    },
     "Location": {
       "lat": "43.7347",
       "long": "7.42056",
@@ -210,10 +327,19 @@
   {
     "circuitId": "monza",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244987/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Italy_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244972/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/spain-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Autodromo_Nazionale_Monza",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Italy/Circuit.html",
     "circuitName": "Autodromo Nazionale di Monza",
     "laps": "53",
+    "circuitLength": "5.793",
+    "raceLength": "306.72",
+    "firstGrandPrix": "1950",
+    "lapRecord": {
+      "time": "1:21.046",
+      "driver": "Rubens Barrichello",
+      "year": "2004"
+    },
     "Location": {
       "lat": "45.6156",
       "long": "9.28111",
@@ -226,10 +352,19 @@
   {
     "circuitId": "red_bull_ring",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Austria_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/austria-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Red_Bull_Ring",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Austria/Circuit.html",
     "circuitName": "Red Bull Ring",
     "laps": "71",
+    "circuitLength": "4.318",
+    "raceLength": "306.452",
+    "firstGrandPrix": "1970",
+    "lapRecord": {
+      "time": "1:05.619",
+      "driver": "Carlos Sainz",
+      "year": "2020"
+    },
     "Location": {
       "lat": "47.2197",
       "long": "14.7647",
@@ -242,10 +377,19 @@
   {
     "circuitId": "rodriguez",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Mexico_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/mexico-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Mexico/Circuit.html",
     "circuitName": "Autódromo Hermanos Rodríguez",
     "laps": "71",
+    "circuitLength": "4.304",
+    "raceLength": "305.354",
+    "firstGrandPrix": "1963",
+    "lapRecord": {
+      "time": "1:17.774",
+      "driver": "Valtteri Bottas",
+      "year": "2021"
+    },
     "Location": {
       "lat": "19.4042",
       "long": "-99.0907",
@@ -258,10 +402,19 @@
   {
     "circuitId": "silverstone",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Great_Britain_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/united-kingdom-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Silverstone_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Great_Britain/Circuit.html",
     "circuitName": "Silverstone Circuit",
     "laps": "52",
+    "circuitLength": "5.891",
+    "raceLength": "306.198",
+    "firstGrandPrix": "1950",
+    "lapRecord": {
+      "time": "1:27.097",
+      "driver": "Max Verstappen",
+      "year": "2020"
+    },
     "Location": {
       "lat": "52.0786",
       "long": "-1.01694",
@@ -274,10 +427,19 @@
   {
     "circuitId": "spa",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Belgium_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/belgium-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Belgium/Circuit.html",
     "circuitName": "Circuit de Spa-Francorchamps",
     "laps": "44",
+    "circuitLength": "7.004",
+    "raceLength": "308.052",
+    "firstGrandPrix": "1950",
+    "lapRecord": {
+      "time": "1:46.286",
+      "driver": "Valtteri Bottas",
+      "year": "2018"
+    },
     "Location": {
       "lat": "50.4372",
       "long": "5.97139",
@@ -290,10 +452,19 @@
   {
     "circuitId": "suzuka",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677250050/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Japan_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244973/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/japan-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Suzuka_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Japan/Circuit.html",
     "circuitName": "Suzuka Circuit",
-    "laps": "53a",
+    "laps": "53",
+    "circuitLength": "5.807",
+    "raceLength": "307.471",
+    "firstGrandPrix": "1987",
+    "lapRecord": {
+      "time": "1:30.983",
+      "driver": "Lewis Hamilton",
+      "year": "2019"
+    },
     "Location": {
       "lat": "34.8431",
       "long": "136.541",
@@ -306,10 +477,19 @@
   {
     "circuitId": "vegas",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677249930/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Las_Vegas_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/united-states-of-america-flag.png.transform/9col/image.png",
     "url": "https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix#Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Las_Vegas/Circuit.html",
     "circuitName": "Las Vegas Strip Street Circuit",
     "laps": "50",
+    "circuitLength": "6.12",
+    "raceLength": "305.88",
+    "firstGrandPrix": "2023",
+    "lapRecord": {
+      "time": "",
+      "driver": "",
+      "year": ""
+    },
     "Location": {
       "lat": "36.1147",
       "long": "-115.173",
@@ -322,10 +502,19 @@
   {
     "circuitId": "villeneuve",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Canada_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/canada-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Canada/Circuit.html",
     "circuitName": "Circuit Gilles Villeneuve",
     "laps": "70",
+    "circuitLength": "4.361",
+    "raceLength": "305.27",
+    "firstGrandPrix": "1978",
+    "lapRecord": {
+      "time": "1:13.078",
+      "driver": "Valtteri Bottas",
+      "year": "2019"
+    },
     "Location": {
       "lat": "45.5",
       "long": "-73.5228",
@@ -338,10 +527,19 @@
   {
     "circuitId": "yas_marina",
     "imgUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Abu_Dhabi_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/united-arab-emirates-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Yas_Marina_Circuit",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/United_Arab_Emirates/Circuit.html",
     "circuitName": "Yas Marina Circuit",
     "laps": "58",
+    "circuitLength": "5.281",
+    "raceLength": "306.183",
+    "firstGrandPrix": "2009",
+    "lapRecord": {
+      "time": "1:26.103",
+      "driver": "Max Verstappen",
+      "year": "2021"
+    },
     "Location": {
       "lat": "24.4672",
       "long": "54.6031",
@@ -354,10 +552,19 @@
   {
     "circuitId": "zandvoort",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244984/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Netherlands_Circuit.png.transform/7col-retina/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244975/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/netherlands-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Circuit_Zandvoort",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Netherlands/Circuit.html",
     "circuitName": "Circuit Park Zandvoort",
     "laps": "72",
+    "circuitLength": "4.259",
+    "raceLength": "306.587",
+    "firstGrandPrix": "1952",
+    "lapRecord": {
+      "time": "1:11.097",
+      "driver": "Lewis Hamilton",
+      "year": "2021"
+    },
     "Location": {
       "lat": "52.3888",
       "long": "4.54092",
