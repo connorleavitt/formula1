@@ -25,17 +25,7 @@ export function CurrentSeasonData() {
             }`}
             onClick={() => setActiveWidget("drivers")}
           >
-            Driver
-          </button>
-          <button
-            className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
-              activeWidget === "constructors"
-                ? "bg-black text-white border-black hover:bg-gray-800"
-                : "border-gray-300"
-            }`}
-            onClick={() => setActiveWidget("constructors")}
-          >
-            Constructor
+            Driver Total
           </button>
           <button
             className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
@@ -45,7 +35,17 @@ export function CurrentSeasonData() {
             }`}
             onClick={() => setActiveWidget("driverRaces")}
           >
-            Race Overview (Driver)
+            Driver (by race)
+          </button>
+          <button
+            className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "constructors"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
+            }`}
+            onClick={() => setActiveWidget("constructors")}
+          >
+            Constructor Total
           </button>
           <button
             className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
@@ -55,7 +55,7 @@ export function CurrentSeasonData() {
             }`}
             onClick={() => setActiveWidget("constructorRaces")}
           >
-            Race Overview (Constructor)
+            Constructor (by race)
           </button>
         </div>
       </div>

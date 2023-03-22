@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 export function Nav() {
+  const [isCurrentOpen, setIsCurrentOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("current");
   const location = useLocation();
   useEffect(() => {
@@ -12,6 +13,8 @@ export function Nav() {
       setActiveNav("home");
     } else if (location.pathname === "/current") {
       setActiveNav("current");
+    } else if (location.pathname === "/standings") {
+      setActiveNav("standings");
     } else if (location.pathname === "/schedule") {
       setActiveNav("schedule");
     } else if (location.pathname === "/fantasy") {
@@ -37,26 +40,47 @@ export function Nav() {
           </Link>
         </li>
         <li className="mb-2">
-          <Link
-            to="/standings"
-            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
-              activeNav === "standings" ? "active" : ""
-            }`}
+          <button
+            onClick={() => setIsCurrentOpen(!isCurrentOpen)}
+            className="relative w-full hover:font-bold rounded-xl py-3 pl-4 text-left"
           >
-            <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
-            Current Standings
-          </Link>
-        </li>
-        <li className="mb-2">
-          <Link
-            to="/schedule"
-            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
-              activeNav === "schedule" ? "active" : ""
-            }`}
-          >
-            <FontAwesomeIcon icon="calendar" className="pr-2" />
-            Race Schedule
-          </Link>
+            <FontAwesomeIcon icon="stream" className="pr-2" />
+            Current Season
+            <FontAwesomeIcon
+              icon={isCurrentOpen ? "caret-up" : "caret-down"}
+              className={
+                isCurrentOpen
+                  ? "absolute right-4 bottom-3.5"
+                  : "absolute right-4 bottom-4"
+              }
+            />
+          </button>
+          {isCurrentOpen && (
+            <ul className="pl-6">
+              <li className="my-2">
+                <Link
+                  to="/standings"
+                  className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+                    activeNav === "standings" ? "active" : ""
+                  }`}
+                >
+                  <FontAwesomeIcon icon="trophy" className="pr-2" />
+                  Standings
+                </Link>
+              </li>
+              <li className="">
+                <Link
+                  to="/schedule"
+                  className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+                    activeNav === "schedule" ? "active" : ""
+                  }`}
+                >
+                  <FontAwesomeIcon icon="calendar" className="pr-2" />
+                  Race Schedule
+                </Link>
+              </li>
+            </ul>
+          )}
         </li>
         <li className="mb-2">
           <Link
