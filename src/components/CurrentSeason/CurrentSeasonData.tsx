@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getRaceResults } from "../../hooks/getRaceResults";
+import { CurrentConstructorRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentConstructorRaceStandingsWidget";
 import { CurrentDriverRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverRaceStandingsWidget";
 import { CurrentConstructorStandings } from "./CurrentConstructorStandings";
 import { CurrentDriverStandings } from "./CurrentDriverStandings";
@@ -79,7 +80,9 @@ export function CurrentSeasonData() {
             display: activeWidget === "constructorRaces" ? "block" : "none",
           }}
         >
-          {/* <CurrentConstructorRaceStandings raceResults={raceResults as any} /> */}
+          <CurrentConstructorRaceStandingsWidget
+            raceResults={raceResults as any}
+          />
         </div>
       </div>
     </div>

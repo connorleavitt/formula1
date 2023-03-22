@@ -442,7 +442,7 @@ main {
   --ag-chip-background-color: rgba(24, 29, 31, 0.07);
   --ag-input-disabled-border-color: rgba(186, 191, 199, 0.3);
   --ag-input-disabled-background-color: rgba(186, 191, 199, 0.15);
-  --ag-borders: none;
+  --ag-borders: 2px solid;
   --ag-border-radius: 0;
   --ag-borders-side-button: none;
   --ag-side-button-selected-background-color: transparent;
@@ -451,13 +451,13 @@ main {
   --ag-header-column-resize-handle-height: 30%;
   --ag-grid-size: 4px;
   --ag-icon-size: 6px;
-  --ag-row-height: calc(var(--ag-grid-size) * 7);
-  --ag-header-height: calc(var(--ag-grid-size) * 8);
+  --ag-row-height: calc(var(--ag-grid-size) * 7.8);
+  --ag-header-height: calc(var(--ag-grid-size) * 9);
   --ag-list-item-height: calc(var(--ag-grid-size) * 4);
   --ag-column-select-indent-size: var(--ag-icon-size);
   --ag-set-filter-indent-size: var(--ag-icon-size);
   --ag-cell-horizontal-padding: calc(var(--ag-grid-size) * 0);
-  --ag-cell-widget-spacing: calc(var(--ag-grid-size) * 1);
+  --ag-cell-widget-spacing: calc(var(--ag-grid-size) * 2);
   --ag-widget-container-vertical-padding: calc(var(--ag-grid-size) * 2);
   --ag-widget-container-horizontal-padding: calc(var(--ag-grid-size) * 2);
   --ag-widget-vertical-spacing: calc(var(--ag-grid-size) * 1.5);
@@ -505,9 +505,24 @@ main {
   color: red;
 }
 
+.slick-prev,
+.slick-next {
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.slick-prev {
+  transform: translate(-50%, -50%) !important;
+}
+
+.slick-next {
+  transform: translate(50%, -50%) !important;
+}
+
 .slick-arrow.slick-prev:before,
 .slick-arrow.slick-next:before {
   color: var(--clr-f1-red);
+  font-size: 30px;
 }
 
 .circuit-info--button {

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import driver from "../../data/driver.json";
+import constructor from "../../data/constructors.json";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -99,14 +100,14 @@ interface DriverInfo {
   };
 }
 
-export function CurrentDriverRaceStandingsWidget({
+export function CurrentConstructorRaceStandingsWidget({
   raceResults,
 }: raceResultsProps) {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
-      field: "driverName",
-      headerName: "Driver",
+      field: "constructorName",
+      headerName: "Constructor",
       width: 135,
       cellClass: "cell-left",
       headerClass: "sub-headers-name" as string,
@@ -308,45 +309,51 @@ export function CurrentDriverRaceStandingsWidget({
   ]);
 
   useEffect(() => {
-    const driverArray = driver.map((dr) => {
-      const driverResults = raceResults.filter((race) =>
+    const constructorArray = constructor.map((cons) => {
+      const constructorId = cons.urlId ?? cons.constructorId; // use urlId if it exists, otherwise use constructorId
+      const constructorResults = raceResults.filter((race) =>
         race?.raceResults.Results.some(
-          (result) => result.Driver.driverId === dr.driverId
+          (result) => result.Constructor.constructorId === constructorId
         )
       );
 
-      const results = driverResults.map((result) => {
-        const raceResult = result.raceResults.Results.find(
-          (r) => r.Driver.driverId === dr.driverId
+      const results = constructorResults.map((result) => {
+        const raceResultsForConstructor = result.raceResults.Results.filter(
+          (r) => r.Constructor.constructorId === constructorId
+        );
+        const totalPointsForConstructor = raceResultsForConstructor.reduce(
+          (accumulator, result) => {
+            return accumulator + parseInt(result.points as string);
+          },
+          0
         );
         return {
           round: result.round,
-          position: raceResult?.position ?? "DNF",
-          time: raceResult?.Time?.time ?? "DNF",
-          points: raceResult?.points,
+          points: totalPointsForConstructor,
           raceName: result.raceResults.raceName,
         };
       });
 
       return {
-        constructorId: dr.team,
-        driverId: dr.driverId,
-        driverName: dr.name,
+        constructorId,
+        constructorName: cons.name,
         results: results,
       };
     });
 
-    const driversWithTotalPoints = driverArray.map((driver) => {
-      const totalPoints = driver.results.reduce((accumulator, result) => {
-        return accumulator + parseInt(result.points as string);
+    const constructorsWithTotalPoints = constructorArray.map((constructor) => {
+      const totalPoints = constructor.results.reduce((accumulator, result) => {
+        return accumulator + result.points;
       }, 0);
 
       return {
-        ...driver,
+        ...constructor,
         totalPoints,
       };
     });
-    setRowData(driversWithTotalPoints as any);
+
+    console.log(constructorArray);
+    setRowData(constructorsWithTotalPoints as any);
   }, [raceResults]);
 
   const defaultColDef = useMemo(
@@ -361,7 +368,7 @@ export function CurrentDriverRaceStandingsWidget({
     <div className="mt-4">
       <div
         className="ag-theme-f1-small"
-        style={{ height: "661px", width: "1162px" }}
+        style={{ height: "351px", width: "1162px" }}
       >
         <AgGridReact
           rowData={rowData}
