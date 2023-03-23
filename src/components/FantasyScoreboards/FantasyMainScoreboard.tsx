@@ -57,7 +57,7 @@ export function FantasyMainScoreboard() {
   return (
     <div className="w-min mb-6">
       <h1 className="text-2xl font-bold mb-2">Main Scoreboard</h1>
-      <div className="bg-neutral-100 py-3 rounded-2xl border-red-500 border-4">
+      <div className="bg-neutral-100 pt-2 rounded-2xl border-red-500 border-4">
         <FantasyMainScoreboardWidget driverData={driverStandings as any} />
       </div>
     </div>

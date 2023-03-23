@@ -26,7 +26,8 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
     {
       field: "name",
       width: 168,
-      headerClass: "sub-headers-name" as string,
+      headerClass: "sub-headers-name-2" as string,
+      cellClass: "cell-left-2",
     },
     {
       headerName: "Group 1" as string,
@@ -186,7 +187,7 @@ export function FantasyMainScoreboardWidget({ driverData }: DriverProps) {
   useEffect(() => setRowData(newPlayerArray as any), []);
 
   return (
-    <div className="ag-theme-f1" style={{ height: "310px", width: "910px" }}>
+    <div className="ag-theme-f1" style={{ height: "307px", width: "910px" }}>
       <AgGridReact
         rowData={rowData}
         columnDefs={columnDefs as any}

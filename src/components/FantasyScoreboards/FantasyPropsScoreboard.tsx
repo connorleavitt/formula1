@@ -88,7 +88,7 @@ export function FantasyPropsScoreboard() {
   finalDnfTable.push(dnfChoice3[1]);
   finalDnfTable.push(dnfChoice4[1]);
   return (
-    <div className="pb-20">
+    <div className="">
       <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
       <div className="flex">
         {/* <div className="my-4">
@@ -138,42 +138,52 @@ export function FantasyPropsScoreboard() {
             <FantasyPropsFastestLapWidget fastestLaps={fastestLaps as any} />
           </div>
         </div>
-        <div className="flex flex-col ml-2">
+        <div className="flex flex-col ml-4">
           <button
-            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
-              activeWidget === "top" ? "border-gray-800" : ""
+            className={`mb-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "top"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
             }`}
             onClick={() => setActiveWidget("top")}
           >
             Top Constructor
           </button>
           <button
-            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
-              activeWidget === "bottom" ? "border-gray-800" : ""
+            className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "bottom"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
             }`}
             onClick={() => setActiveWidget("bottom")}
           >
             Bottom Constructor
           </button>
           <button
-            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
-              activeWidget === "dnfs" ? "border-gray-800" : ""
+            className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "dnfs"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
             }`}
             onClick={() => setActiveWidget("dnfs")}
           >
             Most DNFs (Team)
           </button>
           <button
-            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
-              activeWidget === "poles" ? "border-gray-800" : ""
+            className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "poles"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
             }`}
             onClick={() => setActiveWidget("poles")}
           >
             Most Pirelli Poles (Driver)
           </button>
           <button
-            className={`my-1 p-2 bg-gray-200 border-2 border-gray-300 rounded-lg hover:bg-black hover:text-white ${
-              activeWidget === "fastest" ? "border-gray-800" : ""
+            className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "fastest"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
             }`}
             onClick={() => setActiveWidget("fastest")}
           >
