@@ -413,7 +413,7 @@ export function CircuitDetailedWidget({
             {selectedRaceCombined.Sprint && (
               <div className="flex p-2 justify-between">
                 <div className="w-[100px] font-bold">Sprint</div>
-                <div className="w-[100px]">
+                <div className="w-[100px] text-center">
                   {new Date(
                     parseISO(
                       selectedRaceCombined.Sprint.date +

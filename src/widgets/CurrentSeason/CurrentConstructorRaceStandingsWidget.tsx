@@ -352,7 +352,6 @@ export function CurrentConstructorRaceStandingsWidget({
       };
     });
 
-    console.log(constructorArray);
     setRowData(constructorsWithTotalPoints as any);
   }, [raceResults]);
 
