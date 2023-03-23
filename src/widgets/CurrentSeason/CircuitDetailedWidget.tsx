@@ -320,10 +320,10 @@ export function CircuitDetailedWidget({
         )}
       </div>
       <div className="flex p-2 border-t-8 rounded-sm border-r-[20px] rounded-tr-2xl border-red-500 circuit-info--main-container">
-        <div className="">
+        <div className="flex flex-col w-[400px]">
           <div className="flex items-center">
             <img
-              className="rounded-sm w-12 h-full border-2 border-gray-200"
+              className="rounded-sm w-24 border-2 border-gray-200"
               src={selectedRaceCombined.Circuit.flagUrl}
               alt={selectedRaceCombined.Circuit.circuitName}
             />
@@ -490,70 +490,71 @@ export function CircuitDetailedWidget({
               </div>
             </div>
           )} */}
-        </div>
-        <div className="">
-          <div className="w-full my-4 circuit-round border-2 pl-2 p-1 rounded-2xl border-red-300">
-            <p className="text-sm">Round</p>
-            <p className="font-bold text-3xl">{selectedRaceCombined.round}</p>
-          </div>
-          <div className="w-full my-4 circuit-location border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">
-              {selectedRaceCombined.Circuit?.Location?.locality}
-            </p>
-            <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit?.Location?.country}
-            </p>
-          </div>
-          <div className="w-full my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Number of Laps</p>
-            <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.laps}
-            </p>
-          </div>
-          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">First Grand Prix</p>
-            <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.firstGrandPrix}
-            </p>
-          </div>
-          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Circuit Length</p>
-            <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.circuitLength}{" "}
-              <span className="text-sm">km</span>
-            </p>
-          </div>
-          <div className="w-full my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Race Distance</p>
-            <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.raceLength}
-              <span className="text-sm">km</span>
-            </p>
-          </div>
-          {selectedRaceCombined.round === nextRace?.round &&
-            weatherIcon !== null && (
-              <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-                <p className="text-sm">Race Weather</p>
-                <div className="flex">
-                  <div className="text-3xl mr-2 font-bold">
-                    {weatherTemp}&deg;
+          <div className="flex w-full flex-wrap justify-between">
+            <div className="w-5/12 my-4 circuit-location border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Round</p>
+              <p className="font-bold text-3xl">{selectedRaceCombined.round}</p>
+            </div>
+            <div className="w-1/2 my-4 circuit-location border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">
+                {selectedRaceCombined.Circuit?.Location?.locality}
+              </p>
+              <p className="font-bold text-3xl">
+                {selectedRaceCombined.Circuit?.Location?.country}
+              </p>
+            </div>
+            <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Number of Laps</p>
+              <p className="font-bold text-3xl">
+                {selectedRaceCombined.Circuit.laps}
+              </p>
+            </div>
+            <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">First Grand Prix</p>
+              <p className="font-bold text-3xl">
+                {selectedRaceCombined.Circuit.firstGrandPrix}
+              </p>
+            </div>
+            <div className="w-5/12 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Circuit Length</p>
+              <p className="font-bold text-3xl">
+                {selectedRaceCombined.Circuit.circuitLength}{" "}
+                <span className="text-sm">km</span>
+              </p>
+            </div>
+            <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Race Distance</p>
+              <p className="font-bold text-3xl">
+                {selectedRaceCombined.Circuit.raceLength}
+                <span className="text-sm">km</span>
+              </p>
+            </div>
+            {selectedRaceCombined.round === nextRace?.round &&
+              weatherIcon !== null && (
+                <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+                  <p className="text-sm">Race Weather</p>
+                  <div className="flex">
+                    <div className="text-3xl mr-2 font-bold">
+                      {weatherTemp}&deg;
+                    </div>
+                    <div className="w-[40px] h-full self-center">
+                      <svg
+                        // className=""
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox={weatherIcon?.viewBox}
+                      >
+                        <path d={weatherIcon?.d} />
+                      </svg>
+                    </div>
+                    <p className="text-xs font-light self-end mb-1 ml-1">
+                      ({rainProb} in of rain)
+                    </p>
                   </div>
-                  <div className="w-[40px] h-full self-center">
-                    <svg
-                      // className=""
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox={weatherIcon?.viewBox}
-                    >
-                      <path d={weatherIcon?.d} />
-                    </svg>
-                  </div>
-                  <p className="text-xs font-light self-end mb-1 ml-1">
-                    ({rainProb} in of rain)
-                  </p>
                 </div>
-              </div>
-            )}
+              )}
+          </div>
         </div>
+
         <div className="circuit-img--container">
           <img
             src={selectedRaceCombined.Circuit.imgUrl}
