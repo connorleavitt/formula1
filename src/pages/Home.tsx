@@ -1,6 +1,6 @@
 import { FantasyMainScoreboardLeader } from "../components/FantasyScoreboards/FantasyMainScoreboardLeader";
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
-import { NextRaceDetailedWidget } from "../widgets/CurrentSeason/NextRaceDetailedWidget";
+import { NextRaceDetailedWidget } from "../widgets/HomeWidgets/NextRaceDetailedWidget";
 
 type RaceSchedule = {
   season: number;

@@ -286,11 +286,22 @@ NextRaceWidgetProps) {
   return (
     <div className="my-4">
       <div className="w-max">
-        <h3 className="p-2 text-2xl font-bold">Next Race</h3>
+        <h3 className="p-2 text-2xl font-extralight">
+          NEXT RACE - ROUND {combinedNextRace.round}
+        </h3>
         <div className="home-next-race--container flex flex-col rounded-lg border-2 border-gray-700">
           <div className="flex">
-            <div className="flex flex-col my-5">
-              <h3 className="px-3 font-bold">{`${combinedNextRace.raceName} - Round ${combinedNextRace.round}`}</h3>
+            <div className="flex flex-col w-96 my-5 items-start">
+              <div className="flex items-center mb-3">
+                <img
+                  className="ml-4 rounded-sm w-16 h-full border-[1px] border-gray-200"
+                  src={combinedNextRace.Circuit.flagUrl}
+                  alt={combinedNextRace.Circuit.circuitName}
+                />
+                <h3 className="px-3 text-lg font-bold">
+                  {combinedNextRace.raceName}
+                </h3>
+              </div>
               <div className="w-max home-next-race--countdown-container flex justify-start">
                 <div className="flex flex-col items-center p-1 w-[75px]">
                   <p className="text-3xl font-bold">
@@ -318,7 +329,7 @@ NextRaceWidgetProps) {
                 </div>
               </div>
             </div>
-            {combinedNextRace.round === nextRace?.round &&
+            {/* {combinedNextRace.round === nextRace?.round &&
               weatherIcon !== null && (
                 <div className="flex flex-col px-4 items-center my-5">
                   <p className="text-md font-light mb-1">Race Weather</p>
@@ -338,7 +349,7 @@ NextRaceWidgetProps) {
                     up to {rainProb} in of rain
                   </p>
                 </div>
-              )}
+              )} */}
           </div>
 
           <div className="home-next-race--times-container rounded-b-md">
