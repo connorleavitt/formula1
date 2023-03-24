@@ -5,6 +5,7 @@ import "./index.css";
 
 //pages
 import { Nav } from "./components/Nav";
+import { MobileNav } from "./components/MobileNav";
 import { CurrentSeason } from "./pages/CurrentSeason";
 import { About } from "./pages/About";
 import { Header } from "./components/Header";
@@ -22,6 +23,7 @@ const App: React.FC = () => {
       <Header />
       <div className="flex">
         <Nav />
+        {/* <MobileNav /> */}
         <main className="main">
           <Routes>
             <Route path="/" element={<Home />} />

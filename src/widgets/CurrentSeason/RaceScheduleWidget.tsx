@@ -54,6 +54,56 @@ type RaceScheduleWidgetProps = {
   raceSchedule: RaceSchedule[];
 };
 
+type UpdatedSchedule = {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  localRaceDateTime: string;
+  FirstPractice: {
+    date: string;
+    time: string;
+  };
+  SecondPractice: {
+    date: string;
+    time: string;
+  };
+  ThirdPractice: {
+    date: string;
+    time: string;
+  };
+  Qualifying: {
+    date: string;
+    time: string;
+  };
+  Sprint: {
+    date: string;
+    time: string;
+  };
+  trackLocation: {
+    lat: string;
+    long: string;
+    locality: string;
+    country: string;
+    timezone: string;
+    gmtOffset: string;
+  };
+  flagUrl: string;
+};
+
 // type TrackWeather = {
 //   current: {
 //     currentTemp: number;
@@ -105,9 +155,13 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     const trackLocation = trackInfo.find(
       (race) => race.circuitId === value.Circuit.circuitId
     )?.Location;
+    const flagUrl = trackInfo.find(
+      (race) => race.circuitId === value.Circuit.circuitId
+    )?.flagUrl;
     return {
       ...value,
       trackLocation,
+      flagUrl,
       localRaceDateTime: getLocalTime(
         value.date,
         value.time,
@@ -115,6 +169,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
       ),
     };
   });
+  console.log(updatedRaceSchedule);
 
   const currentDate = new Date();
 
@@ -161,15 +216,19 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     return date + "T" + updatedTime;
   }
 
+  // const initSlide = 1;
+  console.log(previousRace.round);
+  const initSlide = Number(previousRace.round);
+
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: false,
     swipeToSlide: true,
     speed: 300,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     // variableWidth: false,
-    initialSlide: previousRace.round - 1, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
+    initialSlide: initSlide, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
     responsive: [
       {
         breakpoint: 1024,
@@ -200,39 +259,115 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
 
   return (
     <div className="flex flex-col race-schedule--main-container">
-      <div className="mb-10 flex w-full justify-center">
-        <Slider className="w-11/12" {...settings}>
+      <div className="mb-4 flex w-full justify-center">
+        <Slider className="slider-container w-11/12" {...settings}>
+          {updatedRaceSchedule.map((race: any) => (
+            <button
+              key={race.round}
+              className={`relative circuit-info--button text-left px-2 py-2 rounded-xl ${
+                race.round === selectedCircuit.round ? "selected" : ""
+              }`}
+              onClick={() => handleRaceClick(race)}
+            >
+              <div className="flex items-center">
+                <img
+                  className="rounded-lg w-[80px] h-[48px] mr-2 ml-1"
+                  src={race.flagUrl}
+                  alt={race.Circuit.circuitName}
+                />
+                <div className="flex flex-col">
+                  <div
+                    className={`text-xl  font-bold ${
+                      race.round === selectedCircuit.round
+                        ? "text-white"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    {race.trackLocation.country}
+                  </div>
+                  <div
+                    className={`text-xl ${
+                      race.round === selectedCircuit.round ? "text-white" : ""
+                    }`}
+                  >
+                    {new Date(race.date + "T" + race.time).toLocaleString(
+                      "en-US",
+                      {
+                        day: "2-digit",
+                      }
+                    )}{" "}
+                    {new Date(race.date + "T" + race.time)
+                      .toLocaleString("en-US", {
+                        month: "short",
+                      })
+                      .toUpperCase()}
+                  </div>
+                </div>
+              </div>
+              {race.round === futureRaces[0].round ? (
+                <div
+                  className="absolute top-0 right-[-1px] h-full text-center"
+                  // style={{ writingMode: "vertical-rl" }}
+                >
+                  <div
+                    className={`flex flex-col py-[2px] px-1 h-full justify-center rounded-r-xl text-sm ${
+                      race.round === selectedCircuit.round
+                        ? "race-schedule--next-tag-active"
+                        : "race-schedule--next-tag"
+                    }`}
+                  >
+                    <p className="leading-none">N</p>
+                    <p className="leading-none">E</p>
+                    <p className="leading-none">X</p>
+                    <p className="leading-none">T</p>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+              {/* {race.round === previousRace.round ? (
+                <div
+                  className="absolute top-0 right-0 h-full text-center"
+                  style={{ writingMode: "vertical-rl" }}
+                >
+                  <p className="race-schedule--prev-tag py-[1px] font-bold rounded-r-xl text-lg">
+                    PREV
+                  </p>
+                </div>
+              ) : (
+                ""
+              )} */}
+            </button>
+          ))}
+        </Slider>
+        {/* <Slider className="slider-container w-11/12" {...settings}>
           {updatedRaceSchedule.map(
             (race: any) => (
               // selectedCircuit && (
               <button
                 key={race.round}
-                className={`w-[100px] relative circuit-info--button text-left p-2 rounded-2xl border-gray-300 border-2 hover:border-gray-400 ${
-                  race.round === selectedCircuit.round ? "bg-black first" : ""
+                className={`relative circuit-info--button text-left px-4 py-2 rounded-xl ${
+                  race.round === selectedCircuit.round ? "selected" : ""
                 }`}
                 onClick={() => handleRaceClick(race)}
               >
                 <div
                   className={`text-gray-500 text-xs ${
-                    race.round === selectedCircuit.round
-                      ? "text-white first"
-                      : ""
+                    race.round === selectedCircuit.round ? "text-white" : ""
                   }`}
                 >{`Round ${race.round}`}</div>
                 <div
                   className={` ${
                     race.round === selectedCircuit.round
-                      ? "text-white font-bold first"
+                      ? "text-white font-bold"
                       : "text-gray-800"
                   }`}
                 >
-                  {race.raceName}
+                  {race.trackLocation.country}
                 </div>
                 <div
                   className={`text-gray-500 text-xs ${
-                    race.round === selectedCircuit.round
-                      ? "text-white first"
-                      : ""
+                    race.round === selectedCircuit.round ? "text-white" : ""
                   }`}
                 >
                   {new Date(race.date + "T" + race.time)
@@ -245,6 +380,11 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
                     })
                     .replace(/,/, " at")}
                 </div>
+                <img
+                  className="absolute right-2 bottom-2 ml-4 rounded-md w-14"
+                  src={race.flagUrl}
+                  alt={race.Circuit.circuitName}
+                />
                 {race.round === futureRaces[0].round ? (
                   <div className="absolute top-[5px] right-[5px]">
                     <p className="race-schedule--next-tag text-red-600 px-2 py-[1px] font-bold rounded-lg text-xs">
@@ -267,7 +407,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
             )
             // )
           )}
-        </Slider>
+        </Slider> */}
       </div>
       <div className="mb-10">
         {selectedCircuit && (

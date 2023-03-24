@@ -327,7 +327,7 @@
   {
     "circuitId": "monza",
     "imgUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244987/content/dam/fom-website/2018-redesign-assets/Circuit%20maps%2016x9/Italy_Circuit.png.transform/7col-retina/image.png",
-    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244972/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/spain-flag.png.transform/9col/image.png",
+    "flagUrl": "https://media.formula1.com/image/upload/f_auto/q_auto/v1677244973/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/italy-flag.png.transform/9col/image.png",
     "url": "http://en.wikipedia.org/wiki/Autodromo_Nazionale_Monza",
     "circuitUrl": "https://www.formula1.com/en/racing/2023/Italy/Circuit.html",
     "circuitName": "Autodromo Nazionale di Monza",
@@ -419,7 +419,7 @@
       "lat": "52.0786",
       "long": "-1.01694",
       "locality": "Silverstone",
-      "country": "UK",
+      "country": "Great Britain",
       "timezone": "Europe/London",
       "gmtOffset": "1"
     }
@@ -494,7 +494,7 @@
       "lat": "36.1147",
       "long": "-115.173",
       "locality": "Las Vegas",
-      "country": "United States",
+      "country": "USA",
       "timezone": "America/Los_Angeles",
       "gmtOffset": "-8"
     }

@@ -4,6 +4,10 @@
 
 :root {
   --clr-f1-red: #cf2828;
+  --clr-f1-black: #262121;
+  --clr-f1-gray: #e7e7e7;
+  --clr-f1-gray-hover: #dddddd;
+  --clr-f1-gray-rgb: 231, 231, 231;
   --clr-main-background: #ffffff;
   --clr-f1-gray-background: #f6f6f6;
   --clr-f1-gray-highlighted: #dedede;
@@ -116,9 +120,97 @@ main {
 }
 
 .race-schedule--next-tag,
-.race-schedule--prev-tag {
-  background-color: var(--clr-f1-gray-background);
+.race-schedule--next-tag-active {
+  background-color: var(--clr-f1-red);
+  color: white;
 }
+
+.race-schedule--next-tag-active {
+  border: 2px solid var(--clr-f1-black);
+}
+
+.race-schedule--next-tag {
+  border: 2px solid var(--clr-f1-gray);
+}
+
+.circuit-info--button:hover > div > .race-schedule--next-tag {
+  border: 2px solid var(--clr-f1-gray-hover);
+}
+
+/* .race-schedule--prev-tag {
+  background-color: var(--clr-f1-gray);
+  color: white;
+  border: 2px solid var(--clr-f1-gray);
+} */
+
+.slick-slider > .slick-dots > li > button:before {
+  color: var(--clr-f1-red);
+}
+
+/* .slick-slider > .slick-dots > li.slick-active > button:before {
+  color: red;
+} */
+
+.slick-slider > .slick-dots > li.slick-active:hover > button:before {
+  color: red;
+}
+
+.slick-prev,
+.slick-next {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.slick-prev {
+  transform: translate(-70%, -50%) !important;
+}
+
+.slick-next {
+  transform: translate(70%, -50%) !important;
+}
+
+.slick-arrow.slick-prev:before,
+.slick-arrow.slick-next:before {
+  color: var(--clr-f1-black);
+  font-size: 40px;
+}
+
+.circuit-info--button {
+  background-color: var(--clr-f1-gray);
+}
+
+.circuit-info--button:hover {
+  background-color: var(--clr-f1-gray-hover);
+}
+
+.circuit-info--button.selected {
+  background-color: var(--clr-f1-black);
+}
+
+.slick-slide {
+  padding: 0 5px;
+}
+
+/* .slider-container {
+  position: relative;
+} */
+
+/* .slider-container:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 80px;
+  background-color: #000;
+}
+
+.slider-container:before {
+  left: -50px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid #000;
+} */
 
 .circuit-countdown--contianer {
   background-color: var(--clr-rolex-green);
@@ -499,46 +591,3 @@ main {
 .ag-root-wrapper {
   border-radius: 1rem;
 }
-
-.slick-slider > .slick-dots > li > button:before {
-  color: var(--clr-f1-red);
-}
-
-/* .slick-slider > .slick-dots > li.slick-active > button:before {
-  color: red;
-} */
-
-.slick-slider > .slick-dots > li.slick-active:hover > button:before {
-  color: red;
-}
-
-.slick-prev,
-.slick-next {
-  width: 30px !important;
-  height: 30px !important;
-}
-
-.slick-prev {
-  transform: translate(-50%, -50%) !important;
-}
-
-.slick-next {
-  transform: translate(50%, -50%) !important;
-}
-
-.slick-arrow.slick-prev:before,
-.slick-arrow.slick-next:before {
-  color: var(--clr-f1-red);
-  font-size: 30px;
-}
-
-.circuit-info--button {
-  margin-right: 10px;
-}
-
-.slick-slide {
-  padding: 0 5px;
-}
-
-/* //back to upcoming next race button
-//view all instead dots? */

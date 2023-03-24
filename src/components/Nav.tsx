@@ -45,7 +45,7 @@ export function Nav() {
             className="relative w-full hover:font-bold rounded-xl py-3 pl-4 text-left"
           >
             <FontAwesomeIcon icon="stream" className="pr-2" />
-            Current Season
+            Current season
             <FontAwesomeIcon
               icon={isCurrentOpen ? "caret-up" : "caret-down"}
               className={
@@ -76,7 +76,7 @@ export function Nav() {
                   }`}
                 >
                   <FontAwesomeIcon icon="calendar" className="pr-2" />
-                  Race Schedule
+                  Race schedule
                 </Link>
               </li>
             </ul>
@@ -102,7 +102,7 @@ export function Nav() {
             }`}
           >
             <FontAwesomeIcon icon="clock-rotate-left" className="pr-2" />
-            Historical Data
+            Historical data
           </Link>
         </li>
         <li className="mb-2">

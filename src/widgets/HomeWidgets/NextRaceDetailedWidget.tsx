@@ -286,8 +286,12 @@ NextRaceWidgetProps) {
   return (
     <div className="my-4">
       <div className="w-max">
-        <h3 className="p-2 text-2xl font-extralight">
-          NEXT RACE - ROUND {combinedNextRace.round}
+        <h3 className="p-2 text-2xl font-bold">
+          NEXT RACE
+          <span className="font-extralight">
+            {" - "}
+            ROUND {combinedNextRace.round}
+          </span>
         </h3>
         <div className="home-next-race--container flex flex-col rounded-lg border-2 border-gray-700">
           <div className="flex">
