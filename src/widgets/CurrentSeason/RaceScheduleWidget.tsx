@@ -169,7 +169,6 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
       ),
     };
   });
-  console.log(updatedRaceSchedule);
 
   const currentDate = new Date();
 
@@ -216,8 +215,6 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     return date + "T" + updatedTime;
   }
 
-  // const initSlide = 1;
-  console.log(previousRace.round);
   const initSlide = Number(previousRace.round);
 
   const settings = {
@@ -409,17 +406,13 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
           )}
         </Slider> */}
       </div>
-      <div className="mb-10">
-        {selectedCircuit && (
-          <CircuitDetailedWidget
-            circuit={selectedCircuit}
-            raceSchedule={updatedRaceSchedule}
-            // raceDayTrackWeather={raceDayTrackWeather as any}
-            // weatherIcon={weatherIcon as any}
-            key={selectedCircuit.round} // Add key prop to force re-render
-          />
-        )}
-      </div>
+      {selectedCircuit && (
+        <CircuitDetailedWidget
+          circuit={selectedCircuit}
+          raceSchedule={updatedRaceSchedule}
+          key={selectedCircuit.round} // Add key prop to force re-render
+        />
+      )}
     </div>
   );
 }

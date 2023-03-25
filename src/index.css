@@ -217,14 +217,14 @@ main {
   color: var(--clr-f1-gray-background);
 }
 
-.circuit-countdown--contianer > div > div:nth-child(2n + 1) {
+.circuit-countdown--contianer > div > div:nth-child(2n + 2) {
   border-left: 2px solid var(--clr-rolex-gray);
   border-right: 2px solid var(--clr-rolex-gray);
 }
 
-/* .circuit-info--main-container {
-  background-color: var(--clr-f1-gray-background);
-} */
+.circuit-info--main-container {
+  background-color: var(--clr-f1-gray);
+}
 
 /* .circuit-countdown--contianer {
   background-color: var(--clr-rolex-green);
@@ -246,14 +246,12 @@ main {
 }
 
 .circuit-img--container {
-  /* width: auto; */
-  margin: 0.5rem;
+  border: 2px solid var(--clr-f1-black);
 }
 
-/* .circuit-flag-img--container {
-  width: 50px;
-  height: auto;
-} */
+.circuit-info--round {
+  background-color: var(--clr-f1-red);
+}
 
 .circuit-round > p:first-child,
 .circuit-location > p:first-child,

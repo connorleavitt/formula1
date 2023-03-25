@@ -126,9 +126,17 @@ export function CircuitDetailedWidget({
       const trackLocation = trackInfo.find(
         (race) => race.circuitId === value.Circuit.circuitId
       )?.Location;
+      const flagUrl = trackInfo.find(
+        (race) => race.circuitId === value.Circuit.circuitId
+      )?.flagUrl;
+      const heroImgUrl = trackInfo.find(
+        (race) => race.circuitId === value.Circuit.circuitId
+      )?.heroImgUrl;
       return {
         ...value,
         trackLocation,
+        flagUrl,
+        heroImgUrl,
         localRaceDateTime: getLocalTime(
           value.date,
           value.time,
@@ -288,50 +296,96 @@ export function CircuitDetailedWidget({
   const rainProb = raceDayTrackWeather?.daily[0].precipitationSum;
 
   return (
-    <div className="w-full flex flex-col">
-      <div className="flex items-center justify-between">
-        <h2 className="p-2 text-lg font-bold">Circuit Info</h2>
-        {formattedCountdown.days > 0 && (
-          <div className="circuit-countdown--contianer rounded-lg m-2">
-            <div className="current-season-next-race--countdown-container flex">
-              <h3 className="self-center font-bold text-center px-4">
-                COUNTDOWN TO RACE
-              </h3>
-              <div className="items-center justify-center flex w-[100px] my-2">
-                <p className="text-2xl font-bold">{formattedCountdown.days}</p>
-                <p className="self-start ml-1 text-sm labels">days</p>
+    <div className="flex flex-col circuit-info--main-container mb-4 rounded-2xl">
+      <div className="relative circuit-info--hero-container w-full h-[200px] ">
+        <img
+          className="h-full w-full object-cover rounded-t-2xl opacity-70"
+          src={selectedRaceCombined.Circuit.heroImgUrl}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+        <h3 className="absolute bottom-6 left-6 text-4xl font-bold text-white">
+          {selectedRaceCombined.Circuit.circuitName}
+        </h3>
+        <img
+          className="absolute bottom-6 right-6 rounded-sm w-20 border-2 border-gray-200"
+          src={selectedRaceCombined.Circuit.flagUrl}
+          alt={selectedRaceCombined.Circuit.circuitName}
+        />
+        <div className="absolute top-4 right-6 py-1 px-2 rounded-md text-white circuit-info--round">
+          <p className="text-md">ROUND {selectedRaceCombined.round}</p>
+        </div>
+        <div className="absolute top-4 left-6 flex items-center justify-between">
+          {formattedCountdown.days > 0 && (
+            <div className="circuit-countdown--contianer rounded-lg">
+              <div className="current-season-next-race--countdown-container flex">
+                {/* <h3 className="self-center font-bold text-center px-4">
+                  COUNTDOWN
+                </h3> */}
+                <div className="items-center justify-center flex w-[100px] my-2">
+                  <p className="text-2xl font-bold">
+                    {formattedCountdown.days}
+                  </p>
+                  <p className="self-start ml-1 text-sm labels">days</p>
+                </div>
+                <div className="items-center justify-center flex w-[100px] my-2">
+                  <p className="text-2xl font-bold">
+                    {formattedCountdown.hours}
+                  </p>
+                  <p className="self-start ml-1 text-sm font-light labels">
+                    hrs
+                  </p>
+                </div>
+                <div className="items-center justify-center flex w-[100px] my-2">
+                  <p className="text-2xl font-bold">
+                    {formattedCountdown.minutes}
+                  </p>
+                  <p className="self-start ml-1 text-sm labels">mins</p>
+                </div>
               </div>
-              <div className="items-center justify-center flex w-[100px] my-2">
-                <p className="text-2xl font-bold">{formattedCountdown.hours}</p>
-                <p className="self-start ml-1 text-sm font-light labels">hrs</p>
-              </div>
-              <div className="items-center justify-center flex w-[100px] my-2">
-                <p className="text-2xl font-bold">
-                  {formattedCountdown.minutes}
-                </p>
-                <p className="self-start ml-1 text-sm labels">mins</p>
-              </div>
-              {/* <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.seconds}</p>
-              <p className="text-md labels">secs</p>
-            </div> */}
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
-      <div className="flex p-2 border-t-8 rounded-sm border-r-[20px] rounded-tr-2xl border-red-500 circuit-info--main-container">
-        <div className="flex flex-col w-[400px]">
-          <div className="flex items-center">
-            <img
-              className="rounded-sm w-24 border-2 border-gray-200"
-              src={selectedRaceCombined.Circuit.flagUrl}
-              alt={selectedRaceCombined.Circuit.circuitName}
-            />
-            <h3 className="p-2 text-2xl font-bold">
-              {selectedRaceCombined.Circuit.circuitName}
-            </h3>
+      <div className="flex p-2 circuit-info--sub-container">
+        <div className="flex flex-col">
+          <div className="flex">
+            <p className="text-sm">
+              {selectedRaceCombined.Circuit?.Location?.locality}
+            </p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit?.Location?.country}
+            </p>
           </div>
-          <div className="circuit-times-table rounded-md">
+          <div className="flex items-center self-center justify-between">
+            {formattedCountdown.days > 0 && (
+              <div className="circuit-countdown--contianer rounded-lg px-2">
+                <div className="current-season-next-race--countdown-container flex">
+                  {/* <h3 className="self-center font-bold text-center px-4">
+                  COUNTDOWN
+                </h3> */}
+                  <div className="items-center justify-center flex w-[100px] my-2">
+                    <p className="text-2xl font-bold">
+                      {formattedCountdown.days}
+                    </p>
+                    <p className="self-end mb-1 ml-1 text-sm">days</p>
+                  </div>
+                  <div className="items-center justify-center flex w-[100px] my-2">
+                    <p className="text-2xl font-bold">
+                      {formattedCountdown.hours}
+                    </p>
+                    <p className="self-end mb-1 ml-1 text-sm font-light">hrs</p>
+                  </div>
+                  <div className="items-center justify-center flex w-[100px] my-2">
+                    <p className="text-2xl font-bold">
+                      {formattedCountdown.minutes}
+                    </p>
+                    <p className="self-end mb-1 ml-1 text-sm">mins</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="circuit-times-table rounded-md mt-2">
             <div className="flex p-2 justify-between">
               <div className="w-[100px] font-bold">Practice 1</div>
               <div className="w-[100px] text-center">
@@ -459,103 +513,59 @@ export function CircuitDetailedWidget({
               </div>
             </div>
           </div>
-          {/* {formattedCountdown.days > 0 && (
-            <div className="circuit-countdown--contianer rounded-lg p-2">
-              <h3 className="p-2 mx-2 font-bold text-center">
-                COUNTDOWN TO RACE
-              </h3>
-              <div className="w-full current-season-next-race--countdown-container my-1 flex justify-start">
-                <div className="flex flex-col items-center m-2 w-[75px]">
-                  <p className="text-5xl font-bold">
-                    {formattedCountdown.days}
-                  </p>
-                  <p className="text-sm labels">days</p>
-                </div>
-                <div className="flex flex-col items-center m-2 w-[75px]">
-                  <p className="text-5xl font-bold">
-                    {formattedCountdown.hours}
-                  </p>
-                  <p className="text-sm font-light labels">hrs</p>
-                </div>
-                <div className="flex flex-col items-center m-2 w-[75px]">
-                  <p className="text-5xl font-bold">
-                    {formattedCountdown.minutes}
-                  </p>
-                  <p className="text-sm labels">mins</p>
-                </div>
-                <div className="flex flex-col items-center p-2 w-[75px]">
-              <p className="text-3xl font-bold">{formattedCountdown.seconds}</p>
-              <p className="text-md labels">secs</p>
-            </div>
-              </div>
-            </div>
-          )} */}
-          <div className="flex w-full flex-wrap justify-between">
-            <div className="w-5/12 my-4 circuit-location border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Round</p>
-              <p className="font-bold text-3xl">{selectedRaceCombined.round}</p>
-            </div>
-            <div className="w-1/2 my-4 circuit-location border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">
-                {selectedRaceCombined.Circuit?.Location?.locality}
-              </p>
-              <p className="font-bold text-3xl">
-                {selectedRaceCombined.Circuit?.Location?.country}
-              </p>
-            </div>
-            <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Number of Laps</p>
-              <p className="font-bold text-3xl">
-                {selectedRaceCombined.Circuit.laps}
-              </p>
-            </div>
-            <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">First Grand Prix</p>
-              <p className="font-bold text-3xl">
-                {selectedRaceCombined.Circuit.firstGrandPrix}
-              </p>
-            </div>
-            <div className="w-5/12 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Circuit Length</p>
-              <p className="font-bold text-3xl">
-                {selectedRaceCombined.Circuit.circuitLength}{" "}
-                <span className="text-sm">km</span>
-              </p>
-            </div>
-            <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Race Distance</p>
-              <p className="font-bold text-3xl">
-                {selectedRaceCombined.Circuit.raceLength}
-                <span className="text-sm">km</span>
-              </p>
-            </div>
-            {selectedRaceCombined.round === nextRace?.round &&
-              weatherIcon !== null && (
-                <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-                  <p className="text-sm">Race Weather</p>
-                  <div className="flex">
-                    <div className="text-3xl mr-2 font-bold">
-                      {weatherTemp}&deg;
-                    </div>
-                    <div className="w-[40px] h-full self-center">
-                      <svg
-                        // className=""
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox={weatherIcon?.viewBox}
-                      >
-                        <path d={weatherIcon?.d} />
-                      </svg>
-                    </div>
-                    <p className="text-xs font-light self-end mb-1 ml-1">
-                      ({rainProb} in of rain)
-                    </p>
-                  </div>
-                </div>
-              )}
-          </div>
         </div>
-
-        <div className="circuit-img--container">
+        <div className="flex w-full flex-wrap justify-between">
+          <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Number of Laps</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.laps}
+            </p>
+          </div>
+          <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">First Grand Prix</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.firstGrandPrix}
+            </p>
+          </div>
+          <div className="w-5/12 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Circuit Length</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.circuitLength}{" "}
+              <span className="text-sm">km</span>
+            </p>
+          </div>
+          <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Race Distance</p>
+            <p className="font-bold text-3xl">
+              {selectedRaceCombined.Circuit.raceLength}
+              <span className="text-sm">km</span>
+            </p>
+          </div>
+          {selectedRaceCombined.round === nextRace?.round &&
+            weatherIcon !== null && (
+              <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+                <p className="text-sm">Race Weather</p>
+                <div className="flex">
+                  <div className="text-3xl mr-2 font-bold">
+                    {weatherTemp}&deg;
+                  </div>
+                  <div className="w-[40px] h-full self-center">
+                    <svg
+                      // className=""
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox={weatherIcon?.viewBox}
+                    >
+                      <path d={weatherIcon?.d} />
+                    </svg>
+                  </div>
+                  <p className="text-xs font-light self-end mb-1 ml-1">
+                    ({rainProb} in of rain)
+                  </p>
+                </div>
+              </div>
+            )}
+        </div>
+        <div className="circuit-img--container p-4 rounded-md">
           <img
             src={selectedRaceCombined.Circuit.imgUrl}
             alt={selectedRaceCombined.Circuit.circuitName}
