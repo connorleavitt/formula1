@@ -4,7 +4,9 @@
 
 :root {
   --clr-f1-red: #cf2828;
+  --clr-f1-red-rgb: 207, 40, 40;
   --clr-f1-black: #262121;
+  --clr-f1-alt: #0099ff;
   --clr-f1-gray: #e7e7e7;
   --clr-f1-gray-hover: #dddddd;
   --clr-f1-gray-rgb: 231, 231, 231;
@@ -119,22 +121,10 @@ main {
   max-width: 1300px;
 }
 
-.race-schedule--next-tag,
-.race-schedule--next-tag-active {
-  background-color: var(--clr-f1-red);
-  color: white;
-}
-
-.race-schedule--next-tag-active {
-  border: 2px solid var(--clr-f1-black);
-}
-
+.race-schedule--next-tag-active,
 .race-schedule--next-tag {
-  border: 2px solid var(--clr-f1-gray);
-}
-
-.circuit-info--button:hover > div > .race-schedule--next-tag {
-  border: 2px solid var(--clr-f1-gray-hover);
+  color: white;
+  background-color: var(--clr-f1-red);
 }
 
 /* .race-schedule--prev-tag {
@@ -213,7 +203,7 @@ main {
 } */
 
 .circuit-countdown--contianer {
-  background-color: var(--clr-rolex-green);
+  background-color: var(--clr-f1-alt);
   color: var(--clr-f1-gray-background);
 }
 

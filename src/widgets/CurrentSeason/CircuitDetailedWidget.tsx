@@ -3,10 +3,7 @@ import { differenceInSeconds, parseISO } from "date-fns";
 import trackInfo from "../../data/trackInfo.json";
 import { ICON_MAP } from "../../utilities/Weather/iconMap";
 import icons from "../../utilities/Weather/icons.json";
-import {
-  getRaceDayWeather,
-  // getWeather,
-} from "../../utilities/Weather/getWeather";
+import { getRaceDayWeather } from "../../utilities/Weather/getWeather";
 
 type RaceSchedule = {
   season: number;
@@ -47,6 +44,46 @@ type RaceSchedule = {
     date: string;
     time: string;
   };
+  additionalInfo: {
+    circuitId: string;
+    imgUrl: string;
+    heroImgUrl: string;
+    flagUrl: string;
+    url: string;
+    circuitUrl: string;
+    circuitName: string;
+    laps: string;
+    circuitLength: string;
+    raceLength: string;
+    firstGrandPrix: string;
+    lapRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    qualiRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    numberOfTimesHeld: string;
+    mostDriverWins: string;
+    mostConstructorWins: string;
+    trackComments: string;
+    grandPrixComments: {
+      1: string;
+      2: string;
+      3: string;
+    };
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+      timezone: string;
+      gmtOffset: string;
+    };
+  };
 };
 
 type CircuitInfo = {
@@ -60,8 +97,6 @@ type CircuitInfo = {
 type CircuitDetailedWidgetProps = {
   raceSchedule: RaceSchedule[];
   circuit: CircuitInfo;
-  // raceDayTrackWeather: TrackWeather;
-  // weatherIcon: WeatherIcon;
 };
 
 type TrackWeather = {
@@ -113,37 +148,6 @@ export function CircuitDetailedWidget({
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
 
   useEffect(() => {
-    const truncatedRaceSchedule = raceSchedule.map((value: any) => {
-      return {
-        ...value,
-        circuitId: value.Circuit.circuitId,
-      };
-    });
-    const updatedRaceSchedule = truncatedRaceSchedule.map((value) => {
-      const offsetAtTrack = trackInfo.find(
-        (race) => race.circuitId === value.Circuit.circuitId
-      )?.Location.gmtOffset;
-      const trackLocation = trackInfo.find(
-        (race) => race.circuitId === value.Circuit.circuitId
-      )?.Location;
-      const flagUrl = trackInfo.find(
-        (race) => race.circuitId === value.Circuit.circuitId
-      )?.flagUrl;
-      const heroImgUrl = trackInfo.find(
-        (race) => race.circuitId === value.Circuit.circuitId
-      )?.heroImgUrl;
-      return {
-        ...value,
-        trackLocation,
-        flagUrl,
-        heroImgUrl,
-        localRaceDateTime: getLocalTime(
-          value.date,
-          value.time,
-          Number(offsetAtTrack)
-        ),
-      };
-    });
     const now = new Date();
     const race = raceSchedule.find(
       (race) => race.Circuit.circuitId === circuit.circuitId
@@ -264,17 +268,6 @@ export function CircuitDetailedWidget({
   );
   const raceDate = parseISO(selectedRace.date + "T" + selectedRace.time);
 
-  const macthedNextRace = trackInfo.find(
-    (track) => track.circuitId === selectedRace.Circuit.circuitId
-  );
-
-  const selectedRaceCombined = {
-    ...selectedRace,
-    Circuit: {
-      ...macthedNextRace,
-    },
-  };
-
   const firstPracticeDayOfWeek = firstPracticeDate.toLocaleString("en-US", {
     weekday: "short",
   });
@@ -300,19 +293,19 @@ export function CircuitDetailedWidget({
       <div className="relative circuit-info--hero-container w-full h-[200px] ">
         <img
           className="h-full w-full object-cover rounded-t-2xl opacity-70"
-          src={selectedRaceCombined.Circuit.heroImgUrl}
+          src={selectedRace.additionalInfo.heroImgUrl}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
         <h3 className="absolute bottom-6 left-6 text-4xl font-bold text-white">
-          {selectedRaceCombined.Circuit.circuitName}
+          {selectedRace.Circuit.circuitName}
         </h3>
         <img
           className="absolute bottom-6 right-6 rounded-sm w-20 border-2 border-gray-200"
-          src={selectedRaceCombined.Circuit.flagUrl}
-          alt={selectedRaceCombined.Circuit.circuitName}
+          src={selectedRace.additionalInfo.flagUrl}
+          alt={selectedRace.Circuit.circuitName}
         />
         <div className="absolute top-4 right-6 py-1 px-2 rounded-md text-white circuit-info--round">
-          <p className="text-md">ROUND {selectedRaceCombined.round}</p>
+          <p className="text-md">ROUND {selectedRace.round}</p>
         </div>
         <div className="absolute top-4 left-6 flex items-center justify-between">
           {formattedCountdown.days > 0 && (
@@ -350,10 +343,10 @@ export function CircuitDetailedWidget({
         <div className="flex flex-col">
           <div className="flex">
             <p className="text-sm">
-              {selectedRaceCombined.Circuit?.Location?.locality}
+              {selectedRace.Circuit?.Location?.locality}
             </p>
             <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit?.Location?.country}
+              {selectedRace.Circuit?.Location?.country}
             </p>
           </div>
           <div className="flex items-center self-center justify-between">
@@ -425,9 +418,9 @@ export function CircuitDetailedWidget({
                 <div className="w-[100px] font-bold">Practice 3</div>
                 <div className="w-[100px] text-center">
                   {new Date(
-                    selectedRaceCombined.ThirdPractice.date +
+                    selectedRace.ThirdPractice.date +
                       "T" +
-                      selectedRaceCombined.ThirdPractice.time
+                      selectedRace.ThirdPractice.time
                   ).toLocaleString("en-US", {
                     weekday: "short",
                     month: "short",
@@ -436,9 +429,9 @@ export function CircuitDetailedWidget({
                 </div>
                 <div className="w-[100px] text-right">
                   {new Date(
-                    selectedRaceCombined.ThirdPractice.date +
+                    selectedRace.ThirdPractice.date +
                       "T" +
-                      selectedRaceCombined.ThirdPractice.time
+                      selectedRace.ThirdPractice.time
                   ).toLocaleString("en-US", {
                     hour: "numeric",
                     minute: "numeric",
@@ -464,15 +457,13 @@ export function CircuitDetailedWidget({
                 })}
               </div>
             </div>
-            {selectedRaceCombined.Sprint && (
+            {selectedRace.Sprint && (
               <div className="flex p-2 justify-between">
                 <div className="w-[100px] font-bold">Sprint</div>
                 <div className="w-[100px] text-center">
                   {new Date(
                     parseISO(
-                      selectedRaceCombined.Sprint.date +
-                        "T" +
-                        selectedRaceCombined.Sprint.time
+                      selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
                     )
                   ).toLocaleString("en-US", {
                     weekday: "short",
@@ -483,9 +474,7 @@ export function CircuitDetailedWidget({
                 <div className="w-[100px] text-right">
                   {new Date(
                     parseISO(
-                      selectedRaceCombined.Sprint.date +
-                        "T" +
-                        selectedRaceCombined.Sprint.time
+                      selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
                     )
                   ).toLocaleString("en-US", {
                     hour: "numeric",
@@ -518,57 +507,64 @@ export function CircuitDetailedWidget({
           <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm">Number of Laps</p>
             <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.laps}
+              {selectedRace.additionalInfo.laps}
+            </p>
+          </div>
+          <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Fastest qualifying record</p>
+            <p className="font-bold text-3xl">
+              {selectedRace.additionalInfo.qualiRecord.time}
+              {selectedRace.additionalInfo.qualiRecord.driver}
+              {selectedRace.additionalInfo.qualiRecord.year}
             </p>
           </div>
           <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm">First Grand Prix</p>
             <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.firstGrandPrix}
+              {selectedRace.additionalInfo.firstGrandPrix}
             </p>
           </div>
           <div className="w-5/12 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm">Circuit Length</p>
             <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.circuitLength}{" "}
+              {selectedRace.additionalInfo.circuitLength}{" "}
               <span className="text-sm">km</span>
             </p>
           </div>
           <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm">Race Distance</p>
             <p className="font-bold text-3xl">
-              {selectedRaceCombined.Circuit.raceLength}
+              {selectedRace.additionalInfo.raceLength}
               <span className="text-sm">km</span>
             </p>
           </div>
-          {selectedRaceCombined.round === nextRace?.round &&
-            weatherIcon !== null && (
-              <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-                <p className="text-sm">Race Weather</p>
-                <div className="flex">
-                  <div className="text-3xl mr-2 font-bold">
-                    {weatherTemp}&deg;
-                  </div>
-                  <div className="w-[40px] h-full self-center">
-                    <svg
-                      // className=""
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox={weatherIcon?.viewBox}
-                    >
-                      <path d={weatherIcon?.d} />
-                    </svg>
-                  </div>
-                  <p className="text-xs font-light self-end mb-1 ml-1">
-                    ({rainProb} in of rain)
-                  </p>
+          {selectedRace.round === nextRace?.round && weatherIcon !== null && (
+            <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Race Weather</p>
+              <div className="flex">
+                <div className="text-3xl mr-2 font-bold">
+                  {weatherTemp}&deg;
                 </div>
+                <div className="w-[40px] h-full self-center">
+                  <svg
+                    // className=""
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox={weatherIcon?.viewBox}
+                  >
+                    <path d={weatherIcon?.d} />
+                  </svg>
+                </div>
+                <p className="text-xs font-light self-end mb-1 ml-1">
+                  ({rainProb} in of rain)
+                </p>
               </div>
-            )}
+            </div>
+          )}
         </div>
         <div className="circuit-img--container p-4 rounded-md">
           <img
-            src={selectedRaceCombined.Circuit.imgUrl}
-            alt={selectedRaceCombined.Circuit.circuitName}
+            src={selectedRace.additionalInfo.imgUrl}
+            alt={selectedRace.Circuit.circuitName}
           />
         </div>
       </div>

@@ -27,7 +27,7 @@ type RaceSchedule = {
   };
   date: string;
   time: string;
-  localRaceDateTime: string;
+  // localRaceDateTime: string;
   FirstPractice: {
     date: string;
     time: string;
@@ -93,52 +93,47 @@ type UpdatedSchedule = {
     date: string;
     time: string;
   };
-  trackLocation: {
-    lat: string;
-    long: string;
-    locality: string;
-    country: string;
-    timezone: string;
-    gmtOffset: string;
+  additionalInfo: {
+    circuitId: string;
+    imgUrl: string;
+    heroImgUrl: string;
+    flagUrl: string;
+    url: string;
+    circuitUrl: string;
+    circuitName: string;
+    laps: string;
+    circuitLength: string;
+    raceLength: string;
+    firstGrandPrix: string;
+    lapRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    qualiRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    numberOfTimesHeld: string;
+    mostDriverWins: string;
+    mostConstructorWins: string;
+    trackComments: string;
+    grandPrixComments: {
+      1: string;
+      2: string;
+      3: string;
+    };
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+      timezone: string;
+      gmtOffset: string;
+    };
   };
-  flagUrl: string;
 };
-
-// type TrackWeather = {
-//   current: {
-//     currentTemp: number;
-//     highTemp: number;
-//     lowTemp: number;
-//     feelsLikeHigh: number;
-//     feelsLikeLow: number;
-//     windSpeed: number;
-//     precip: number;
-//     iconCode: number;
-//   };
-//   daily: [
-//     {
-//       timestamp: number;
-//       iconCode: number;
-//       maxTemp: number;
-//     }
-//   ];
-//   hourly: [
-//     {
-//       timestamp: number;
-//       iconCode: number;
-//       temp: number;
-//       feelsLike: number;
-//       windSpeed: number;
-//       precip: number;
-//     }
-//   ];
-// };
-
-// type WeatherIcon = {
-//   weather: string;
-//   viewBox: string;
-//   d: string;
-// };
 
 export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   const truncatedRaceSchedule = raceSchedule.map((value: any) => {
@@ -149,23 +144,17 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   });
 
   const updatedRaceSchedule = truncatedRaceSchedule.map((value) => {
-    const offsetAtTrack = trackInfo.find(
+    const additionalInfo = trackInfo.find(
       (race) => race.circuitId === value.Circuit.circuitId
-    )?.Location.gmtOffset;
-    const trackLocation = trackInfo.find(
-      (race) => race.circuitId === value.Circuit.circuitId
-    )?.Location;
-    const flagUrl = trackInfo.find(
-      (race) => race.circuitId === value.Circuit.circuitId
-    )?.flagUrl;
+    );
+
     return {
       ...value,
-      trackLocation,
-      flagUrl,
+      additionalInfo,
       localRaceDateTime: getLocalTime(
         value.date,
         value.time,
-        Number(offsetAtTrack)
+        Number(additionalInfo?.Location.gmtOffset)
       ),
     };
   });
@@ -193,7 +182,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   const [selectedCircuit, setSelectedCircuit] = useState(futureRaces[0]);
 
   const handleRaceClick = (race: any) => {
-    setSelectedCircuit(race);
+    setSelectedCircuit(race as UpdatedSchedule);
   };
 
   function getLocalTime(date: string, time: string, offset: number) {
@@ -222,8 +211,8 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
     infinite: false,
     swipeToSlide: true,
     speed: 300,
-    slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     // variableWidth: false,
     initialSlide: initSlide, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
     responsive: [
@@ -261,29 +250,20 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
           {updatedRaceSchedule.map((race: any) => (
             <button
               key={race.round}
-              className={`relative circuit-info--button text-left px-2 py-2 rounded-xl ${
+              className={`relative circuit-info--button text-left px-1 py-2 rounded-xl ${
                 race.round === selectedCircuit.round ? "selected" : ""
               }`}
               onClick={() => handleRaceClick(race)}
             >
               <div className="flex items-center">
                 <img
-                  className="rounded-lg w-[80px] h-[48px] mr-2 ml-1"
-                  src={race.flagUrl}
-                  alt={race.Circuit.circuitName}
+                  className="rounded-lg w-[60px] h-[36px] mr-2 ml-1"
+                  src={race.additionalInfo.flagUrl}
+                  alt={race.additionalInfo.circuitName}
                 />
                 <div className="flex flex-col">
                   <div
-                    className={`text-xl  font-bold ${
-                      race.round === selectedCircuit.round
-                        ? "text-white"
-                        : "text-gray-800"
-                    }`}
-                  >
-                    {race.trackLocation.country}
-                  </div>
-                  <div
-                    className={`text-xl ${
+                    className={`text-sm leading-4 ${
                       race.round === selectedCircuit.round ? "text-white" : ""
                     }`}
                   >
@@ -299,41 +279,24 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
                       })
                       .toUpperCase()}
                   </div>
+                  <div
+                    className={`text-md mt-1 leading-4 font-bold ${
+                      race.round === selectedCircuit.round
+                        ? "text-white"
+                        : "text-gray-800"
+                    }`}
+                  >
+                    {race.additionalInfo.Location.country}
+                  </div>
                 </div>
               </div>
               {race.round === futureRaces[0].round ? (
-                <div
-                  className="absolute top-0 right-[-1px] h-full text-center"
-                  // style={{ writingMode: "vertical-rl" }}
-                >
-                  <div
-                    className={`flex flex-col py-[2px] px-1 h-full justify-center rounded-r-xl text-sm ${
-                      race.round === selectedCircuit.round
-                        ? "race-schedule--next-tag-active"
-                        : "race-schedule--next-tag"
-                    }`}
-                  >
-                    <p className="leading-none">N</p>
-                    <p className="leading-none">E</p>
-                    <p className="leading-none">X</p>
-                    <p className="leading-none">T</p>
-                  </div>
+                <div className="absolute font-bold top-1 right-1 rounded-full py-[2px] px-1 race-schedule--next-tag">
+                  <p className="text-[10px] leading-none">NEXT</p>
                 </div>
               ) : (
                 ""
               )}
-              {/* {race.round === previousRace.round ? (
-                <div
-                  className="absolute top-0 right-0 h-full text-center"
-                  style={{ writingMode: "vertical-rl" }}
-                >
-                  <p className="race-schedule--prev-tag py-[1px] font-bold rounded-r-xl text-lg">
-                    PREV
-                  </p>
-                </div>
-              ) : (
-                ""
-              )} */}
             </button>
           ))}
         </Slider>
