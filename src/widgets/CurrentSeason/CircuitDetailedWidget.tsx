@@ -349,35 +349,7 @@ export function CircuitDetailedWidget({
               {selectedRace.Circuit?.Location?.country}
             </p>
           </div>
-          <div className="flex items-center self-center justify-between">
-            {formattedCountdown.days > 0 && (
-              <div className="circuit-countdown--contianer rounded-lg px-2">
-                <div className="current-season-next-race--countdown-container flex">
-                  {/* <h3 className="self-center font-bold text-center px-4">
-                  COUNTDOWN
-                </h3> */}
-                  <div className="items-center justify-center flex w-[100px] my-2">
-                    <p className="text-2xl font-bold">
-                      {formattedCountdown.days}
-                    </p>
-                    <p className="self-end mb-1 ml-1 text-sm">days</p>
-                  </div>
-                  <div className="items-center justify-center flex w-[100px] my-2">
-                    <p className="text-2xl font-bold">
-                      {formattedCountdown.hours}
-                    </p>
-                    <p className="self-end mb-1 ml-1 text-sm font-light">hrs</p>
-                  </div>
-                  <div className="items-center justify-center flex w-[100px] my-2">
-                    <p className="text-2xl font-bold">
-                      {formattedCountdown.minutes}
-                    </p>
-                    <p className="self-end mb-1 ml-1 text-sm">mins</p>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <div className="flex items-center self-center justify-between"></div>
           <div className="circuit-times-table rounded-md mt-2">
             <div className="flex p-2 justify-between">
               <div className="w-[100px] font-bold">Practice 1</div>

@@ -121,6 +121,15 @@ main {
   max-width: 1300px;
 }
 
+.race-schedule--btn-back-to-next-race {
+  color: var(--clr-dashboard-background);
+  border-bottom: 2px solid var(--clr-f1-gray-background);
+}
+
+.race-schedule--btn-back-to-next-race:hover {
+  border-bottom: 2px solid var(--clr-dashboard-background);
+}
+
 .race-schedule--next-tag-active,
 .race-schedule--next-tag {
   color: white;
