@@ -33,7 +33,7 @@ export const getRecentPole = <T>() => {
       const recentPolesByRace = await Promise.all(
         raceName.map(async (race) => {
           const response = await fetch(
-            `http://ergast.com/api/f1/circuits/${race}/qualifying/1.json?limit=100`
+            `https://ergast.com/api/f1/circuits/${race}/qualifying/1.json?limit=100`
           );
           const data = await response.json();
           if (

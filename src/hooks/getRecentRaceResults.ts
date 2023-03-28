@@ -33,7 +33,7 @@ export const getRecentRaceResults = <T>() => {
       const recentResultsByRace = await Promise.all(
         raceName.map(async (race) => {
           const response = await fetch(
-            `http://ergast.com/api/f1/circuits/${race}/results/1.json?limit=100`
+            `https://ergast.com/api/f1/circuits/${race}/results/1.json?limit=100`
           );
           const data = await response.json();
           if (
