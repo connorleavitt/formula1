@@ -1,13 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../index.css";
 import trackInfo from "../../data/trackInfo.json";
 import { CircuitDetailedWidget } from "./CircuitDetailedWidget";
-import { getRaceDayWeather } from "../../utilities/Weather/getWeather";
-import { ICON_MAP } from "../../utilities/Weather/iconMap";
-import icons from "../../utilities/Weather/icons.json";
 
 type RaceSchedule = {
   season: number;
@@ -52,6 +49,112 @@ type RaceSchedule = {
 
 type RaceScheduleWidgetProps = {
   raceSchedule: RaceSchedule[];
+  recentRacesResults: RecentRacesResults[];
+  recentPoleWinners: RecentPoleWinners[];
+};
+
+type RecentRacesResults = {
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  Results: [
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
+        Time: {
+          time: string;
+        };
+        AverageSpeed: {
+          units: string;
+          speed: string;
+        };
+      };
+    }
+  ];
+};
+
+type RecentPoleWinners = {
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  QualifyingResults: [
+    {
+      number: string;
+      position: string;
+      Driver: {
+        driverId: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      Q1: string;
+    }
+  ];
 };
 
 type UpdatedSchedule = {
@@ -135,7 +238,11 @@ type UpdatedSchedule = {
   };
 };
 
-export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
+export function RaceScheduleWidget({
+  raceSchedule,
+  recentRacesResults,
+  recentPoleWinners,
+}: RaceScheduleWidgetProps) {
   const truncatedRaceSchedule = raceSchedule.map((value: any) => {
     return {
       ...value,
@@ -148,9 +255,25 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
       (race) => race.circuitId === value.Circuit.circuitId
     );
 
+    const previousRaceInfo = recentRacesResults.find(
+      (race) => race?.Circuit.circuitId === value.Circuit.circuitId
+    );
+
+    const previousPoleWinner = recentPoleWinners.find(
+      (race) => race?.Circuit.circuitId === value.Circuit.circuitId
+    );
+
     return {
       ...value,
       additionalInfo,
+      previousRaceInfo: {
+        season: previousRaceInfo?.season || null,
+        raceResults: previousRaceInfo?.Results[0] || null,
+      },
+      previousPoleWinner: {
+        season: previousPoleWinner?.season || null,
+        qualifyingResults: previousPoleWinner?.QualifyingResults[0] || null,
+      },
       localRaceDateTime: getLocalTime(
         value.date,
         value.time,
@@ -224,7 +347,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
   return (
     <div className="relative flex flex-col race-schedule--main-container">
       <button
-        className="absolute right-14 top-[-40px] race-schedule--btn-back-to-next-race"
+        className="absolute right-14 top-[-30px] race-schedule--btn-back-to-next-race"
         onClick={() => reloadSlider(futureRaces[0])}
       >
         Back to next race
@@ -234,7 +357,7 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
           {updatedRaceSchedule.map((race: any) => (
             <button
               key={race.round}
-              className={`relative circuit-info--button text-left px-1 py-2 rounded-xl ${
+              className={`relative circuit-info--button text-left px-1 py-2 rounded-lg ${
                 race.round === selectedCircuit.round ? "selected" : ""
               }`}
               onClick={() => handleRaceClick(race)}
@@ -275,8 +398,8 @@ export function RaceScheduleWidget({ raceSchedule }: RaceScheduleWidgetProps) {
                 </div>
               </div>
               {race.round === futureRaces[0].round ? (
-                <div className="absolute font-bold top-1 right-1 rounded-full py-[2px] px-1 race-schedule--next-tag">
-                  <p className="text-[10px] leading-none">NEXT</p>
+                <div className="absolute top-1 right-1 race-schedule--next-tag">
+                  NEXT
                 </div>
               ) : (
                 ""

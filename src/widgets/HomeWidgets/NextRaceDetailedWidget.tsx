@@ -91,11 +91,92 @@ type WeatherIcon = {
   d: string;
 };
 
+type UpdatedSchedule = {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  localRaceDateTime: string;
+  FirstPractice: {
+    date: string;
+    time: string;
+  };
+  SecondPractice: {
+    date: string;
+    time: string;
+  };
+  ThirdPractice: {
+    date: string;
+    time: string;
+  };
+  Qualifying: {
+    date: string;
+    time: string;
+  };
+  Sprint: {
+    date: string;
+    time: string;
+  };
+  additionalInfo: {
+    circuitId: string;
+    imgUrl: string;
+    heroImgUrl: string;
+    flagUrl: string;
+    url: string;
+    circuitUrl: string;
+    circuitName: string;
+    laps: string;
+    circuitLength: string;
+    raceLength: string;
+    firstGrandPrix: string;
+    lapRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    qualiRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    numberOfTimesHeld: string;
+    mostDriverWins: string;
+    mostConstructorWins: string;
+    trackComments: string;
+    grandPrixComments: {
+      1: string;
+      2: string;
+      3: string;
+    };
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+      timezone: string;
+      gmtOffset: string;
+    };
+  };
+};
+
 export function NextRaceDetailedWidget({
   raceSchedule,
 }: // trackWeather,
 NextRaceWidgetProps) {
-  const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
+  const [nextRace, setNextRace] = useState<UpdatedSchedule | null>(null);
   const [raceDayTrackWeather, setRaceDayTrackWeather] =
     useState<TrackWeather | null>(null);
   const [weatherIcon, setWeatherIcon] = useState<WeatherIcon | null>(null);
@@ -109,22 +190,21 @@ NextRaceWidgetProps) {
       };
     });
     const updatedRaceSchedule = truncatedRaceSchedule.map((value) => {
-      const offsetAtTrack = trackInfo.find(
+      const additionalInfo = trackInfo.find(
         (race) => race.circuitId === value.Circuit.circuitId
-      )?.Location.gmtOffset;
-      const trackLocation = trackInfo.find(
-        (race) => race.circuitId === value.Circuit.circuitId
-      )?.Location;
+      );
+
       return {
         ...value,
-        trackLocation,
+        additionalInfo,
         localRaceDateTime: getLocalTime(
           value.date,
           value.time,
-          Number(offsetAtTrack)
+          Number(additionalInfo?.Location.gmtOffset)
         ),
       };
     });
+
     const now = new Date();
     // sort the races by date in ascending order
     const sortedRaces = updatedRaceSchedule.sort(
@@ -136,7 +216,7 @@ NextRaceWidgetProps) {
     );
 
     if (race) {
-      setNextRace(race);
+      setNextRace(race as UpdatedSchedule);
 
       const raceDate = parseISO(race.date + "T" + race.time);
       const diffInSeconds = differenceInSeconds(raceDate, now);
@@ -159,7 +239,6 @@ NextRaceWidgetProps) {
           timezone
         )
           .then((res) => {
-            console.log(res);
             setRaceDayTrackWeather(res as TrackWeather);
             setWeatherIcon(
               getIcon(res.hourly[mainHourWeather - 1].iconCode) as WeatherIcon
@@ -226,26 +305,12 @@ NextRaceWidgetProps) {
       minutes,
       seconds,
     };
-    // return `${days > 0 ? days : ""}${("0" + hours).slice(-2)}:${(
-    //   "0" + minutes
-    // ).slice(-2)}:${("0" + seconds).slice(-2)}`;
   }
 
   const formattedCountdown = secondsToHms(remainingSeconds as number);
   if (!nextRace) {
     return null; // no next race found
   }
-  const macthedNextRace = trackInfo.find(
-    (track) => track.circuitId === nextRace.Circuit.circuitId
-  );
-
-  const combinedNextRace = {
-    ...nextRace,
-    Circuit: {
-      ...macthedNextRace,
-    },
-  };
-
   //using date-fns
   const firstPracticeDate = parseISO(
     nextRace.FirstPractice.date + "T" + nextRace.FirstPractice.time
@@ -259,10 +324,7 @@ NextRaceWidgetProps) {
   const qualifyingDate = parseISO(
     nextRace.Qualifying.date + "T" + nextRace.Qualifying.time
   );
-  const raceDate = parseISO(
-    combinedNextRace.date + "T" + combinedNextRace.time
-  );
-  // console.log(combinedNextRace.date + "T" + combinedNextRace.time);
+  const raceDate = parseISO(nextRace.date + "T" + nextRace.time);
   const firstPracticeDayOfWeek = firstPracticeDate.toLocaleString("en-US", {
     weekday: "short",
   });
@@ -290,7 +352,7 @@ NextRaceWidgetProps) {
           NEXT RACE
           <span className="font-extralight">
             {" - "}
-            ROUND {combinedNextRace.round}
+            ROUND {nextRace.round}
           </span>
         </h3>
         <div className="home-next-race--container flex flex-col rounded-lg border-2 border-gray-700">
@@ -299,12 +361,10 @@ NextRaceWidgetProps) {
               <div className="flex items-center mb-3">
                 <img
                   className="ml-4 rounded-sm w-16 h-full border-[1px] border-gray-200"
-                  src={combinedNextRace.Circuit.flagUrl}
-                  alt={combinedNextRace.Circuit.circuitName}
+                  src={nextRace.additionalInfo.flagUrl}
+                  alt={nextRace.Circuit.circuitName}
                 />
-                <h3 className="px-3 text-lg font-bold">
-                  {combinedNextRace.raceName}
-                </h3>
+                <h3 className="px-3 text-lg font-bold">{nextRace.raceName}</h3>
               </div>
               <div className="w-max home-next-race--countdown-container flex justify-start">
                 <div className="flex flex-col items-center p-1 w-[75px]">
@@ -333,29 +393,27 @@ NextRaceWidgetProps) {
                 </div>
               </div>
             </div>
-            {/* {combinedNextRace.round === nextRace?.round &&
-              weatherIcon !== null && (
-                <div className="flex flex-col px-4 items-center my-5">
-                  <p className="text-md font-light mb-1">Race Weather</p>
-                  <div className="items-center flex">
-                    <div className="text-3xl mr-2">{weatherTemp}&deg;</div>
-                    <div className="w-[40px] h-full">
-                      <svg
-                        className="fill-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox={weatherIcon?.viewBox}
-                      >
-                        <path d={weatherIcon?.d} />
-                      </svg>
-                    </div>
+            {nextRace.round === nextRace?.round && weatherIcon !== null && (
+              <div className="flex flex-col px-4 items-center my-5">
+                <p className="text-md font-light mb-1">Race Weather</p>
+                <div className="items-center flex">
+                  <div className="text-3xl mr-2">{weatherTemp}&deg;</div>
+                  <div className="w-[40px] h-full">
+                    <svg
+                      className="fill-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox={weatherIcon?.viewBox}
+                    >
+                      <path d={weatherIcon?.d} />
+                    </svg>
                   </div>
-                  <p className="text-xs font-light ">
-                    up to {rainProb} in of rain
-                  </p>
                 </div>
-              )} */}
+                <p className="text-xs font-light ">
+                  up to {rainProb} in of rain
+                </p>
+              </div>
+            )}
           </div>
-
           <div className="home-next-race--times-container rounded-b-md">
             <div className="flex p-2 justify-between border-b-2 border-gray-300">
               <div className="w-[100px]">Practice 1</div>
@@ -391,7 +449,7 @@ NextRaceWidgetProps) {
                 })}
               </div>
             </div>
-            {combinedNextRace.ThirdPractice && (
+            {nextRace.ThirdPractice && (
               <div className="flex p-2 justify-between border-b-2 border-gray-300">
                 <div className="w-[100px]">Practice 3</div>
                 <div className="w-[100px] text-center">
@@ -427,16 +485,12 @@ NextRaceWidgetProps) {
                 })}
               </div>
             </div>
-            {combinedNextRace.Sprint && (
+            {nextRace.Sprint && (
               <div className="flex p-2 justify-between border-b-2 border-gray-300">
                 <div className="w-[100px]">Sprint</div>
                 <div className="w-[100px]">
                   {new Date(
-                    parseISO(
-                      combinedNextRace.Sprint.date +
-                        "T" +
-                        combinedNextRace.Sprint.time
-                    )
+                    parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
                   ).toLocaleString("en-US", {
                     weekday: "short",
                     month: "short",
@@ -445,11 +499,7 @@ NextRaceWidgetProps) {
                 </div>
                 <div className="w-[100px] text-right">
                   {new Date(
-                    parseISO(
-                      combinedNextRace.Sprint.date +
-                        "T" +
-                        combinedNextRace.Sprint.time
-                    )
+                    parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
                   ).toLocaleString("en-US", {
                     hour: "numeric",
                     minute: "numeric",

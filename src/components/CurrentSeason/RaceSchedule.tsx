@@ -1,4 +1,6 @@
 import { getRaceSchedule } from "../../hooks/getRaceSchedule";
+import { getRecentPole } from "../../hooks/getRecentPole";
+import { getRecentRaceResults } from "../../hooks/getRecentRaceResults";
 import { RaceScheduleWidget } from "../../widgets/CurrentSeason/RaceScheduleWidget";
 
 export function RaceSchedule() {
@@ -6,6 +8,9 @@ export function RaceSchedule() {
     method: "get",
     url: "https://ergast.com/api/f1/current.json",
   });
+
+  const recentRacesResults = getRecentRaceResults();
+  const recentPoleWinners = getRecentPole();
 
   if (loading) {
     return (
@@ -21,9 +26,14 @@ export function RaceSchedule() {
   if (!raceSchedule) {
     return <p>Data is null</p>;
   }
+
   return (
     <div className="race-schedule-container">
-      <RaceScheduleWidget raceSchedule={raceSchedule as any} />
+      <RaceScheduleWidget
+        raceSchedule={raceSchedule as any}
+        recentRacesResults={recentRacesResults as any}
+        recentPoleWinners={recentPoleWinners as any}
+      />
     </div>
   );
 }

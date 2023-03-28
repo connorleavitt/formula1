@@ -54,10 +54,6 @@ main {
   overflow-x: hidden;
 }
 
-.home {
-  /* width: 100%; */
-}
-
 .home-leader-widget {
   width: 100%;
   height: 200px;
@@ -105,14 +101,15 @@ main {
   width: 100%;
 }
 
+.race-schedule > h1 {
+  font-size: 24px;
+  line-height: 20px;
+}
+
 .race-schedule-container,
 .current-season--container {
   margin-left: 2rem;
   margin-right: 2rem;
-}
-
-.current-season--container {
-  /* width: 1000px; */
 }
 
 /* .current-season-next-race--countdown-container */
@@ -122,8 +119,10 @@ main {
 }
 
 .race-schedule--btn-back-to-next-race {
-  color: var(--clr-dashboard-background);
-  border-bottom: 2px solid var(--clr-f1-gray-background);
+  color: var(--clr-f1-black);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  border-bottom: 2px solid var(--clr-f1-gray-highlighted);
 }
 
 .race-schedule--btn-back-to-next-race:hover {
@@ -132,15 +131,13 @@ main {
 
 .race-schedule--next-tag-active,
 .race-schedule--next-tag {
+  padding: 0.2rem;
   color: white;
   background-color: var(--clr-f1-red);
+  font-size: 10px;
+  line-height: 10px;
+  border-radius: 3px;
 }
-
-/* .race-schedule--prev-tag {
-  background-color: var(--clr-f1-gray);
-  color: white;
-  border: 2px solid var(--clr-f1-gray);
-} */
 
 .slick-slider > .slick-dots > li > button:before {
   color: var(--clr-f1-red);

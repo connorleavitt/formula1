@@ -84,6 +84,75 @@ type RaceSchedule = {
       gmtOffset: string;
     };
   };
+  previousRaceInfo: {
+    season: string;
+    raceResults: // check this?
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
+        Time: {
+          time: string;
+        };
+        AverageSpeed: {
+          units: string;
+          speed: string;
+        };
+      };
+    };
+  } | null;
+  previousPoleWinner: {
+    season: string;
+    qualifyingResults: {
+      number: string;
+      position: string;
+      Driver: {
+        driverId: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      Q1: string;
+      Q2: string;
+      Q3: string;
+    };
+  } | null;
 };
 
 type CircuitInfo = {
@@ -268,22 +337,6 @@ export function CircuitDetailedWidget({
   );
   const raceDate = parseISO(selectedRace.date + "T" + selectedRace.time);
 
-  const firstPracticeDayOfWeek = firstPracticeDate.toLocaleString("en-US", {
-    weekday: "short",
-  });
-  const firstPracticeDayOfMonth = firstPracticeDate.toLocaleString("en-US", {
-    day: "numeric",
-  });
-  const raceDayOfWeek = raceDate.toLocaleString("en-US", {
-    weekday: "short",
-  });
-  const raceDayOfMonth = raceDate.toLocaleString("en-US", {
-    day: "numeric",
-  });
-
-  const raceDateRangeDays = `${firstPracticeDayOfWeek} - ${raceDayOfWeek}`;
-  const raceMonth = raceDate.toLocaleString("en-US", { month: "short" });
-  const raceDateRangeDates = `${firstPracticeDayOfMonth} - ${raceDayOfMonth} ${raceMonth}`;
   const mainHourWeather = Number(nextRace?.localRaceDateTime.slice(11, 13)) - 1;
   const weatherTemp = raceDayTrackWeather?.hourly[mainHourWeather].temp;
   const rainProb = raceDayTrackWeather?.daily[0].precipitationSum;
@@ -341,15 +394,46 @@ export function CircuitDetailedWidget({
       </div>
       <div className="flex p-2 circuit-info--sub-container">
         <div className="flex flex-col">
-          <div className="flex">
-            <p className="text-sm">
-              {selectedRace.Circuit?.Location?.locality}
-            </p>
-            <p className="font-bold text-3xl">
-              {selectedRace.Circuit?.Location?.country}
-            </p>
+          <div className="flex items-center justify-around">
+            <div className="flex flex-col w-max">
+              <p className="text-sm">
+                {selectedRace.Circuit?.Location?.locality}
+              </p>
+              <p className="font-bold text-3xl">
+                {selectedRace.Circuit?.Location?.country}
+              </p>
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center w-max">
+                <p className="text-sm">Number of Laps</p>
+                <p className="font-bold text-xl">
+                  {selectedRace.additionalInfo.laps}
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center self-center justify-between"></div>
+          <div className="flex items-end w-max">
+            <p className="text-sm mr-1">Previous Pole:</p>
+            {selectedRace.previousPoleWinner?.season !== null ? (
+              <p className="text-sm">
+                {
+                  selectedRace.previousPoleWinner?.qualifyingResults?.Driver
+                    .driverId
+                }
+                ({selectedRace.previousPoleWinner?.season}) (
+                {selectedRace.previousPoleWinner?.qualifyingResults?.Q3})
+              </p>
+            ) : (
+              <p>n/a</p>
+            )}
+          </div>
+          {/* <div className="flex items-end w-max">
+            <p className="text-sm mr-1">Previous Winner:</p>
+            <p className="text-sm">
+              {selectedRace.additionalInfo.qualiRecord.driver} (
+              {selectedRace.additionalInfo.qualiRecord.year})
+            </p>
+          </div> */}
           <div className="circuit-times-table rounded-md mt-2">
             <div className="flex p-2 justify-between">
               <div className="w-[100px] font-bold">Practice 1</div>
@@ -506,7 +590,7 @@ export function CircuitDetailedWidget({
           <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm">Race Distance</p>
             <p className="font-bold text-3xl">
-              {selectedRace.additionalInfo.raceLength}
+              {selectedRace.additionalInfo.raceLength}{" "}
               <span className="text-sm">km</span>
             </p>
           </div>
