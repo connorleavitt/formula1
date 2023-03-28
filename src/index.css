@@ -219,30 +219,17 @@ main {
 }
 
 .circuit-info--main-container {
-  background-color: var(--clr-f1-gray);
-}
-
-/* .circuit-countdown--contianer {
-  background-color: var(--clr-rolex-green);
-  width: max-content;
-  color: var(--clr-f1-gray-background);
-}
-
-.circuit-countdown--contianer > h3 {
-  border-bottom: 2px solid var(--clr-rolex-gray);
-}
-
-.circuit-countdown--contianer > div > div:nth-child(2n + 2) {
-  border-left: 2px solid var(--clr-rolex-gray);
-  border-right: 2px solid var(--clr-rolex-grays);
-} */
-
-.circuit-times-table {
   background-color: var(--clr-f1-gray-background);
 }
 
+.circuit-times-table {
+  /* border: 2px solid var(--clr-f1-gray-highlighted); */
+  background-color: var(--clr-f1-gray);
+}
+
 .circuit-img--container {
-  border: 2px solid var(--clr-f1-black);
+  border: 2px solid var(--clr-f1-gray-highlighted);
+  /* background-color: var(--clr-text-light); */
 }
 
 .circuit-info--round {
@@ -251,9 +238,11 @@ main {
 
 .circuit-round > p:first-child,
 .circuit-location > p:first-child,
-.circuit-laps > p:first-child,
-.circuit-weather > p:first-child,
-.circuit-weather > div > p {
+.circuit-laps > p:first-child {
+  color: var(--clr-text-light);
+}
+
+.circuit-info--text {
   color: var(--clr-text-light);
 }
 

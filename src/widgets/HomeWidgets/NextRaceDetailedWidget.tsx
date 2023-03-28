@@ -155,6 +155,7 @@ type UpdatedSchedule = {
     numberOfTimesHeld: string;
     mostDriverWins: string;
     mostConstructorWins: string;
+    trackType: string;
     trackComments: string;
     grandPrixComments: {
       1: string;

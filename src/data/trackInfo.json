@@ -24,9 +24,10 @@
     "numberOfTimesHeld": "26",
     "mostDriverWins": "Michael Schumacher (4 wins)",
     "mostConstructorWins": "Ferrari (9 wins)",
-    "trackComments": "Street circuit; flat, quite fast and relatively easy to drive.",
+    "trackType": "Street circuit",
+    "trackComments": "Flat, quite fast and relatively easy to drive.",
     "grandPrixComments": {
-      "1": "Opened in 1953 and then closed in 1958. Re-opened in 1996. The track has changed layout a few times with the most recent allowing for faster qaulifying times.",
+      "1": "Originally opened in 1953 (closed in 1958) and re-opened in 1996. The track has changed layout a few times with the most recent allowing for faster qualifying times.",
       "2": "The circuit uses everyday sections of road that circle Albert Park Lake, a small man-altered lake just south of the Central Business District of Melbourne.",
       "3": "The flat terrain around the lake, coupled with a track design that features few true straights, means that the track is not conducive to overtaking or easy spectating unless in possession of a grandstand seat."
     },
@@ -64,7 +65,8 @@
     "numberOfTimesHeld": "11",
     "mostDriverWins": "Lewis Hamilton (5 wins)",
     "mostConstructorWins": "Mercedes (5 wins)",
-    "trackComments": "Racetrack; counter-clockwise, big climb into turn 1 with a challenging series of bends after, poor track quality",
+    "trackType": "Racetrack",
+    "trackComments": "Counter-clockwise, big climb into turn 1 with a challenging series of bends after, poor track quality",
     "grandPrixComments": {
       "1": "The circuit was the first in the United States to be purpose-built for Formula One.",
       "2": "The track features a 251-foot (77 m) observation tower that provides a 360-degree panorama of the circuit, as well as views to downtown Austin, Texas.",
@@ -104,7 +106,8 @@
     "numberOfTimesHeld": "20",
     "mostDriverWins": "Lewis Hamilton (5 wins)",
     "mostConstructorWins": "Ferrari (7 wins)",
-    "trackComments": "Racetrack; starts and finishes strong, but the entire middle of the lap leaves viewers in a fugue state of confusion",
+    "trackType": "Racetrack",
+    "trackComments": "Starts and finishes strong, but the entire middle of the lap leaves viewers in a fugue state of confusion",
     "grandPrixComments": {
       "1": "The 2004 Grand Prix was the first held in the Middle East.",
       "2": "In 2020 the circuit hosted two Grands Prix, the Bahrain and Sakhir Grands Prix, after the calendar was revised following the COVID-19 pandemic with the second using an alternative layout."
@@ -143,7 +146,8 @@
     "numberOfTimesHeld": "5",
     "mostDriverWins": "Daniel Ricciardo (1 win), Lewis Hamilton (1 win), Valtteri Bottas (1 win), Sergio Pérez (1 win), Max Verstappen (1 win)",
     "mostConstructorWins": "Red Bull (3 wins)",
-    "trackComments": "Street circuit; counter-clockwise, long straights, slow technical sections and no margin for error due to the proximity of the walls (90 deg bends)",
+    "trackType": "Street circuit",
+    "trackComments": "Counter-clockwise, long straights, slow technical sections and no margin for error due to the proximity of the walls (90 deg bends)",
     "grandPrixComments": {
       "1": "The circuit starts adjacent to Azadliq Square, then loops around Government House before heading west along a 1 km (0.62 mi) straight to the Palace of the Shirvanshahs and Maiden Tower.",
       "2": "Third longest track of the calendar; no Formula 1 driver has ever won in Baku twice so far."
@@ -182,7 +186,8 @@
     "numberOfTimesHeld": "33",
     "mostDriverWins": "Michael Schumacher (6 wins), Lewis Hamilton (6 wins)",
     "mostConstructorWins": "Ferrari (8 wins)",
-    "trackComments": "Racetrack; changeable conditions with wind, has long straights and a variety of corners, considered to be boring for racing",
+    "trackType": "Racetrack",
+    "trackComments": "Changeable conditions with wind, has long straights and a variety of corners, considered to be boring for racing",
     "grandPrixComments": {
       "1": "Starting from pole position seems important here, since 70% of all races were won from pole.",
       "2": "Pre-season testing occurs here.",
@@ -222,7 +227,8 @@
     "numberOfTimesHeld": "38",
     "mostDriverWins": "Lewis Hamilton (8 wins)",
     "mostConstructorWins": "McLaren (11 wins)",
-    "trackComments": "Racetrack; twisty and bumpy nature, overtaking very difficult in dry conditions. First couple corners are most exciting.",
+    "trackType": "Racetrack",
+    "trackComments": "Twisty and bumpy nature, overtaking very difficult in dry conditions. First couple corners are most exciting.",
     "grandPrixComments": {
       "1": "The first race was held on 24 March 1986, in memory of János Drapál, the first Hungarian who won motorcycle Grand Prix races.",
       "2": "As the circuit is in a valley about 80 percent of it can be seen from any point.",
@@ -262,7 +268,8 @@
     "numberOfTimesHeld": "31",
     "mostDriverWins": "Michael Schumacher (7 wins)",
     "mostConstructorWins": "Ferrari (8 wins), Williams (8 wins)",
-    "trackComments": "Racetrack; counter-clockwise, old-school design that feels ever so slightly too small for modern F1 cars",
+    "trackType": "Racetrack",
+    "trackComments": "Counter-clockwise, old-school design that feels ever so slightly too small for modern F1 cars",
     "grandPrixComments": {
       "1": "The circuit is near the Italian town of Imola, 40 kilometres (24.9 mi) east of Bologna and 80 kilometres (49.7 mi) east of the Ferrari factory in Maranello. The circuit is named after Ferrari's late founder Enzo and his son Dino who had died in the 1950s.",
       "2": "In the 1994 San Marino Grand Prix, during Saturday qualifying Austrian Roland Ratzenberger crashed head-on into a wall at over 310 km/h (190 mph) at the Villeneuve corner after his Simtek lost the front wing, dying instantly from a basilar skull fracture. The tragedy continued the next day when the three-time World Champion Ayrton Senna lost control of his car and crashed into the concrete wall at the Tamburello corner on Lap 7. Senna died in the hospital several hours after his crash."
@@ -301,7 +308,8 @@
     "numberOfTimesHeld": "40",
     "mostDriverWins": "Michael Schumacher (4 wins)",
     "mostConstructorWins": "Ferrari (9 wins)",
-    "trackComments": "Racetrack; counter-clockwise, frequent elevation changes, changing camber, and natural flow",
+    "trackType": "Racetrack",
+    "trackComments": "Counter-clockwise, frequent elevation changes, changing camber, and natural flow",
     "grandPrixComments": {
       "1": "Autódromo José Carlos Pace, also known by its former name Interlagos, is a motorsport circuit located in the city of São Paulo, in the neighborhood of Interlagos, renamed after Carlos Pace, a Brazilian Formula One driver who had died in a 1977 plane crash.",
       "2": "The traditional name of the circuit (literally, 'between lakes') comes from its location on the neighborhood of Interlagos, a region between two large artificial lakes, Guarapiranga and Billings, which were built in the early 20th century to supply the city with water and electric power."
@@ -340,7 +348,8 @@
     "numberOfTimesHeld": "3",
     "mostDriverWins": "Lewis Hamilton (1 win), Max Verstappen (1 win), Sergio Pérez (1 win)",
     "mostConstructorWins": "Red Bull (2 wins)",
-    "trackComments": "Street circuit; high speed, tight corners",
+    "trackType": "Street circuit",
+    "trackComments": "High speed, tight corners",
     "grandPrixComments": {
       "1": "Named as the 'fastest street track' on the Formula One calendar with Formula One cars simulated to have average speeds in excess of 250 km/h (160 mph), the track is the second-longest track on the Formula One calendar, with only Spa-Francorchamps being longer.",
       "2": "The circuit is located on the Jeddah Corniche adjoining the Red Sea.",
@@ -380,7 +389,8 @@
     "numberOfTimesHeld": "1",
     "mostDriverWins": "Lewis Hamilton (1 win)",
     "mostConstructorWins": "Mercedes (1 win)",
-    "trackComments": "Racetrack; nighttime, likely a one-stop race",
+    "trackType": "Racetrack",
+    "trackComments": "Nighttime, likely a one-stop race",
     "grandPrixComments": {
       "1": "Built in just under a year by 1,000 workers at the cost of US$58 million, the track opened in 2004, named Losail International Circuit, to the inaugural 2004 Qatar motorcycle Grand Prix.",
       "2": "It is surrounded by artificial grass to stop the sand encroaching on the track. ",
@@ -420,7 +430,8 @@
     "numberOfTimesHeld": "14",
     "mostDriverWins": "Sebastian Vettel (5 wins)",
     "mostConstructorWins": "Mercedes (4 wins), Red Bull (4 wins)",
-    "trackComments": "Street circuit; nighttime, unexpectedly physical, reprofiled frequently but still excessively bumpy",
+    "trackType": "Street circuit",
+    "trackComments": "Nighttime, unexpectedly physical, reprofiled frequently but still excessively bumpy",
     "grandPrixComments": {
       "1": "The circuit holds a unique record of having safety car appearance in every race to date. There has been a total of 17 safety car deployments in ten races.",
       "2": "For the purpose of the night race, approximately 1600 custom-made floodlights are spread around the 5.067 km (3.148 mi) Marina Bay circuit. The lights, four times brighter than at a regular sports stadium, are specially designed to minimize glare and surface reflection, and to meet F1's TV broadcasting standards.",
@@ -460,7 +471,8 @@
     "numberOfTimesHeld": "1",
     "mostDriverWins": "Max Verstappen (1 win)",
     "mostConstructorWins": "Red Bull (1 win)",
-    "trackComments": "Racetrack; high track temps, low grip, hard to overtake",
+    "trackType": "Racetrack",
+    "trackComments": "High track temps, low grip, hard to overtake",
     "grandPrixComments": {
       "1": "The circuit is on the private grounds of Hard Rock Stadium, and uses new and existing roads within.",
       "2": "The circuit is a temporary circuit, and does not use any public streets that are located around Hard Rock Stadium, though it does cross public roads. Each year and a few weeks before the race weekend, the circuit and its safety features are assembled just for the race weekend."
@@ -499,7 +511,8 @@
     "numberOfTimesHeld": "79",
     "mostDriverWins": "Ayrton Senna (6)",
     "mostConstructorWins": "McLaren (15)",
-    "trackComments": "Street circuit; many elevation changes, tight corners, and a narrow course.",
+    "trackType": "Street circuit",
+    "trackComments": "Many elevation changes, tight corners / narrow course, a blinding tunnel exit, hard to overtake. Qualification position is very important here.",
     "grandPrixComments": {
       "1": "One of the races—along with the Indianapolis 500 and the 24 Hours of Le Mans—that form the Triple Crown of Motorsport.",
       "2": "Predates F1, first held in 1929.",
@@ -539,7 +552,8 @@
     "numberOfTimesHeld": "73",
     "mostDriverWins": "Michael Schumacher (5 wins), Lewis Hamilton (5 wins)",
     "mostConstructorWins": "Ferrari (19 wins)",
-    "trackComments": "Racetrack; simple / old-school, high speed, good overtaking opportunities, big bends and long straights",
+    "trackType": "Racetrack",
+    "trackComments": "Simple / old-school, high speed, good overtaking opportunities, big bends and long straights",
     "grandPrixComments": {
       "1": "Built in 1922, it was the world's third purpose-built motor racing circuit after Brooklands and Indianapolis and the oldest in mainland Europe.",
       "2": "A very fast circuit, Monza has been the site of many fatal accidents, especially in the early years of the Formula One world championship, and has claimed the lives of 52 drivers and 35 spectators."
@@ -578,7 +592,8 @@
     "numberOfTimesHeld": "37",
     "mostDriverWins": "Max Verstappen (5 wins)",
     "mostConstructorWins": "McLaren (6 wins), Mercedes (6 wins)",
-    "trackComments": "Racetrack; short length with long straights and heavy braking zones, great elevation changes",
+    "trackType": "Racetrack",
+    "trackComments": "Short length with long straights and heavy braking zones, great elevation changes",
     "grandPrixComments": {
       "1": "Originally built in 1969 to replace the bland and bumpy Zeltweg Airfield circuit located just across the street, the Österreichring track was situated in the Styrian mountains and it was a visually spectacular and scenic circuit. ",
       "2": "The current layout was updated in 2016, having been re-built in 2008 by Red Bull. Previously Red Bull Ring (2011–2016), A1-Ring (1996-2004) and Österreichring (Original Circuit) (1969-1995)."
@@ -617,7 +632,8 @@
     "numberOfTimesHeld": "23",
     "mostDriverWins": "Max Verstappen (4 wins)",
     "mostConstructorWins": "Red Bull (4 wins)",
-    "trackComments": "Racetrack hybrid; fast final corner, long start / finish straight",
+    "trackType": "Racetrack hybrid",
+    "trackComments": "Fast final corner, long start / finish straight",
     "grandPrixComments": {
       "1": "The circuit has an elevation of 2,238 m (7,342 ft); the thin air causes difficulties for both the drivers and their cars. It also reduces the levels of aerodynamic drag that cars experience, meaning that higher downforce setups can be used with less impact on straight-line speed.",
       "2": "Part street track, part permanent facility, part baseball stadium, Mexico City's grand prix circuit is a strange hybrid with multiple characteristics."
@@ -656,7 +672,8 @@
     "numberOfTimesHeld": "58",
     "mostDriverWins": "Lewis Hamilton (8 wins)",
     "mostConstructorWins": "Ferrari (15 wins)",
-    "trackComments": "Racetrack; some areas of high speed with iconic bends, feels too long",
+    "trackType": "Racetrack",
+    "trackComments": "Some areas of high speed with iconic bends, feels too long",
     "grandPrixComments": {
       "1": "The Silverstone circuit is on the site of a Royal Air Force bomber station, RAF Silverstone, which was operational between 1943 and 1946.",
       "2": "In December 2020 the BRDC named the pit straight after Lewis Hamilton in recognition of his achievements. This is the first time in the circuit's history that an area of the track has been named after an individual."
@@ -695,7 +712,8 @@
     "numberOfTimesHeld": "56",
     "mostDriverWins": "Michael Schumacher (6 wins)",
     "mostConstructorWins": "Ferrari (14 wins)",
-    "trackComments": "Racetrack; large elevation changes, hard to overtake",
+    "trackType": "Racetrack",
+    "trackComments": "Large elevation changes, hard to overtake, potential for rain",
     "grandPrixComments": {
       "1": "Despite its name, the circuit is not in Spa but lies in the vicinity of the town of Francorchamps within the boundaries of the municipality of Stavelot, with a part in the boundaries of Malmedy.",
       "2": "During the Formula 2 feature race in late August in 2019, a serious incident between Anthoine Hubert and Juan Manuel Correa occurred shortly after Raidillon on the Kemmel Straight which resulted in the death of Hubert and serious injury to Correa."
@@ -734,7 +752,8 @@
     "numberOfTimesHeld": "33",
     "mostDriverWins": "Michael Schumacher (6 wins)",
     "mostConstructorWins": "Ferrari (7 wins), McLaren (7 wins)",
-    "trackComments": "Racetrack; fast, beautiful and flowing race track, track crosses itself with an overpass",
+    "trackType": "Racetrack",
+    "trackComments": "Fast, beautiful and flowing race track, track crosses itself with an overpass",
     "grandPrixComments": {
       "1": "Designed as a Honda test track in 1962 by Dutchman John 'Hans' Hugenholtz, the most iconic feature of the track is its 'figure eight' layout, with the 1.2 km (0.75 mi) long back straight passing over the front section by means of an overpass. It is one of only two FIA Grade 1 licensed tracks to have a 'figure eight' layout, the other one being the Fiorano Circuit.",
       "2": "At the 2014 Japanese Grand Prix, F1 driver Jules Bianchi suffered serious injuries after colliding with a recovery vehicle, and died in hospital as a result nine months later."
@@ -773,7 +792,8 @@
     "numberOfTimesHeld": "0",
     "mostDriverWins": "n/a",
     "mostConstructorWins": "n/a",
-    "trackComments": "Street circuit; counter-clockwise, tight series of corners, fast bends, long straight",
+    "trackType": "Street circuit",
+    "trackComments": "Counter-clockwise, tight series of corners, fast bends, long straight",
     "grandPrixComments": {
       "1": "The 2023 Grand Prix event will mark the first time Formula One races in Las Vegas since the 1982 Caesars Palace Grand Prix. The event is due to take place around the Las Vegas Strip.",
       "2": "It mark the first time since 1982 that there will be three races held in the United States in a Formula One season. "
@@ -812,7 +832,8 @@
     "numberOfTimesHeld": "42",
     "mostDriverWins": "Lewis Hamilton (7 wins), Michael Schumacher (7 wins)",
     "mostConstructorWins": "Ferrari (11 wins)",
-    "trackComments": "Racetrack; tight barriers, good overtaking areas with a 180 deg hairpin and complex 'S' turns.",
+    "trackType": "Racetrack",
+    "trackComments": "Tight barriers, good overtaking areas with a 180 deg hairpin and complex 'S' turns.",
     "grandPrixComments": {
       "1": "The Canadian Grand Prix was first held at the circuit in 1978, where hometown hero Gilles Villeneuve (1950-1982) won for Scuderia Ferrari. The Grand Prix quickly became a mainstay of the Formula One calendar, with the race taking place in Montreal for the next thirty years.",
       "2": "Once held in late September, the event was moved to its present location on the calendar of mid-June in 1982, so as to provide a warmer, more pleasant race weekend."
@@ -851,7 +872,8 @@
     "numberOfTimesHeld": "15",
     "mostDriverWins": "Lewis Hamilton (5 wins)",
     "mostConstructorWins": "Red Bull (6 wins), Mercedes (6 wins)",
-    "trackComments": "Racetrack; nighttime, long straights, few overtaking areas, unique corners",
+    "trackType": "Racetrack",
+    "trackComments": "Nighttime, long straights, few overtaking areas, unique corners",
     "grandPrixComments": {
       "1": "The circuit is located on Yas Island, a headland that was cut off from the mainland by a canal.",
       "2": "Yas Marina was the second of four Formula One tracks in the Middle East, with the first being in Bahrain and subsequent tracks in Qatar and Saudi Arabia. "
@@ -890,7 +912,8 @@
     "numberOfTimesHeld": "33",
     "mostDriverWins": "Jim Clark (4 wins)",
     "mostConstructorWins": "Ferrari (8 wins)",
-    "trackComments": "Racetrack; fast, sweeping corners, opening corner is a hairpin with camber which provides excellent overtaking opportunities",
+    "trackType": "Racetrack",
+    "trackComments": "Fast, sweeping corners, opening corner is a hairpin with camber which provides excellent overtaking opportunities",
     "grandPrixComments": {
       "1": "Located in the dunes north of Zandvoort, the Netherlands, near the North Sea coast line.",
       "2": "To solve a number of problems that had made it impossible to develop and upgrade the track, the most important one being noise pollution for the inhabitants of the part of Zandvoort closest to the track, the track management adopted and developed a plan to move the most southern part of the track away from the housing estate and rebuild a more compact track in the remaining former 'infield'."

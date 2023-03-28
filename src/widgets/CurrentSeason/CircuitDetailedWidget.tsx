@@ -69,6 +69,7 @@ type RaceSchedule = {
     numberOfTimesHeld: string;
     mostDriverWins: string;
     mostConstructorWins: string;
+    trackType: string;
     trackComments: string;
     grandPrixComments: {
       1: string;
@@ -345,7 +346,7 @@ export function CircuitDetailedWidget({
     <div className="flex flex-col circuit-info--main-container mb-4 rounded-2xl">
       <div className="relative circuit-info--hero-container w-full h-[200px] ">
         <img
-          className="h-full w-full object-cover rounded-t-2xl opacity-70"
+          className="h-full w-full object-cover object-bottom rounded-t-2xl opacity-70"
           src={selectedRace.additionalInfo.heroImgUrl}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
@@ -391,239 +392,332 @@ export function CircuitDetailedWidget({
             </div>
           )}
         </div>
+        <div className="absolute bottom-6 right-28 mr-1 text-white flex flex-col items-end">
+          <p className="text-lg leading-4 mr-1">
+            {selectedRace.Circuit?.Location?.locality}
+          </p>
+          <p className="text-4xl leading-8 font-bold">
+            {selectedRace.Circuit?.Location?.country}
+          </p>
+        </div>
       </div>
-      <div className="flex p-2 circuit-info--sub-container">
-        <div className="flex flex-col">
-          <div className="flex items-center justify-around">
-            <div className="flex flex-col w-max">
-              <p className="text-sm">
-                {selectedRace.Circuit?.Location?.locality}
-              </p>
+      <div className="flex p-4 gap-4 circuit-info--sub-container justify-between">
+        <div className="flex flex-col w-2/5 justify-between">
+          <div className="flex flex-wrap gap-4">
+            <div className="flex-grow circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Events Held</p>
               <p className="font-bold text-3xl">
-                {selectedRace.Circuit?.Location?.country}
+                {selectedRace.additionalInfo.numberOfTimesHeld}
               </p>
             </div>
-            <div className="flex flex-col">
-              <div className="flex items-center w-max">
-                <p className="text-sm">Number of Laps</p>
-                <p className="font-bold text-xl">
-                  {selectedRace.additionalInfo.laps}
-                </p>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">First Grand Prix</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.firstGrandPrix}
+              </p>
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Number of Laps</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.laps}
+              </p>
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Circuit Length</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.circuitLength}{" "}
+                <span className="text-base font-normal">km</span>
+              </p>
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Race Distance</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.raceLength}{" "}
+                <span className="text-base font-normal">km</span>
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <h4 className="ml-1 circuit-info--text">Grand Prix Time Chart</h4>
+            <div className="circuit-times-table rounded-md mt-2">
+              <div className="flex p-2 justify-between">
+                <div className="w-[100px] font-bold">Practice 1</div>
+                <div className="w-[100px] text-center">
+                  {new Date(firstPracticeDate).toLocaleString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </div>
+                <div className="w-[120px] text-right">
+                  {new Date(firstPracticeDate).toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                    timeZoneName: "short",
+                  })}
+                </div>
+              </div>
+              <div className="flex p-2 justify-between">
+                <div className="w-[100px] font-bold">Practice 2</div>
+                <div className="w-[100px] text-center">
+                  {new Date(secondPracticeDate).toLocaleString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </div>
+                <div className="w-[120px] text-right">
+                  {new Date(secondPracticeDate).toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                    timeZoneName: "short",
+                  })}
+                </div>
+              </div>
+              {selectedRace.ThirdPractice && (
+                <div className="flex p-2 justify-between">
+                  <div className="w-[100px] font-bold">Practice 3</div>
+                  <div className="w-[100px] text-center">
+                    {new Date(
+                      selectedRace.ThirdPractice.date +
+                        "T" +
+                        selectedRace.ThirdPractice.time
+                    ).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(
+                      selectedRace.ThirdPractice.date +
+                        "T" +
+                        selectedRace.ThirdPractice.time
+                    ).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
+                </div>
+              )}
+              <div className="flex p-2 justify-between">
+                <div className="w-[100px] font-bold">Qualifying</div>
+                <div className="w-[100px] text-center">
+                  {new Date(qualifyingDate).toLocaleString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </div>
+                <div className="w-[120px] text-right">
+                  {new Date(qualifyingDate).toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                    timeZoneName: "short",
+                  })}
+                </div>
+              </div>
+              {selectedRace.Sprint && (
+                <div className="flex p-2 justify-between">
+                  <div className="w-[100px] font-bold">Sprint</div>
+                  <div className="w-[100px] text-center">
+                    {new Date(
+                      parseISO(
+                        selectedRace.Sprint.date +
+                          "T" +
+                          selectedRace.Sprint.time
+                      )
+                    ).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(
+                      parseISO(
+                        selectedRace.Sprint.date +
+                          "T" +
+                          selectedRace.Sprint.time
+                      )
+                    ).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
+                </div>
+              )}
+              <div className="flex p-2 justify-between">
+                <div className="w-[100px] font-bold">Race</div>
+                <div className="w-[100px] text-center">
+                  {new Date(raceDate).toLocaleString("en-US", {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </div>
+                <div className="w-[120px] text-right">
+                  {new Date(raceDate).toLocaleString("en-US", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    hour12: true,
+                    timeZoneName: "short",
+                  })}
+                </div>
               </div>
             </div>
           </div>
-          <div className="flex items-end w-max">
-            <p className="text-sm mr-1">Previous Pole:</p>
+        </div>
+        <div className="flex flex-col w-3/5">
+          <div className="circuit-img--container p-4 rounded-md">
+            <img
+              src={selectedRace.additionalInfo.imgUrl}
+              alt={selectedRace.Circuit.circuitName}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="px-4">
+        <h4>Historical</h4>
+        <div className="flex">
+          <div className="my-2 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Previous Pole</p>
             {selectedRace.previousPoleWinner?.season !== null ? (
-              <p className="text-sm">
-                {
-                  selectedRace.previousPoleWinner?.qualifyingResults?.Driver
-                    .driverId
-                }
-                ({selectedRace.previousPoleWinner?.season}) (
-                {selectedRace.previousPoleWinner?.qualifyingResults?.Q3})
+              <p className="text-3xl font-bold">
+                {selectedRace.previousPoleWinner?.qualifyingResults?.Q3}{" "}
+                <span className="text-sm font-normal">
+                  {
+                    selectedRace.previousPoleWinner?.qualifyingResults?.Driver
+                      .givenName
+                  }{" "}
+                  {
+                    selectedRace.previousPoleWinner?.qualifyingResults?.Driver
+                      .familyName
+                  }{" "}
+                  ({selectedRace.previousPoleWinner?.season})
+                </span>
               </p>
             ) : (
-              <p>n/a</p>
+              <p className="text-sm">n/a</p>
             )}
           </div>
-          {/* <div className="flex items-end w-max">
-            <p className="text-sm mr-1">Previous Winner:</p>
-            <p className="text-sm">
-              {selectedRace.additionalInfo.qualiRecord.driver} (
-              {selectedRace.additionalInfo.qualiRecord.year})
-            </p>
-          </div> */}
-          <div className="circuit-times-table rounded-md mt-2">
-            <div className="flex p-2 justify-between">
-              <div className="w-[100px] font-bold">Practice 1</div>
-              <div className="w-[100px] text-center">
-                {new Date(firstPracticeDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[100px] text-right">
-                {new Date(firstPracticeDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-              </div>
-            </div>
-            <div className="flex p-2 justify-between">
-              <div className="w-[100px] font-bold">Practice 2</div>
-              <div className="w-[100px] text-center">
-                {new Date(secondPracticeDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[100px] text-right">
-                {new Date(secondPracticeDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-              </div>
-            </div>
-            {selectedRace.ThirdPractice && (
-              <div className="flex p-2 justify-between">
-                <div className="w-[100px] font-bold">Practice 3</div>
-                <div className="w-[100px] text-center">
-                  {new Date(
-                    selectedRace.ThirdPractice.date +
-                      "T" +
-                      selectedRace.ThirdPractice.time
-                  ).toLocaleString("en-US", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </div>
-                <div className="w-[100px] text-right">
-                  {new Date(
-                    selectedRace.ThirdPractice.date +
-                      "T" +
-                      selectedRace.ThirdPractice.time
-                  ).toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                  })}
-                </div>
-              </div>
+          <div className="my-2 circuit-laps border-r-2 border-b-2 pl-2 pb-1 rounded-br-2xl border-gray-300">
+            <p className="text-sm">Fastest qualifying record</p>
+            {selectedRace.previousPoleWinner?.season !== null ? (
+              <p className="text-3xl font-bold">
+                {selectedRace.additionalInfo.qualiRecord.time}{" "}
+                <span className="text-sm font-normal">
+                  {selectedRace.additionalInfo.qualiRecord.driver} (
+                  {selectedRace.additionalInfo.qualiRecord.year})
+                </span>
+              </p>
+            ) : (
+              <p className="text-sm">n/a</p>
             )}
-            <div className="flex p-2 justify-between">
-              <div className="w-[100px] font-bold">Qualifying</div>
-              <div className="w-[100px] text-center">
-                {new Date(qualifyingDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[100px] text-right">
-                {new Date(qualifyingDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-              </div>
-            </div>
-            {selectedRace.Sprint && (
-              <div className="flex p-2 justify-between">
-                <div className="w-[100px] font-bold">Sprint</div>
-                <div className="w-[100px] text-center">
-                  {new Date(
-                    parseISO(
-                      selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
-                    )
-                  ).toLocaleString("en-US", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                </div>
-                <div className="w-[100px] text-right">
-                  {new Date(
-                    parseISO(
-                      selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
-                    )
-                  ).toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                  })}
-                </div>
-              </div>
-            )}
-            <div className="flex p-2 justify-between">
-              <div className="w-[100px] font-bold">Race</div>
-              <div className="w-[100px] text-center">
-                {new Date(raceDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[100px] text-right">
-                {new Date(raceDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                })}
-              </div>
-            </div>
           </div>
         </div>
-        <div className="flex w-full flex-wrap justify-between">
-          <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Number of Laps</p>
-            <p className="font-bold text-3xl">
-              {selectedRace.additionalInfo.laps}
+        <div className="flex">
+          <div className="my-2 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Previous Winner</p>
+            {selectedRace.previousPoleWinner?.season !== null ? (
+              <p className="text-3xl font-bold">
+                {selectedRace.previousRaceInfo?.raceResults?.Driver.givenName}{" "}
+                {selectedRace.previousRaceInfo?.raceResults?.Driver.familyName}{" "}
+                ({selectedRace.previousRaceInfo?.season})
+              </p>
+            ) : (
+              <p className="text-sm">n/a</p>
+            )}
+          </div>
+          <div className="my-2 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Fastest lap record</p>
+            {selectedRace.previousPoleWinner?.season !== null ? (
+              <p className="text-3xl font-bold">
+                {selectedRace.additionalInfo.lapRecord.time}{" "}
+                <span className="text-sm font-normal">
+                  {selectedRace.additionalInfo.lapRecord.driver} (
+                  {selectedRace.additionalInfo.lapRecord.year})
+                </span>
+              </p>
+            ) : (
+              <p className="text-sm">n/a</p>
+            )}
+          </div>
+        </div>
+        <div className="flex">
+          <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Most Driver Wins</p>
+            <p className="font-bold text-xl">
+              {selectedRace.additionalInfo.mostDriverWins}
             </p>
           </div>
-          <div className="w-5/12 my-4 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Fastest qualifying record</p>
-            <p className="font-bold text-3xl">
-              {selectedRace.additionalInfo.qualiRecord.time}
-              {selectedRace.additionalInfo.qualiRecord.driver}
-              {selectedRace.additionalInfo.qualiRecord.year}
+          <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+            <p className="text-sm">Most Constructor Wins</p>
+            <p className="font-bold text-xl">
+              {selectedRace.additionalInfo.mostConstructorWins}
             </p>
           </div>
-          <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">First Grand Prix</p>
-            <p className="font-bold text-3xl">
-              {selectedRace.additionalInfo.firstGrandPrix}
+        </div>
+
+        <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+          <p className="text-sm">Track Type</p>
+          <p className="font-bold text-lg">
+            {selectedRace.additionalInfo.trackType}
+          </p>
+        </div>
+        <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+          <p className="text-sm">Track Comments</p>
+          <p className="font-bold text-lg">
+            {selectedRace.additionalInfo.trackComments}
+          </p>
+        </div>
+        <div className="circuit-round my-10">
+          <p className="text-base border-b-2 border-gray-300">
+            Grand Prix Comments
+          </p>
+          <p className="text-lg my-2">
+            {"1) "}
+            {selectedRace.additionalInfo.grandPrixComments[1]}
+          </p>
+          <p className="text-lg my-2">
+            {"2) "}
+            {selectedRace.additionalInfo.grandPrixComments[2]}
+          </p>
+          {selectedRace.additionalInfo.grandPrixComments[3] != null && (
+            <p className="text-lg my-2">
+              {"3) "}
+              {selectedRace.additionalInfo.grandPrixComments[3]}
             </p>
-          </div>
-          <div className="w-5/12 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Circuit Length</p>
-            <p className="font-bold text-3xl">
-              {selectedRace.additionalInfo.circuitLength}{" "}
-              <span className="text-sm">km</span>
-            </p>
-          </div>
-          <div className="w-1/2 my-4 circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Race Distance</p>
-            <p className="font-bold text-3xl">
-              {selectedRace.additionalInfo.raceLength}{" "}
-              <span className="text-sm">km</span>
-            </p>
-          </div>
-          {selectedRace.round === nextRace?.round && weatherIcon !== null && (
-            <div className="w-full my-4 circuit-weather border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Race Weather</p>
-              <div className="flex">
-                <div className="text-3xl mr-2 font-bold">
-                  {weatherTemp}&deg;
-                </div>
-                <div className="w-[40px] h-full self-center">
-                  <svg
-                    // className=""
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox={weatherIcon?.viewBox}
-                  >
-                    <path d={weatherIcon?.d} />
-                  </svg>
-                </div>
-                <p className="text-xs font-light self-end mb-1 ml-1">
-                  ({rainProb} in of rain)
-                </p>
-              </div>
-            </div>
           )}
         </div>
-        <div className="circuit-img--container p-4 rounded-md">
-          <img
-            src={selectedRace.additionalInfo.imgUrl}
-            alt={selectedRace.Circuit.circuitName}
-          />
-        </div>
       </div>
+      {selectedRace.round === nextRace?.round && weatherIcon !== null && (
+        <div className="circuit-weather flex flex-col pl-2 pb-1">
+          <p className="text-sm circuit-info--text">Race Weather</p>
+          <div className="flex my-1">
+            <div className="text-2xl mr-2 font-bold">{weatherTemp}&deg;</div>
+            <div className="w-[40px] h-full self-center">
+              <svg
+                // className=""
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox={weatherIcon?.viewBox}
+              >
+                <path d={weatherIcon?.d} />
+              </svg>
+            </div>
+          </div>
+          <p className="text-xs font-light self-end leading-3 mt-1 mr-1 circuit-info--text">
+            ({rainProb}" of rain)
+          </p>
+        </div>
+      )}
     </div>
   );
 }
