@@ -342,6 +342,11 @@ export function CircuitDetailedWidget({
   const weatherTemp = raceDayTrackWeather?.hourly[mainHourWeather].temp;
   const rainProb = raceDayTrackWeather?.daily[0].precipitationSum;
 
+  const winnerDriverArray =
+    selectedRace.additionalInfo.mostDriverWins.split(", ");
+  const winnerConstructorArray =
+    selectedRace.additionalInfo.mostConstructorWins.split(", ");
+
   return (
     <div className="flex flex-col circuit-info--main-container mb-4 rounded-2xl">
       <div className="relative circuit-info--hero-container w-full h-[200px] ">
@@ -400,43 +405,29 @@ export function CircuitDetailedWidget({
             {selectedRace.Circuit?.Location?.country}
           </p>
         </div>
+        {selectedRace.round === nextRace?.round && weatherIcon !== null && (
+          <div className="absolute text-white bottom-20  right-6 circuit-weather flex flex-col">
+            <p className="text-sm">Race Weather</p>
+            <div className="flex">
+              <div className="text-2xl mr-2 font-bold">{weatherTemp}&deg;</div>
+              <div className="w-[40px] h-full self-center">
+                <svg
+                  className="fill-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox={weatherIcon?.viewBox}
+                >
+                  <path d={weatherIcon?.d} />
+                </svg>
+              </div>
+            </div>
+            <p className="text-xs font-light self-end leading-3 mt-1 mr-1">
+              ({rainProb}" of rain)
+            </p>
+          </div>
+        )}
       </div>
       <div className="flex p-4 gap-4 circuit-info--sub-container justify-between">
         <div className="flex flex-col w-2/5 justify-between">
-          <div className="flex flex-wrap gap-4">
-            <div className="flex-grow circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Events Held</p>
-              <p className="font-bold text-3xl">
-                {selectedRace.additionalInfo.numberOfTimesHeld}
-              </p>
-            </div>
-            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">First Grand Prix</p>
-              <p className="font-bold text-3xl">
-                {selectedRace.additionalInfo.firstGrandPrix}
-              </p>
-            </div>
-            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Number of Laps</p>
-              <p className="font-bold text-3xl">
-                {selectedRace.additionalInfo.laps}
-              </p>
-            </div>
-            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Circuit Length</p>
-              <p className="font-bold text-3xl">
-                {selectedRace.additionalInfo.circuitLength}{" "}
-                <span className="text-base font-normal">km</span>
-              </p>
-            </div>
-            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Race Distance</p>
-              <p className="font-bold text-3xl">
-                {selectedRace.additionalInfo.raceLength}{" "}
-                <span className="text-base font-normal">km</span>
-              </p>
-            </div>
-          </div>
           <div className="flex flex-col">
             <h4 className="ml-1 circuit-info--text">Grand Prix Time Chart</h4>
             <div className="circuit-times-table rounded-md mt-2">
@@ -574,150 +565,216 @@ export function CircuitDetailedWidget({
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex flex-col w-3/5">
-          <div className="circuit-img--container p-4 rounded-md">
-            <img
-              src={selectedRace.additionalInfo.imgUrl}
-              alt={selectedRace.Circuit.circuitName}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="px-4">
-        <h4>Historical</h4>
-        <div className="flex">
-          <div className="my-2 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Previous Pole</p>
-            {selectedRace.previousPoleWinner?.season !== null ? (
-              <p className="text-3xl font-bold">
-                {selectedRace.previousPoleWinner?.qualifyingResults?.Q3}{" "}
-                <span className="text-sm font-normal">
-                  {
-                    selectedRace.previousPoleWinner?.qualifyingResults?.Driver
-                      .givenName
-                  }{" "}
-                  {
-                    selectedRace.previousPoleWinner?.qualifyingResults?.Driver
-                      .familyName
-                  }{" "}
-                  ({selectedRace.previousPoleWinner?.season})
-                </span>
+          <div className="flex flex-wrap gap-4 my-4">
+            <div className="flex-grow circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Events Held</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.numberOfTimesHeld}
               </p>
-            ) : (
-              <p className="text-sm">n/a</p>
-            )}
-          </div>
-          <div className="my-2 circuit-laps border-r-2 border-b-2 pl-2 pb-1 rounded-br-2xl border-gray-300">
-            <p className="text-sm">Fastest qualifying record</p>
-            {selectedRace.previousPoleWinner?.season !== null ? (
-              <p className="text-3xl font-bold">
-                {selectedRace.additionalInfo.qualiRecord.time}{" "}
-                <span className="text-sm font-normal">
-                  {selectedRace.additionalInfo.qualiRecord.driver} (
-                  {selectedRace.additionalInfo.qualiRecord.year})
-                </span>
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">First Grand Prix</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.firstGrandPrix}
               </p>
-            ) : (
-              <p className="text-sm">n/a</p>
-            )}
-          </div>
-        </div>
-        <div className="flex">
-          <div className="my-2 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Previous Winner</p>
-            {selectedRace.previousPoleWinner?.season !== null ? (
-              <p className="text-3xl font-bold">
-                {selectedRace.previousRaceInfo?.raceResults?.Driver.givenName}{" "}
-                {selectedRace.previousRaceInfo?.raceResults?.Driver.familyName}{" "}
-                ({selectedRace.previousRaceInfo?.season})
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Number of Laps</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.laps}
               </p>
-            ) : (
-              <p className="text-sm">n/a</p>
-            )}
-          </div>
-          <div className="my-2 circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Fastest lap record</p>
-            {selectedRace.previousPoleWinner?.season !== null ? (
-              <p className="text-3xl font-bold">
-                {selectedRace.additionalInfo.lapRecord.time}{" "}
-                <span className="text-sm font-normal">
-                  {selectedRace.additionalInfo.lapRecord.driver} (
-                  {selectedRace.additionalInfo.lapRecord.year})
-                </span>
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Circuit Length</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.circuitLength}{" "}
+                <span className="text-base font-normal">km</span>
               </p>
-            ) : (
-              <p className="text-sm">n/a</p>
-            )}
-          </div>
-        </div>
-        <div className="flex">
-          <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Most Driver Wins</p>
-            <p className="font-bold text-xl">
-              {selectedRace.additionalInfo.mostDriverWins}
-            </p>
-          </div>
-          <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-            <p className="text-sm">Most Constructor Wins</p>
-            <p className="font-bold text-xl">
-              {selectedRace.additionalInfo.mostConstructorWins}
-            </p>
-          </div>
-        </div>
-
-        <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-          <p className="text-sm">Track Type</p>
-          <p className="font-bold text-lg">
-            {selectedRace.additionalInfo.trackType}
-          </p>
-        </div>
-        <div className="circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-          <p className="text-sm">Track Comments</p>
-          <p className="font-bold text-lg">
-            {selectedRace.additionalInfo.trackComments}
-          </p>
-        </div>
-        <div className="circuit-round my-10">
-          <p className="text-base border-b-2 border-gray-300">
-            Grand Prix Comments
-          </p>
-          <p className="text-lg my-2">
-            {"1) "}
-            {selectedRace.additionalInfo.grandPrixComments[1]}
-          </p>
-          <p className="text-lg my-2">
-            {"2) "}
-            {selectedRace.additionalInfo.grandPrixComments[2]}
-          </p>
-          {selectedRace.additionalInfo.grandPrixComments[3] != null && (
-            <p className="text-lg my-2">
-              {"3) "}
-              {selectedRace.additionalInfo.grandPrixComments[3]}
-            </p>
-          )}
-        </div>
-      </div>
-      {selectedRace.round === nextRace?.round && weatherIcon !== null && (
-        <div className="circuit-weather flex flex-col pl-2 pb-1">
-          <p className="text-sm circuit-info--text">Race Weather</p>
-          <div className="flex my-1">
-            <div className="text-2xl mr-2 font-bold">{weatherTemp}&deg;</div>
-            <div className="w-[40px] h-full self-center">
-              <svg
-                // className=""
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox={weatherIcon?.viewBox}
-              >
-                <path d={weatherIcon?.d} />
-              </svg>
+            </div>
+            <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
+              <p className="text-sm">Race Distance</p>
+              <p className="font-bold text-3xl">
+                {selectedRace.additionalInfo.raceLength}{" "}
+                <span className="text-base font-normal">km</span>
+              </p>
             </div>
           </div>
-          <p className="text-xs font-light self-end leading-3 mt-1 mr-1 circuit-info--text">
-            ({rainProb}" of rain)
-          </p>
+          <div className="flex flex-col">
+            {/* <div className="">
+              <h4 className="text-2xl my-2 font-bold">Historical</h4>
+            </div> */}
+            <div className="flex flex-col justify-end pl-1">
+              <div className="flex flex-col gap-2 mb-4">
+                <h5 className="text-lg border-b-2 border-gray-200">
+                  Qualifying
+                </h5>
+                <div className="flex circuit-laps items-end">
+                  <p className="text-sm w-[155px] circuit-info--text">
+                    Previous Pole
+                  </p>
+                  {selectedRace.previousPoleWinner?.season !== null ? (
+                    <>
+                      <p className="w-[100px] text-xl font-bold leading-none mr-2">
+                        {selectedRace.previousPoleWinner?.qualifyingResults?.Q3}
+                        <span className="font-light text-xs">s </span>
+                      </p>
+                      <p className="text-sm font-normal">
+                        {
+                          selectedRace.previousPoleWinner?.qualifyingResults
+                            ?.Driver.givenName
+                        }{" "}
+                        {
+                          selectedRace.previousPoleWinner?.qualifyingResults
+                            ?.Driver.familyName
+                        }{" "}
+                        ({selectedRace.previousPoleWinner?.season})
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm">n/a</p>
+                  )}
+                </div>
+                <div className="flex circuit-laps items-end">
+                  <p className="text-sm w-[155px] circuit-info--text">
+                    Fastest Pole
+                  </p>
+                  {selectedRace.previousPoleWinner?.season !== null ? (
+                    <>
+                      <p className="w-[100px] text-xl font-bold leading-none mr-2">
+                        {selectedRace.additionalInfo.qualiRecord.time}
+                        <span className="font-light text-xs">s </span>
+                      </p>
+                      <p className="text-sm font-normal">
+                        {selectedRace.additionalInfo.qualiRecord.driver} (
+                        {selectedRace.additionalInfo.qualiRecord.year})
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm">n/a</p>
+                  )}
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h5 className="text-lg border-b-2 border-gray-200">Race</h5>
+                <div className="flex circuit-laps items-end">
+                  <p className="text-sm w-[155px] circuit-info--text">
+                    Previous Winner
+                  </p>
+                  {selectedRace.previousPoleWinner?.season !== null ? (
+                    <p className="text-xl font-bold leading-none mr-2">
+                      {
+                        selectedRace.previousRaceInfo?.raceResults?.Driver
+                          .givenName
+                      }{" "}
+                      {
+                        selectedRace.previousRaceInfo?.raceResults?.Driver
+                          .familyName
+                      }{" "}
+                      <span className="text-sm font-normal">
+                        ({selectedRace.previousRaceInfo?.season})
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="text-sm">n/a</p>
+                  )}
+                </div>
+                <div className="flex circuit-laps items-end">
+                  <p className="text-sm w-[155px] circuit-info--text">
+                    Fastest Lap
+                  </p>
+                  {selectedRace.previousPoleWinner?.season !== null ? (
+                    <>
+                      <p className="w-[100px] text-xl font-bold leading-none mr-2">
+                        {selectedRace.additionalInfo.lapRecord.time}
+                        <span className="font-light text-xs">s </span>
+                      </p>
+                      <p className="text-sm font-normal">
+                        {selectedRace.additionalInfo.lapRecord.driver} (
+                        {selectedRace.additionalInfo.lapRecord.year})
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-sm">n/a</p>
+                  )}
+                </div>
+                <div className="circuit-round flex w-max">
+                  <p className="text-sm w-[155px] circuit-info--text">
+                    Most Driver Wins
+                  </p>
+                  <ul>
+                    {winnerDriverArray.map((name) => (
+                      <li key={name} className="font-bold text-sm w-max">
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="circuit-round flex w-max">
+                  <p className="text-sm w-[155px] circuit-info--text">
+                    Most Constructor Wins
+                  </p>
+                  <ul>
+                    {winnerConstructorArray.map((name) => (
+                      <li key={name} className="font-bold text-sm w-max">
+                        {name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      )}
+        <div className="flex flex-col w-3/5">
+          <div className="circuit-img--container rounded-md">
+            <div className="p-4">
+              <img
+                src={selectedRace.additionalInfo.imgUrl}
+                alt={selectedRace.Circuit.circuitName}
+              />
+            </div>
+            <div className="px-4 mb-4 gap-4 flex flex-col">
+              <div className="circuit-round">
+                <p className="text-sm">
+                  Track Type:{" "}
+                  <span className="font-bold">
+                    {selectedRace.additionalInfo.trackType}
+                  </span>
+                </p>
+              </div>
+              <div className="circuit-round">
+                <p className="text-sm">
+                  Track Comments:{" "}
+                  <span className="font-bold">
+                    {selectedRace.additionalInfo.trackComments}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="mx-1 mt-4">
+            <p className="text-base border-b-2 border-gray-300">
+              General Comments
+            </p>
+            <ul className="ml-1">
+              <li className="text-sm w-full my-2">
+                {"1) "}
+                {selectedRace.additionalInfo.grandPrixComments[1]}
+              </li>
+              <li className="text-sm w-full my-2">
+                {"2) "}
+                {selectedRace.additionalInfo.grandPrixComments[2]}
+              </li>
+              {selectedRace.additionalInfo.grandPrixComments[3] != null && (
+                <li className="text-sm w-full my-2">
+                  {"3) "}
+                  {selectedRace.additionalInfo.grandPrixComments[3]}
+                </li>
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

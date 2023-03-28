@@ -13,6 +13,7 @@
   --clr-main-background: #ffffff;
   --clr-f1-gray-background: #f6f6f6;
   --clr-f1-gray-highlighted: #dedede;
+  --clr-f1-background: #f7f4f1;
   --clr-text-light: #66737d;
   --clr-text-mid: #24313a;
   --clr-rolex-green: #006341;
@@ -172,11 +173,11 @@ main {
 }
 
 .circuit-info--button {
-  background-color: var(--clr-f1-gray);
+  background-color: var(--clr-f1-background);
 }
 
 .circuit-info--button:hover {
-  background-color: var(--clr-f1-gray-hover);
+  background-color: var(--clr-f1-gray);
 }
 
 .circuit-info--button.selected {
@@ -224,22 +225,16 @@ main {
 
 .circuit-times-table {
   /* border: 2px solid var(--clr-f1-gray-highlighted); */
-  background-color: var(--clr-f1-gray);
+  background-color: var(--clr-main-background);
 }
 
 .circuit-img--container {
   border: 2px solid var(--clr-f1-gray-highlighted);
-  /* background-color: var(--clr-text-light); */
+  background-color: var(--clr-main-background);
 }
 
 .circuit-info--round {
   background-color: var(--clr-f1-red);
-}
-
-.circuit-round > p:first-child,
-.circuit-location > p:first-child,
-.circuit-laps > p:first-child {
-  color: var(--clr-text-light);
 }
 
 .circuit-info--text {
