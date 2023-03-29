@@ -74,7 +74,10 @@ export function Home({ screenWidth }: ScreenWidthProps) {
         <div className="home-mobile m-6">
           <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
           <FantasyMainScoreboardLeader screenWidth={screenWidth} />
-          <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
+          <NextRaceDetailedWidget
+            raceSchedule={raceSchedule as any}
+            screenWidth={screenWidth}
+          />
         </div>
       ) : (
         <div className="home m-6">
@@ -82,7 +85,10 @@ export function Home({ screenWidth }: ScreenWidthProps) {
           <FantasyMainScoreboardLeader screenWidth={screenWidth} />
           <div className="flex gap-16 mt-4">
             <div className="w-1/2">
-              <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
+              <NextRaceDetailedWidget
+                raceSchedule={raceSchedule as any}
+                screenWidth={screenWidth}
+              />
             </div>
             <div className="w-1/2">
               <CurrentDriverStandingsHome />

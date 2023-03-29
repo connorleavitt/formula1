@@ -98,18 +98,24 @@ export function FantasyMainScoreboardLeaderWidget({
           <div className="flex flex-col justify-center items-center p-2 pb-4 gap-2">
             <div className="flex text-xl text-white">
               <p className="w-8">1.</p>
-              <p className="w-56 mr-2">{leader.name.toUpperCase()}</p>
-              <p className="font-bold">{leader.totalPoints} pts</p>
+              <p className="w-56 mr-2 font-bold">{leader.name.toUpperCase()}</p>
+              <p className="font-bold">
+                {leader.totalPoints} <span className="font-light">pts</span>
+              </p>
             </div>
             <div className="flex text-xl text-gray-300">
               <p className="w-8">2.</p>
               <p className="w-56 mr-2">{second.name.toUpperCase()}</p>
-              <p className="font-bold">{second.totalPoints} pts</p>
+              <p className="font-bold">
+                {second.totalPoints} <span className="font-light">pts</span>
+              </p>
             </div>
             <div className="flex text-xl text-gray-400">
               <p className="w-8">3.</p>
               <p className="w-56 mr-2">{third.name.toUpperCase()}</p>
-              <p className="font-bold">{third.totalPoints} pts</p>
+              <p className="font-bold">
+                {third.totalPoints} <span className="font-light">pts</span>
+              </p>
             </div>
           </div>
         </div>
