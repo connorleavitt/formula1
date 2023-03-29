@@ -52,7 +52,10 @@ const App: React.FC = () => {
             <Route path="/schedule" element={<RaceSchedulePage />} />
             <Route path="/fantasy" element={<Fantasy />} />
             <Route path="/historical" element={<About />} />
-            <Route path="/about" element={<About />} />
+            <Route
+              path="/about"
+              element={<About screenWidth={screenWidth} />}
+            />
           </Routes>
         </main>
       </div>

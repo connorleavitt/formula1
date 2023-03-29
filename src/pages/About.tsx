@@ -1,8 +1,12 @@
-export const About: React.FC = () => {
+type ScreenWidthProps = {
+  screenWidth: number;
+};
+
+export function About({ screenWidth }: ScreenWidthProps) {
   // const test: [] | undefined = driverStandings;
   return (
-    <div className="">
-      <div className="m-10 max-w-3xl">
+    <div className={`${screenWidth <= 450 ? "pt-10" : ""}`}>
+      <div className={`${screenWidth <= 450 ? "m-4" : "m-10 max-w-4xl"}`}>
         <h1 className="text-3xl font-bold">About</h1>
         <p className="my-4 ">
           This <span className="italic">currently front end focused</span> React
@@ -41,6 +45,29 @@ export const About: React.FC = () => {
           <ul className="ml-10">
             <li className="list-decimal">
               <a
+                href="./"
+                className="block w-max text-lg cursor-pointer rounded-lg p-2 hover:underline"
+              >
+                Home
+              </a>
+              <ul className="ml-10">
+                <li className="list-disc p-2">
+                  <span className="font-bold">Top 3 Fantasy: </span>
+                  <s>show top 3 statically</s>, show dyanmically based off
+                  leader points?
+                </li>
+                <li className="list-disc p-2">
+                  <span className="font-bold">Next Race: </span>
+                  <s>countdown, grand prix times, weather</s>
+                </li>
+                <li className="list-disc p-2">
+                  <span className="font-bold">Other: </span>
+                  what else can the space be filled with?
+                </li>
+              </ul>
+            </li>
+            <li className="list-decimal">
+              <a
                 href="./current"
                 className="block w-max cursor-pointer text-lg rounded-lg p-2 hover:underline"
               >
@@ -48,21 +75,25 @@ export const About: React.FC = () => {
               </a>
               <ul className="ml-10">
                 <li className="list-disc p-2">
-                  <span className="font-bold">Driver Info:</span> pts, wins,
-                  poles, DOTD,
+                  <span className="font-bold">Driver Info: </span>
+                  <s>pts, wins, poles, DOTD</s>
                 </li>
                 <li className="list-disc p-2">
                   <span className="font-bold">Constructor Info:</span> pit stop
-                  time info by race (#, time by driver, etc), wins, poles, ++
+                  time info by race (#, time by driver, etc), <s>wins, poles</s>
+                  , ++
                 </li>
                 <li className="list-disc p-2">
-                  <span className="font-bold">Track Info:</span> weather, wins,
-                  poles, DOTD, ++
+                  <span className="font-bold">Track Info: </span>
+                  <s>combined w/ Race Schedule</s>
                 </li>
                 <li className="list-disc p-2">
-                  <span className="font-bold">Race Schedule:</span> upcoming
-                  sessions for practices, qualifying, sprint races and main
-                  race, weather, ++
+                  <span className="font-bold">Race Schedule: </span>{" "}
+                  <s>
+                    upcoming sessions for practices, qualifying, sprint races
+                    and main race, weather,
+                  </s>{" "}
+                  ++
                 </li>
                 <li className="list-disc p-2">
                   <span className="font-bold">Overview:</span> race by race info
@@ -90,10 +121,10 @@ export const About: React.FC = () => {
                   Done:{" "}
                   <s>
                     Top constructor, Bottom constructor, Most DNFs, Most Poles,
-                    Most Fastest Laps
+                    Most Fastest Laps, Most Driver of the Day
                   </s>
                   <br />
-                  To Do: Most Driver of the Day
+                  To Do: non-manual pulls for FL & DOTD
                 </li>
               </ul>
             </li>
@@ -105,17 +136,9 @@ export const About: React.FC = () => {
                 Historical Data
               </a>
             </li>
-            <li className="list-decimal">
-              <a
-                href="./"
-                className="block w-max text-lg cursor-pointer rounded-lg p-2 hover:underline"
-              >
-                Home: add snapshot of fantasy?
-              </a>
-            </li>
           </ul>
         </div>
       </div>
     </div>
   );
-};
+}
