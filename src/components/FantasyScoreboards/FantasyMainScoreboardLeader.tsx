@@ -5,6 +5,10 @@ interface driverData {
   driverStandings: DriverStandings[];
 }
 
+type ScreenWidthProps = {
+  screenWidth: number;
+};
+
 interface DriverStandings {
   position: string;
   positionText: string;
@@ -30,13 +34,11 @@ interface DriverStandings {
   ];
 }
 
-export function FantasyMainScoreboardLeader() {
+export function FantasyMainScoreboardLeader({ screenWidth }: ScreenWidthProps) {
   const [loading, driverStandings, error, request] = getCurrentDriverStandings({
     method: "get",
     url: "https://ergast.com/api/f1/2023/driverStandings.json",
   });
-  // console.log(driverStandings);
-  // console.log(loading, driverStandings, error, request);
   if (loading) {
     return (
       <div className="ml-auto mr-auto w-min">
@@ -55,8 +57,9 @@ export function FantasyMainScoreboardLeader() {
   }
 
   return (
-    <div className="">
-      <FantasyMainScoreboardLeaderWidget driverData={driverStandings as any} />
-    </div>
+    <FantasyMainScoreboardLeaderWidget
+      driverData={driverStandings as any}
+      screenWidth={screenWidth as any}
+    />
   );
 }

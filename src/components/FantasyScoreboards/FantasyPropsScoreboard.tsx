@@ -95,22 +95,23 @@ export function FantasyPropsScoreboard() {
       <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
       <div className="flex">
         {/* <div className="my-4">
-        <label htmlFor="widget-select" className="mr-2 font-bold">
-          Select Prop Bet:
-        </label>
-        <select
-          id="widget-select"
-          value={activeWidget}
-          onChange={(event) => setActiveWidget(event.target.value)}
-          className="p-2 bg-gray-200 rounded-lg hover:bg-black hover:text-white"
-        >
-          <option value="top">Top Contructor</option>
-          <option value="bottom">Bottom Contructor</option>
-          <option value="dnfs">Most DNFs (Team)</option>
-          <option value="poles">Most Pirelli Poles (Driver)</option>
-          <option value="fastest">Most DHL Fastest Laps (Driver)</option>
-        </select>
-      </div> */}
+          <label htmlFor="widget-select" className="mr-2 font-bold">
+            Select Prop Bet:
+          </label>
+          <select
+            id="widget-select"
+            value={activeWidget}
+            onChange={(event) => setActiveWidget(event.target.value)}
+            className="p-2 bg-gray-200 rounded-lg hover:bg-black hover:text-white"
+          >
+            <option value="top">Top Contructor</option>
+            <option value="bottom">Bottom Contructor</option>
+            <option value="dnfs">Most DNFs (Team)</option>
+            <option value="poles">Most Pirelli Poles (Driver)</option>
+            <option value="fastest">Most DHL Fastest Laps (Driver)</option>
+            <option value="dotd">Most Driver of the Day</option>
+          </select>
+        </div> */}
 
         <div className="flex flex-wrap">
           <div style={{ display: activeWidget === "top" ? "block" : "none" }}>

@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 library.add(fas);
 
 const App: React.FC = () => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
@@ -32,17 +32,22 @@ const App: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  console.log(screenWidth);
 
   return (
     <div>
-      {screenWidth <= 450 ? <></> : <Header />}
+      {screenWidth <= 450 ? (
+        <></> //custom mobile nav header inside MobileNav
+      ) : (
+        <Header />
+      )}
       {/* <Header /> */}
       <div className={`${screenWidth <= 450 ? "flex flex-col" : "flex"}`}>
         {screenWidth <= 450 ? <MobileNav /> : <Nav />}
         <main className={`${screenWidth <= 450 ? "main-mobile" : "main"}`}>
           <Routes>
             <Route path="/" element={<Home screenWidth={screenWidth} />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home screenWidth={screenWidth} />} />
             <Route path="/standings" element={<CurrentSeasonData />} />
             <Route path="/schedule" element={<RaceSchedulePage />} />
             <Route path="/fantasy" element={<Fantasy />} />

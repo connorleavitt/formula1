@@ -3,8 +3,9 @@ import headerImg from "../../assets/img/marcel-heil-bJaMVy23gvc-unsplash.jpg";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-type DriverProps = {
+type allProps = {
   driverData: [];
+  screenWidth: number;
 };
 
 type newPlayerArrayType = {
@@ -18,7 +19,10 @@ type newPlayerArrayType = {
   };
 };
 
-export function FantasyMainScoreboardLeaderWidget({ driverData }: DriverProps) {
+export function FantasyMainScoreboardLeaderWidget({
+  driverData,
+  screenWidth,
+}: allProps) {
   const newDriverArray = driverData.map((value) => {
     return {
       code: value["Driver"]["code"],
@@ -75,40 +79,79 @@ export function FantasyMainScoreboardLeaderWidget({ driverData }: DriverProps) {
   const third = newPlayerArray[2];
 
   return (
-    <div className="home-leader-widget flex">
-      <div className="flex flex-col items-start justify-between py-4 px-4 rounded-l-lg">
-        <div className="flex items-center">
-          <p className="px-2">FANTASY TOP 3</p>
-          <Link to="/fantasy">
-            <div className="text-sm px-2">
-              <FontAwesomeIcon icon="up-right-from-square" />
+    <>
+      {screenWidth <= 450 ? (
+        <div className="home-leader-widget-mobile rounded-b-lg rounded-t-3xl">
+          <img
+            src={headerImg}
+            alt={headerImg}
+            className="object-cover rounded-t-lg"
+          />
+          <div className="flex items-center justify-center py-2">
+            <p className="text-3xl">FANTASY TOP 3</p>
+            <Link to="/fantasy">
+              <div className="text-base px-2">
+                <FontAwesomeIcon icon="up-right-from-square" />
+              </div>
+            </Link>
+          </div>
+          <div className="flex flex-col justify-center items-center p-2 pb-4 gap-2">
+            <div className="flex text-xl text-white">
+              <p className="w-8">1.</p>
+              <p className="w-56 mr-2">{leader.name.toUpperCase()}</p>
+              <p className="font-bold">{leader.totalPoints} pts</p>
             </div>
-          </Link>
-        </div>
-        <div className="flex text-right">
-          <div className="p-2 pr-4">
-            <p className="text-3xl mb-2 text-white">
-              {leader.name.toUpperCase()}
-            </p>
-            <p className="text-2xl mb-2 text-gray-400">
-              {second.name.toUpperCase()}
-            </p>
-            <p className="text-sm text-gray-500">{third.name.toUpperCase()}</p>
-          </div>
-          <div className="p-2">
-            <p className="text-3xl font-bold mb-2 text-white">
-              {leader.totalPoints} pts
-            </p>
-            <p className="text-2xl mb-2 text-gray-400">
-              {second.totalPoints} pts
-            </p>
-            <p className="text-sm text-gray-500">{third.totalPoints} pts</p>
+            <div className="flex text-xl text-gray-300">
+              <p className="w-8">2.</p>
+              <p className="w-56 mr-2">{second.name.toUpperCase()}</p>
+              <p className="font-bold">{second.totalPoints} pts</p>
+            </div>
+            <div className="flex text-xl text-gray-400">
+              <p className="w-8">3.</p>
+              <p className="w-56 mr-2">{third.name.toUpperCase()}</p>
+              <p className="font-bold">{third.totalPoints} pts</p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex-1">
-        <img src={headerImg} alt={headerImg} className="rounded-r-lg" />
-      </div>
-    </div>
+      ) : (
+        <div className="home-leader-widget flex">
+          <div className="flex flex-col items-start justify-between py-4 px-4 rounded-l-lg">
+            <div className="flex items-center">
+              <p className="px-2">FANTASY TOP 3</p>
+              <Link to="/fantasy">
+                <div className="text-sm px-2">
+                  <FontAwesomeIcon icon="up-right-from-square" />
+                </div>
+              </Link>
+            </div>
+            <div className="flex text-right">
+              <div className="p-2 pr-4">
+                <p className="text-3xl mb-2 text-white">
+                  {leader.name.toUpperCase()}
+                </p>
+                <p className="text-2xl mb-2 text-gray-400">
+                  {second.name.toUpperCase()}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {third.name.toUpperCase()}
+                </p>
+              </div>
+              <div className="p-2">
+                <p className="text-3xl font-bold mb-2 text-white">
+                  {leader.totalPoints} pts
+                </p>
+                <p className="text-2xl mb-2 text-gray-400">
+                  {second.totalPoints} pts
+                </p>
+                <p className="text-sm text-gray-500">{third.totalPoints} pts</p>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1">
+            <img src={headerImg} alt={headerImg} className="rounded-r-lg" />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

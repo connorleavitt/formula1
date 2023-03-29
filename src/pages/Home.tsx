@@ -44,7 +44,11 @@ type RaceSchedule = {
   };
 };
 
-export const Home: React.FC = () => {
+type ScreenWidthProps = {
+  screenWidth: number;
+};
+
+export function Home({ screenWidth }: ScreenWidthProps) {
   const [loading, raceSchedule, error, request] = getRaceSchedule({
     method: "get",
     url: "https://ergast.com/api/f1/current.json",
@@ -65,17 +69,27 @@ export const Home: React.FC = () => {
   }
 
   return (
-    <div className="home m-6">
-      <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
-      <FantasyMainScoreboardLeader />
-      <div className="flex gap-16 mt-4">
-        <div className="w-1/2">
+    <>
+      {screenWidth <= 450 ? (
+        <div className="home-mobile m-6">
+          <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
+          <FantasyMainScoreboardLeader screenWidth={screenWidth} />
           <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
         </div>
-        <div className="w-1/2">
-          <CurrentDriverStandingsHome />
+      ) : (
+        <div className="home m-6">
+          <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
+          <FantasyMainScoreboardLeader screenWidth={screenWidth} />
+          <div className="flex gap-16 mt-4">
+            <div className="w-1/2">
+              <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
+            </div>
+            <div className="w-1/2">
+              <CurrentDriverStandingsHome />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
-};
+}

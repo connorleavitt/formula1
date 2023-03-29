@@ -90,18 +90,26 @@ main.main {
 
 main.main-mobile {
   background-color: var(--clr-main-background);
-  /* margin-top: var(--h-header);
-  height: calc(100vh - var(--h-header)); */
   overflow-x: hidden;
 }
 
 .home-mobile {
-  margin-top: calc(100vh - var(--h-header));
+  margin-top: calc(var(--h-header) + 1rem);
 }
 
 .home-leader-widget {
   width: 100%;
   height: 200px;
+}
+
+.home-leader-widget-mobile {
+  background-color: var(--clr-dashboard-background);
+  color: var(--clr-f1-gray-background);
+}
+
+.home-leader-widget-mobile > img {
+  height: 80px;
+  width: 100%;
 }
 
 .home-leader-widget > div > div > p {
