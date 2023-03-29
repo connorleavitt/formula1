@@ -1,4 +1,5 @@
 import { FantasyMainScoreboardLeader } from "../components/FantasyScoreboards/FantasyMainScoreboardLeader";
+import { CurrentDriverStandingsHome } from "../components/Home/CurrentDriverStandingsHome";
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
 import { NextRaceDetailedWidget } from "../widgets/HomeWidgets/NextRaceDetailedWidget";
 
@@ -67,7 +68,14 @@ export const Home: React.FC = () => {
     <div className="home m-6">
       <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
       <FantasyMainScoreboardLeader />
-      <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
+      <div className="flex gap-16">
+        <div className="w-1/2">
+          <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
+        </div>
+        <div className="w-1/2">
+          <CurrentDriverStandingsHome />
+        </div>
+      </div>
     </div>
   );
 };

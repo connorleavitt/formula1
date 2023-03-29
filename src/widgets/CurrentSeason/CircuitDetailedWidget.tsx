@@ -427,7 +427,7 @@ export function CircuitDetailedWidget({
         )}
       </div>
       <div className="flex p-4 gap-4 circuit-info--sub-container justify-between">
-        <div className="flex flex-col w-2/5 justify-between">
+        <div className="flex flex-col w-2/5">
           <div className="flex flex-col">
             <h4 className="ml-1 circuit-info--text">Grand Prix Time Chart</h4>
             <div className="circuit-times-table rounded-md mt-2">
@@ -567,33 +567,33 @@ export function CircuitDetailedWidget({
           </div>
           <div className="flex flex-wrap gap-4 my-4">
             <div className="flex-grow circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Events Held</p>
-              <p className="font-bold text-3xl">
+              <p className="text-sm circuit-info--text">Events Held</p>
+              <p className="font-bold text-2xl">
                 {selectedRace.additionalInfo.numberOfTimesHeld}
               </p>
             </div>
             <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">First Grand Prix</p>
-              <p className="font-bold text-3xl">
+              <p className="text-sm circuit-info--text">First Grand Prix</p>
+              <p className="font-bold text-2xl">
                 {selectedRace.additionalInfo.firstGrandPrix}
               </p>
             </div>
             <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Number of Laps</p>
-              <p className="font-bold text-3xl">
+              <p className="text-sm circuit-info--text">Number of Laps</p>
+              <p className="font-bold text-2xl">
                 {selectedRace.additionalInfo.laps}
               </p>
             </div>
             <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Circuit Length</p>
-              <p className="font-bold text-3xl">
+              <p className="text-sm circuit-info--text">Circuit Length</p>
+              <p className="font-bold text-2xl">
                 {selectedRace.additionalInfo.circuitLength}{" "}
                 <span className="text-base font-normal">km</span>
               </p>
             </div>
             <div className="flex-grow circuit-round border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
-              <p className="text-sm">Race Distance</p>
-              <p className="font-bold text-3xl">
+              <p className="text-sm circuit-info--text">Race Distance</p>
+              <p className="font-bold text-2xl">
                 {selectedRace.additionalInfo.raceLength}{" "}
                 <span className="text-base font-normal">km</span>
               </p>
@@ -609,12 +609,12 @@ export function CircuitDetailedWidget({
                   Qualifying
                 </h5>
                 <div className="flex circuit-laps items-end">
-                  <p className="text-sm w-[155px] circuit-info--text">
+                  <p className="text-sm w-[155px] mr-2 circuit-info--text">
                     Previous Pole
                   </p>
                   {selectedRace.previousPoleWinner?.season !== null ? (
                     <>
-                      <p className="w-[100px] text-xl font-bold leading-none mr-2">
+                      <p className="w-[90px] text-lg font-bold leading-none mr-2">
                         {selectedRace.previousPoleWinner?.qualifyingResults?.Q3}
                         <span className="font-light text-xs">s </span>
                       </p>
@@ -635,12 +635,12 @@ export function CircuitDetailedWidget({
                   )}
                 </div>
                 <div className="flex circuit-laps items-end">
-                  <p className="text-sm w-[155px] circuit-info--text">
+                  <p className="text-sm w-[155px] mr-2 circuit-info--text">
                     Fastest Pole
                   </p>
                   {selectedRace.previousPoleWinner?.season !== null ? (
                     <>
-                      <p className="w-[100px] text-xl font-bold leading-none mr-2">
+                      <p className="w-[90px] text-lg font-bold leading-none mr-2">
                         {selectedRace.additionalInfo.qualiRecord.time}
                         <span className="font-light text-xs">s </span>
                       </p>
@@ -657,11 +657,11 @@ export function CircuitDetailedWidget({
               <div className="flex flex-col gap-2">
                 <h5 className="text-lg border-b-2 border-gray-200">Race</h5>
                 <div className="flex circuit-laps items-end">
-                  <p className="text-sm w-[155px] circuit-info--text">
+                  <p className="text-sm w-[155px] mr-2 circuit-info--text">
                     Previous Winner
                   </p>
                   {selectedRace.previousPoleWinner?.season !== null ? (
-                    <p className="text-xl font-bold leading-none mr-2">
+                    <p className="text-lg font-bold leading-none mr-2">
                       {
                         selectedRace.previousRaceInfo?.raceResults?.Driver
                           .givenName
@@ -673,18 +673,22 @@ export function CircuitDetailedWidget({
                       <span className="text-sm font-normal">
                         ({selectedRace.previousRaceInfo?.season})
                       </span>
+                      <span className="text-sm font-normal">
+                        {" "}
+                        from P{selectedRace.previousRaceInfo?.raceResults?.grid}
+                      </span>
                     </p>
                   ) : (
                     <p className="text-sm">n/a</p>
                   )}
                 </div>
                 <div className="flex circuit-laps items-end">
-                  <p className="text-sm w-[155px] circuit-info--text">
+                  <p className="text-sm w-[155px] mr-2 circuit-info--text">
                     Fastest Lap
                   </p>
                   {selectedRace.previousPoleWinner?.season !== null ? (
                     <>
-                      <p className="w-[100px] text-xl font-bold leading-none mr-2">
+                      <p className="w-[90px] text-lg font-bold leading-none mr-2">
                         {selectedRace.additionalInfo.lapRecord.time}
                         <span className="font-light text-xs">s </span>
                       </p>
@@ -698,7 +702,7 @@ export function CircuitDetailedWidget({
                   )}
                 </div>
                 <div className="circuit-round flex w-max">
-                  <p className="text-sm w-[155px] circuit-info--text">
+                  <p className="text-sm w-[155px] mr-2 circuit-info--text">
                     Most Driver Wins
                   </p>
                   <ul>
@@ -710,7 +714,7 @@ export function CircuitDetailedWidget({
                   </ul>
                 </div>
                 <div className="circuit-round flex w-max">
-                  <p className="text-sm w-[155px] circuit-info--text">
+                  <p className="text-sm w-[155px] mr-2 circuit-info--text">
                     Most Constructor Wins
                   </p>
                   <ul>

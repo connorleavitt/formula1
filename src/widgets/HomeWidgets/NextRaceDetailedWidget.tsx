@@ -7,6 +7,8 @@ import {
   getRaceDayWeather,
   getWeather,
 } from "../../utilities/Weather/getWeather";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 type RaceSchedule = {
   season: number;
@@ -348,7 +350,7 @@ NextRaceWidgetProps) {
 
   return (
     <div className="my-4">
-      <div className="w-max">
+      <div className="w-full">
         <h3 className="p-2 text-2xl font-bold">
           NEXT RACE
           <span className="font-extralight">
@@ -366,6 +368,11 @@ NextRaceWidgetProps) {
                   alt={nextRace.Circuit.circuitName}
                 />
                 <h3 className="px-3 text-lg font-bold">{nextRace.raceName}</h3>
+                <Link to="/schedule">
+                  <div className="text-sm px-2">
+                    <FontAwesomeIcon icon="up-right-from-square" />
+                  </div>
+                </Link>
               </div>
               <div className="w-max home-next-race--countdown-container flex justify-start">
                 <div className="flex flex-col items-center p-1 w-[75px]">
@@ -395,7 +402,7 @@ NextRaceWidgetProps) {
               </div>
             </div>
             {nextRace.round === nextRace?.round && weatherIcon !== null && (
-              <div className="flex flex-col px-4 items-center my-5">
+              <div className="flex flex-col items-center p-4 my-5">
                 <p className="text-md font-light mb-1">Race Weather</p>
                 <div className="items-center flex">
                   <div className="text-3xl mr-2">{weatherTemp}&deg;</div>
