@@ -27,134 +27,207 @@ export function MobileNav() {
     }
   }, [location]);
 
-  const handleMenuClick = () => {
-    setIsCurrentOpen(!isCurrentOpen);
+  const handleHamburgerClick = () => {
+    setIsMobileOpen(!isMobileOpen);
   };
 
   return (
-    <nav className="bg-f1-red">
-      <div className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <div className="-ml-2 mr-2 flex items-center sm:hidden">
-              {/* Hamburger menu */}
-              <button
-                onClick={() => setIsMobileOpen(!isMobileOpen)}
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-f1-yellow focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-                {isMobileOpen ? (
-                  <svg
-                    className="block h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    className="block h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
-                )}
-              </button>
-            </div>
-            <div className="flex-shrink-0 flex items-center">
+    <nav className="mobile-nav">
+      {isMobileOpen ? (
+        <div className="mx-auto flex flex-col open">
+          <header className="mobile-header w-full flex items-center justify-between px-4">
+            <div className="text-white text-2xl font-thin w-max">
               <Link to="/">
-                <img
-                  className="block lg:hidden h-8 w-auto"
-                  // src={logoSmall}
-                  alt="Formula One Logo"
-                />
-                <img
-                  className="hidden lg:block h-8 w-auto"
-                  // src={logoLarge}
-                  alt="Formula One Logo"
-                />
+                FANTASY<span className="font-bold">1</span>
               </Link>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              {/* Nav items */}
+            {/* Hamburger menu */}
+            <button
+              onClick={() => setIsMobileOpen(!isMobileOpen)}
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-f1-yellow focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              {isMobileOpen ? (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+          </header>
+          <ul className="flex flex-col justify-between text-md m-4">
+            <li className="mb-2">
               <Link
                 to="/"
-                className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+                className={`block rounded-xl py-3 pl-4 ${
                   activeNav === "home" ? "active" : ""
                 }`}
               >
                 <FontAwesomeIcon icon="house" className="pr-2" />
                 Home
               </Link>
-              <div className="relative">
-                <button
-                  onClick={() => setIsCurrentOpen(!isCurrentOpen)}
-                  className={`block hover:font-bold rounded-xl py-3 pl-4 ${
-                    activeNav === "current" ? "active" : ""
-                  }`}
-                >
-                  <FontAwesomeIcon icon="stream" className="pr-2" />
-                  Current Season
-                  <FontAwesomeIcon
-                    icon={isCurrentOpen ? "caret-up" : "caret-down"}
-                    className={
-                      isCurrentOpen
-                        ? "absolute right-4 bottom-3.5"
-                        : "absolute right-4 bottom-4"
-                    }
-                  />
-                </button>
-                {isCurrentOpen && (
-                  <ul className="pl-6">
-                    <li className="my-2">
-                      <Link
-                        to="/standings"
-                        className={`block hover:font-bold rounded-xl py-3 pl-4 ${
-                          activeNav === "standings" ? "active" : ""
-                        }`}
-                      >
-                        <FontAwesomeIcon icon="trophy" className="pr-2" />
-                        Standings
-                      </Link>
-                    </li>
-                    <li className="">
-                      <Link
-                        to="/schedule"
-                        className={`block hover:font-bold rounded-xl py-3 pl-4 ${
-                          activeNav === "schedule" ? "active" : ""
-                        }`}
-                      >
-                        <FontAwesomeIcon icon="calendar" className="pr-2" />
-                        Race Schedule
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-            </div>
-          </div>
+            </li>
+            <li className="mb-2">
+              <button
+                onClick={() => setIsCurrentOpen(!isCurrentOpen)}
+                className="relative w-full rounded-xl py-3 pl-4 text-left"
+              >
+                <FontAwesomeIcon icon="stream" className="pr-2" />
+                Current season
+                <FontAwesomeIcon
+                  icon={isCurrentOpen ? "caret-up" : "caret-down"}
+                  className={
+                    isCurrentOpen
+                      ? "absolute right-4 bottom-3.5"
+                      : "absolute right-4 bottom-4"
+                  }
+                />
+              </button>
+              {isCurrentOpen && (
+                <ul className="pl-6">
+                  <li className="my-2">
+                    <Link
+                      to="/standings"
+                      className={`block rounded-xl py-3 pl-4 ${
+                        activeNav === "standings" ? "active" : ""
+                      }`}
+                    >
+                      <FontAwesomeIcon icon="trophy" className="pr-2" />
+                      Standings
+                    </Link>
+                  </li>
+                  <li className="">
+                    <Link
+                      to="/schedule"
+                      className={`block rounded-xl py-3 pl-4 ${
+                        activeNav === "schedule" ? "active" : ""
+                      }`}
+                    >
+                      <FontAwesomeIcon icon="calendar" className="pr-2" />
+                      Race schedule
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+            <li className="mb-2">
+              <Link
+                to="/fantasy"
+                className={`block rounded-xl py-3 pl-4 ${
+                  activeNav === "fantasy" ? "active" : ""
+                }`}
+              >
+                <FontAwesomeIcon icon="chart-column" className="pr-2" />
+                Fantasy
+              </Link>
+              {/* &#8595; */}
+            </li>
+            <li className="mb-2">
+              <Link
+                to="/historical"
+                className={`block rounded-xl py-3 pl-4 ${
+                  activeNav === "historical" ? "active" : ""
+                }`}
+              >
+                <FontAwesomeIcon icon="clock-rotate-left" className="pr-2" />
+                Historical data
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                to="/about"
+                className={`block rounded-xl py-3 pl-4 ${
+                  activeNav === "about" ? "active" : ""
+                }`}
+              >
+                <FontAwesomeIcon icon="book" className="pr-2" />
+                About
+              </Link>
+            </li>
+          </ul>
         </div>
-      </div>
+      ) : (
+        <header className="mobile-header w-full flex items-center justify-between px-4">
+          <div className="text-white text-2xl font-thin w-max">
+            <Link to="/">
+              FANTASY<span className="font-bold">1</span>
+            </Link>
+          </div>
+          {/* Hamburger menu */}
+          <button
+            onClick={() => setIsMobileOpen(!isMobileOpen)}
+            type="button"
+            className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-f1-yellow focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span className="sr-only">Open main menu</span>
+            {isMobileOpen ? (
+              <svg
+                className="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+        </header>
+      )}
     </nav>
   );
 }

@@ -13,6 +13,7 @@
   --clr-main-background: #ffffff;
   --clr-f1-gray-background: #f6f6f6;
   --clr-f1-gray-highlighted: #dedede;
+  --clr-f1-gray-highlighted-rgb: 222, 222, 222;
   --clr-f1-background: #f7f4f1;
   --clr-text-light: #66737d;
   --clr-text-mid: #24313a;
@@ -23,24 +24,57 @@
   --clr-dashboard-background: #24313a;
 }
 
-header {
+header.main-header {
   height: var(--h-header);
   background-color: var(--clr-f1-red);
 }
 
-header > div {
+header.main-header > div {
   width: var(--w-nav);
   margin-left: 2.25rem;
 }
+header.mobile-header {
+  height: var(--h-header);
+  background-color: var(--clr-f1-red);
+}
 
-nav {
+nav.main-nav {
   min-width: var(--w-nav);
   background-color: var(--clr-f1-gray-background);
   min-height: calc(100vh - var(--h-header));
 }
 
+nav.mobile-nav {
+  position: fixed;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+nav.mobile-nav > div.open {
+  position: fixed;
+  background-color: var(--clr-f1-gray-background);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
 nav .active {
   background-color: var(--clr-f1-gray-highlighted);
+}
+
+nav .active:hover {
+  background-color: var(--clr-f1-gray-highlighted);
+}
+
+nav > ul > li > a:hover,
+nav > ul > li > button:hover,
+nav > ul > li > ul > li > a:hover {
+  background-color: rgba(var(--clr-f1-gray-highlighted-rgb), 0.3);
 }
 
 nav > ul > li > a > svg {
@@ -48,11 +82,21 @@ nav > ul > li > a > svg {
   height: 20px;
 }
 
-main {
+main.main {
   background-color: var(--clr-main-background);
   width: calc(100vw - var(--w-nav));
-  /* margin: 2rem; */
   overflow-x: hidden;
+}
+
+main.main-mobile {
+  background-color: var(--clr-main-background);
+  /* margin-top: var(--h-header);
+  height: calc(100vh - var(--h-header)); */
+  overflow-x: hidden;
+}
+
+.home-mobile {
+  margin-top: calc(100vh - var(--h-header));
 }
 
 .home-leader-widget {

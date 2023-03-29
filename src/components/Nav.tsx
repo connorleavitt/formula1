@@ -26,12 +26,12 @@ export function Nav() {
     }
   }, [location]);
   return (
-    <nav className="bg-f1-red">
+    <nav className="main-nav">
       <ul className="flex flex-col justify-between text-md m-4">
         <li className="mb-2">
           <Link
             to="/"
-            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+            className={`block rounded-xl py-3 pl-4 ${
               activeNav === "home" ? "active" : ""
             }`}
           >
@@ -42,7 +42,7 @@ export function Nav() {
         <li className="mb-2">
           <button
             onClick={() => setIsCurrentOpen(!isCurrentOpen)}
-            className="relative w-full hover:font-bold rounded-xl py-3 pl-4 text-left"
+            className="relative w-full rounded-xl py-3 pl-4 text-left"
           >
             <FontAwesomeIcon icon="stream" className="pr-2" />
             Current season
@@ -60,7 +60,7 @@ export function Nav() {
               <li className="my-2">
                 <Link
                   to="/standings"
-                  className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+                  className={`block rounded-xl py-3 pl-4 ${
                     activeNav === "standings" ? "active" : ""
                   }`}
                 >
@@ -71,7 +71,7 @@ export function Nav() {
               <li className="">
                 <Link
                   to="/schedule"
-                  className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+                  className={`block rounded-xl py-3 pl-4 ${
                     activeNav === "schedule" ? "active" : ""
                   }`}
                 >
@@ -85,7 +85,7 @@ export function Nav() {
         <li className="mb-2">
           <Link
             to="/fantasy"
-            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+            className={`block rounded-xl py-3 pl-4 ${
               activeNav === "fantasy" ? "active" : ""
             }`}
           >
@@ -97,7 +97,7 @@ export function Nav() {
         <li className="mb-2">
           <Link
             to="/historical"
-            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+            className={`block rounded-xl py-3 pl-4 ${
               activeNav === "historical" ? "active" : ""
             }`}
           >
@@ -108,7 +108,7 @@ export function Nav() {
         <li className="mb-2">
           <Link
             to="/about"
-            className={`block hover:font-bold rounded-xl py-3 pl-4 ${
+            className={`block rounded-xl py-3 pl-4 ${
               activeNav === "about" ? "active" : ""
             }`}
           >

@@ -14,19 +14,34 @@ import { RaceSchedulePage } from "./pages/RaceSchedule";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { CurrentSeasonData } from "./components/CurrentSeason/CurrentSeasonData";
+import { useEffect, useState } from "react";
 
 library.add(fas);
 
 const App: React.FC = () => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div>
-      <Header />
-      <div className="flex">
-        <Nav />
-        {/* <MobileNav /> */}
-        <main className="main">
+      {screenWidth <= 450 ? <></> : <Header />}
+      {/* <Header /> */}
+      <div className={`${screenWidth <= 450 ? "flex flex-col" : "flex"}`}>
+        {screenWidth <= 450 ? <MobileNav /> : <Nav />}
+        <main className={`${screenWidth <= 450 ? "main-mobile" : "main"}`}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home screenWidth={screenWidth} />} />
             <Route path="/home" element={<Home />} />
             <Route path="/standings" element={<CurrentSeasonData />} />
             <Route path="/schedule" element={<RaceSchedulePage />} />
