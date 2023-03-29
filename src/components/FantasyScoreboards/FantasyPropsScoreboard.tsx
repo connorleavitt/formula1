@@ -16,9 +16,12 @@ import { FantasyPropsFastestLapWidget } from "../../widgets/Fantasy/FantasyProps
 // data
 import fantasy from "../../data/fantasy.json";
 import constructors from "../../data/constructors.json";
+import fastestLapData from "../../data/fastestLap.json";
+import driverOfTheDay from "../../data/driverOfTheDay.json";
+import { FantasyPropsDriverOfTheDayWidget } from "../../widgets/Fantasy/FantasyPropsDriverOfTheDayWidget";
 
 export function FantasyPropsScoreboard() {
-  const fastestLaps = getFastestLaps();
+  // const fastestLaps = getFastestLaps(); // ergast API
   const [activeWidget, setActiveWidget] = useState("top");
 
   const [loading, constructorStandings, error, request] =
@@ -135,7 +138,15 @@ export function FantasyPropsScoreboard() {
           <div
             style={{ display: activeWidget === "fastest" ? "block" : "none" }}
           >
-            <FantasyPropsFastestLapWidget fastestLaps={fastestLaps as any} />
+            <FantasyPropsFastestLapWidget
+              // fastestLaps={fastestLaps as any} //ergast api
+              fastestLapData={fastestLapData as any}
+            />
+          </div>
+          <div style={{ display: activeWidget === "dotd" ? "block" : "none" }}>
+            <FantasyPropsDriverOfTheDayWidget
+              driverOfTheDay={driverOfTheDay as any}
+            />
           </div>
         </div>
         <div className="flex flex-col ml-4">
@@ -188,6 +199,16 @@ export function FantasyPropsScoreboard() {
             onClick={() => setActiveWidget("fastest")}
           >
             Most DHL Fastest Laps (Driver)
+          </button>
+          <button
+            className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+              activeWidget === "dotd"
+                ? "bg-black text-white border-black hover:bg-gray-800"
+                : "border-gray-300"
+            }`}
+            onClick={() => setActiveWidget("dotd")}
+          >
+            Most Driver of the Day
           </button>
         </div>
       </div>

@@ -51,8 +51,8 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 //   ];
 // };
 
-type fastestLapDataProps = {
-  fastestLapData: [
+type driverOfTheDayProps = {
+  driverOfTheDay: [
     {
       round: number;
       circuitId: string;
@@ -61,18 +61,37 @@ type fastestLapDataProps = {
       driverName: string;
       driverId: string;
       code: string;
-      constructorId: string;
-      constructorName: string;
       finishingPosition: string;
-      lapSet: string;
-      time: string;
+      percentVote: string;
+      voting: {
+        "1": {
+          driverName: string;
+          percentVote: string;
+        };
+        "2": {
+          driverName: string;
+          percentVote: string;
+        };
+        "3": {
+          driverName: string;
+          percentVote: string;
+        };
+        "4": {
+          driverName: string;
+          percentVote: string;
+        };
+        "5": {
+          driverName: string;
+          percentVote: string;
+        };
+      };
     }
   ];
 };
 
-export function FantasyPropsFastestLapWidget({
-  fastestLapData,
-}: fastestLapDataProps) {
+export function FantasyPropsDriverOfTheDayWidget({
+  driverOfTheDay,
+}: driverOfTheDayProps) {
   // { fastestLaps }: fastestLaps // ergast api
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
@@ -83,12 +102,12 @@ export function FantasyPropsFastestLapWidget({
     },
     {
       headerName: "Choice",
-      field: "propBetsMostFastestLaps",
+      field: "propBetsMostDriverOfTheDay",
       width: 150,
     },
     {
       headerName: "Placing",
-      field: "numberOfFastestLaps",
+      field: "driverOfTheDayCount",
       cellClass: "my-class",
       width: 120,
       sort: "desc" as any,
@@ -96,12 +115,12 @@ export function FantasyPropsFastestLapWidget({
   ]);
 
   useEffect(() => {
-    const fastestLapsByRoundUpdated = fastestLapData.map((race) => {
+    const driverOfTheDayByRoundUpdated = driverOfTheDay.map((race) => {
       if (race === undefined) return;
       return race.driverName;
     });
 
-    const fastestLapCountByDriver = fastestLapsByRoundUpdated.reduce<{
+    const driverOfTheDayCountByDriver = driverOfTheDayByRoundUpdated.reduce<{
       [key: string]: number;
     }>((acc, curr) => {
       if (curr === undefined) return acc;
@@ -115,78 +134,31 @@ export function FantasyPropsFastestLapWidget({
       }
     }, {});
 
-    const sortedDriverResults = Object.entries(fastestLapCountByDriver)
+    const sortedDriverResults = Object.entries(driverOfTheDayCountByDriver)
       .map(([driver, count]) => ({ driver, count }))
       .sort((a, b) => b.count - a.count);
 
     const propBetTable = fantasy.map((value) => {
-      let propBetsMostFastestLaps = value.propBets.mostFastestLaps;
+      let propBetsMostDriverOfTheDay = value.propBets.mostDriverOfTheDay;
       let thing = sortedDriverResults.find(
-        (v: any) => v.driver === propBetsMostFastestLaps
+        (v: any) => v.driver === propBetsMostDriverOfTheDay
       );
       if (thing?.count === undefined)
         return {
           name: value.name,
           nickName: value.nickName,
-          propBetsMostFastestLaps: propBetsMostFastestLaps,
-          numberOfFastestLaps: 0 as number,
+          propBetsMostDriverOfTheDay: propBetsMostDriverOfTheDay,
+          driverOfTheDayCount: 0 as number,
         };
       return {
         name: value.name,
         nickName: value.nickName,
-        propBetsMostFastestLaps: propBetsMostFastestLaps,
-        numberOfFastestLaps: thing?.count as number,
+        propBetsMostDriverOfTheDay: propBetsMostDriverOfTheDay,
+        driverOfTheDayCount: thing?.count as number,
       };
     });
     setRowData(propBetTable as any);
-
-    // const fastestLapsByRoundUpdated = fastestLaps.map((race) => {
-    //   if (race === undefined) return;
-    //   const driverTest = race.fastestLaps[0].Driver;
-    //   return {
-    //     driver: driverTest.givenName + " " + driverTest.familyName,
-    //   };
-    // });
-
-    // const fastestLapCountByDriver = fastestLapsByRoundUpdated.reduce<{
-    //   [key: string]: number;
-    // }>((acc, curr) => {
-    //   if (curr === undefined) return acc;
-    //   else {
-    //     if (curr.driver in acc) {
-    //       acc[curr.driver]++;
-    //     } else {
-    //       acc[curr.driver] = 1;
-    //     }
-    //     return acc;
-    //   }
-    // }, {});
-    // const sortedDriverResults = Object.entries(fastestLapCountByDriver)
-    //   .map(([driver, count]) => ({ driver, count }))
-    //   .sort((a, b) => b.count - a.count);
-
-    // const propBetTable = fantasy.map((value) => {
-    //   let propBetsMostFastestLaps = value.propBets.mostFastestLaps;
-
-    //   let thing = sortedDriverResults.find(
-    //     (v: any) => v.driver === propBetsMostFastestLaps
-    //   );
-    //   if (thing?.count === undefined)
-    //     return {
-    //       name: value.name,
-    //       nickName: value.nickName,
-    //       propBetsMostFastestLaps: propBetsMostFastestLaps,
-    //       numberOfFastestLaps: 0 as number,
-    //     };
-    //   return {
-    //     name: value.name,
-    //     nickName: value.nickName,
-    //     propBetsMostFastestLaps: propBetsMostFastestLaps,
-    //     numberOfFastestLaps: thing?.count as number,
-    //   };
-    // });
-    // setRowData(propBetTable as any);
-  }, [fastestLapData]);
+  }, [driverOfTheDay]);
 
   const defaultColDef = useMemo(
     () => ({
@@ -198,7 +170,7 @@ export function FantasyPropsFastestLapWidget({
 
   return (
     <div className="p-2 rounded-2xl border-gray-300 border-2">
-      <h3 className="p-2 font-bold">Most DHL Fastest Laps (Driver)</h3>
+      <h3 className="p-2 font-bold">Most Driver of the Day</h3>
       <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
         <AgGridReact
           rowData={rowData}

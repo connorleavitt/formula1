@@ -1,0 +1,68 @@
+[
+  {
+    "round": 1,
+    "circuitId": "bahrain",
+    "circuitName": "Bahrain International Circuit",
+    "country": "Bahrain",
+    "driverName": "Fernando Alonso",
+    "driverId": "alonso",
+    "code": "ALO",
+    "finishingPosition": "3",
+    "percentVote": "53.3",
+    "voting": {
+      "1": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "53.3"
+      },
+      "2": {
+        "driverName": "Pierre Gasly",
+        "percentVote": "6.5"
+      },
+      "3": {
+        "driverName": "Max Verstappen",
+        "percentVote": "6.3"
+      },
+      "4": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "5.5"
+      },
+      "5": {
+        "driverName": "Charles Leclerc",
+        "percentVote": "4.4"
+      }
+    }
+  },
+  {
+    "round": 2,
+    "circuitId": "jeddah",
+    "circuitName": "Jeddah Corniche Circuit",
+    "country": "Saudi Arabia",
+    "driverName": "Max Verstappen",
+    "driverId": "max_verstappen",
+    "code": "VER",
+    "finishingPosition": "2",
+    "percentVote": "26.3",
+    "voting": {
+      "1": {
+        "driverName": "Max Verstappen",
+        "percentVote": "26.3"
+      },
+      "2": {
+        "driverName": "Sergio Pérez",
+        "percentVote": "19.8"
+      },
+      "3": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "14.6"
+      },
+      "4": {
+        "driverName": "Charles Leclerc",
+        "percentVote": "7.2"
+      },
+      "5": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "6.7"
+      }
+    }
+  }
+]
