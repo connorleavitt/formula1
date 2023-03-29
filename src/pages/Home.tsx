@@ -68,7 +68,7 @@ export const Home: React.FC = () => {
     <div className="home m-6">
       <h1 className="text-2xl font-bold mb-4">Welcome!</h1>
       <FantasyMainScoreboardLeader />
-      <div className="flex gap-16">
+      <div className="flex gap-16 mt-4">
         <div className="w-1/2">
           <NextRaceDetailedWidget raceSchedule={raceSchedule as any} />
         </div>

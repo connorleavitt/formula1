@@ -321,9 +321,6 @@ NextRaceWidgetProps) {
   const secondPracticeDate = parseISO(
     nextRace.SecondPractice.date + "T" + nextRace.SecondPractice.time
   );
-  const thirdPracticeDate = parseISO(
-    nextRace.ThirdPractice.date + "T" + nextRace.ThirdPractice.time
-  );
   const qualifyingDate = parseISO(
     nextRace.Qualifying.date + "T" + nextRace.Qualifying.time
   );
@@ -367,7 +364,7 @@ NextRaceWidgetProps) {
                   src={nextRace.additionalInfo.flagUrl}
                   alt={nextRace.Circuit.circuitName}
                 />
-                <h3 className="px-3 text-lg font-bold">{nextRace.raceName}</h3>
+                <h3 className="px-3 text-2xl font-bold">{nextRace.raceName}</h3>
                 <Link to="/schedule">
                   <div className="text-sm px-2">
                     <FontAwesomeIcon icon="up-right-from-square" />
@@ -432,11 +429,12 @@ NextRaceWidgetProps) {
                   day: "numeric",
                 })}
               </div>
-              <div className="w-[100px] text-right">
+              <div className="w-[120px] text-right">
                 {new Date(firstPracticeDate).toLocaleString("en-US", {
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
+                  timeZoneName: "short",
                 })}
               </div>
             </div>
@@ -449,11 +447,12 @@ NextRaceWidgetProps) {
                   day: "numeric",
                 })}
               </div>
-              <div className="w-[100px] text-right">
+              <div className="w-[120px] text-right">
                 {new Date(secondPracticeDate).toLocaleString("en-US", {
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
+                  timeZoneName: "short",
                 })}
               </div>
             </div>
@@ -461,17 +460,26 @@ NextRaceWidgetProps) {
               <div className="flex p-2 justify-between border-b-2 border-gray-300">
                 <div className="w-[100px]">Practice 3</div>
                 <div className="w-[100px] text-center">
-                  {new Date(thirdPracticeDate).toLocaleString("en-US", {
+                  {new Date(
+                    nextRace.ThirdPractice.date +
+                      "T" +
+                      nextRace.ThirdPractice.time
+                  ).toLocaleString("en-US", {
                     weekday: "short",
                     month: "short",
                     day: "numeric",
                   })}
                 </div>
-                <div className="w-[100px] text-right">
-                  {new Date(thirdPracticeDate).toLocaleString("en-US", {
+                <div className="w-[120px] text-right">
+                  {new Date(
+                    nextRace.ThirdPractice.date +
+                      "T" +
+                      nextRace.ThirdPractice.time
+                  ).toLocaleString("en-US", {
                     hour: "numeric",
                     minute: "numeric",
                     hour12: true,
+                    timeZoneName: "short",
                   })}
                 </div>
               </div>
@@ -485,11 +493,12 @@ NextRaceWidgetProps) {
                   day: "numeric",
                 })}
               </div>
-              <div className="w-[100px] text-right">
+              <div className="w-[120px] text-right">
                 {new Date(qualifyingDate).toLocaleString("en-US", {
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
+                  timeZoneName: "short",
                 })}
               </div>
             </div>
@@ -505,13 +514,14 @@ NextRaceWidgetProps) {
                     day: "numeric",
                   })}
                 </div>
-                <div className="w-[100px] text-right">
+                <div className="w-[120px] text-right">
                   {new Date(
                     parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
                   ).toLocaleString("en-US", {
                     hour: "numeric",
                     minute: "numeric",
                     hour12: true,
+                    timeZoneName: "short",
                   })}
                 </div>
               </div>
@@ -525,11 +535,12 @@ NextRaceWidgetProps) {
                   day: "numeric",
                 })}
               </div>
-              <div className="w-[100px] text-right">
+              <div className="w-[120px] text-right">
                 {new Date(raceDate).toLocaleString("en-US", {
                   hour: "numeric",
                   minute: "numeric",
                   hour12: true,
+                  timeZoneName: "short",
                 })}
               </div>
             </div>
