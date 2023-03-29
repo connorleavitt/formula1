@@ -336,9 +336,9 @@ export function NextRaceDetailedWidget({
   }
 
   return (
-    <div className="my-4">
+    <div className="mt-8">
       <div className="w-full">
-        <h3 className="p-2 text-2xl font-bold">
+        <h3 className="p-2 py-4 text-2xl font-bold leading-4">
           NEXT RACE
           <span className="font-extralight">
             {" - "}
@@ -525,7 +525,7 @@ export function NextRaceDetailedWidget({
             </div>
             {nextRace.round === nextRace?.round && weatherIcon !== null && (
               <div className="flex items-center  gap-2 px-2 pb-2">
-                <h6 className="text-sm">Forcasted Race Weather:</h6>
+                <h6 className="text-sm">Forcasted race weather:</h6>
                 <div className="text-lg font-bold leading-none">
                   {weatherTemp}&deg;
                 </div>

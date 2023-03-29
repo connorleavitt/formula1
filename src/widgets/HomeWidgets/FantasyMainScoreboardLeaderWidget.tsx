@@ -87,34 +87,43 @@ export function FantasyMainScoreboardLeaderWidget({
             alt={headerImg}
             className="object-cover rounded-t-lg"
           />
-          <div className="flex items-center justify-center py-2">
-            <p className="text-3xl">FANTASY TOP 3</p>
+          <div className="flex items-center p-2">
+            <p className="text-lg">Fantasy Top 3</p>
             <Link to="/fantasy">
-              <div className="text-base px-2">
+              <div className="text-xs px-2">
                 <FontAwesomeIcon icon="up-right-from-square" />
               </div>
             </Link>
           </div>
           <div className="flex flex-col justify-center items-center p-2 pb-4 gap-2">
-            <div className="flex text-xl text-white">
-              <p className="w-8">1.</p>
-              <p className="w-56 mr-2 font-bold">{leader.name.toUpperCase()}</p>
+            <div className="flex text-xl text-white w-full justify-between">
+              <p className="w-max font-bold">
+                <span>1. </span>
+                {leader.name.toUpperCase()}
+              </p>
               <p className="font-bold">
-                {leader.totalPoints} <span className="font-light">pts</span>
+                {leader.totalPoints}{" "}
+                <span className="font-light text-sm">pts</span>
               </p>
             </div>
-            <div className="flex text-xl text-gray-300">
-              <p className="w-8">2.</p>
-              <p className="w-56 mr-2">{second.name.toUpperCase()}</p>
+            <div className="flex text-xl text-gray-300 w-full justify-between">
+              <p className="w-max">
+                <span>2. </span>
+                {second.name.toUpperCase()}
+              </p>
               <p className="font-bold">
-                {second.totalPoints} <span className="font-light">pts</span>
+                {second.totalPoints}{" "}
+                <span className="font-light text-sm">pts</span>
               </p>
             </div>
-            <div className="flex text-xl text-gray-400">
-              <p className="w-8">3.</p>
-              <p className="w-56 mr-2">{third.name.toUpperCase()}</p>
+            <div className="flex text-xl text-gray-400 w-full justify-between">
+              <p className="w-max">
+                <span>3. </span>
+                {third.name.toUpperCase()}
+              </p>
               <p className="font-bold">
-                {third.totalPoints} <span className="font-light">pts</span>
+                {third.totalPoints}{" "}
+                <span className="font-light text-sm">pts</span>
               </p>
             </div>
           </div>
