@@ -4,6 +4,8 @@ This _currently front end_ React app, utilizing Typescript, Tailwind, and Ergast
 
 As an avid Formula 1 fan, my friends and I wanted an all inclusive f1 web app that includes our season's predictions, current season stats and more.
 
+View live at: https://formula1-fantasy.netlify.app/
+
 ## Current Season
 
 As the season unfolds each week, the current season section will be updated with the race results, track information and more. The user can sort, filter and manipulate the data to gain knowledge about a certain driver, constructor or track.
