@@ -1,5 +1,6 @@
 import { getCurrentDriverStandings } from "../../hooks/getCurrentDriverStandings";
 import { FantasyMainScoreboardWidget } from "../../widgets/Fantasy/FantasyMainScoreboardWidget";
+import { FantasyMainScoreboardWidgetMobile } from "../../widgets/Fantasy/FantasyMainScoreboardWidgetMobile";
 
 interface driverData {
   driverStandings: DriverStandings[];
@@ -58,11 +59,24 @@ export function FantasyMainScoreboard({ screenWidth }: ScreenWidthProps) {
   }
 
   return (
-    <div className="w-min mb-6">
-      <h1 className="text-2xl font-bold mb-2">Main Scoreboard</h1>
-      <div className="bg-neutral-100 pt-2 rounded-2xl border-red-500 border-4">
-        <FantasyMainScoreboardWidget driverData={driverStandings as any} />
-      </div>
-    </div>
+    <>
+      {screenWidth <= 450 ? (
+        <div className="mb-10">
+          <h1 className="text-2xl font-bold">Main Scoreboard</h1>
+          <div className="my-2">
+            <FantasyMainScoreboardWidgetMobile
+              driverData={driverStandings as any}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="w-min my-6">
+          <h1 className="text-2xl font-bold mb-2">Main Scoreboard</h1>
+          <div className="bg-neutral-100 pt-2 rounded-2xl border-red-500 border-4">
+            <FantasyMainScoreboardWidget driverData={driverStandings as any} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

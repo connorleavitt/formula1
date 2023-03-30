@@ -5,53 +5,54 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-type qualiStandings = {
-  qualiStandings: [
+interface QualiStandingsProps {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
+    };
+  };
+  date: Date;
+  time: number;
+  QualifyingResults: [
     {
-      season: number;
-      round: number;
-      url: string;
-      raceName: string;
-      Circuit: {
-        circuitId: string;
+      number: number;
+      position: number;
+      Driver: {
+        driverId: string;
+        permanentNumber: number;
+        code: string;
         url: string;
-        circuitName: string;
-        Location: {
-          lat: number;
-          long: number;
-          locality: string;
-          country: string;
-        };
+        givenName: string;
+        familyName: string;
+        dateOfBirth: Date;
+        nationality: string;
       };
-      date: Date;
-      time: number;
-      QualifyingResults: [
-        {
-          number: number;
-          position: number;
-          Driver: {
-            driverId: string;
-            permanentNumber: number;
-            code: string;
-            url: string;
-            givenName: string;
-            familyName: string;
-            dateOfBirth: Date;
-            nationality: string;
-          };
-          Constructor: {
-            constructorId: string;
-            url: string;
-            name: string;
-            nationality: string;
-          };
-          Q1: number;
-          Q2: number;
-          Q3: number;
-        }
-      ];
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      Q1: number;
+      Q2: number;
+      Q3: number;
     }
   ];
+}
+
+type props = {
+  qualiStandings: QualiStandingsProps[];
+  screenWidth: number;
 };
 
 interface driverTableProps {
@@ -70,24 +71,30 @@ const driverTable: driverTableProps[] = driver.map((value) => {
 
 export function FantasyPropsMostPolesWidget({
   qualiStandings,
-}: qualiStandings) {
+  screenWidth,
+}: props) {
+  const gridNameWidth = screenWidth <= 450 ? 105 : 168;
+  const gridChoiceWidth = screenWidth <= 450 ? 145 : 150;
+  const gridPlacingWidth = screenWidth <= 450 ? 93 : 120;
+  const gridMobileWidth = screenWidth <= 450 ? 343 : 440;
+  const gridPlacingName = screenWidth <= 450 ? "Pos." : "Placing";
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
       field: "name",
-      width: 168,
+      width: gridNameWidth,
     },
     {
       headerName: "Choice",
       field: "propBetsMostPoles",
-      width: 150,
+      width: gridChoiceWidth,
     },
     {
-      headerName: "Placing",
+      headerName: gridPlacingName,
       field: "totalPoles",
       cellClass: "my-class",
-      width: 120,
+      width: gridPlacingWidth,
       sort: "desc" as string,
     },
   ]);
@@ -103,22 +110,20 @@ export function FantasyPropsMostPolesWidget({
     });
 
     // iterate over each race in the qualiStandings array
-    if (qualiStandings instanceof Array) {
-      qualiStandings.forEach((race) => {
-        // iterate over each QualifyingResult in this race
-        race.QualifyingResults.forEach((result) => {
-          // find the driver in the drivers array that matches the driverId of this QualifyingResult
-          const driverIndex = drivers.findIndex(
-            (driver) => driver.driverId === result.Driver.driverId
-          );
+    qualiStandings.forEach((race) => {
+      // iterate over each QualifyingResult in this race
+      race.QualifyingResults.forEach((result) => {
+        // find the driver in the drivers array that matches the driverId of this QualifyingResult
+        const driverIndex = drivers.findIndex(
+          (driver) => driver.driverId === result.Driver.driverId
+        );
 
-          // if the driver is found, increment their numberOfPoles property
-          if (driverIndex !== -1) {
-            drivers[driverIndex].numberOfPoles += 1;
-          }
-        });
+        // if the driver is found, increment their numberOfPoles property
+        if (driverIndex !== -1) {
+          drivers[driverIndex].numberOfPoles += 1;
+        }
       });
-    }
+    });
 
     // create a new array with the driver information and their total number of poles
 
@@ -145,15 +150,35 @@ export function FantasyPropsMostPolesWidget({
   );
 
   return (
-    <div className="p-2 rounded-2xl border-gray-300 border-2">
-      <h3 className="p-2 font-bold">Most Pirelli Poles (Driver)</h3>
-      <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs as any}
-          defaultColDef={defaultColDef}
-        />
-      </div>
-    </div>
+    <>
+      {screenWidth <= 450 ? (
+        <div className="rounded-b-2xl">
+          <div
+            className="ag-theme-f1-mobile rounded-b-2xl"
+            style={{ height: "265px", width: gridMobileWidth }}
+          >
+            <AgGridReact
+              rowData={rowData}
+              columnDefs={columnDefs as any}
+              defaultColDef={defaultColDef}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="p-2 rounded-2xl border-gray-300 border-2">
+          <h3 className="p-2 font-bold">Most Pirelli Poles (Driver)</h3>
+          <div
+            className="ag-theme-f1"
+            style={{ height: "265px", width: gridMobileWidth }}
+          >
+            <AgGridReact
+              rowData={rowData}
+              columnDefs={columnDefs as any}
+              defaultColDef={defaultColDef}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Connor Leavitt",
+    "name": "Connor L",
     "nickName": "corn",
     "mainDrivers": [
       { "fullName": "Sergio Pérez", "code": "PER" },
@@ -21,7 +21,7 @@
   },
   {
     "id": 2,
-    "name": "Matt Hoffman",
+    "name": "Matt H",
     "nickName": "hoff",
     "mainDrivers": [
       { "fullName": "Max Verstappen", "code": "VER" },
@@ -41,7 +41,7 @@
   },
   {
     "id": 3,
-    "name": "Michael Chappelear",
+    "name": "Michael C",
     "nickName": "chap",
     "mainDrivers": [
       { "fullName": "Lewis Hamilton", "code": "HAM" },
@@ -61,7 +61,7 @@
   },
   {
     "id": 4,
-    "name": "Jim Cunningham",
+    "name": "Jim C",
     "nickName": "jim",
     "mainDrivers": [
       { "fullName": "Charles Leclerc", "code": "LEC" },
@@ -81,7 +81,7 @@
   },
   {
     "id": 5,
-    "name": "Ben Graham",
+    "name": "Ben G",
     "nickName": "ben",
     "mainDrivers": [
       { "fullName": "Carlos Sainz", "code": "SAI" },

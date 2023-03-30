@@ -51,65 +51,72 @@ import "ag-grid-community/styles/ag-theme-alpine.css";
 //   ];
 // };
 
-type driverOfTheDayProps = {
-  driverOfTheDay: [
-    {
-      round: number;
-      circuitId: string;
-      circuitName: string;
-      country: string;
+interface driverOfTheDayProps {
+  round: number;
+  circuitId: string;
+  circuitName: string;
+  country: string;
+  driverName: string;
+  driverId: string;
+  code: string;
+  finishingPosition: string;
+  percentVote: string;
+  voting: {
+    "1": {
       driverName: string;
-      driverId: string;
-      code: string;
-      finishingPosition: string;
       percentVote: string;
-      voting: {
-        "1": {
-          driverName: string;
-          percentVote: string;
-        };
-        "2": {
-          driverName: string;
-          percentVote: string;
-        };
-        "3": {
-          driverName: string;
-          percentVote: string;
-        };
-        "4": {
-          driverName: string;
-          percentVote: string;
-        };
-        "5": {
-          driverName: string;
-          percentVote: string;
-        };
-      };
-    }
-  ];
+    };
+    "2": {
+      driverName: string;
+      percentVote: string;
+    };
+    "3": {
+      driverName: string;
+      percentVote: string;
+    };
+    "4": {
+      driverName: string;
+      percentVote: string;
+    };
+    "5": {
+      driverName: string;
+      percentVote: string;
+    };
+  };
+}
+
+type props = {
+  driverOfTheDay: driverOfTheDayProps[];
+  screenWidth: number;
 };
 
 export function FantasyPropsDriverOfTheDayWidget({
   driverOfTheDay,
-}: driverOfTheDayProps) {
+  screenWidth,
+}: props) {
   // { fastestLaps }: fastestLaps // ergast api
+  const gridNameWidth = screenWidth <= 450 ? 105 : 168;
+  const gridChoiceWidth = screenWidth <= 450 ? 145 : 150;
+  const gridPlacingWidth = screenWidth <= 450 ? 93 : 120;
+  const gridMobileWidth = screenWidth <= 450 ? 343 : 440;
+  const gridPlacingName = screenWidth <= 450 ? "Pos." : "Placing";
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
       headerName: "Name",
       field: "name",
-      width: 168,
+      width: gridNameWidth,
     },
     {
       headerName: "Choice",
       field: "propBetsMostDriverOfTheDay",
-      width: 150,
+      width: gridChoiceWidth,
     },
     {
-      headerName: "Placing",
+      headerName: gridPlacingName,
       field: "driverOfTheDayCount",
       cellClass: "my-class",
-      width: 120,
+      width: gridPlacingWidth,
       sort: "desc" as any,
     },
   ]);
@@ -169,15 +176,35 @@ export function FantasyPropsDriverOfTheDayWidget({
   );
 
   return (
-    <div className="p-2 rounded-2xl border-gray-300 border-2">
-      <h3 className="p-2 font-bold">Most Driver of the Day</h3>
-      <div className="ag-theme-f1" style={{ height: "265px", width: "440px" }}>
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs as any}
-          defaultColDef={defaultColDef}
-        />
-      </div>
-    </div>
+    <>
+      {screenWidth <= 450 ? (
+        <div className="rounded-b-2xl">
+          <div
+            className="ag-theme-f1-mobile rounded-b-2xl"
+            style={{ height: "265px", width: gridMobileWidth }}
+          >
+            <AgGridReact
+              rowData={rowData}
+              columnDefs={columnDefs as any}
+              defaultColDef={defaultColDef}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="p-2 rounded-2xl border-gray-300 border-2">
+          <h3 className="p-2 font-bold">Most Driver of the Day</h3>
+          <div
+            className="ag-theme-f1"
+            style={{ height: "265px", width: gridMobileWidth }}
+          >
+            <AgGridReact
+              rowData={rowData}
+              columnDefs={columnDefs as any}
+              defaultColDef={defaultColDef}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
