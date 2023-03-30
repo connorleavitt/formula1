@@ -34,7 +34,7 @@ header.main-header > div {
   margin-left: 2.25rem;
 }
 header.mobile-header {
-  height: var(--h-header);
+  min-height: var(--h-header);
   background-color: var(--clr-f1-red);
 }
 
@@ -53,14 +53,8 @@ nav.mobile-nav {
   z-index: 100;
 }
 
-nav.mobile-nav > div.open {
-  position: fixed;
+nav.mobile-nav > div {
   background-color: var(--clr-f1-gray-background);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
 }
 
 nav .active {
@@ -163,6 +157,10 @@ main.main-mobile {
 .current-season--container {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+
+.current-season--container-mobile {
+  margin-top: calc(var(--h-header) + 1rem);
 }
 
 /* .current-season-next-race--countdown-container */
