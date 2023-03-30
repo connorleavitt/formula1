@@ -606,9 +606,7 @@ export function CircuitDetailedWidgetMobile({
                 )}
               </div>
               <div className="flex circuit-laps mx-2">
-                <p className="text-sm w-[155px] circuit-info--text">
-                  Fastest Pole
-                </p>
+                <p className="text-sm w-1/2 circuit-info--text">Fastest Pole</p>
                 {selectedRace.previousPoleWinner?.season !== null ? (
                   <div className="flex flex-col items-end w-1/2">
                     <p className="text-lg font-bold leading-none">

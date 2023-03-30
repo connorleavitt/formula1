@@ -103,7 +103,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               id="prop-bet-widget-select"
               value={activeWidget}
               onChange={(event) => setActiveWidget(event.target.value)}
-              className="prop-bet-widget-select"
+              className="prop-bet-widget-select w-full"
             >
               <option value="top">Top Constructor</option>
               <option value="bottom">Bottom Constructor</option>
