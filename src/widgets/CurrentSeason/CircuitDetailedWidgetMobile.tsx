@@ -381,27 +381,6 @@ export function CircuitDetailedWidgetMobile({
         <div className="absolute top-3 right-3 w-max py-1 px-2 rounded-md text-white circuit-info--round">
           <p className="text-md">ROUND {selectedRace.round}</p>
         </div>
-
-        {selectedRace.round === nextRace?.round && weatherIcon !== null && (
-          <div className="absolute text-white bottom-20  right-6 circuit-weather flex flex-col">
-            <p className="text-sm">Race Weather</p>
-            <div className="flex">
-              <div className="text-2xl mr-2 font-bold">{weatherTemp}&deg;</div>
-              <div className="w-[40px] h-full self-center">
-                <svg
-                  className="fill-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox={weatherIcon?.viewBox}
-                >
-                  <path d={weatherIcon?.d} />
-                </svg>
-              </div>
-            </div>
-            <p className="text-xs font-light self-end leading-3 mt-1 mr-1">
-              ({rainProb}" of rain)
-            </p>
-          </div>
-        )}
       </div>
       <div className="flex flex-col gap-4">
         <h3 className="px-4 pt-4 text-3xl font-bold">
@@ -538,8 +517,28 @@ export function CircuitDetailedWidgetMobile({
                 })}
               </div>
             </div>
+            {selectedRace.round === nextRace?.round && weatherIcon !== null && (
+              <div className="flex items-center  gap-2 px-2 pb-2">
+                <h6 className="text-sm">Forcasted race weather:</h6>
+                <div className="text-lg font-bold leading-none">
+                  {weatherTemp}&deg;
+                </div>
+                <div className="w-[20px]">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox={weatherIcon?.viewBox}
+                  >
+                    <path d={weatherIcon?.d} />
+                  </svg>
+                </div>
+                <p className="text-sm leading-none self-end">
+                  {rainProb}" <span className="text-xs">of rain</span>
+                </p>
+              </div>
+            )}
           </div>
         </div>
+
         <div className="px-4 flex flex-wrap gap-4 my-4">
           <div className="flex-grow circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm circuit-info--text">Events Held</p>
