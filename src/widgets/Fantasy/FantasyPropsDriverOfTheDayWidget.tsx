@@ -95,9 +95,8 @@ export function FantasyPropsDriverOfTheDayWidget({
   screenWidth,
 }: props) {
   // { fastestLaps }: fastestLaps // ergast api
-  const gridNameWidth = screenWidth <= 450 ? 105 : 168;
-  const gridChoiceWidth = screenWidth <= 450 ? 145 : 150;
-  const gridPlacingWidth = screenWidth <= 450 ? 93 : 120;
+  const gridNameWidth = screenWidth <= 450 ? 102 : 168;
+  const gridPlacingWidth = screenWidth <= 450 ? 91 : 120;
   const gridMobileWidth = screenWidth <= 450 ? 343 : 440;
   const gridPlacingName = screenWidth <= 450 ? "Pos." : "Placing";
   const [rowData, setRowData] = useState([]);
@@ -110,7 +109,7 @@ export function FantasyPropsDriverOfTheDayWidget({
     {
       headerName: "Choice",
       field: "propBetsMostDriverOfTheDay",
-      width: gridChoiceWidth,
+      width: 150,
     },
     {
       headerName: gridPlacingName,
@@ -178,17 +177,15 @@ export function FantasyPropsDriverOfTheDayWidget({
   return (
     <>
       {screenWidth <= 450 ? (
-        <div className="rounded-b-2xl">
-          <div
-            className="ag-theme-f1-mobile rounded-b-2xl"
-            style={{ height: "265px", width: gridMobileWidth }}
-          >
-            <AgGridReact
-              rowData={rowData}
-              columnDefs={columnDefs as any}
-              defaultColDef={defaultColDef}
-            />
-          </div>
+        <div
+          className="ag-theme-f1-mobile"
+          style={{ height: "265px", width: gridMobileWidth }}
+        >
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={columnDefs as any}
+            defaultColDef={defaultColDef}
+          />
         </div>
       ) : (
         <div className="p-2 rounded-2xl border-gray-300 border-2">

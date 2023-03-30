@@ -206,17 +206,15 @@ export function FantasyPropsFastestLapWidget({
   return (
     <>
       {screenWidth <= 450 ? (
-        <div className="rounded-b-2xl">
-          <div
-            className="ag-theme-f1-mobile rounded-b-2xl"
-            style={{ height: "265px", width: gridMobileWidth }}
-          >
-            <AgGridReact
-              rowData={rowData}
-              columnDefs={columnDefs as any}
-              defaultColDef={defaultColDef}
-            />
-          </div>
+        <div
+          className="ag-theme-f1-mobile"
+          style={{ height: "265px", width: gridMobileWidth }}
+        >
+          <AgGridReact
+            rowData={rowData}
+            columnDefs={columnDefs as any}
+            defaultColDef={defaultColDef}
+          />
         </div>
       ) : (
         <div className="p-2 rounded-2xl border-gray-300 border-2">

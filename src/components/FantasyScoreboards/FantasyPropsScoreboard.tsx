@@ -97,7 +97,6 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
       {screenWidth <= 450 ? (
         <>
           <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
-          {/* <div className="flex"> */}
           <div className="mt-4 prop-bet-widget-select-parent rounded-t-lg">
             <label htmlFor="prop-bet-widget-select"></label>
             <select
@@ -168,8 +167,6 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               />
             </div>
           </div>
-
-          {/* </div> */}
         </>
       ) : (
         <>

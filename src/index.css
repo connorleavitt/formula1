@@ -693,10 +693,11 @@ main.main-mobile {
 }
 
 .ag-theme-f1-mobile > div > .ag-root-wrapper {
-  border-top-left-radius: 0;
+  /* border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem; */
+  border-radius: 0;
 }
 
 .ag-theme-f1-mobile {
