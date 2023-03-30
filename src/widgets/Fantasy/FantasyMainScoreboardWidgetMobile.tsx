@@ -116,11 +116,13 @@ export function FantasyMainScoreboardWidgetMobile({ driverData }: DriverProps) {
             {player.isOpen ? (
               <div className="flex flex-col">
                 {player.drivers.map((x, index) => (
-                  <div className="fantasy-main-scoreboard-mobile-drivers my-1 flex justify-between">
-                    {/* <div>Gp {index + 1}</div> */}
-                    <p className="w-36 text-left ml-auto">{x.driverName}</p>
+                  <div className="fantasy-main-scoreboard-mobile-drivers flex justify-between mx-auto px-2 py-1">
+                    <div className="w-5 text-right ml-auto mr-2">
+                      {index + 1})
+                    </div>
+                    <p className="w-36 text-left">{x.driverName}</p>
                     {/* <p className="w-10 flex-1">{x.driverCode}</p> */}
-                    <p className="w-16 mr-9 text-right">
+                    <p className="w-16 text-right">
                       {x.driverPoints}{" "}
                       <span className="text-sm font-normal">pts</span>
                     </p>

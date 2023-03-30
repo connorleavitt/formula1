@@ -189,7 +189,7 @@ export function FantasyPropsDriverOfTheDayWidget({
         </div>
       ) : (
         <div className="p-2 rounded-2xl border-gray-300 border-2">
-          <h3 className="p-2 font-bold">Most Driver of the Day</h3>
+          <h3 className="p-2 font-bold">Driver of the Day</h3>
           <div
             className="ag-theme-f1"
             style={{ height: "265px", width: gridMobileWidth }}

@@ -62,8 +62,8 @@ export function FantasyMainScoreboard({ screenWidth }: ScreenWidthProps) {
     <>
       {screenWidth <= 450 ? (
         <div className="mb-10">
-          <h1 className="text-2xl font-bold">Main Scoreboard</h1>
-          <div className="my-2">
+          <h1 className="text-2xl font-bold ml-2">Main Scoreboard</h1>
+          <div className="mt-2">
             <FantasyMainScoreboardWidgetMobile
               driverData={driverStandings as any}
             />

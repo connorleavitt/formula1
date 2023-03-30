@@ -142,7 +142,7 @@ export function FantasyPropsConstructorDNFsWidget({
         </div>
       ) : (
         <div className="p-2 rounded-2xl border-gray-300 border-2">
-          <h3 className="p-2 font-bold">Most DNFs (Team)</h3>
+          <h3 className="p-2 font-bold">DNFs (Team)</h3>
           <div
             className="ag-theme-f1"
             style={{ height: "265px", width: gridMobileWidth }}

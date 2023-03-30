@@ -727,19 +727,17 @@ main.main-mobile {
 }
 
 .fantasy-main-scoreboard-mobile-button {
-  border-bottom: 1px solid var(--clr-f1-gray);
-  padding: 6px;
+  border-bottom: 2px solid rgba(var(--clr-f1-red-rgb), 0.5);
+  padding: 1rem;
 }
 
-/* .fantasy-main-scoreboard-mobile-button.active > div:first-child {
-  background-color: var(--clr-f1-gray);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.fantasy-main-scoreboard-mobile-button.active > div:last-child {
+.fantasy-main-scoreboard-mobile-button.active > div:first-child {
   background-color: var(--clr-f1-gray-background);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  /* border-top-left-radius: 10px;
+  border-top-right-radius: 10px; */
+}
+/* .fantasy-main-scoreboard-mobile-button.active > div:last-child {
+  background-color: var(--clr-f1-gray-background);
 } */
 .fantasy-main-scoreboard-mobile-button:last-child {
   border-bottom: 0;
@@ -747,4 +745,11 @@ main.main-mobile {
 
 .fantasy-main-scoreboard-mobile-drivers {
   color: var(--clr-text-mid);
+  border-bottom: 2px solid var(--clr-f1-gray);
+  /* background-color: var(--clr-f1-gray-background);
+  border-radius: 5px; */
+}
+
+.fantasy-main-scoreboard-mobile-drivers:last-child {
+  border-bottom: 0;
 }

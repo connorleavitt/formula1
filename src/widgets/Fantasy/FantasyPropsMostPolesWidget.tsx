@@ -164,7 +164,7 @@ export function FantasyPropsMostPolesWidget({
         </div>
       ) : (
         <div className="p-2 rounded-2xl border-gray-300 border-2">
-          <h3 className="p-2 font-bold">Most Pirelli Poles (Driver)</h3>
+          <h3 className="p-2 font-bold">Pirelli Poles (Driver)</h3>
           <div
             className="ag-theme-f1"
             style={{ height: "265px", width: gridMobileWidth }}

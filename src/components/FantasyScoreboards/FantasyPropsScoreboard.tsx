@@ -96,8 +96,8 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
     <div className="">
       {screenWidth <= 450 ? (
         <>
-          <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
-          <div className="mt-4 prop-bet-widget-select-parent rounded-t-lg">
+          <h1 className="text-2xl font-bold ml-2">Prop Bets</h1>
+          <div className="mt-2 prop-bet-widget-select-parent rounded-t-lg">
             <label htmlFor="prop-bet-widget-select"></label>
             <select
               id="prop-bet-widget-select"
@@ -107,10 +107,10 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
             >
               <option value="top">Top Constructor</option>
               <option value="bottom">Bottom Constructor</option>
-              <option value="dnfs">Most DNFs (Team)</option>
-              <option value="poles">Most Pirelli Poles (Driver)</option>
-              <option value="fastest">Most DHL Fastest Laps (Driver)</option>
-              <option value="dotd">Most Driver of the Day</option>
+              <option value="dnfs">DNFs (Team)</option>
+              <option value="poles">Pirelli Poles (Driver)</option>
+              <option value="fastest">DHL Fastest Laps (Driver)</option>
+              <option value="dotd">Driver of the Day</option>
             </select>
           </div>
 
@@ -169,7 +169,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
           </div>
         </>
       ) : (
-        <>
+        <div className="mb-10">
           <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
           <div className="flex">
             {/* <div className="my-4">
@@ -246,7 +246,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
                 />
               </div>
             </div>
-            <div className="flex flex-col ml-4">
+            <div className="flex flex-col justify-around ml-4">
               <button
                 className={`mb-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
                   activeWidget === "top"
@@ -275,7 +275,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
                 }`}
                 onClick={() => setActiveWidget("dnfs")}
               >
-                Most DNFs (Team)
+                DNFs (Team)
               </button>
               <button
                 className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
@@ -285,7 +285,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
                 }`}
                 onClick={() => setActiveWidget("poles")}
               >
-                Most Pirelli Poles (Driver)
+                Pirelli Poles (Driver)
               </button>
               <button
                 className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
@@ -295,21 +295,21 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
                 }`}
                 onClick={() => setActiveWidget("fastest")}
               >
-                Most DHL Fastest Laps (Driver)
+                DHL Fastest Laps (Driver)
               </button>
               <button
-                className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
+                className={`p-2 border-2 rounded-lg hover:bg-gray-100 ${
                   activeWidget === "dotd"
                     ? "bg-black text-white border-black hover:bg-gray-800"
                     : "border-gray-300"
                 }`}
                 onClick={() => setActiveWidget("dotd")}
               >
-                Most Driver of the Day
+                Driver of the Day
               </button>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
