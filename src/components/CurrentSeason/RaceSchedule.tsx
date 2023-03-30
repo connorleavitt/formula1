@@ -2,8 +2,13 @@ import { getRaceSchedule } from "../../hooks/getRaceSchedule";
 import { getRecentPole } from "../../hooks/getRecentPole";
 import { getRecentRaceResults } from "../../hooks/getRecentRaceResults";
 import { RaceScheduleWidget } from "../../widgets/CurrentSeason/RaceScheduleWidget";
+import { RaceScheduleWidgetMobile } from "../../widgets/CurrentSeason/RaceScheduleWidgetMobile";
 
-export function RaceSchedule() {
+type ScreenWidthProps = {
+  screenWidth: number;
+};
+
+export function RaceSchedule({ screenWidth }: ScreenWidthProps) {
   const [loading, raceSchedule, error, request] = getRaceSchedule({
     method: "get",
     url: "https://ergast.com/api/f1/current.json",
@@ -28,12 +33,28 @@ export function RaceSchedule() {
   }
 
   return (
-    <div className="race-schedule-container">
-      <RaceScheduleWidget
-        raceSchedule={raceSchedule as any}
-        recentRacesResults={recentRacesResults as any}
-        recentPoleWinners={recentPoleWinners as any}
-      />
+    <div
+      className={
+        screenWidth <= 450
+          ? "race-schedule-container-mobile m-4"
+          : "race-schedule-container"
+      }
+    >
+      {screenWidth <= 450 ? (
+        <RaceScheduleWidgetMobile
+          raceSchedule={raceSchedule as any}
+          recentRacesResults={recentRacesResults as any}
+          recentPoleWinners={recentPoleWinners as any}
+          screenWidth={screenWidth}
+        />
+      ) : (
+        <RaceScheduleWidget
+          raceSchedule={raceSchedule as any}
+          recentRacesResults={recentRacesResults as any}
+          recentPoleWinners={recentPoleWinners as any}
+          screenWidth={screenWidth}
+        />
+      )}
     </div>
   );
 }

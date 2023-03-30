@@ -87,11 +87,10 @@ main.main-mobile {
   overflow-x: hidden;
 }
 
-.home-mobile {
-  margin-top: calc(var(--h-header) + 1rem);
-}
-
-.fantasy-mobile {
+.home-mobile,
+.fantasy-mobile,
+.race-schedule-mobile,
+.current-season--container-mobile {
   margin-top: calc(var(--h-header) + 1rem);
 }
 
@@ -157,14 +156,16 @@ main.main-mobile {
   line-height: 20px;
 }
 
+.race-schedule-mobile > h1 {
+  font-size: 24px;
+  line-height: 20px;
+  margin-left: 2rem;
+}
+
 .race-schedule-container,
 .current-season--container {
   margin-left: 2rem;
   margin-right: 2rem;
-}
-
-.current-season--container-mobile {
-  margin-top: calc(var(--h-header) + 1rem);
 }
 
 /* .current-season-next-race--countdown-container */
@@ -285,6 +286,10 @@ main.main-mobile {
 .circuit-img--container {
   border: 2px solid var(--clr-f1-gray-highlighted);
   background-color: var(--clr-main-background);
+}
+
+.circuit-img--container-mobile {
+  border: none;
 }
 
 .circuit-info--round {
@@ -706,9 +711,6 @@ main.main-mobile {
   /* background-color: red; */
 }
 /* FANTASY */
-.fantasy-mobile {
-  margin-top: calc(var(--h-header) + 1rem);
-}
 
 .prop-bet-widget-select-parent {
   background-color: var(--clr-f1-alt);
@@ -753,3 +755,8 @@ main.main-mobile {
 .fantasy-main-scoreboard-mobile-drivers:last-child {
   border-bottom: 0;
 }
+
+/* RACE SCHEDULE */
+
+/* .race-schedule-container-mobile {
+} */

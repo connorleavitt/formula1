@@ -50,7 +50,10 @@ const App: React.FC = () => {
               path="/standings"
               element={<CurrentSeasonData screenWidth={screenWidth} />}
             />
-            <Route path="/schedule" element={<RaceSchedulePage />} />
+            <Route
+              path="/schedule"
+              element={<RaceSchedulePage screenWidth={screenWidth} />}
+            />
             <Route
               path="/fantasy"
               element={<Fantasy screenWidth={screenWidth} />}

@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../index.css";
 import trackInfo from "../../data/trackInfo.json";
 import { CircuitDetailedWidget } from "./CircuitDetailedWidget";
+import { CircuitDetailedWidgetMobile } from "./CircuitDetailedWidgetMobile";
 
 type RaceSchedule = {
   season: number;
@@ -240,7 +241,7 @@ type UpdatedSchedule = {
   };
 };
 
-export function RaceScheduleWidget({
+export function RaceScheduleWidgetMobile({
   raceSchedule,
   recentRacesResults,
   recentPoleWinners,
@@ -338,25 +339,21 @@ export function RaceScheduleWidget({
   };
 
   const settings = {
-    // dots: true,
     infinite: false,
     swipeToSlide: true,
     speed: 300,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    initialSlide: initSlide, // FIX THIS BASED ON NEXT RACE (SLIDE IS DOTS NOT INDEX)
+    slidesToShow: 1,
+    slidesToScroll: 1,
   };
 
+  useEffect(() => {
+    reloadSlider(futureRaces[0]);
+  }, [slider]);
+
   return (
-    <div className="relative flex flex-col race-schedule--main-container">
-      <button
-        className="absolute right-14 top-[-30px] race-schedule--btn-back-to-next-race"
-        onClick={() => reloadSlider(futureRaces[0])}
-      >
-        Back to next race
-      </button>
-      <div className="mb-4 flex w-full justify-center">
-        <Slider ref={slider} className="slider-container w-11/12" {...settings}>
+    <div className="flex flex-col race-schedule--main-container-mobile">
+      <div className="relative flex w-full justify-center mb-10">
+        <Slider ref={slider} className="slider-container w-3/5" {...settings}>
           {updatedRaceSchedule.map((race: any) => (
             <button
               key={race.round}
@@ -410,9 +407,16 @@ export function RaceScheduleWidget({
             </button>
           ))}
         </Slider>
+        <button
+          className="absolute -bottom-6 race-schedule--btn-back-to-next-race"
+          onClick={() => reloadSlider(futureRaces[0])}
+        >
+          Back to next race
+        </button>
       </div>
+
       {selectedCircuit && (
-        <CircuitDetailedWidget
+        <CircuitDetailedWidgetMobile
           circuit={selectedCircuit}
           raceSchedule={updatedRaceSchedule}
           key={selectedCircuit.round} // Add key prop to force re-render
