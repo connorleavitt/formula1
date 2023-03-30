@@ -32,7 +32,13 @@ export function MobileNav() {
   };
 
   return (
-    <nav className="mobile-nav mx-auto flex flex-col h-full">
+    <nav
+      className={
+        isMobileOpen
+          ? "mobile-nav mx-auto flex flex-col h-full"
+          : "mobile-nav mx-auto flex flex-col"
+      }
+    >
       <header className="mobile-header w-full flex items-center justify-between px-4">
         <div className="text-white text-2xl font-thin w-max">
           <Link to="/">

@@ -19,8 +19,10 @@ import constructors from "../../data/constructors.json";
 import fastestLapData from "../../data/fastestLap.json";
 import driverOfTheDay from "../../data/driverOfTheDay.json";
 import { FantasyPropsDriverOfTheDayWidget } from "../../widgets/Fantasy/FantasyPropsDriverOfTheDayWidget";
-
-export function FantasyPropsScoreboard() {
+type ScreenWidthProps = {
+  screenWidth: number;
+};
+export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
   // const fastestLaps = getFastestLaps(); // ergast API
   const [activeWidget, setActiveWidget] = useState("top");
 

@@ -6,7 +6,6 @@ import "./index.css";
 //pages
 import { Nav } from "./components/Nav";
 import { MobileNav } from "./components/MobileNav";
-import { CurrentSeason } from "./pages/CurrentSeason";
 import { About } from "./pages/About";
 import { Header } from "./components/Header";
 import { RaceSchedulePage } from "./pages/RaceSchedule";
@@ -32,7 +31,6 @@ const App: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  console.log(screenWidth);
 
   return (
     <div>
@@ -48,10 +46,16 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home screenWidth={screenWidth} />} />
             <Route path="/home" element={<Home screenWidth={screenWidth} />} />
-            <Route path="/standings" element={<CurrentSeasonData />} />
+            <Route
+              path="/standings"
+              element={<CurrentSeasonData screenWidth={screenWidth} />}
+            />
             <Route path="/schedule" element={<RaceSchedulePage />} />
-            <Route path="/fantasy" element={<Fantasy />} />
-            <Route path="/historical" element={<About />} />
+            <Route
+              path="/fantasy"
+              element={<Fantasy screenWidth={screenWidth} />}
+            />
+            {/* <Route path="/historical" element={<Historical />} /> */}
             <Route
               path="/about"
               element={<About screenWidth={screenWidth} />}

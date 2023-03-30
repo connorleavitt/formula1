@@ -29,8 +29,11 @@ interface DriverStandings {
     }
   ];
 }
+type ScreenWidthProps = {
+  screenWidth: number;
+};
 
-export function FantasyMainScoreboard() {
+export function FantasyMainScoreboard({ screenWidth }: ScreenWidthProps) {
   const [loading, driverStandings, error, request] = getCurrentDriverStandings({
     method: "get",
     url: "https://ergast.com/api/f1/2023/driverStandings.json",

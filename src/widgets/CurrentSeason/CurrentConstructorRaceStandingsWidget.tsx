@@ -73,6 +73,7 @@ type raceResultsProp = {
 
 type raceResultsProps = {
   raceResults: raceResultsProp[];
+  screenWidth: number;
 };
 
 type resultsByDriver = {
@@ -102,6 +103,7 @@ interface DriverInfo {
 
 export function CurrentConstructorRaceStandingsWidget({
   raceResults,
+  screenWidth,
 }: raceResultsProps) {
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([

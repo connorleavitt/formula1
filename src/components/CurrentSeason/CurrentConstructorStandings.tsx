@@ -5,9 +5,11 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-export function CurrentConstructorStandings() {
-  // const [constructorStandings, setConstructorStandings] = useState([]);
+type ScreenWidthProps = {
+  screenWidth: number;
+};
 
+export function CurrentConstructorStandings({ screenWidth }: ScreenWidthProps) {
   const getConstructorStandings = async () => {
     const response = await axios
       .get("https://ergast.com/api/f1/2023/constructorStandings.json")
@@ -17,18 +19,21 @@ export function CurrentConstructorStandings() {
       const constructorStandings =
         response.data.MRData.StandingsTable.StandingsLists[0]
           .ConstructorStandings;
-      // setConstructorStandings(constructorStandings);
       setRowData(constructorStandings);
     }
   };
-
+  const gridPositionWidth = screenWidth <= 450 ? 60 : 100;
+  const gridConstructorWidth = screenWidth <= 450 ? 130 : 150;
+  const gridWinWidth = screenWidth <= 450 ? 65 : 80;
+  const gridPointsWidth = screenWidth <= 450 ? 85 : 100;
+  const gridMobileWidth = screenWidth <= 450 ? 341 : 435;
   const [rowData, setRowData] = useState([]);
 
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "position",
       headerName: "",
-      width: 100,
+      width: gridPositionWidth,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -36,20 +41,20 @@ export function CurrentConstructorStandings() {
     {
       headerName: "Constructor",
       field: "Constructor.name",
-      width: 150,
+      width: gridConstructorWidth,
       cellClass: "cell-left",
       headerClass: "sub-headers-name" as string,
     },
     {
       field: "wins",
-      width: 80,
+      width: gridWinWidth,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       field: "points",
-      width: 100,
+      width: gridPointsWidth,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
       sort: "desc" as string,
@@ -71,7 +76,10 @@ export function CurrentConstructorStandings() {
 
   return (
     <div className="mt-4">
-      <div className="ag-theme-f1-medium" style={{ height: 395, width: 435 }}>
+      <div
+        className="ag-theme-f1-medium"
+        style={{ height: 395, width: gridMobileWidth }}
+      >
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

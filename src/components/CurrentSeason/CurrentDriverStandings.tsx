@@ -5,7 +5,11 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-export function CurrentDriverStandings() {
+type ScreenWidthProps = {
+  screenWidth: number;
+};
+
+export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
   const getDriverStandings = async () => {
     const response = await axios
       .get("https://ergast.com/api/f1/2023/driverStandings.json")
@@ -21,7 +25,58 @@ export function CurrentDriverStandings() {
 
   const [rowData, setRowData] = useState([]);
 
-  const [columnDefs, setColumnDefs] = useState([
+  const mobileCol = [
+    {
+      field: "position",
+      headerName: "",
+      width: 50,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      headerName: "Driver",
+      width: 140,
+      headerClass: "sub-headers-name" as string,
+      cellClass: "cell-left",
+      valueGetter: (p: {
+        data: { Driver: { givenName: string; familyName: string } };
+      }) => {
+        return p.data.Driver.givenName + " " + p.data.Driver.familyName;
+      },
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "points",
+      width: 80,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
+      sort: "desc" as string,
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "wins",
+      width: 50,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "Driver.code",
+      headerName: "Code",
+      width: 50,
+      cellClass: "centered",
+      headerClass: "sub-headers" as string,
+    },
+    {
+      headerName: "Constructor",
+      field: "Constructors.0.name",
+      width: 140,
+      cellClass: "centered",
+      headerClass: "sub-headers" as string,
+    },
+  ];
+  const fullScreenCol = [
     {
       field: "position",
       headerName: "",
@@ -71,7 +126,10 @@ export function CurrentDriverStandings() {
       sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-  ]);
+  ];
+  const [columnDefs, setColumnDefs] = useState(
+    screenWidth <= 450 ? mobileCol : fullScreenCol
+  );
 
   const defaultColDef = useMemo(
     () => ({
