@@ -72,6 +72,7 @@ type sprintResultsProp = {
 
 type sprintResultsProps = {
   sprintResults: sprintResultsProp[];
+  screenWidth: number;
 };
 
 // type resultsByDriver = {
@@ -101,14 +102,88 @@ type sprintResultsProps = {
 
 export function CurrentDriverSprintStandingsWidget({
   sprintResults,
+  screenWidth,
 }: sprintResultsProps) {
+  const mobilePinned = screenWidth <= 450 ? "left" : "";
+  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 448;
+  const [driverToggle, setDriverToggle] = useState(
+    screenWidth <= 450 ? false : true
+  );
   const [rowData, setRowData] = useState([]);
+  const colData = [
+    {
+      field: driverToggle ? "driverCode" : "driverName",
+      headerName: "Driver",
+      width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
+      cellClass: "cell-left",
+      pinned: mobilePinned,
+      headerClass: "sub-headers-name" as string,
+    },
+    {
+      headerName: "AZE" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "results.0.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "AUT" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "results.1.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "BEL" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "results.2.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "QAT" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "results.3.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "COTA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "results.4.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "BRA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "results.5.points",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      field: "totalPoints",
+      headerName: "Total",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      sort: "desc" as string,
+      width: 57,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
+    },
+  ];
   const [columnDefs, setColumnDefs] = useState([
     {
-      field: "driverName",
+      field: screenWidth <= 450 ? "driverCode" : "driverName",
       headerName: "Driver",
-      width: 135,
+      width: screenWidth <= 450 ? 70 : 135,
       cellClass: "cell-left",
+      pinned: mobilePinned,
       headerClass: "sub-headers-name" as string,
     },
     {
@@ -194,6 +269,7 @@ export function CurrentDriverSprintStandingsWidget({
         constructorId: dr.team,
         driverId: dr.driverId,
         driverName: dr.name,
+        driverCode: dr.code,
         results: results,
       };
     });
@@ -219,11 +295,25 @@ export function CurrentDriverSprintStandingsWidget({
     []
   );
   if (!rowData) return null;
+
+  function handleClick() {
+    setColumnDefs(colData);
+    setDriverToggle(!driverToggle);
+  }
+
   return (
-    <div className="mt-4">
+    <div className="">
+      <button
+        className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
+          screenWidth <= 450 ? "w-full " : "w-max"
+        }`}
+        onClick={handleClick}
+      >
+        {driverToggle ? "Show Driver Code" : "Show Driver Names"}
+      </button>
       <div
         className="ag-theme-f1-small"
-        style={{ height: "661px", width: "448px" }}
+        style={{ height: 661, width: mobileWidth }}
       >
         <AgGridReact
           rowData={rowData}

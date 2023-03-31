@@ -136,6 +136,7 @@ type sprintResultsProp = {
 type resultsProps = {
   raceResults: raceResultsProp[];
   sprintResults: sprintResultsProp[];
+  screenWidth: number;
 };
 
 type resultsByDriver = {
@@ -166,14 +167,225 @@ interface DriverInfo {
 export function CurrentDriverRaceStandingsWidget({
   raceResults,
   sprintResults,
+  screenWidth,
 }: resultsProps) {
+  const mobilePinned = screenWidth <= 450 ? "left" : "";
+  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 1162;
+
+  const [driverToggle, setDriverToggle] = useState(
+    screenWidth <= 450 ? false : true
+  );
   const [rowData, setRowData] = useState([]);
+  const colData = [
+    {
+      field: driverToggle ? "driverCode" : "driverName",
+      headerName: "Driver",
+      width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
+      cellClass: "cell-left",
+      pinned: mobilePinned,
+      headerClass: "sub-headers-name" as string,
+    },
+    {
+      headerName: "BHR" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.0.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "KSA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.1.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "AUS" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.2.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "AZE" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.3.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "MIA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.4.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "IMOL" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.5.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "MON" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.6.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "ESP" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.7.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "CAN" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.8.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "AUT" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.9.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "ENG" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.10.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "HUN" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.11.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "BEL" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.12.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "NED" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.13.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "ITA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.14.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "SGP" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.15.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "JPN" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.16.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "QAT" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.17.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "COTA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.18.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "MEX" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.19.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "BRA" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.20.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "VEG" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.21.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      headerName: "ABU" as string,
+      headerClass: "sub-headers" as string,
+      width: 42,
+      field: "combinedPointsArray.22.combinedPoints",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+    },
+    {
+      field: "totalPoints",
+      headerName: "Total",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      sort: "desc" as string,
+      width: 57,
+      headerClass: "sub-headers" as string,
+      cellClass: "my-class",
+    },
+  ];
   const [columnDefs, setColumnDefs] = useState([
     {
-      field: "driverName",
+      field: screenWidth <= 450 ? "driverCode" : "driverName",
       headerName: "Driver",
-      width: 135,
+      width: screenWidth <= 450 ? 70 : 135,
       cellClass: "cell-left",
+      pinned: mobilePinned,
       headerClass: "sub-headers-name" as string,
     },
     {
@@ -370,6 +582,7 @@ export function CurrentDriverRaceStandingsWidget({
       cellClass: "my-class",
     },
   ]);
+
   useEffect(() => {
     const driverRaceArray = driver.map((dr) => {
       const driverResults = raceResults.filter((race) =>
@@ -427,6 +640,7 @@ export function CurrentDriverRaceStandingsWidget({
         constructorId: dr.team,
         driverId: dr.driverId,
         driverName: dr.name,
+        driverCode: dr.code,
         raceResultsArray: raceResultsArray,
         sprintResultsArray: sprintResultsArray,
         combinedPointsArray: combinedPointsArray,
@@ -456,7 +670,6 @@ export function CurrentDriverRaceStandingsWidget({
     });
     setRowData(driversWithTotalPoints as any);
   }, [raceResults, sprintResults]);
-
   const defaultColDef = useMemo(
     () => ({
       sortable: true,
@@ -465,11 +678,24 @@ export function CurrentDriverRaceStandingsWidget({
     []
   );
   if (!rowData) return null;
+  function handleClick() {
+    setColumnDefs(colData);
+    setDriverToggle(!driverToggle);
+  }
+
   return (
-    <div className="mt-4">
+    <div className="">
+      <button
+        className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
+          screenWidth <= 450 ? "w-full " : "w-max"
+        }`}
+        onClick={handleClick}
+      >
+        {driverToggle ? "Show Driver Code" : "Show Driver Name"}
+      </button>
       <div
         className="ag-theme-f1-small"
-        style={{ height: "661px", width: "1162px" }}
+        style={{ height: 661, width: mobileWidth }}
       >
         <AgGridReact
           rowData={rowData}

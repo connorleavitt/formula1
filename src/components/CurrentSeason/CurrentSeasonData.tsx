@@ -43,12 +43,12 @@ export function CurrentSeasonData({ screenWidth }: ScreenWidthProps) {
             </div> */}
           </div>
           <div className="mt-4 w-full">
-            <label htmlFor="widget-select"></label>
+            <label htmlFor="standings--widget-select"></label>
             <select
-              id="widget-select"
+              id="standings--widget-select"
               value={activeWidget}
               onChange={(event) => setActiveWidget(event.target.value)}
-              className="p-2 bg-gray-200 rounded-lg w-full"
+              className="p-2 standings--widget-select rounded-lg w-full"
             >
               <option value="drivers">Driver Overview</option>
               <option value="driverRaces">Driver (by race)</option>
@@ -78,6 +78,7 @@ export function CurrentSeasonData({ screenWidth }: ScreenWidthProps) {
               <CurrentDriverRaceStandingsWidget
                 sprintResults={sprintResults as any}
                 raceResults={raceResults as any}
+                screenWidth={screenWidth}
               />
             </div>
             <div
@@ -88,6 +89,7 @@ export function CurrentSeasonData({ screenWidth }: ScreenWidthProps) {
               <CurrentConstructorRaceStandingsWidget
                 raceResults={raceResults as any}
                 screenWidth={screenWidth}
+                // screenWidth={screenWidth}
               />
             </div>
             <div
@@ -97,6 +99,7 @@ export function CurrentSeasonData({ screenWidth }: ScreenWidthProps) {
             >
               <CurrentDriverSprintStandingsWidget
                 sprintResults={sprintResults as any}
+                screenWidth={screenWidth}
               />
             </div>
           </div>
@@ -179,6 +182,7 @@ export function CurrentSeasonData({ screenWidth }: ScreenWidthProps) {
               <CurrentDriverRaceStandingsWidget
                 sprintResults={sprintResults as any}
                 raceResults={raceResults as any}
+                screenWidth={screenWidth}
               />
             </div>
             <div
@@ -198,6 +202,7 @@ export function CurrentSeasonData({ screenWidth }: ScreenWidthProps) {
             >
               <CurrentDriverSprintStandingsWidget
                 sprintResults={sprintResults as any}
+                screenWidth={screenWidth}
               />
             </div>
           </div>

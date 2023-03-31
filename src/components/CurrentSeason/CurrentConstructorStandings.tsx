@@ -26,7 +26,8 @@ export function CurrentConstructorStandings({ screenWidth }: ScreenWidthProps) {
   const gridConstructorWidth = screenWidth <= 450 ? 130 : 150;
   const gridWinWidth = screenWidth <= 450 ? 65 : 80;
   const gridPointsWidth = screenWidth <= 450 ? 85 : 100;
-  const gridMobileWidth = screenWidth <= 450 ? 341 : 435;
+  const gridMobileWidth = screenWidth <= 450 ? screenWidth - 32 : 435;
+
   const [rowData, setRowData] = useState([]);
 
   const [columnDefs, setColumnDefs] = useState([

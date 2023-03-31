@@ -105,12 +105,16 @@ export function CurrentConstructorRaceStandingsWidget({
   raceResults,
   screenWidth,
 }: raceResultsProps) {
+  const mobilePinned = screenWidth <= 450 ? "left" : "";
+  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 1162;
+
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
     {
       field: "constructorName",
       headerName: "Constructor",
       width: 135,
+      pinned: mobilePinned,
       cellClass: "cell-left",
       headerClass: "sub-headers-name" as string,
     },
@@ -369,7 +373,7 @@ export function CurrentConstructorRaceStandingsWidget({
     <div className="mt-4">
       <div
         className="ag-theme-f1-small"
-        style={{ height: "351px", width: "1162px" }}
+        style={{ height: "351px", width: mobileWidth }}
       >
         <AgGridReact
           rowData={rowData}

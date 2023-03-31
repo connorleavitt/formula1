@@ -23,6 +23,9 @@ export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
     }
   };
 
+  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 530;
+  const mobileHeight = screenWidth <= 450 ? 750 : 650;
+
   const [rowData, setRowData] = useState([]);
 
   const mobileCol = [
@@ -32,7 +35,16 @@ export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
       width: 50,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
+      pinned: "left",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "Driver.code",
+      headerName: "Code",
+      width: 50,
+      cellClass: "centered",
+      pinned: "left",
+      headerClass: "sub-headers" as string,
     },
     {
       headerName: "Driver",
@@ -54,6 +66,7 @@ export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
       sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
+
     {
       field: "wins",
       width: 50,
@@ -61,13 +74,7 @@ export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
       cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    {
-      field: "Driver.code",
-      headerName: "Code",
-      width: 50,
-      cellClass: "centered",
-      headerClass: "sub-headers" as string,
-    },
+
     {
       headerName: "Constructor",
       field: "Constructors.0.name",
@@ -142,13 +149,12 @@ export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
   useEffect(() => {
     getDriverStandings();
   }, []);
-  const gridMobileHeight = screenWidth <= 450 ? 750 : 650;
 
   return (
     <div className="mt-4">
       <div
         className="ag-theme-f1-medium"
-        style={{ height: gridMobileHeight, width: 530 }}
+        style={{ height: mobileHeight, width: mobileWidth }}
       >
         <AgGridReact
           rowData={rowData}

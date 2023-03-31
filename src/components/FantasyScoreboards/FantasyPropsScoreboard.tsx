@@ -25,7 +25,7 @@ type ScreenWidthProps = {
 export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
   // const fastestLaps = getFastestLaps(); // ergast API
   const [activeWidget, setActiveWidget] = useState("top");
-  const [seeAllActive, setSeeAllActive] = useState(false);
+  const [seeAllActive, setSeeAllActive] = useState(true);
   const [loading, constructorStandings, error, request] =
     getCurrentConstructorStandings({
       method: "get",
@@ -76,17 +76,27 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
     qualiLoading
   ) {
     return (
-      <div className="ml-20 mr-20 pb-20">
-        <h1 className="text-lg pb-2">Prop Bets</h1>
+      <div className="ml-2">
+        <h1 className="text-2xl font-bold mb-4">Prop Bets</h1>
         <p>Loading...</p>
       </div>
     );
   }
   if (error !== "") {
-    return <p>{error}</p>;
+    return (
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold mb-4">Prop Bets</h1>
+        <p>{error}</p>
+      </div>
+    );
   }
   if (!constructorStandings) {
-    return <p>Data is null</p>;
+    return (
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold mb-4">Prop Bets</h1>
+        <p>Data is null</p>
+      </div>
+    );
   }
   finalDnfTable.push(dnfChoice1[1]);
   finalDnfTable.push(dnfChoice2[1]);
@@ -103,7 +113,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
       {screenWidth <= 450 ? (
         <div className="relative">
           <h1 className="text-2xl font-bold ml-2 mb-4">Prop Bets</h1>
-          <div className="absolute top-0 right-0 self-center">
+          <div className="absolute -top-[2px] right-0 self-center">
             <button
               className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
                 seeAllActive
@@ -119,11 +129,11 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
             className={
               seeAllActive
                 ? "hidden"
-                : "flex flex-wrap items-center justify-between gap-2 my-2"
+                : "flex flex-wrap items-center justify-between my-2 gap-2"
             }
           >
             <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+              className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
                 activeWidget === "top"
                   ? "bg-black text-white border-black hover:bg-gray-800"
                   : "border-gray-300"
@@ -133,7 +143,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               TOP
             </button>
             <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+              className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
                 activeWidget === "bottom"
                   ? "bg-black text-white border-black hover:bg-gray-800"
                   : "border-gray-300"
@@ -143,7 +153,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               BTM
             </button>
             <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+              className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
                 activeWidget === "dnfs"
                   ? "bg-black text-white border-black hover:bg-gray-800"
                   : "border-gray-300"
@@ -153,7 +163,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               DNF
             </button>
             <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+              className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
                 activeWidget === "poles"
                   ? "bg-black text-white border-black hover:bg-gray-800"
                   : "border-gray-300"
@@ -163,7 +173,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               POLE
             </button>
             <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+              className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
                 activeWidget === "fastest"
                   ? "bg-black text-white border-black hover:bg-gray-800"
                   : "border-gray-300"
@@ -173,7 +183,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               FAST
             </button>
             <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+              className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
                 activeWidget === "dotd"
                   ? "bg-black text-white border-black hover:bg-gray-800"
                   : "border-gray-300"
@@ -183,7 +193,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               DOTD
             </button>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-6">
             <div style={{ display: activeWidget === "top" ? "block" : "none" }}>
               <FantasyPropsTopConstructorWidget
                 constructorStandings={constructorStandings as any}

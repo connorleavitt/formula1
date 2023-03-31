@@ -43,19 +43,27 @@ export function FantasyMainScoreboard({ screenWidth }: ScreenWidthProps) {
   // console.log(loading, driverStandings, error, request);
   if (loading) {
     return (
-      <div className="ml-auto mr-auto w-min">
+      <div className="ml-2 mb-10">
         <h1 className="text-2xl font-bold mb-4">Main Scoreboard</h1>
-        <div className="bg-neutral-100 p-2 rounded-2xl border-red-500 border-4">
-          <p>Loading...</p>
-        </div>
+        <p>Loading...</p>
       </div>
     );
   }
   if (error !== "") {
-    return <p>{error}</p>;
+    return (
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold mb-4">Main Scoreboard</h1>
+        <p>{error}</p>
+      </div>
+    );
   }
   if (!driverStandings) {
-    return <p>Data is null</p>;
+    return (
+      <div className="mb-10">
+        <h1 className="text-2xl font-bold mb-4">Main Scoreboard</h1>
+        <p>Data is null</p>
+      </div>
+    );
   }
 
   return (

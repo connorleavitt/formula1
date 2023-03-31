@@ -720,6 +720,16 @@ main.main-mobile {
   margin: 0 auto;
 }
 
+/* STANDINGS */
+
+.standings--widget-select {
+  background-color: var(--clr-f1-gray);
+}
+
+.standings-btn {
+  background-color: var(--clr-f1-gray-background);
+}
+
 /* FANTASY */
 
 .prop-bet-widget-select-parent {
@@ -743,7 +753,7 @@ main.main-mobile {
   padding: 1rem;
 }
 
-.fantasy-main-scoreboard-mobile-button.active > div:first-child {
+.fantasy-main-scoreboard-mobile-button {
   background-color: var(--clr-f1-gray-background);
   /* border-top-left-radius: 10px;
   border-top-right-radius: 10px; */
@@ -757,7 +767,7 @@ main.main-mobile {
 
 .fantasy-main-scoreboard-mobile-drivers {
   color: var(--clr-text-mid);
-  border-bottom: 2px solid var(--clr-f1-gray);
+  /* border-bottom: 1px solid var(--clr-f1-gray); */
   /* background-color: var(--clr-f1-gray-background);
   border-radius: 5px; */
 }
