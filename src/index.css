@@ -187,7 +187,7 @@ main.main-mobile {
 
 .race-schedule--btn-mobile {
   background-color: var(--clr-f1-gray);
-  border: 2px solid var(--clr-f1-alt);
+  border: 2px solid var(--clr-f1-gray-hover);
 }
 
 .race-schedule--next-tag-active,

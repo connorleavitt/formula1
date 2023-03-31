@@ -95,7 +95,7 @@ export function FantasyMainScoreboardLeaderWidget({
               </div>
             </Link>
           </div>
-          <div className="flex flex-col justify-center items-center p-2 pb-4 gap-2">
+          <div className="flex flex-col justify-center items-center px-2 pb-4 gap-2 mx-10">
             <div className="flex text-xl text-white w-full justify-between">
               <p className="w-max font-bold">
                 <span>1. </span>
