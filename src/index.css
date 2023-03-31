@@ -739,7 +739,7 @@ main.main-mobile {
 }
 
 .fantasy-main-scoreboard-mobile-button {
-  border-bottom: 2px solid rgba(var(--clr-f1-red-rgb), 0.5);
+  border-bottom: 2px solid var(--clr-f1-gray);
   padding: 1rem;
 }
 
@@ -768,5 +768,8 @@ main.main-mobile {
 
 /* RACE SCHEDULE */
 
-/* .race-schedule-container-mobile {
-} */
+.header-sticky-title {
+  top: calc(var(--h-header) + 0px);
+  background-color: var(--clr-f1-red);
+  color: white;
+}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { differenceInSeconds, parseISO } from "date-fns";
 import trackInfo from "../../data/trackInfo.json";
 import { ICON_MAP } from "../../utilities/Weather/iconMap";
@@ -210,12 +210,16 @@ export function CircuitDetailedWidgetMobile({
   circuit,
   raceSchedule,
 }: CircuitDetailedWidgetProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mainContentRef = useRef<HTMLHeadingElement>(null);
+
   const [selectedRace, setSelectedRace] = useState<RaceSchedule | null>(null);
   const [nextRace, setNextRace] = useState<RaceSchedule | null>(null);
   const [raceDayTrackWeather, setRaceDayTrackWeather] =
     useState<TrackWeather | null>(null);
   const [weatherIcon, setWeatherIcon] = useState<WeatherIconProps | null>(null);
   const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
+  const [isRaceNameSticky, setIsRaceNameSticky] = useState(false);
 
   useEffect(() => {
     const now = new Date();
@@ -276,6 +280,25 @@ export function CircuitDetailedWidgetMobile({
     }
   }, [raceSchedule]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const div = mainContentRef.current;
+      if (div) {
+        if (div.getBoundingClientRect().top <= 130) {
+          setIsRaceNameSticky(true);
+        } else {
+          setIsRaceNameSticky(false);
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   if (!selectedRace) {
     return null; // no next race found
   }
@@ -330,8 +353,12 @@ export function CircuitDetailedWidgetMobile({
   const winnerConstructorArray =
     selectedRace.additionalInfo.mostConstructorWins.split(", ");
 
+  // console.log(isRaceNameSticky);
   return (
-    <div className="flex flex-col circuit-info--main-container mb-4 rounded-2xl">
+    <div
+      // ref={containerRef}
+      className="flex flex-col circuit-info--main-container mb-4 rounded-2xl"
+    >
       <div className="flex items-center justify-between w-full">
         {formattedCountdown.days > 0 && (
           <div className="circuit-countdown--contianer-mobile rounded-t-lg w-full ">
@@ -386,7 +413,21 @@ export function CircuitDetailedWidgetMobile({
         <h3 className="px-4 pt-4 text-3xl font-bold">
           {selectedRace.Circuit.circuitName}
         </h3>
-        <div className="px-4 flex flex-col">
+        <div
+          className={`flex w-full -ml-4 p-4 h-max items-center justify-center gap-4 ${
+            isRaceNameSticky ? "fixed header-sticky-title" : "hidden"
+          }`}
+        >
+          <h3 className="text-xl font-bold">
+            {selectedRace.Circuit.circuitName}
+          </h3>
+          <img
+            className="rounded-sm w-14 border-2 border-gray-200"
+            src={selectedRace.additionalInfo.flagUrl}
+            alt={selectedRace.Circuit.circuitName}
+          />
+        </div>
+        <div ref={mainContentRef} className="px-4 flex flex-col">
           <h4 className="ml-1 circuit-info--text">Grand Prix Time Chart</h4>
           <div className="circuit-times-table rounded-md mt-2">
             <div className="flex p-2 justify-between">

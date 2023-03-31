@@ -338,6 +338,7 @@ export function RaceScheduleWidgetMobile({
   const handleRaceClickMobile = (race: any) => {
     setSelectedCircuit(race as UpdatedSchedule);
     reloadSlider(race);
+    setIsListOpen(!isListOpen);
   };
 
   const reloadSlider = (race: any) => {

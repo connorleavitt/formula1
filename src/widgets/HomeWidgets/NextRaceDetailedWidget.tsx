@@ -524,11 +524,8 @@ export function NextRaceDetailedWidget({
               </div>
             </div>
             {nextRace.round === nextRace?.round && weatherIcon !== null && (
-              <div className="flex items-center  gap-2 px-2 pb-2">
-                <h6 className="text-sm">Forcasted race weather:</h6>
-                <div className="text-lg font-bold leading-none">
-                  {weatherTemp}&deg;
-                </div>
+              <div className="flex items-center justify-end gap-2 mr-2 px-2 pb-2">
+                <div className="text-lg leading-none">{weatherTemp}&deg;</div>
                 <div className="w-[20px]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -537,9 +534,6 @@ export function NextRaceDetailedWidget({
                     <path d={weatherIcon?.d} />
                   </svg>
                 </div>
-                <p className="text-sm leading-none self-end">
-                  {rainProb}" <span className="text-xs">of rain</span>
-                </p>
               </div>
             )}
           </div>
