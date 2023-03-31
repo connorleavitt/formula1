@@ -329,10 +329,17 @@ export function RaceScheduleWidgetMobile({
 
   const slider = useRef<Slider>(null);
   const initSlide = Number(previousRace.round);
+  const [isListOpen, setIsListOpen] = useState(false);
 
   const handleRaceClick = (race: any) => {
     setSelectedCircuit(race as UpdatedSchedule);
   };
+
+  const handleRaceClickMobile = (race: any) => {
+    setSelectedCircuit(race as UpdatedSchedule);
+    reloadSlider(race);
+  };
+
   const reloadSlider = (race: any) => {
     setSelectedCircuit(race as UpdatedSchedule);
     slider.current?.slickGoTo(race.round - 1);
@@ -352,7 +359,17 @@ export function RaceScheduleWidgetMobile({
 
   return (
     <div className="flex flex-col race-schedule--main-container-mobile">
-      <div className="relative flex w-full justify-center mb-10">
+      <button
+        className="race-schedule--btn-mobile mb-4 rounded-lg"
+        onClick={() => setIsListOpen(!isListOpen)}
+      >
+        {isListOpen ? "See Slider View" : "See List View"}
+      </button>
+      <div
+        className={
+          isListOpen ? "hidden" : "relative flex w-full justify-center mb-4"
+        }
+      >
         <Slider ref={slider} className="slider-container w-3/5" {...settings}>
           {updatedRaceSchedule.map((race: any) => (
             <button
@@ -407,14 +424,58 @@ export function RaceScheduleWidgetMobile({
             </button>
           ))}
         </Slider>
-        <button
-          className="absolute -bottom-6 race-schedule--btn-back-to-next-race"
-          onClick={() => reloadSlider(futureRaces[0])}
-        >
-          Back to next race
-        </button>
       </div>
-
+      <div
+        className={isListOpen ? "flex flex-wrap gap-2 w-full mb-4" : "hidden"}
+      >
+        {updatedRaceSchedule.map((race: any) => (
+          <button
+            key={race.round}
+            className={`relative w-full circuit-info--button text-left rounded-lg ${
+              race.round === selectedCircuit.round ? "selected" : ""
+            }`}
+            onClick={() => handleRaceClickMobile(race)}
+          >
+            <div className="flex items-center justify-between py-1 px-2">
+              <img
+                className="rounded-md w-10 h-7 border-2 border-black"
+                src={race.additionalInfo.flagUrl}
+                alt={race.additionalInfo.circuitName}
+              />
+              <div
+                className={`text-base w-32 leading-4 font-bold ${
+                  race.round === selectedCircuit.round
+                    ? "text-white"
+                    : "text-gray-800"
+                }`}
+              >
+                {race.additionalInfo.Location.country}
+              </div>
+              <div
+                className={`text-base w-16 leading-4 ${
+                  race.round === selectedCircuit.round ? "text-white" : ""
+                }`}
+              >
+                {new Date(race.date + "T" + race.time).toLocaleString("en-US", {
+                  day: "2-digit",
+                })}{" "}
+                {new Date(race.date + "T" + race.time)
+                  .toLocaleString("en-US", {
+                    month: "short",
+                  })
+                  .toUpperCase()}
+              </div>
+            </div>
+            {race.round === futureRaces[0].round ? (
+              <div className="absolute right-24 top-0 bottom-0 flex ">
+                <p className="self-center race-schedule--next-tag">NEXT</p>
+              </div>
+            ) : (
+              ""
+            )}
+          </button>
+        ))}
+      </div>
       {selectedCircuit && (
         <CircuitDetailedWidgetMobile
           circuit={selectedCircuit}

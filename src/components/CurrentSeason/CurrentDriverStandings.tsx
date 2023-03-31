@@ -142,10 +142,14 @@ export function CurrentDriverStandings({ screenWidth }: ScreenWidthProps) {
   useEffect(() => {
     getDriverStandings();
   }, []);
+  const gridMobileHeight = screenWidth <= 450 ? 750 : 650;
 
   return (
     <div className="mt-4">
-      <div className="ag-theme-f1-medium" style={{ height: 650, width: 530 }}>
+      <div
+        className="ag-theme-f1-medium"
+        style={{ height: gridMobileHeight, width: 530 }}
+      >
         <AgGridReact
           rowData={rowData}
           columnDefs={columnDefs as any}

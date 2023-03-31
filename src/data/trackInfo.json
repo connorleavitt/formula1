@@ -150,7 +150,8 @@
     "trackComments": "Counter-clockwise, long straights, slow technical sections and no margin for error due to the proximity of the walls (90 deg bends)",
     "grandPrixComments": {
       "1": "The circuit starts adjacent to Azadliq Square, then loops around Government House before heading west along a 1 km (0.62 mi) straight to the Palace of the Shirvanshahs and Maiden Tower.",
-      "2": "Third longest track of the calendar; no Formula 1 driver has ever won in Baku twice so far."
+      "2": "Third longest track of the calendar.",
+      "3": "No Formula 1 driver has ever won in Baku twice so far."
     },
     "Location": {
       "lat": "40.3725",

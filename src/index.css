@@ -185,6 +185,11 @@ main.main-mobile {
   border-bottom: 2px solid var(--clr-dashboard-background);
 }
 
+.race-schedule--btn-mobile {
+  background-color: var(--clr-f1-gray);
+  border: 2px solid var(--clr-f1-alt);
+}
+
 .race-schedule--next-tag-active,
 .race-schedule--next-tag {
   padding: 0.2rem;
@@ -267,6 +272,11 @@ main.main-mobile {
 .circuit-countdown--contianer {
   background-color: var(--clr-f1-alt);
   color: var(--clr-f1-gray-background);
+}
+
+.circuit-countdown--contianer-mobile {
+  background-color: var(--clr-f1-red);
+  color: var(--clr-f1-background);
 }
 
 .circuit-countdown--contianer > div > div:nth-child(2n + 2) {
@@ -707,9 +717,9 @@ main.main-mobile {
 
 .ag-theme-f1-mobile {
   border: 3px solid var(--clr-f1-alt);
-  /* margin-bottom: 10rem; */
-  /* background-color: red; */
+  margin: 0 auto;
 }
+
 /* FANTASY */
 
 .prop-bet-widget-select-parent {

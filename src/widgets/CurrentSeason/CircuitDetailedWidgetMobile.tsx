@@ -334,7 +334,7 @@ export function CircuitDetailedWidgetMobile({
     <div className="flex flex-col circuit-info--main-container mb-4 rounded-2xl">
       <div className="flex items-center justify-between w-full">
         {formattedCountdown.days > 0 && (
-          <div className="circuit-countdown--contianer rounded-t-lg w-full ">
+          <div className="circuit-countdown--contianer-mobile rounded-t-lg w-full ">
             <div className="current-season-next-race--countdown-container flex justify-center">
               {/* <h3 className="self-center font-bold text-center px-4">
                   COUNTDOWN
@@ -538,7 +538,32 @@ export function CircuitDetailedWidgetMobile({
             )}
           </div>
         </div>
-
+        <div className="circuit-img--container-mobile">
+          <div className="px-4">
+            <img
+              src={selectedRace.additionalInfo.imgUrl}
+              alt={selectedRace.Circuit.circuitName}
+            />
+          </div>
+          <div className="px-6 my-4 gap-4 flex flex-col">
+            <div className="circuit-round">
+              <p className="text-sm">
+                Track Type:{" "}
+                <span className="font-bold">
+                  {selectedRace.additionalInfo.trackType}
+                </span>
+              </p>
+            </div>
+            <div className="circuit-round">
+              <p className="text-sm">
+                Track Comments:{" "}
+                <span className="font-bold">
+                  {selectedRace.additionalInfo.trackComments}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
         <div className="px-4 flex flex-wrap gap-4 my-4">
           <div className="flex-grow circuit-laps border-l-2 border-b-2 pl-2 pb-1 rounded-bl-2xl border-gray-300">
             <p className="text-sm circuit-info--text">Events Held</p>
@@ -602,7 +627,9 @@ export function CircuitDetailedWidgetMobile({
                     </p>
                   </div>
                 ) : (
-                  <p className="text-sm">n/a</p>
+                  <div className="flex justify-end w-1/2">
+                    <p className="text-sm font-bold">n/a</p>
+                  </div>
                 )}
               </div>
               <div className="flex circuit-laps mx-2">
@@ -619,7 +646,9 @@ export function CircuitDetailedWidgetMobile({
                     </p>
                   </div>
                 ) : (
-                  <p className="text-sm">n/a</p>
+                  <div className="flex justify-end w-1/2">
+                    <p className="text-sm font-bold">n/a</p>
+                  </div>
                 )}
               </div>
             </div>
@@ -650,7 +679,9 @@ export function CircuitDetailedWidgetMobile({
                     </p>
                   </div>
                 ) : (
-                  <p className="text-sm">n/a</p>
+                  <div className="flex justify-end w-1/2">
+                    <p className="text-sm font-bold">n/a</p>
+                  </div>
                 )}
               </div>
               <div className="flex circuit-laps mx-2">
@@ -667,7 +698,9 @@ export function CircuitDetailedWidgetMobile({
                     </p>
                   </div>
                 ) : (
-                  <p className="text-sm">n/a</p>
+                  <div className="flex justify-end w-1/2">
+                    <p className="text-sm font-bold">n/a</p>
+                  </div>
                 )}
               </div>
               <div className="circuit-round flex mx-2 justify-between">
@@ -678,12 +711,24 @@ export function CircuitDetailedWidgetMobile({
                   {winnerDriverArray.map((name) => (
                     <li
                       key={name}
-                      className="flex flex-col w-full items-end mb-2"
+                      className={
+                        name === "n/a"
+                          ? "flex w-full items-end"
+                          : "flex flex-col w-full items-end mb-2"
+                      }
                     >
-                      <p className="text-sm font-bold">{name.split(" (")[0]}</p>
-                      <p className="text-xs font-normal">
-                        {name.split(" ")[2]} {name.split(" ")[3]}
-                      </p>
+                      {name === "n/a" ? (
+                        <p className="text-sm font-bold">n/a</p>
+                      ) : (
+                        <>
+                          <p className="text-sm font-bold">
+                            {name.split(" (")[0]}
+                          </p>
+                          <p className="text-xs font-normal">
+                            {name.split(" ")[2]} {name.split(" ")[3]}
+                          </p>
+                        </>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -716,49 +761,29 @@ export function CircuitDetailedWidgetMobile({
             </div>
           </div>
         </div>
-        <div className="circuit-img--container-mobile">
-          <div className="px-4">
-            <img
-              src={selectedRace.additionalInfo.imgUrl}
-              alt={selectedRace.Circuit.circuitName}
-            />
-          </div>
-          <div className="px-6 mb-4 gap-4 flex flex-col">
-            <div className="circuit-round">
-              <p className="text-sm">
-                Track Type:{" "}
-                <span className="font-bold">
-                  {selectedRace.additionalInfo.trackType}
-                </span>
-              </p>
-            </div>
-            <div className="circuit-round">
-              <p className="text-sm">
-                Track Comments:{" "}
-                <span className="font-bold">
-                  {selectedRace.additionalInfo.trackComments}
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="p-4">
+        <div className="px-4 mb-4">
           <p className="font-bold border-b-2 border-gray-300">
             General Comments
           </p>
           <ul className="ml-1">
-            <li className="text-sm w-full my-2">
-              {"1) "}
-              {selectedRace.additionalInfo.grandPrixComments[1]}
+            <li className="text-sm w-full my-4">
+              <p className="leading-6">
+                {"1) "}
+                {selectedRace.additionalInfo.grandPrixComments[1]}
+              </p>
             </li>
-            <li className="text-sm w-full my-2">
-              {"2) "}
-              {selectedRace.additionalInfo.grandPrixComments[2]}
+            <li className="text-sm w-full my-4">
+              <p className="leading-6">
+                {"2) "}
+                {selectedRace.additionalInfo.grandPrixComments[2]}
+              </p>
             </li>
             {selectedRace.additionalInfo.grandPrixComments[3] != null && (
-              <li className="text-sm w-full my-2">
-                {"3) "}
-                {selectedRace.additionalInfo.grandPrixComments[3]}
+              <li className="text-sm w-full my-4">
+                <p className="leading-6">
+                  {"3) "}
+                  {selectedRace.additionalInfo.grandPrixComments[3]}
+                </p>
               </li>
             )}
           </ul>

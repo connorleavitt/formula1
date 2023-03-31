@@ -159,6 +159,7 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
               />
             </div>
             <div
+              className="w-full"
               style={{ display: activeWidget === "dotd" ? "block" : "none" }}
             >
               <FantasyPropsDriverOfTheDayWidget

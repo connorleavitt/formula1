@@ -76,7 +76,7 @@ export function FantasyPropsMostPolesWidget({
   const gridNameWidth = screenWidth <= 450 ? 105 : 168;
   const gridChoiceWidth = screenWidth <= 450 ? 145 : 150;
   const gridPlacingWidth = screenWidth <= 450 ? 93 : 120;
-  const gridMobileWidth = screenWidth <= 450 ? 343 : 440;
+  const gridMobileWidth = screenWidth - 32;
   const gridPlacingName = screenWidth <= 450 ? "Pos." : "Placing";
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
