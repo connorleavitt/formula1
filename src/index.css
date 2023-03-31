@@ -53,7 +53,7 @@ nav.mobile-nav {
   z-index: 100;
 }
 
-nav.mobile-nav > div {
+nav.mobile-nav > div > div {
   background-color: var(--clr-f1-gray-background);
 }
 
