@@ -25,7 +25,7 @@ type ScreenWidthProps = {
 export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
   // const fastestLaps = getFastestLaps(); // ergast API
   const [activeWidget, setActiveWidget] = useState("top");
-
+  const [seeAllActive, setSeeAllActive] = useState(false);
   const [loading, constructorStandings, error, request] =
     getCurrentConstructorStandings({
       method: "get",
@@ -92,12 +92,180 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
   finalDnfTable.push(dnfChoice2[1]);
   finalDnfTable.push(dnfChoice3[1]);
   finalDnfTable.push(dnfChoice4[1]);
+
+  const seeAllFunction = () => {
+    setActiveWidget("top");
+    setSeeAllActive(!seeAllActive);
+  };
+
   return (
     <div className="">
       {screenWidth <= 450 ? (
-        <>
-          <h1 className="text-2xl font-bold ml-2">Prop Bets</h1>
-          <div className="mt-2 prop-bet-widget-select-parent rounded-t-lg">
+        <div className="relative">
+          <h1 className="text-2xl font-bold ml-2 mb-4">Prop Bets</h1>
+          <div className="absolute top-0 right-0 self-center">
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                seeAllActive
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => seeAllFunction()}
+            >
+              {seeAllActive ? "COLLAPSE" : "VIEW ALL"}
+            </button>
+          </div>
+          <div
+            className={
+              seeAllActive
+                ? "hidden"
+                : "flex flex-wrap items-center justify-between gap-2 my-2"
+            }
+          >
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                activeWidget === "top"
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => setActiveWidget("top")}
+            >
+              TOP
+            </button>
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                activeWidget === "bottom"
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => setActiveWidget("bottom")}
+            >
+              BTM
+            </button>
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                activeWidget === "dnfs"
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => setActiveWidget("dnfs")}
+            >
+              DNF
+            </button>
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                activeWidget === "poles"
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => setActiveWidget("poles")}
+            >
+              POLE
+            </button>
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                activeWidget === "fastest"
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => setActiveWidget("fastest")}
+            >
+              FAST
+            </button>
+            <button
+              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                activeWidget === "dotd"
+                  ? "bg-black text-white border-black hover:bg-gray-800"
+                  : "border-gray-300"
+              }`}
+              onClick={() => setActiveWidget("dotd")}
+            >
+              DOTD
+            </button>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <div style={{ display: activeWidget === "top" ? "block" : "none" }}>
+              <FantasyPropsTopConstructorWidget
+                constructorStandings={constructorStandings as any}
+                screenWidth={screenWidth}
+              />
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "bottom"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+              <FantasyPropsBottomConstructorWidget
+                constructorStandings={constructorStandings as any}
+                screenWidth={screenWidth}
+              />
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "dnfs"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+              <FantasyPropsConstructorDNFsWidget
+                finalDnfTable={finalDnfTable as any}
+                screenWidth={screenWidth}
+              />
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "poles"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+              <FantasyPropsMostPolesWidget
+                qualiStandings={qualiStandings as any}
+                screenWidth={screenWidth}
+              />
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "fastest"
+                  ? "block"
+                  : "hidden"
+              }
+              // style={{
+              //   display: activeWidget === "fastest" ? "block" : "none",
+              // }}
+            >
+              <FantasyPropsFastestLapWidget
+                // fastestLaps={fastestLaps as any} //ergast api
+                fastestLapData={fastestLapData as any}
+                screenWidth={screenWidth}
+              />
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "dotd"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+              <FantasyPropsDriverOfTheDayWidget
+                driverOfTheDay={driverOfTheDay as any}
+                screenWidth={screenWidth}
+              />
+            </div>
+          </div>
+          {/* <div className="mt-2 prop-bet-widget-select-parent rounded-t-lg">
             <label htmlFor="prop-bet-widget-select"></label>
             <select
               id="prop-bet-widget-select"
@@ -107,68 +275,13 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
             >
               <option value="top">Top Constructor</option>
               <option value="bottom">Bottom Constructor</option>
-              <option value="dnfs">DNFs (Team)</option>
+              <option value="dnfs">Did Not Finish (Team)</option>
               <option value="poles">Pirelli Poles (Driver)</option>
               <option value="fastest">DHL Fastest Laps (Driver)</option>
               <option value="dotd">Driver of the Day</option>
             </select>
-          </div>
-
-          <div className="flex flex-wrap">
-            <div style={{ display: activeWidget === "top" ? "block" : "none" }}>
-              <FantasyPropsTopConstructorWidget
-                constructorStandings={constructorStandings as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              style={{
-                display: activeWidget === "bottom" ? "block" : "none",
-              }}
-            >
-              <FantasyPropsBottomConstructorWidget
-                constructorStandings={constructorStandings as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              style={{ display: activeWidget === "dnfs" ? "block" : "none" }}
-            >
-              <FantasyPropsConstructorDNFsWidget
-                finalDnfTable={finalDnfTable as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              style={{ display: activeWidget === "poles" ? "block" : "none" }}
-            >
-              <FantasyPropsMostPolesWidget
-                qualiStandings={qualiStandings as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              style={{
-                display: activeWidget === "fastest" ? "block" : "none",
-              }}
-            >
-              <FantasyPropsFastestLapWidget
-                // fastestLaps={fastestLaps as any} //ergast api
-                fastestLapData={fastestLapData as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              className="w-full"
-              style={{ display: activeWidget === "dotd" ? "block" : "none" }}
-            >
-              <FantasyPropsDriverOfTheDayWidget
-                driverOfTheDay={driverOfTheDay as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-          </div>
-        </>
+          </div> */}
+        </div>
       ) : (
         <div className="mb-10">
           <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>

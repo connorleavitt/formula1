@@ -716,7 +716,7 @@ main.main-mobile {
 }
 
 .ag-theme-f1-mobile {
-  border: 3px solid var(--clr-f1-alt);
+  /* border: 3px solid var(--clr-f1-alt); */
   margin: 0 auto;
 }
 
@@ -764,6 +764,10 @@ main.main-mobile {
 
 .fantasy-main-scoreboard-mobile-drivers:last-child {
   border-bottom: 0;
+}
+
+.prop-bet-mobile {
+  background-color: var(--clr-f1-gray-background);
 }
 
 /* RACE SCHEDULE */

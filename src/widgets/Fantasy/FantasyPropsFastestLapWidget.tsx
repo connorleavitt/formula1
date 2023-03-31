@@ -79,7 +79,7 @@ export function FantasyPropsFastestLapWidget({
   const gridNameWidth = screenWidth <= 450 ? 105 : 168;
   const gridChoiceWidth = screenWidth <= 450 ? 145 : 150;
   const gridPlacingWidth = screenWidth <= 450 ? 93 : 120;
-  const gridMobileWidth = screenWidth - 32;
+  const gridMobileWidth = screenWidth <= 450 ? screenWidth - 36 : 440;
   const gridPlacingName = screenWidth <= 450 ? "Pos." : "Placing";
   const [rowData, setRowData] = useState([]);
   const [columnDefs, setColumnDefs] = useState([
@@ -204,33 +204,28 @@ export function FantasyPropsFastestLapWidget({
   );
 
   return (
-    <>
-      {screenWidth <= 450 ? (
-        <div
-          className="ag-theme-f1-mobile"
-          style={{ height: "265px", width: gridMobileWidth }}
-        >
-          <AgGridReact
-            rowData={rowData}
-            columnDefs={columnDefs as any}
-            defaultColDef={defaultColDef}
-          />
-        </div>
-      ) : (
-        <div className="p-2 rounded-2xl border-gray-300 border-2">
-          <h3 className="p-2 font-bold">DHL Fastest Laps (Driver)</h3>
-          <div
-            className="ag-theme-f1"
-            style={{ height: "265px", width: gridMobileWidth }}
-          >
-            <AgGridReact
-              rowData={rowData}
-              columnDefs={columnDefs as any}
-              defaultColDef={defaultColDef}
-            />
-          </div>
-        </div>
-      )}
-    </>
+    <div
+      className={`border-gray-300 border-2 ${
+        screenWidth <= 450
+          ? "prop-bet-mobile rounded-xl py-2"
+          : "rounded-2xl p-2"
+      }`}
+    >
+      <h3
+        className={`text-xl font-bold ${screenWidth <= 450 ? "pl-4" : "p-2"}`}
+      >
+        DHL™ Fastest Lap (Driver)
+      </h3>
+      <div
+        className={screenWidth <= 450 ? "ag-theme-f1-mobile" : "ag-theme-f1"}
+        style={{ height: "265px", width: gridMobileWidth }}
+      >
+        <AgGridReact
+          rowData={rowData}
+          columnDefs={columnDefs as any}
+          defaultColDef={defaultColDef}
+        />
+      </div>
+    </div>
   );
 }
