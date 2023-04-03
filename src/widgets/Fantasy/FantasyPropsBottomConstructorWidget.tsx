@@ -52,7 +52,7 @@ export function FantasyPropsBottomConstructorWidget({
       cellClass: "my-class",
       width: gridPlacingWidth,
       sort: "desc" as string,
-      // comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ]);
   if (constructorStandings instanceof Array) {

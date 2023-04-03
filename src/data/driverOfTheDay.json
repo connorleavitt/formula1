@@ -64,5 +64,38 @@
         "percentVote": "6.7"
       }
     }
+  },
+  {
+    "round": 3,
+    "circuitId": "albert_park",
+    "circuitName": "Albert Park Grand Prix Circuit",
+    "country": "Australia",
+    "driverName": "Sergio Pérez",
+    "driverId": "perez",
+    "code": "PER",
+    "finishingPosition": "5",
+    "percentVote": "21.3",
+    "voting": {
+      "1": {
+        "driverName": "Sergio Pérez",
+        "percentVote": "21.3"
+      },
+      "2": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "14.3"
+      },
+      "3": {
+        "driverName": "Pierre Gasly",
+        "percentVote": "10.3"
+      },
+      "4": {
+        "driverName": "Lando Norris",
+        "percentVote": "9.6"
+      },
+      "5": {
+        "driverName": "Carlos Sainz",
+        "percentVote": "9.0"
+      }
+    }
   }
 ]

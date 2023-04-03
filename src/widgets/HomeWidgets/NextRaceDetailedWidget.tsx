@@ -367,11 +367,11 @@ export function NextRaceDetailedWidget({
                   </h3>
                 </Link>
               </div>
-              <h4 className="text-xl font-light self-center mt-2 w-max">
+              <h4 className="text-xl font-light self-left mt-2 w-max">
                 {nextRace.Circuit.circuitName}
               </h4>
             </div>
-            <div className="w-max h-max home-next-race--countdown-container flex my-2 gap-2">
+            <div className="w-max h-max home-next-race--countdown-container flex mt-4 gap-2">
               <div className="flex flex-col text-center w-[50px]">
                 <p className="text-3xl font-bold">
                   {padNumber(formattedCountdown.days)}
@@ -400,8 +400,8 @@ export function NextRaceDetailedWidget({
           </div>
           <div className="home-next-race--times-container rounded-b-md">
             <div className="flex p-2 justify-between border-b-2 border-gray-300">
-              <div className="w-[100px]">Practice 1</div>
-              <div className="w-[100px] text-center">
+              <div className="w-[95px] font-bold">Practice 1</div>
+              <div className="w-[105px] text-center">
                 {new Date(firstPracticeDate).toLocaleString("en-US", {
                   weekday: "short",
                   month: "short",
@@ -417,97 +417,144 @@ export function NextRaceDetailedWidget({
                 })}
               </div>
             </div>
-            <div className="flex p-2 justify-between border-b-2 border-gray-300">
-              <div className="w-[100px]">Practice 2</div>
-              <div className="w-[100px] text-center">
-                {new Date(secondPracticeDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[120px] text-right">
-                {new Date(secondPracticeDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                  timeZoneName: "short",
-                })}
-              </div>
-            </div>
-            {nextRace.ThirdPractice && (
-              <div className="flex p-2 justify-between border-b-2 border-gray-300">
-                <div className="w-[100px]">Practice 3</div>
-                <div className="w-[100px] text-center">
-                  {new Date(
-                    nextRace.ThirdPractice.date +
-                      "T" +
-                      nextRace.ThirdPractice.time
-                  ).toLocaleString("en-US", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                  })}
+            {qualifyingDate > secondPracticeDate ? (
+              <>
+                <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                  <div className="w-[95px] font-bold">Practice 2</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-                <div className="w-[120px] text-right">
-                  {new Date(
-                    nextRace.ThirdPractice.date +
-                      "T" +
-                      nextRace.ThirdPractice.time
-                  ).toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                    timeZoneName: "short",
-                  })}
+                {nextRace.ThirdPractice && (
+                  <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                    <div className="w-[95px] font-bold">Practice 3</div>
+                    <div className="w-[105px] text-center">
+                      {new Date(
+                        nextRace.ThirdPractice.date +
+                          "T" +
+                          nextRace.ThirdPractice.time
+                      ).toLocaleString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </div>
+                    <div className="w-[120px] text-right">
+                      {new Date(
+                        nextRace.ThirdPractice.date +
+                          "T" +
+                          nextRace.ThirdPractice.time
+                      ).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                        timeZoneName: "short",
+                      })}
+                    </div>
+                  </div>
+                )}
+                <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                  <div className="w-[95px] font-bold">Qualifying</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
-            <div className="flex p-2 justify-between border-b-2 border-gray-300">
-              <div className="w-[100px]">Qualifying</div>
-              <div className="w-[100px] text-center">
-                {new Date(qualifyingDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[120px] text-right">
-                {new Date(qualifyingDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                  timeZoneName: "short",
-                })}
-              </div>
-            </div>
-            {nextRace.Sprint && (
-              <div className="flex p-2 justify-between border-b-2 border-gray-300">
-                <div className="w-[100px]">Sprint</div>
-                <div className="w-[100px]">
-                  {new Date(
-                    parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
-                  ).toLocaleString("en-US", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                  })}
+              </>
+            ) : (
+              <>
+                <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                  <div className="w-[95px] font-bold">Qualifying</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-                <div className="w-[120px] text-right">
-                  {new Date(
-                    parseISO(nextRace.Sprint.date + "T" + nextRace.Sprint.time)
-                  ).toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                    timeZoneName: "short",
-                  })}
+                <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                  <div className="w-[95px] font-bold">Practice 2</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-              </div>
+                {nextRace.Sprint && (
+                  <div className="flex p-2 justify-between border-b-2 border-gray-300">
+                    <div className="w-[95px] font-bold">Sprint</div>
+                    <div className="w-[105px] text-center">
+                      {new Date(
+                        parseISO(
+                          nextRace.Sprint.date + "T" + nextRace.Sprint.time
+                        )
+                      ).toLocaleString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </div>
+                    <div className="w-[120px] text-right">
+                      {new Date(
+                        parseISO(
+                          nextRace.Sprint.date + "T" + nextRace.Sprint.time
+                        )
+                      ).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                        timeZoneName: "short",
+                      })}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
             <div className="flex p-2 justify-between">
-              <div className="w-[100px]">Race</div>
-              <div className="w-[100px] text-center">
+              <div className="w-[95px] font-bold">Race</div>
+              <div className="w-[105px] text-center">
                 {new Date(raceDate).toLocaleString("en-US", {
                   weekday: "short",
                   month: "short",
@@ -523,7 +570,8 @@ export function NextRaceDetailedWidget({
                 })}
               </div>
             </div>
-            {nextRace.round === nextRace?.round && weatherIcon !== null && (
+
+            {weatherIcon !== null && (
               <div className="flex items-center justify-end gap-2 mr-2 px-2 pb-2">
                 <div className="text-lg leading-none">{weatherTemp}&deg;</div>
                 <div className="w-[20px]">

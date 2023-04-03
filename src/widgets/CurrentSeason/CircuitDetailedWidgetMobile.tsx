@@ -448,97 +448,144 @@ export function CircuitDetailedWidgetMobile({
                 })}
               </div>
             </div>
-            <div className="flex p-2 justify-between">
-              <div className="w-[95px] font-bold">Practice 2</div>
-              <div className="w-[105px] text-center">
-                {new Date(secondPracticeDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[120px] text-right">
-                {new Date(secondPracticeDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                  timeZoneName: "short",
-                })}
-              </div>
-            </div>
-            {selectedRace.ThirdPractice && (
-              <div className="flex p-2 justify-between">
-                <div className="w-[95px] font-bold">Practice 3</div>
-                <div className="w-[105px] text-center">
-                  {new Date(
-                    selectedRace.ThirdPractice.date +
-                      "T" +
-                      selectedRace.ThirdPractice.time
-                  ).toLocaleString("en-US", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                  })}
+            {qualifyingDate > secondPracticeDate ? (
+              <>
+                <div className="flex p-2 justify-between">
+                  <div className="w-[95px] font-bold">Practice 2</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-                <div className="w-[120px] text-right">
-                  {new Date(
-                    selectedRace.ThirdPractice.date +
-                      "T" +
-                      selectedRace.ThirdPractice.time
-                  ).toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                    timeZoneName: "short",
-                  })}
+                {selectedRace.ThirdPractice && (
+                  <div className="flex p-2 justify-between">
+                    <div className="w-[95px] font-bold">Practice 3</div>
+                    <div className="w-[105px] text-center">
+                      {new Date(
+                        selectedRace.ThirdPractice.date +
+                          "T" +
+                          selectedRace.ThirdPractice.time
+                      ).toLocaleString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </div>
+                    <div className="w-[120px] text-right">
+                      {new Date(
+                        selectedRace.ThirdPractice.date +
+                          "T" +
+                          selectedRace.ThirdPractice.time
+                      ).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                        timeZoneName: "short",
+                      })}
+                    </div>
+                  </div>
+                )}
+                <div className="flex p-2 justify-between">
+                  <div className="w-[95px] font-bold">Qualifying</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-              </div>
-            )}
-            <div className="flex p-2 justify-between">
-              <div className="w-[95px] font-bold">Qualifying</div>
-              <div className="w-[105px] text-center">
-                {new Date(qualifyingDate).toLocaleString("en-US", {
-                  weekday: "short",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </div>
-              <div className="w-[120px] text-right">
-                {new Date(qualifyingDate).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  hour12: true,
-                  timeZoneName: "short",
-                })}
-              </div>
-            </div>
-            {selectedRace.Sprint && (
-              <div className="flex p-2 justify-between">
-                <div className="w-[95px] font-bold">Sprint</div>
-                <div className="w-[105px] text-center">
-                  {new Date(
-                    parseISO(
-                      selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
-                    )
-                  ).toLocaleString("en-US", {
-                    weekday: "short",
-                    month: "short",
-                    day: "numeric",
-                  })}
+              </>
+            ) : (
+              <>
+                <div className="flex p-2 justify-between">
+                  <div className="w-[95px] font-bold">Qualifying</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(qualifyingDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-                <div className="w-[120px] text-right">
-                  {new Date(
-                    parseISO(
-                      selectedRace.Sprint.date + "T" + selectedRace.Sprint.time
-                    )
-                  ).toLocaleString("en-US", {
-                    hour: "numeric",
-                    minute: "numeric",
-                    hour12: true,
-                    timeZoneName: "short",
-                  })}
+                <div className="flex p-2 justify-between">
+                  <div className="w-[95px] font-bold">Practice 2</div>
+                  <div className="w-[105px] text-center">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      weekday: "short",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </div>
+                  <div className="w-[120px] text-right">
+                    {new Date(secondPracticeDate).toLocaleString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: true,
+                      timeZoneName: "short",
+                    })}
+                  </div>
                 </div>
-              </div>
+                {selectedRace.Sprint && (
+                  <div className="flex p-2 justify-between">
+                    <div className="w-[95px] font-bold">Sprint</div>
+                    <div className="w-[105px] text-center">
+                      {new Date(
+                        parseISO(
+                          selectedRace.Sprint.date +
+                            "T" +
+                            selectedRace.Sprint.time
+                        )
+                      ).toLocaleString("en-US", {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
+                      })}
+                    </div>
+                    <div className="w-[120px] text-right">
+                      {new Date(
+                        parseISO(
+                          selectedRace.Sprint.date +
+                            "T" +
+                            selectedRace.Sprint.time
+                        )
+                      ).toLocaleString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                        hour12: true,
+                        timeZoneName: "short",
+                      })}
+                    </div>
+                  </div>
+                )}
+              </>
             )}
             <div className="flex p-2 justify-between">
               <div className="w-[95px] font-bold">Race</div>

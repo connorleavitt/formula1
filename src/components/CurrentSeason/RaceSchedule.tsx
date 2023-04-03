@@ -19,17 +19,24 @@ export function RaceSchedule({ screenWidth }: ScreenWidthProps) {
 
   if (loading) {
     return (
-      <div className="ml-20 mr-20 pb-20">
-        <h1 className="text-lg pb-2">Race Schedule</h1>
+      <div className="ml-8 mt-6">
         <p>Loading...</p>
       </div>
     );
   }
   if (error !== "") {
-    return <p>{error}</p>;
+    return (
+      <div className="ml-8 mt-6">
+        <p>{error}</p>
+      </div>
+    );
   }
   if (!raceSchedule) {
-    return <p>Data is null</p>;
+    return (
+      <div className="ml-8 mt-6">
+        <p>Loading...</p>
+      </div>
+    );
   }
 
   return (

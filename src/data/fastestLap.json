@@ -26,5 +26,19 @@
     "finishingPosition": "2",
     "lapSet": "50",
     "time": "1.31.906"
+  },
+  {
+    "round": 3,
+    "circuitId": "albert_park",
+    "circuitName": "Albert Park Grand Prix Circuit",
+    "country": "Australia",
+    "driverName": "Sergio Pérez",
+    "driverId": "perez",
+    "code": "PER",
+    "constructorId": "red_bull",
+    "constructorName": "Red Bull",
+    "finishingPosition": "5",
+    "lapSet": "53",
+    "time": "1.20.235"
   }
 ]
