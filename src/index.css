@@ -94,6 +94,7 @@ main.main-mobile {
 .home-mobile,
 .fantasy-mobile,
 .race-schedule-mobile,
+.race-results-mobile,
 .current-season--container-mobile {
   margin-top: calc(var(--h-header) + 1rem);
 }

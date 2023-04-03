@@ -14,6 +14,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { CurrentSeasonData } from "./components/CurrentSeason/CurrentSeasonData";
 import { useEffect, useState } from "react";
+import { RaceResultsPage } from "./pages/RaceResults";
 
 library.add(fas);
 
@@ -41,7 +42,8 @@ const App: React.FC = () => {
       )}
       {/* <Header /> */}
       <div className={`${screenWidth <= 450 ? "flex flex-col" : "flex"}`}>
-        {screenWidth <= 450 ? <MobileNav /> : <Nav />}
+        {/* {screenWidth <= 450 ? <MobileNav /> : <Nav screenWidth={screenWidth} />} */}
+        <Nav screenWidth={screenWidth} />
         <main className={`${screenWidth <= 450 ? "main-mobile" : "main"}`}>
           <Routes>
             <Route path="/" element={<Home screenWidth={screenWidth} />} />
@@ -53,6 +55,10 @@ const App: React.FC = () => {
             <Route
               path="/schedule"
               element={<RaceSchedulePage screenWidth={screenWidth} />}
+            />
+            <Route
+              path="/race-results"
+              element={<RaceResultsPage screenWidth={screenWidth} />}
             />
             <Route
               path="/fantasy"

@@ -56,8 +56,8 @@ export function Home({ screenWidth }: ScreenWidthProps) {
 
   if (loading) {
     return (
-      <div className="ml-20 mr-20 pb-20">
-        <p>Loading...</p>
+      <div className="home-mobile m-4">
+        <h1 className="text-2xl font-bold mb-2">Welcome!</h1>
       </div>
     );
   }

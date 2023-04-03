@@ -18,6 +18,8 @@ export function MobileNav() {
       setActiveNav("standings");
     } else if (location.pathname === "/schedule") {
       setActiveNav("schedule");
+    } else if (location.pathname === "/race-results") {
+      setActiveNav("race-results");
     } else if (location.pathname === "/fantasy") {
       setActiveNav("fantasy");
     } else if (location.pathname === "/historical") {
@@ -26,10 +28,6 @@ export function MobileNav() {
       setActiveNav("about");
     }
   }, [location]);
-
-  const handleHamburgerClick = () => {
-    setIsMobileOpen(!isMobileOpen);
-  };
 
   return (
     <nav
@@ -138,7 +136,7 @@ export function MobileNav() {
                       Standings
                     </Link>
                   </li>
-                  <li className="">
+                  <li className="my-2">
                     <Link
                       to="/schedule"
                       onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -148,6 +146,18 @@ export function MobileNav() {
                     >
                       <FontAwesomeIcon icon="calendar" className="pr-2" />
                       Race schedule
+                    </Link>
+                  </li>
+                  <li className="">
+                    <Link
+                      to="/race-results"
+                      onClick={() => setIsMobileOpen(!isMobileOpen)}
+                      className={`block rounded-xl py-3 pl-4 ${
+                        activeNav === "race-results" ? "active" : ""
+                      }`}
+                    >
+                      <FontAwesomeIcon icon="flag-checkered" className="pr-2" />
+                      Race results
                     </Link>
                   </li>
                 </ul>
