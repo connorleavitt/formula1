@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { RaceResultsDriverWidget } from "./RaceResultsDriverWidget";
 import { RaceResultsFastestLapsWidget } from "./RaceResultsFastestLapsWidget";
 import { RaceResultsQualifyingWidget } from "./RaceResultsQualifyingWidget";
+import { RaceResultsStartingGridWidget } from "./RaceResultsStartingGridWidget";
 
 type RacesResultsProps = {
   season: string;
@@ -146,6 +147,8 @@ type QualiResults = {
         nationality: string;
       };
       Q1: string;
+      Q2: string;
+      Q3: string;
     }
   ];
 };
@@ -189,7 +192,7 @@ export function RaceResultsDetailedWidget({
     const quali = qualiResults.find(
       (object) => object.Circuit.circuitId === circuit.circuitId
     );
-    console.log(quali);
+    // console.log(quali);
     setSelectedRace(race as RacesResultsProps);
     setSelectedQuali(quali as QualiResults);
   }, [raceResults]);
@@ -351,7 +354,7 @@ export function RaceResultsDetailedWidget({
                 screenWidth={screenWidth}
               />
             </div>
-            {/* <div
+            <div
               className={
                 seeAllActive
                   ? "block"
@@ -360,12 +363,13 @@ export function RaceResultsDetailedWidget({
                   : "hidden"
               }
             >
-            //NEED BOTH QUALI (time) AND RACERESULT (grid #)
+              {/* NEED BOTH QUALI (time) AND RACERESULT (grid #) */}
               <RaceResultsStartingGridWidget
                 raceResult={selectedRace}
+                qualiResult={selectedQuali}
                 screenWidth={screenWidth}
               />
-            </div> */}
+            </div>
             <div
               className={
                 seeAllActive

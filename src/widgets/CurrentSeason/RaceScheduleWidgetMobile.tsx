@@ -155,6 +155,8 @@ type RecentPoleWinners = {
         nationality: string;
       };
       Q1: string;
+      Q2: string;
+      Q3: string;
     }
   ];
 };
