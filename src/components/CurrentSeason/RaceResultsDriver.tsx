@@ -118,7 +118,7 @@ type Props = {
 export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
 
-  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 530;
+  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 650;
   const mobileHeight = screenWidth <= 450 ? 661 : 661;
   const [driverToggle, setDriverToggle] = useState(
     screenWidth <= 450 ? false : true
@@ -179,16 +179,16 @@ export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
     {
       field: "status",
       headerName: "Status",
-      width: 100,
-      headerClass: "sub-headers" as string,
+      width: 80,
       cellClass: "centered",
+      headerClass: "sub-headers" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       headerName: "Constructor",
       field: "Constructor.name",
       width: 140,
-      // cellClass: "centered",
+      cellClass: "centered",
       headerClass: "sub-headers" as string,
     },
   ];
@@ -199,47 +199,57 @@ export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
       width: 50,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
+      pinned: "left",
+      sort: "asc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    {
-      headerName: "Driver",
-      width: 140,
-      headerClass: "sub-headers-name" as string,
-      cellClass: "cell-left",
-      valueGetter: (p: {
-        data: { Driver: { givenName: string; familyName: string } };
-      }) => {
-        return p.data.Driver.givenName + " " + p.data.Driver.familyName;
-      },
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
+    // {
+    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
+    //   headerName: "Driver",
+    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
+    //   cellClass: "cell-left",
+    //   pinned: mobilePinned,
+    //   headerClass: "sub-headers-name" as string,
+    // },
     {
       field: "Driver.code",
-      headerName: "Code",
-      width: 50,
-      cellClass: "centered",
+      headerName: "Driver",
+      width: 80,
+      pinned: "left",
       headerClass: "sub-headers" as string,
+      cellClass: "sub-headers-name-2",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "laps",
+      headerName: "Laps",
+      width: 80,
+      headerClass: "sub-headers-name" as string,
+      cellClass: "sub-headers-name",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "Time.time",
+      headerName: "Time",
+      width: 100,
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      width: 100,
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       headerName: "Constructor",
-      field: "Constructors.0.name",
+      field: "Constructor.name",
       width: 140,
-      cellClass: "centered",
-      headerClass: "sub-headers" as string,
-    },
-    {
-      field: "wins",
-      width: 50,
-      headerClass: "sub-headers" as string,
-      cellClass: "centered",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       field: "points",
-      width: 80,
-      headerClass: "sub-headers" as string,
+      headerName: "Pts",
+      width: 50,
       cellClass: "my-class",
-      sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
   ];
