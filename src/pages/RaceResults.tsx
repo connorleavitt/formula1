@@ -1,4 +1,4 @@
-import { RaceSchedule } from "../components/CurrentSeason/RaceSchedule";
+import { RaceResults } from "../components/CurrentSeason/RaceResults";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -16,7 +16,7 @@ export function RaceResultsPage({ screenWidth }: ScreenWidthProps) {
       >
         Race Results
       </h1>
-      {/* <RaceSchedule screenWidth={screenWidth} /> */}
+      <RaceResults screenWidth={screenWidth} />
     </div>
   );
 }

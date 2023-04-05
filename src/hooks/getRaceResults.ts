@@ -16,10 +16,11 @@ export const getRaceResults = <T>() => {
           );
           const data = await response.json();
           if (data.MRData.RaceTable.Races[0] === undefined) return;
-          return {
-            round,
-            raceResults: data.MRData.RaceTable.Races[0],
-          };
+          // return {
+          //   round,
+          //   raceResults: data.MRData.RaceTable.Races[0],
+          // };
+          return data.MRData.RaceTable.Races[0];
         })
       );
       setRaceResults(raceResultsByRound as any);

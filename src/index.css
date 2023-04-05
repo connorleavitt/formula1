@@ -161,7 +161,8 @@ main.main-mobile {
   line-height: 20px;
 }
 
-.race-schedule-mobile > h1 {
+.race-schedule-mobile > h1,
+.race-results-mobile > h1 {
   font-size: 24px;
   line-height: 20px;
   margin-left: 2rem;
