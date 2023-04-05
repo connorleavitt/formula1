@@ -115,7 +115,10 @@ type Props = {
   screenWidth: number;
 };
 
-export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
+export function RaceResultsFastestLapsWidget({
+  raceResult,
+  screenWidth,
+}: Props) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
 
   const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 650;
@@ -126,13 +129,12 @@ export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
   const [rowData, setRowData] = useState([]);
   const mobileCol = [
     {
-      field: "position",
+      field: "placement",
       headerName: "",
       width: 50,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
       pinned: "left",
-      sort: "asc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     // {
@@ -153,35 +155,28 @@ export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "points",
-      headerName: "Pts",
-      width: 50,
-      headerClass: "sub-headers" as string,
-      cellClass: "my-class",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "laps",
-      headerName: "Laps",
+      field: "FastestLap.lap",
+      headerName: "Lap",
       width: 50,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "Time.time",
+      field: "FastestLap.Time.time",
       headerName: "Time",
+      width: 80,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
+      sort: "desc" as string,
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "FastestLap.AverageSpeed.speed",
+      headerName: "Avg Speed",
       width: 90,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 80,
-      cellClass: "centered",
-      headerClass: "sub-headers" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
@@ -257,7 +252,24 @@ export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
     screenWidth <= 450 ? mobileCol : fullScreenCol
   );
 
-  useEffect(() => setRowData(raceResult.Results as any), []);
+  useEffect(() => {
+    const sortedArray = raceResult.Results.sort((a, b) => {
+      if (a.FastestLap && b.FastestLap) {
+        return a.FastestLap.Time.time.localeCompare(b.FastestLap.Time.time);
+      } else if (a.FastestLap && !b.FastestLap) {
+        return -1;
+      } else if (!a.FastestLap && b.FastestLap) {
+        return 1;
+      } else {
+        // If both are undefined, treat them as equal and sort by position
+        return Number(a.position) - Number(b.position);
+      }
+    });
+    const addNewPlacement = sortedArray.map((obj, index) => {
+      return { ...obj, placement: index + 1 };
+    });
+    setRowData(addNewPlacement as any);
+  }, []);
 
   console.log(rowData);
 
@@ -276,6 +288,7 @@ export function RaceResultsDriver({ raceResult, screenWidth }: Props) {
 
   return (
     <div className="">
+      <h3 className="ml-2 mb-1 font-bold text-lg">Fastest Laps</h3>
       {/* <button
         className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
           screenWidth <= 450 ? "w-full " : "w-max"
