@@ -5,12 +5,11 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-type RacesResult = {
+type QualiResult = {
   season: string;
   round: string;
   url: string;
   raceName: string;
-  circuitId: string;
   Circuit: {
     circuitId: string;
     url: string;
@@ -24,16 +23,12 @@ type RacesResult = {
   };
   date: string;
   time: string;
-  localRaceDateTime: string;
-  Results: [
+  QualifyingResults: [
     {
       number: string;
       position: string;
-      positionText: string;
-      points: string;
       Driver: {
         driverId: string;
-        permanentNumber: string;
         code: string;
         url: string;
         givenName: string;
@@ -47,76 +42,18 @@ type RacesResult = {
         name: string;
         nationality: string;
       };
-      grid: string;
-      laps: string;
-      status: string;
-      Time: {
-        millis: string;
-        time: string;
-      };
-      FastestLap: {
-        rank: string;
-        lap: string;
-        Time: {
-          time: string;
-        };
-        AverageSpeed: {
-          units: string;
-          speed: string;
-        };
-      };
+      Q1: string;
     }
   ];
-  additionalInfo: {
-    circuitId: string;
-    imgUrl: string;
-    heroImgUrl: string;
-    flagUrl: string;
-    url: string;
-    circuitUrl: string;
-    circuitName: string;
-    laps: string;
-    circuitLength: string;
-    raceLength: string;
-    firstGrandPrix: string;
-    lapRecord: {
-      time: string;
-      driver: string;
-      year: string;
-    };
-    qualiRecord: {
-      time: string;
-      driver: string;
-      year: string;
-    };
-    numberOfTimesHeld: string;
-    mostDriverWins: string;
-    mostConstructorWins: string;
-    trackType: string;
-    trackComments: string;
-    grandPrixComments: {
-      1: string;
-      2: string;
-      3: string;
-    };
-    Location: {
-      lat: string;
-      long: string;
-      locality: string;
-      country: string;
-      timezone: string;
-      gmtOffset: string;
-    };
-  };
 };
 
 type Props = {
-  raceResult: RacesResult;
+  qualiResult: QualiResult;
   screenWidth: number;
 };
 
-export function RaceResultsFastestLapsWidget({
-  raceResult,
+export function RaceResultsQualifyingWidget({
+  qualiResult,
   screenWidth,
 }: Props) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
@@ -129,7 +66,7 @@ export function RaceResultsFastestLapsWidget({
   const [rowData, setRowData] = useState([]);
   const mobileCol = [
     {
-      field: "placement",
+      field: "position",
       headerName: "",
       width: 50,
       headerClass: "sub-headers" as string,
@@ -155,26 +92,23 @@ export function RaceResultsFastestLapsWidget({
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "FastestLap.lap",
-      headerName: "Lap",
-      width: 50,
+      field: "Q1",
+      width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "FastestLap.Time.time",
-      headerName: "Time",
-      width: 80,
+      field: "Q2",
+      width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
       sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "FastestLap.AverageSpeed.speed",
-      headerName: "Avg Speed",
-      width: 90,
+      field: "Q3",
+      width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -253,22 +187,7 @@ export function RaceResultsFastestLapsWidget({
   );
 
   useEffect(() => {
-    const sortedArray = raceResult.Results.sort((a, b) => {
-      if (a.FastestLap && b.FastestLap) {
-        return a.FastestLap.Time.time.localeCompare(b.FastestLap.Time.time);
-      } else if (a.FastestLap && !b.FastestLap) {
-        return -1;
-      } else if (!a.FastestLap && b.FastestLap) {
-        return 1;
-      } else {
-        // If both are undefined, treat them as equal and sort by position
-        return Number(a.position) - Number(b.position);
-      }
-    });
-    const addNewPlacement = sortedArray.map((obj, index) => {
-      return { ...obj, placement: index + 1 };
-    });
-    setRowData(addNewPlacement as any);
+    setRowData(qualiResult.QualifyingResults as any);
   }, []);
 
   // console.log(rowData);
@@ -288,15 +207,7 @@ export function RaceResultsFastestLapsWidget({
 
   return (
     <div className="">
-      <h3 className="ml-2 mb-1 font-bold text-lg">Fastest Laps</h3>
-      {/* <button
-        className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
-          screenWidth <= 450 ? "w-full " : "w-max"
-        }`}
-        onClick={handleClick}
-      >
-        {driverToggle ? "Show Driver Code" : "Show Driver Names"}
-      </button> */}
+      <h3 className="ml-2 mb-1 font-bold text-lg">Qualifying</h3>
       <div
         className="ag-theme-f1-small"
         style={{ height: mobileHeight, width: mobileWidth }}

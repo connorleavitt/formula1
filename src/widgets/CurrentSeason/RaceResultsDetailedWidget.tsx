@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { RaceResultsDriverWidget } from "./RaceResultsDriverWidget";
 import { RaceResultsFastestLapsWidget } from "./RaceResultsFastestLapsWidget";
+import { RaceResultsQualifyingWidget } from "./RaceResultsQualifyingWidget";
 
 type RacesResultsProps = {
   season: string;
@@ -107,6 +108,48 @@ type RacesResultsProps = {
   };
 };
 
+type QualiResults = {
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  QualifyingResults: [
+    {
+      number: string;
+      position: string;
+      Driver: {
+        driverId: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      Q1: string;
+    }
+  ];
+};
+
 type CircuitInfo = {
   raceName: string;
   date: string;
@@ -117,6 +160,7 @@ type CircuitInfo = {
 
 type RaceResultsDetailedWidgetProps = {
   raceResults: RacesResultsProps[];
+  qualiResults: QualiResults[];
   circuit: CircuitInfo;
   screenWidth: number;
 };
@@ -124,6 +168,7 @@ type RaceResultsDetailedWidgetProps = {
 export function RaceResultsDetailedWidget({
   circuit,
   raceResults,
+  qualiResults,
   screenWidth,
 }: RaceResultsDetailedWidgetProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -132,6 +177,7 @@ export function RaceResultsDetailedWidget({
   const [selectedRace, setSelectedRace] = useState<RacesResultsProps | null>(
     null
   );
+  const [selectedQuali, setSelectedQuali] = useState<QualiResults | null>(null);
   const [activeWidget, setActiveWidget] = useState("result");
   const [seeAllActive, setSeeAllActive] = useState(true);
   const [isRaceNameSticky, setIsRaceNameSticky] = useState(false);
@@ -140,7 +186,12 @@ export function RaceResultsDetailedWidget({
     const race = raceResults.find(
       (object) => object.circuitId === circuit.circuitId
     );
+    const quali = qualiResults.find(
+      (object) => object.Circuit.circuitId === circuit.circuitId
+    );
+    console.log(quali);
     setSelectedRace(race as RacesResultsProps);
+    setSelectedQuali(quali as QualiResults);
   }, [raceResults]);
 
   useEffect(() => {
@@ -162,7 +213,7 @@ export function RaceResultsDetailedWidget({
     };
   }, []);
 
-  if (!selectedRace) {
+  if (!selectedRace || !selectedQuali) {
     return null; // no next race found
   }
 
@@ -300,6 +351,21 @@ export function RaceResultsDetailedWidget({
                 screenWidth={screenWidth}
               />
             </div>
+            {/* <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "grid"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+            //NEED BOTH QUALI (time) AND RACERESULT (grid #)
+              <RaceResultsStartingGridWidget
+                raceResult={selectedRace}
+                screenWidth={screenWidth}
+              />
+            </div> */}
             <div
               className={
                 seeAllActive
@@ -311,6 +377,20 @@ export function RaceResultsDetailedWidget({
             >
               <RaceResultsFastestLapsWidget
                 raceResult={selectedRace}
+                screenWidth={screenWidth}
+              />
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "block"
+                  : activeWidget === "qualifying"
+                  ? "block"
+                  : "hidden"
+              }
+            >
+              <RaceResultsQualifyingWidget
+                qualiResult={selectedQuali}
                 screenWidth={screenWidth}
               />
             </div>

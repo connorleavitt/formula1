@@ -8,11 +8,11 @@ import { RaceResultsDetailedWidget } from "./RaceResultsDetailedWidget";
 
 type RaceResultsWidgetProps = {
   raceResults: UpdatedRacesResults[];
-  qualiStandings: QualiStandings[];
+  qualiResults: QualiResults[];
   screenWidth: number;
 };
 
-type QualiStandings = {
+type QualiResults = {
   season: string;
   round: string;
   url: string;
@@ -161,7 +161,7 @@ type UpdatedRacesResults = {
 
 export function RaceResultsWidget({
   raceResults,
-  qualiStandings,
+  qualiResults,
   screenWidth,
 }: RaceResultsWidgetProps) {
   const [raceResultsByCircuit, setRaceResultsByCircuit] =
@@ -331,6 +331,7 @@ export function RaceResultsWidget({
           screenWidth={screenWidth}
           circuit={selectedCircuit}
           raceResults={raceResultsByCircuit}
+          qualiResults={qualiResults}
           key={selectedCircuit.round} // Add key prop to force re-render
         />
       )}

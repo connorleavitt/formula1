@@ -100,6 +100,7 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
       ),
     };
   });
+
   return (
     <div
       className={
@@ -122,7 +123,7 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
         />
       )} */}
       <RaceResultsWidget
-        qualiStandings={qualiStandings as any}
+        qualiResults={qualiStandings as []}
         raceResults={updatedRaceSchedule}
         screenWidth={screenWidth}
       />
