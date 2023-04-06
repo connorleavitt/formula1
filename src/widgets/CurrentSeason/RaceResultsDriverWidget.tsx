@@ -298,7 +298,7 @@ export function RaceResultsDriverWidget({ raceResult, screenWidth }: Props) {
 
   return (
     <div className="">
-      <h3 className="ml-2 mb-1 font-bold text-lg">Race Result</h3>
+      {/* <h3 className="ml-2 mb-1 font-bold text-lg">Race Result</h3> */}
 
       {/* <button
         className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${

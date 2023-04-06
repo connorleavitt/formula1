@@ -184,9 +184,9 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
       }
     >
       <div className="flex border-b-2 border-gray-400">
-        <h1 className="text-3xl w-full font-bold py-2 ">Standings</h1>
+        <h1 className="text-xl w-full font-bold mb-1">Standings</h1>
       </div>
-      <div className="my-2 w-full">
+      <div className="my-3 w-full">
         <label htmlFor="results--widget-select"></label>
         <select
           id="results--widget-select"
@@ -202,7 +202,7 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
         </select>
       </div>
       <div
-        className="my-2 w-full"
+        className="my-3 w-full"
         style={{ display: activePage === "race" ? "block" : "none" }}
       >
         <label htmlFor="standings-race--widget-select"></label>
@@ -221,13 +221,14 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
         <RaceStandings
           sprintResults={sprintResults as any}
           raceResults={updatedRaceSchedule as any}
+          raceSchedule={raceSchedule as any}
           qualiStandings={qualiStandings as any}
           screenWidth={screenWidth}
           activeRace={activeRace}
         />
       </div>
       <div
-        className="mt-4 w-full"
+        className="my-3 w-full"
         style={{ display: activePage === "drivers" ? "block" : "none" }}
       >
         <label htmlFor="standings-driver--widget-select"></label>
