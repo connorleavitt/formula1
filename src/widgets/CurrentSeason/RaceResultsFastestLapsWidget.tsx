@@ -287,26 +287,15 @@ export function RaceResultsFastestLapsWidget({
   }
 
   return (
-    <div className="">
-      <h3 className="ml-2 mb-1 font-bold text-lg">Fastest Laps</h3>
-      {/* <button
-        className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
-          screenWidth <= 450 ? "w-full " : "w-max"
-        }`}
-        onClick={handleClick}
-      >
-        {driverToggle ? "Show Driver Code" : "Show Driver Names"}
-      </button> */}
-      <div
-        className="ag-theme-f1-small"
-        style={{ height: mobileHeight, width: mobileWidth }}
-      >
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs as any}
-          defaultColDef={defaultColDef}
-        />
-      </div>
+    <div
+      className="ag-theme-f1-small"
+      style={{ height: mobileHeight, width: mobileWidth }}
+    >
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs as any}
+        defaultColDef={defaultColDef}
+      />
     </div>
   );
 }

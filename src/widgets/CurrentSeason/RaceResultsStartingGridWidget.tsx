@@ -307,18 +307,15 @@ export function RaceResultsStartingGridWidget({
   }
 
   return (
-    <div className="">
-      <h3 className="ml-2 mb-1 font-bold text-lg">Starting Grid</h3>
-      <div
-        className="ag-theme-f1-small"
-        style={{ height: mobileHeight, width: mobileWidth }}
-      >
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs as any}
-          defaultColDef={defaultColDef}
-        />
-      </div>
+    <div
+      className="ag-theme-f1-small"
+      style={{ height: mobileHeight, width: mobileWidth }}
+    >
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs as any}
+        defaultColDef={defaultColDef}
+      />
     </div>
   );
 }

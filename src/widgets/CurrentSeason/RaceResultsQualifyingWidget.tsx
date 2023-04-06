@@ -59,7 +59,6 @@ export function RaceResultsQualifyingWidget({
   screenWidth,
 }: Props) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
-
   const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 650;
   const mobileHeight = screenWidth <= 450 ? 661 : 661;
   const [driverToggle, setDriverToggle] = useState(
@@ -180,18 +179,15 @@ export function RaceResultsQualifyingWidget({
   }
 
   return (
-    <div className="">
-      <h3 className="ml-2 mb-1 font-bold text-lg">Qualifying</h3>
-      <div
-        className="ag-theme-f1-small"
-        style={{ height: mobileHeight, width: mobileWidth }}
-      >
-        <AgGridReact
-          rowData={rowData}
-          columnDefs={columnDefs as any}
-          defaultColDef={defaultColDef}
-        />
-      </div>
+    <div
+      className="ag-theme-f1-small"
+      style={{ height: mobileHeight, width: mobileWidth }}
+    >
+      <AgGridReact
+        rowData={rowData}
+        columnDefs={columnDefs as any}
+        defaultColDef={defaultColDef}
+      />
     </div>
   );
 }

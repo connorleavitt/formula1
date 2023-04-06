@@ -241,18 +241,15 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
           <option value="overview">Driver Overview</option>
           <option value="driverRaces">Driver (by race)</option>
           <option value="driverSprints">Driver (by sprint)</option>
-          {driverInfo.map((driver) => (
-            <option key={driver.id} value={driver.code}>
-              {driver.name}
-            </option>
-          ))}
+          <option value="specificDriver">Specific Driver</option>
         </select>
         <DriverStandings
-          //make a quali table
           sprintResults={sprintResults as any}
           raceResults={raceResults as any}
           screenWidth={screenWidth}
           activeDriver={activeDriver}
+          raceSchedule={raceSchedule as any}
+          qualiStandings={qualiStandings as any}
         />
       </div>
       {/* <div

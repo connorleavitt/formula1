@@ -349,7 +349,7 @@ export function RaceStandings({
     setRaceTrackInfo(raceChoice as any);
     setSelectedRace(race as UpdatedRacesResults);
     setSelectedQuali(quali as QualiResults);
-  }, [raceResults, activeRace]);
+  }, [raceResults, activeRace, qualiStandings]);
 
   if (!raceTrackInfo) return null;
 
@@ -393,7 +393,6 @@ export function RaceStandings({
     );
     // no next race found
   }
-
   const raceDate = parseISO(selectedRace.date + "T" + selectedRace.time);
 
   return (
@@ -447,6 +446,7 @@ export function RaceStandings({
           <RaceResultsDriverWidget
             raceResult={selectedRace}
             screenWidth={screenWidth}
+            key={selectedRace.round} // Add key prop to force re-render
           />
         </div>
         <div className={activeData === "grid" ? "block" : "hidden"}>
@@ -454,18 +454,21 @@ export function RaceStandings({
             raceResult={selectedRace}
             qualiResult={selectedQuali}
             screenWidth={screenWidth}
+            key={selectedRace.round} // Add key prop to force re-render
           />
         </div>
         <div className={activeData === "fastest" ? "block" : "hidden"}>
           <RaceResultsFastestLapsWidget
             raceResult={selectedRace}
             screenWidth={screenWidth}
+            key={selectedRace.round} // Add key prop to force re-render
           />
         </div>
         <div className={activeData === "qualifying" ? "block" : "hidden"}>
           <RaceResultsQualifyingWidget
             qualiResult={selectedQuali}
             screenWidth={screenWidth}
+            key={selectedRace.round} // Add key prop to force re-render
           />
         </div>
       </div>
