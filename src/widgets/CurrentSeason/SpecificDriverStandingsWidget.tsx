@@ -521,6 +521,7 @@ export function SpecificDriverStandingsWidget({
     <div className="flex flex-col">
       {driverInfo.map((driver) => (
         <div
+          key={driver.id}
           className="flex w-full my-4 pb-2 border-b-2 border-gray-300"
           style={{
             display: activeSpecificDriver === driver.code ? "block" : "none",
@@ -552,7 +553,7 @@ export function SpecificDriverStandingsWidget({
           </div>
         </div>
         <div className="flex justify-between text-xs text-gray-500 mt-2 py-1 border-2 border-gray-200">
-          <p className="w-28">GRAND PRIX</p>
+          <p className="w-28 pl-1">GRAND PRIX</p>
           <p className="w-24">QUALIFYING</p>
           <p className="w-12 flex-auto">RACE POSITION</p>
           <p className="w-8">PTS</p>
@@ -563,16 +564,19 @@ export function SpecificDriverStandingsWidget({
             className="flex justify-between py-1 [&:nth-child(odd)]:bg-gray-100
 [&:nth-child(even)]:bg-white border-2 border-t-0 border-gray-200"
           >
-            <p className="w-28">{selectedCountry.country}</p>
-            <p className="w-24">{selectedCountry?.qualiInfo?.position}</p>
-            <p className="w-12 flex-auto">{selectedCountry.racePosition}</p>
-            <p className="w-8">{selectedCountry.combinedPoints}</p>
+            <p className="w-28 pl-1">{selectedCountry.country}</p>
+            <p className="w-24 pl-2">{selectedCountry?.qualiInfo?.position}</p>
+            <p className="w-12 flex-auto pl-2">
+              {selectedCountry.racePosition}
+            </p>
+            <p className="w-8 text-center">{selectedCountry.combinedPoints}</p>
           </div>
         ))}
       </div>
       {driverInfo.map((driver) => (
         <div
           className="flex w-full"
+          key={driver.id}
           style={{
             display: activeSpecificDriver === driver.code ? "block" : "none",
           }}
@@ -581,14 +585,14 @@ export function SpecificDriverStandingsWidget({
             <div className="flex flex-col w-1/2">
               <p className="w-full my-1 font-bold">Team:</p>
               <p className="w-full my-1 font-bold">Nationality:</p>
-              <p className="w-full my-1 font-bold">Date of Birth:</p>
               <p className="w-full my-1 font-bold">Place of Birth:</p>
+              <p className="w-full my-1 font-bold">Date of Birth:</p>
             </div>
-            <div className="flex flex-col w-1/2" key={driver.id}>
+            <div className="flex flex-col w-1/2">
               <p className="w-full my-1">{driver.teamName}</p>
               <p className="w-full my-1">{driver.nationality}</p>
-              <p className="w-full my-1">{driver.dateOfBirth}</p>
               <p className="w-full my-1">{driver.placeOfBirth}</p>
+              <p className="w-full my-1">{driver.dateOfBirth}</p>
             </div>
           </div>
           <p className="mt-4">
