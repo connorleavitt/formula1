@@ -174,7 +174,19 @@ export function RaceResultsDriverWidget({ raceResult, screenWidth }: Props) {
       width: 90,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (timeA: string, timeB: string) => {
+        if (timeA === undefined && timeB === undefined) {
+          return 0;
+        } else if (timeA === undefined) {
+          return 1;
+        } else if (timeB === undefined) {
+          return -1;
+        } else {
+          const timeANum = timeToSeconds(timeA);
+          const timeBNum = timeToSeconds(timeB);
+          return timeANum - timeBNum;
+        }
+      },
     },
     {
       field: "status",
@@ -232,7 +244,11 @@ export function RaceResultsDriverWidget({ raceResult, screenWidth }: Props) {
       field: "Time.time",
       headerName: "Time",
       width: 100,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (timeA: string, timeB: string) => {
+        const timeANum = timeToSeconds(timeA);
+        const timeBNum = timeToSeconds(timeB);
+        return timeANum - timeBNum;
+      },
     },
     {
       field: "status",
@@ -256,6 +272,12 @@ export function RaceResultsDriverWidget({ raceResult, screenWidth }: Props) {
   const [columnDefs, setColumnDefs] = useState(
     screenWidth <= 450 ? mobileCol : fullScreenCol
   );
+
+  function timeToSeconds(time: string): number {
+    const [minutes, seconds] = time.split(":");
+    const totalSeconds = Number(minutes) * 60 + Number(seconds);
+    return totalSeconds;
+  }
 
   useEffect(() => setRowData(raceResult.Results as any), []);
 

@@ -175,24 +175,17 @@ export function RaceResultsStartingGridWidget({
     {
       field: "gridPosition",
       headerName: "Position",
-      width: 80,
+      width: 90,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
       pinned: "left",
+      sort: "asc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    // {
-    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
-    //   headerName: "Driver",
-    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
-    //   cellClass: "cell-left",
-    //   pinned: mobilePinned,
-    //   headerClass: "sub-headers-name" as string,
-    // },
     {
       field: "driver",
       headerName: "Driver",
-      width: 60,
+      width: 70,
       headerClass: "sub-headers-name" as string,
       cellClass: "cell-left",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
@@ -200,10 +193,14 @@ export function RaceResultsStartingGridWidget({
     {
       field: "qualifyingTime",
       headerName: "Time",
-      width: 90,
+      width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (timeA: string, timeB: string) => {
+        const timeANum = timeToSeconds(timeA);
+        const timeBNum = timeToSeconds(timeB);
+        return timeANum - timeBNum;
+      },
     },
     {
       headerName: "Constructor",
@@ -213,70 +210,25 @@ export function RaceResultsStartingGridWidget({
       headerClass: "sub-headers" as string,
     },
   ];
-  const fullScreenCol = [
-    {
-      field: "position",
-      headerName: "",
-      width: 50,
-      headerClass: "sub-headers" as string,
-      cellClass: "my-class",
-      pinned: "left",
-      sort: "asc" as string,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    // {
-    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
-    //   headerName: "Driver",
-    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
-    //   cellClass: "cell-left",
-    //   pinned: mobilePinned,
-    //   headerClass: "sub-headers-name" as string,
-    // },
-    {
-      field: "Driver.code",
-      headerName: "Driver",
-      width: 80,
-      pinned: "left",
-      headerClass: "sub-headers" as string,
-      cellClass: "sub-headers-name-2",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "laps",
-      headerName: "Laps",
-      width: 80,
-      headerClass: "sub-headers-name" as string,
-      cellClass: "sub-headers-name",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "Time.time",
-      headerName: "Time",
-      width: 100,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 100,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      headerName: "Constructor",
-      field: "Constructor.name",
-      width: 140,
-    },
-    {
-      field: "points",
-      headerName: "Pts",
-      width: 50,
-      cellClass: "my-class",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-  ];
-  const [columnDefs, setColumnDefs] = useState(
-    screenWidth <= 450 ? mobileCol : fullScreenCol
-  );
+
+  const [columnDefs, setColumnDefs] = useState(mobileCol);
+
+  function timeToSeconds(time: string): number {
+    const [minutes, seconds] = time.split(":");
+    const totalSeconds = Number(minutes) * 60 + Number(seconds);
+    return totalSeconds;
+  }
+
+  function compareTimes(time1: string, time2: string) {
+    const time1Milliseconds = convertTimeToMilliseconds(time1);
+    const time2Milliseconds = convertTimeToMilliseconds(time2);
+    return time1Milliseconds - time2Milliseconds;
+  }
+
+  function convertTimeToMilliseconds(time: string) {
+    const [minutes, seconds, milliseconds] = time.split(":").map(Number);
+    return minutes * 60 * 1000 + seconds * 1000 + milliseconds;
+  }
 
   useEffect(() => {
     // Filter out drivers without a time and sort by time in ascending order
@@ -335,17 +287,6 @@ export function RaceResultsStartingGridWidget({
         return Number(a.gridPosition) - Number(b.gridPosition);
       }
     });
-
-    function compareTimes(time1: string, time2: string) {
-      const time1Milliseconds = convertTimeToMilliseconds(time1);
-      const time2Milliseconds = convertTimeToMilliseconds(time2);
-      return time1Milliseconds - time2Milliseconds;
-    }
-
-    function convertTimeToMilliseconds(time: string) {
-      const [minutes, seconds, milliseconds] = time.split(":").map(Number);
-      return minutes * 60 * 1000 + seconds * 1000 + milliseconds;
-    }
 
     setRowData(combinedData as any);
   }, []);

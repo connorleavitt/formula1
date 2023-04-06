@@ -192,7 +192,6 @@ export function RaceResultsDetailedWidget({
     const quali = qualiResults.find(
       (object) => object.Circuit.circuitId === circuit.circuitId
     );
-    // console.log(quali);
     setSelectedRace(race as RacesResultsProps);
     setSelectedQuali(quali as QualiResults);
   }, [raceResults]);
@@ -247,7 +246,7 @@ export function RaceResultsDetailedWidget({
                 }`}
                 onClick={() => seeAllFunction()}
               >
-                {seeAllActive ? "COLLAPSE" : "VIEW ALL"}
+                {seeAllActive ? "VIEW ONE" : "VIEW ALL"}
               </button>
             </div>
           </div>
@@ -401,129 +400,181 @@ export function RaceResultsDetailedWidget({
           </div>
         </div>
       ) : (
-        <></>
-        // <div className="mb-10">
-        //   <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
-        //   <div className="flex">
-        //     <div className="flex flex-wrap">
-        //       <div
-        //         style={{ display: activeWidget === "top" ? "block" : "none" }}
-        //       >
-        //         <FantasyPropsTopConstructorWidget
-        //           constructorStandings={constructorStandings as any}
-        //           screenWidth={screenWidth}
-        //         />
-        //       </div>
-        //       <div
-        //         style={{
-        //           display: activeWidget === "bottom" ? "block" : "none",
-        //         }}
-        //       >
-        //         <FantasyPropsBottomConstructorWidget
-        //           constructorStandings={constructorStandings as any}
-        //           screenWidth={screenWidth}
-        //         />
-        //       </div>
-        //       <div
-        //         style={{ display: activeWidget === "dnfs" ? "block" : "none" }}
-        //       >
-        //         <FantasyPropsConstructorDNFsWidget
-        //           finalDnfTable={finalDnfTable as any}
-        //           screenWidth={screenWidth}
-        //         />
-        //       </div>
-        //       <div
-        //         style={{ display: activeWidget === "poles" ? "block" : "none" }}
-        //       >
-        //         <FantasyPropsMostPolesWidget
-        //           qualiStandings={qualiStandings as any}
-        //           screenWidth={screenWidth}
-        //         />
-        //       </div>
-        //       <div
-        //         style={{
-        //           display: activeWidget === "fastest" ? "block" : "none",
-        //         }}
-        //       >
-        //         <FantasyPropsFastestLapWidget
-        //           // fastestLaps={fastestLaps as any} //ergast api
-        //           fastestLapData={fastestLapData as any}
-        //           screenWidth={screenWidth}
-        //         />
-        //       </div>
-        //       <div
-        //         style={{ display: activeWidget === "dotd" ? "block" : "none" }}
-        //       >
-        //         <FantasyPropsDriverOfTheDayWidget
-        //           driverOfTheDay={driverOfTheDay as any}
-        //           screenWidth={screenWidth}
-        //         />
-        //       </div>
-        //     </div>
-        //     <div className="flex flex-col justify-around ml-4">
-        //       <button
-        //         className={`mb-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
-        //           activeWidget === "top"
-        //             ? "bg-black text-white border-black hover:bg-gray-800"
-        //             : "border-gray-300"
-        //         }`}
-        //         onClick={() => setActiveWidget("top")}
-        //       >
-        //         Top Constructor
-        //       </button>
-        //       <button
-        //         className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
-        //           activeWidget === "bottom"
-        //             ? "bg-black text-white border-black hover:bg-gray-800"
-        //             : "border-gray-300"
-        //         }`}
-        //         onClick={() => setActiveWidget("bottom")}
-        //       >
-        //         Bottom Constructor
-        //       </button>
-        //       <button
-        //         className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
-        //           activeWidget === "dnfs"
-        //             ? "bg-black text-white border-black hover:bg-gray-800"
-        //             : "border-gray-300"
-        //         }`}
-        //         onClick={() => setActiveWidget("dnfs")}
-        //       >
-        //         DNFs (Team)
-        //       </button>
-        //       <button
-        //         className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
-        //           activeWidget === "poles"
-        //             ? "bg-black text-white border-black hover:bg-gray-800"
-        //             : "border-gray-300"
-        //         }`}
-        //         onClick={() => setActiveWidget("poles")}
-        //       >
-        //         Pirelli Poles (Driver)
-        //       </button>
-        //       <button
-        //         className={`my-1 p-2 border-2 rounded-lg hover:bg-gray-100 ${
-        //           activeWidget === "fastest"
-        //             ? "bg-black text-white border-black hover:bg-gray-800"
-        //             : "border-gray-300"
-        //         }`}
-        //         onClick={() => setActiveWidget("fastest")}
-        //       >
-        //         DHL Fastest Laps (Driver)
-        //       </button>
-        //       <button
-        //         className={`p-2 border-2 rounded-lg hover:bg-gray-100 ${
-        //           activeWidget === "dotd"
-        //             ? "bg-black text-white border-black hover:bg-gray-800"
-        //             : "border-gray-300"
-        //         }`}
-        //         onClick={() => setActiveWidget("dotd")}
-        //       >
-        //         Driver of the Day
-        //       </button>
-        //     </div>
-        //   </div>
-        // </div>
+        <div className="mb-10">
+          <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
+          <div className="flex flex-col">
+            <div className="flex justify-between">
+              <div className="flex flex-col ml-2">
+                <h1 className="text-md font-bold">
+                  {selectedRace.Circuit.circuitName}
+                </h1>
+                <h3 className="text-sm">
+                  {selectedRace.Circuit.Location.locality}
+                </h3>
+              </div>
+              <div className="">
+                <button
+                  className={`w-32 px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                    seeAllActive
+                      ? "bg-black text-white border-black hover:bg-gray-800"
+                      : "border-gray-300"
+                  }`}
+                  onClick={() => seeAllFunction()}
+                >
+                  {seeAllActive ? "VIEW ONE" : "VIEW ALL"}
+                </button>
+              </div>
+            </div>
+            <div
+              className={
+                seeAllActive
+                  ? "hidden"
+                  : "flex flex-wrap items-center justify-between my-2 gap-2"
+              }
+            >
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "result"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("result")}
+              >
+                RACE
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "grid"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("grid")}
+              >
+                GRID
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "fastest"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("fastest")}
+              >
+                FAST
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "pits"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("pits")}
+              >
+                PITS
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "qualifying"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("qualifying")}
+              >
+                QUAL
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "p1"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("p1")}
+              >
+                P1
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "p2"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("p2")}
+              >
+                P2
+              </button>
+              <button
+                className={`px-2 py-1 flex-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  activeWidget === "p3"
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => setActiveWidget("p3")}
+              >
+                P3
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-6">
+              <div
+                className={
+                  seeAllActive
+                    ? "block"
+                    : activeWidget === "result"
+                    ? "block"
+                    : "hidden"
+                }
+              >
+                <RaceResultsDriverWidget
+                  raceResult={selectedRace}
+                  screenWidth={screenWidth}
+                />
+              </div>
+              <div
+                className={
+                  seeAllActive
+                    ? "block"
+                    : activeWidget === "grid"
+                    ? "block"
+                    : "hidden"
+                }
+              >
+                {/* NEED BOTH QUALI (time) AND RACERESULT (grid #) */}
+                <RaceResultsStartingGridWidget
+                  raceResult={selectedRace}
+                  qualiResult={selectedQuali}
+                  screenWidth={screenWidth}
+                />
+              </div>
+              <div
+                className={
+                  seeAllActive
+                    ? "block"
+                    : activeWidget === "fastest"
+                    ? "block"
+                    : "hidden"
+                }
+              >
+                <RaceResultsFastestLapsWidget
+                  raceResult={selectedRace}
+                  screenWidth={screenWidth}
+                />
+              </div>
+              <div
+                className={
+                  seeAllActive
+                    ? "block"
+                    : activeWidget === "qualifying"
+                    ? "block"
+                    : "hidden"
+                }
+              >
+                <RaceResultsQualifyingWidget
+                  qualiResult={selectedQuali}
+                  screenWidth={screenWidth}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -6,68 +6,65 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 type sprintResultsProp = {
-  round: number;
-  sprintResults: {
-    season: string;
-    round: string;
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
     url: string;
-    raceName: string;
-    Circuit: {
-      circuitId: string;
-      url: string;
-      circuitName: string;
-      Location: {
-        lat: string;
-        long: string;
-        locality: string;
-        country: string;
-      };
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
     };
-    date: string;
-    time: string;
-    SprintResults: [
-      {
-        number: string;
-        position: string;
-        positionText: string;
-        points: string;
-        Driver: {
-          driverId: string;
-          permanentNumber: string;
-          code: string;
-          url: string;
-          givenName: string;
-          familyName: string;
-          dateOfBirth: string;
-          nationality: string;
-        };
-        Constructor: {
-          constructorId: string;
-          url: string;
-          name: string;
-          nationality: string;
-        };
-        grid: string;
-        laps: string;
-        status: string;
+  };
+  date: string;
+  time: string;
+  SprintResults: [
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
         Time: {
-          millis: string;
           time: string;
         };
-        FastestLap: {
-          rank: string;
-          lap: string;
-          Time: {
-            time: string;
-          };
-          AverageSpeed: {
-            units: string;
-            speed: string;
-          };
+        AverageSpeed: {
+          units: string;
+          speed: string;
         };
-      }
-    ];
-  };
+      };
+    }
+  ];
 };
 
 type sprintResultsProps = {
@@ -248,12 +245,12 @@ export function CurrentDriverSprintStandingsWidget({
   useEffect(() => {
     const driverArray = driver.map((dr) => {
       const driverResults = sprintResults.filter((race) =>
-        race?.sprintResults?.SprintResults.some(
+        race?.SprintResults.some(
           (result) => result.Driver.driverId === dr.driverId
         )
       );
       const results = driverResults.map((result) => {
-        const raceResult = result.sprintResults.SprintResults.find(
+        const raceResult = result.SprintResults.find(
           (r) => r.Driver.driverId === dr.driverId
         );
         return {
@@ -261,7 +258,7 @@ export function CurrentDriverSprintStandingsWidget({
           position: raceResult?.position ?? "DNF",
           time: raceResult?.Time?.time ?? "DNF",
           points: raceResult?.points,
-          raceName: result.sprintResults.raceName,
+          raceName: result.raceName,
         };
       });
 

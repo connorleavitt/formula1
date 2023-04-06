@@ -13,10 +13,11 @@ export const getSprintResults = <T>() => {
           );
           const data = await response.json();
           if (data.MRData.RaceTable.Races[0] === undefined) return;
-          return {
-            round,
-            sprintResults: data.MRData.RaceTable.Races[0],
-          };
+          // return {
+          //   round,
+          //   raceResults: data.MRData.RaceTable.Races[0],
+          // };
+          return data.MRData.RaceTable.Races[0];
         })
       );
       setSprintResults(sprintResultsByRound as any);

@@ -5,14 +5,13 @@ import "./index.css";
 
 //pages
 import { Nav } from "./components/Nav";
-import { MobileNav } from "./components/MobileNav";
 import { About } from "./pages/About";
 import { Header } from "./components/Header";
 import { RaceSchedulePage } from "./pages/RaceSchedule";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { CurrentSeasonData } from "./components/CurrentSeason/CurrentSeasonData";
+import { Standings } from "./pages/Standings";
 import { useEffect, useState } from "react";
 import { RaceResultsPage } from "./pages/RaceResults";
 
@@ -50,7 +49,7 @@ const App: React.FC = () => {
             <Route path="/home" element={<Home screenWidth={screenWidth} />} />
             <Route
               path="/standings"
-              element={<CurrentSeasonData screenWidth={screenWidth} />}
+              element={<Standings screenWidth={screenWidth} />}
             />
             <Route
               path="/schedule"

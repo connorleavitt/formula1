@@ -6,105 +6,77 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
-type raceResultsProp = {
-  round: number;
-  raceResults: {
-    season: string;
-    round: string;
+type RaceResultsProp = {
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
     url: string;
-    raceName: string;
-    Circuit: {
-      circuitId: string;
-      url: string;
-      circuitName: string;
-      Location: {
-        lat: string;
-        long: string;
-        locality: string;
-        country: string;
-      };
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
     };
-    date: string;
-    time: string;
-    Results: [
-      {
-        number: string;
-        position: string;
-        positionText: string;
-        points: string;
-        Driver: {
-          driverId: string;
-          permanentNumber: string;
-          code: string;
-          url: string;
-          givenName: string;
-          familyName: string;
-          dateOfBirth: string;
-          nationality: string;
-        };
-        Constructor: {
-          constructorId: string;
-          url: string;
-          name: string;
-          nationality: string;
-        };
-        grid: string;
-        laps: string;
-        status: string;
+  };
+  date: string;
+  time: string;
+  Results: [
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
         Time: {
-          millis: string;
           time: string;
         };
-        FastestLap: {
-          rank: string;
-          lap: string;
-          Time: {
-            time: string;
-          };
-          AverageSpeed: {
-            units: string;
-            speed: string;
-          };
+        AverageSpeed: {
+          units: string;
+          speed: string;
         };
-      }
-    ];
-  };
+      };
+    }
+  ];
 };
 
-type raceResultsProps = {
-  raceResults: raceResultsProp[];
+type RaceResultsProps = {
+  raceResults: RaceResultsProp[];
   screenWidth: number;
 };
-
-type resultsByDriver = {
-  name: string;
-  nickName: string;
-  totalPoints: number;
-  drivers: {
-    driverName: string;
-    driverCode: string;
-    driverPoints: number;
-  };
-};
-
-interface DriverInfo {
-  totalPoints: number;
-  driverId: string;
-  driverName: string;
-  results: {
-    round: string;
-    position: string;
-    time: string;
-    points: string;
-    raceName: string;
-    hide: boolean;
-  };
-}
 
 export function CurrentConstructorRaceStandingsWidget({
   raceResults,
   screenWidth,
-}: raceResultsProps) {
+}: RaceResultsProps) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
   const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 1162;
 
@@ -318,13 +290,13 @@ export function CurrentConstructorRaceStandingsWidget({
     const constructorArray = constructor.map((cons) => {
       const constructorId = cons.urlId ?? cons.constructorId; // use urlId if it exists, otherwise use constructorId
       const constructorResults = raceResults.filter((race) =>
-        race?.raceResults.Results.some(
+        race?.Results.some(
           (result) => result.Constructor.constructorId === constructorId
         )
       );
 
       const results = constructorResults.map((result) => {
-        const raceResultsForConstructor = result.raceResults.Results.filter(
+        const raceResultsForConstructor = result.Results.filter(
           (r) => r.Constructor.constructorId === constructorId
         );
         const totalPointsForConstructor = raceResultsForConstructor.reduce(
@@ -336,7 +308,7 @@ export function CurrentConstructorRaceStandingsWidget({
         return {
           round: result.round,
           points: totalPointsForConstructor,
-          raceName: result.raceResults.raceName,
+          raceName: result.raceName,
         };
       });
 

@@ -6,169 +6,138 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 
 type raceResultsProp = {
-  round: number;
-  raceResults: {
-    season: string;
-    round: string;
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
     url: string;
-    raceName: string;
-    Circuit: {
-      circuitId: string;
-      url: string;
-      circuitName: string;
-      Location: {
-        lat: string;
-        long: string;
-        locality: string;
-        country: string;
-      };
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
     };
-    date: string;
-    time: string;
-    Results: [
-      {
-        number: string;
-        position: string;
-        positionText: string;
-        points: string;
-        Driver: {
-          driverId: string;
-          permanentNumber: string;
-          code: string;
-          url: string;
-          givenName: string;
-          familyName: string;
-          dateOfBirth: string;
-          nationality: string;
-        };
-        Constructor: {
-          constructorId: string;
-          url: string;
-          name: string;
-          nationality: string;
-        };
-        grid: string;
-        laps: string;
-        status: string;
+  };
+  date: string;
+  time: string;
+  Results: [
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
         Time: {
-          millis: string;
           time: string;
         };
-        FastestLap: {
-          rank: string;
-          lap: string;
-          Time: {
-            time: string;
-          };
-          AverageSpeed: {
-            units: string;
-            speed: string;
-          };
+        AverageSpeed: {
+          units: string;
+          speed: string;
         };
-      }
-    ];
-  };
+      };
+    }
+  ];
 };
 type sprintResultsProp = {
-  round: number;
-  sprintResults: {
-    season: string;
-    round: string;
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
     url: string;
-    raceName: string;
-    Circuit: {
-      circuitId: string;
-      url: string;
-      circuitName: string;
-      Location: {
-        lat: string;
-        long: string;
-        locality: string;
-        country: string;
-      };
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
     };
-    date: string;
-    time: string;
-    SprintResults: [
-      {
-        number: string;
-        position: string;
-        positionText: string;
-        points: string;
-        Driver: {
-          driverId: string;
-          permanentNumber: string;
-          code: string;
-          url: string;
-          givenName: string;
-          familyName: string;
-          dateOfBirth: string;
-          nationality: string;
-        };
-        Constructor: {
-          constructorId: string;
-          url: string;
-          name: string;
-          nationality: string;
-        };
-        grid: string;
-        laps: string;
-        status: string;
+  };
+  date: string;
+  time: string;
+  SprintResults: [
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
         Time: {
-          millis: string;
           time: string;
         };
-        FastestLap: {
-          rank: string;
-          lap: string;
-          Time: {
-            time: string;
-          };
-          AverageSpeed: {
-            units: string;
-            speed: string;
-          };
+        AverageSpeed: {
+          units: string;
+          speed: string;
         };
-      }
-    ];
-  };
+      };
+    }
+  ];
 };
-type resultsProps = {
+type ResultsProps = {
   raceResults: raceResultsProp[];
   sprintResults: sprintResultsProp[];
   screenWidth: number;
 };
 
-type resultsByDriver = {
-  name: string;
-  nickName: string;
-  totalPoints: number;
-  drivers: {
-    driverName: string;
-    driverCode: string;
-    driverPoints: number;
-  };
-};
-
-interface DriverInfo {
-  totalPoints: number;
-  driverId: string;
-  driverName: string;
-  results: {
-    round: string;
-    position: string;
-    time: string;
-    points: string;
-    raceName: string;
-    hide: boolean;
-  };
-}
-
 export function CurrentDriverRaceStandingsWidget({
   raceResults,
   sprintResults,
   screenWidth,
-}: resultsProps) {
+}: ResultsProps) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
   const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 1162;
 
@@ -586,20 +555,18 @@ export function CurrentDriverRaceStandingsWidget({
   useEffect(() => {
     const driverRaceArray = driver.map((dr) => {
       const driverResults = raceResults.filter((race) =>
-        race?.raceResults.Results.some(
-          (result) => result.Driver.driverId === dr.driverId
-        )
+        race?.Results.some((result) => result.Driver.driverId === dr.driverId)
       );
 
       //check if race also had a sprint race to add those points
       const driverSprintResults = sprintResults.filter((race) =>
-        race?.sprintResults.SprintResults.some(
+        race?.SprintResults.some(
           (result) => result.Driver.driverId === dr.driverId
         )
       );
 
       const sprintResultsArray = driverSprintResults.map((result) => {
-        const sprintResult = result.sprintResults.SprintResults.find(
+        const sprintResult = result.SprintResults.find(
           (r) => r.Driver.driverId === dr.driverId
         );
         return {
@@ -607,12 +574,12 @@ export function CurrentDriverRaceStandingsWidget({
           position: sprintResult?.position ?? "DNF",
           time: sprintResult?.Time?.time ?? "DNF",
           points: sprintResult?.points,
-          raceName: result.sprintResults.raceName,
+          raceName: result.raceName,
         };
       });
 
       const raceResultsArray = driverResults.map((result) => {
-        const raceResult = result.raceResults.Results.find(
+        const raceResult = result.Results.find(
           (r) => r.Driver.driverId === dr.driverId
         );
         return {
@@ -620,7 +587,7 @@ export function CurrentDriverRaceStandingsWidget({
           position: raceResult?.position ?? "DNF",
           time: raceResult?.Time?.time ?? "DNF",
           points: raceResult?.points,
-          raceName: result.raceResults.raceName,
+          raceName: result.raceName,
         };
       });
 

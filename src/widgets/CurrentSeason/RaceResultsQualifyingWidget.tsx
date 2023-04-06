@@ -74,16 +74,9 @@ export function RaceResultsQualifyingWidget({
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
       pinned: "left",
+      sort: "asc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    // {
-    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
-    //   headerName: "Driver",
-    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
-    //   cellClass: "cell-left",
-    //   pinned: mobilePinned,
-    //   headerClass: "sub-headers-name" as string,
-    // },
     {
       field: "Driver.code",
       headerName: "Driver",
@@ -98,22 +91,57 @@ export function RaceResultsQualifyingWidget({
       width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (timeA: string, timeB: string) => {
+        if (timeA === undefined && timeB === undefined) {
+          return 0;
+        } else if (timeA === undefined) {
+          return 1;
+        } else if (timeB === undefined) {
+          return -1;
+        } else {
+          const timeANum = timeToSeconds(timeA);
+          const timeBNum = timeToSeconds(timeB);
+          return timeANum - timeBNum;
+        }
+      },
     },
     {
       field: "Q2",
       width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
-      sort: "desc" as string,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (timeA: string, timeB: string) => {
+        if (timeA === undefined && timeB === undefined) {
+          return 0;
+        } else if (timeA === undefined) {
+          return 1;
+        } else if (timeB === undefined) {
+          return -1;
+        } else {
+          const timeANum = timeToSeconds(timeA);
+          const timeBNum = timeToSeconds(timeB);
+          return timeANum - timeBNum;
+        }
+      },
     },
     {
       field: "Q3",
       width: 100,
       headerClass: "sub-headers" as string,
       cellClass: "centered",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      comparator: (timeA: string, timeB: string) => {
+        if (timeA === undefined && timeB === undefined) {
+          return 0;
+        } else if (timeA === undefined) {
+          return 1;
+        } else if (timeB === undefined) {
+          return -1;
+        } else {
+          const timeANum = timeToSeconds(timeA);
+          const timeBNum = timeToSeconds(timeB);
+          return timeANum - timeBNum;
+        }
+      },
     },
     {
       headerName: "Constructor",
@@ -123,70 +151,14 @@ export function RaceResultsQualifyingWidget({
       headerClass: "sub-headers" as string,
     },
   ];
-  const fullScreenCol = [
-    {
-      field: "position",
-      headerName: "",
-      width: 50,
-      headerClass: "sub-headers" as string,
-      cellClass: "my-class",
-      pinned: "left",
-      sort: "asc" as string,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    // {
-    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
-    //   headerName: "Driver",
-    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
-    //   cellClass: "cell-left",
-    //   pinned: mobilePinned,
-    //   headerClass: "sub-headers-name" as string,
-    // },
-    {
-      field: "Driver.code",
-      headerName: "Driver",
-      width: 80,
-      pinned: "left",
-      headerClass: "sub-headers" as string,
-      cellClass: "sub-headers-name-2",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "laps",
-      headerName: "Laps",
-      width: 80,
-      headerClass: "sub-headers-name" as string,
-      cellClass: "sub-headers-name",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "Time.time",
-      headerName: "Time",
-      width: 100,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      field: "status",
-      headerName: "Status",
-      width: 100,
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-    {
-      headerName: "Constructor",
-      field: "Constructor.name",
-      width: 140,
-    },
-    {
-      field: "points",
-      headerName: "Pts",
-      width: 50,
-      cellClass: "my-class",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
-    },
-  ];
-  const [columnDefs, setColumnDefs] = useState(
-    screenWidth <= 450 ? mobileCol : fullScreenCol
-  );
+
+  const [columnDefs, setColumnDefs] = useState(mobileCol);
+
+  function timeToSeconds(time: string): number {
+    const [minutes, seconds] = time.split(":");
+    const totalSeconds = Number(minutes) * 60 + Number(seconds);
+    return totalSeconds;
+  }
 
   useEffect(() => {
     setRowData(qualiResult.QualifyingResults as any);
