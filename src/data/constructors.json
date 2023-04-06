@@ -19,6 +19,7 @@
   },
   {
     "id": 2,
+    "constructorId": "ferrari",
     "url": "http://en.wikipedia.org/wiki/Scuderia_Ferrari",
     "name": "Ferrari",
     "nationality": "Italian",

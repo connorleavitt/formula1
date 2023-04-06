@@ -1,9 +1,8 @@
-import { CurrentDriverRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverRaceStandingsWidget";
-import { CurrentDriverSprintStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverSprintStandingsWidget";
-import { CurrentDriverStandings } from "./CurrentDriverStandings";
-import driverInfo from "../../data/driver.json";
+import constructorInfo from "../../data/constructors.json";
 import { useState } from "react";
-import { SpecificDriverStandingsWidget } from "../../widgets/CurrentSeason/SpecificDriverStandingsWidget";
+import { CurrentConstructorRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentConstructorRaceStandingsWidget";
+import { CurrentConstructorStandings } from "./CurrentConstructorStandings";
+import { SpecificConstructorStandingsWidget } from "../../widgets/CurrentSeason/SpecificConstructorStandingsWidget";
 
 type raceResultsProp = {
   season: string;
@@ -255,77 +254,111 @@ type QualiResults = {
 
 type ResultsProps = {
   raceResults: raceResultsProp[];
-  sprintResults: sprintResultsProp[];
+  // sprintResults: sprintResultsProp[];
   qualiStandings: QualiResults[];
   screenWidth: number;
-  activeDriver: string;
-  raceSchedule: RaceSchedule[];
+  activeTeam: string;
 };
 
-export function DriverStandings({
+export function ConstructorStandings({
   raceResults,
-  sprintResults,
-  raceSchedule,
+  // sprintResults,
   qualiStandings,
   screenWidth,
-  activeDriver,
+  activeTeam,
 }: ResultsProps) {
-  const [activeSpecificDriver, setActiveSpecificDriver] = useState(
-    driverInfo[0].code
+  const [activeSpecificTeam, setActiveSpecificTeam] = useState(
+    constructorInfo[0].name
   );
+  //don't think this is properly config'd for sprint races, check after Baku
+  const constructorArray = constructorInfo.map((cons) => {
+    const constructorId = cons.urlId ?? cons.constructorId; // use urlId if it exists, otherwise use constructorId
+    const constructorResults = raceResults.filter((race) =>
+      race?.Results.some(
+        (result) => result.Constructor.constructorId === constructorId
+      )
+    );
+
+    const results = constructorResults.map((result) => {
+      const raceResultsForConstructor = result.Results.filter(
+        (r) => r.Constructor.constructorId === constructorId
+      );
+      const totalPointsForConstructor = raceResultsForConstructor.reduce(
+        (accumulator, result) => {
+          return accumulator + parseInt(result.points as string);
+        },
+        0
+      );
+      return {
+        round: result.round,
+        points: totalPointsForConstructor,
+        raceName: result.raceName,
+        country: result.Circuit.Location.country,
+      };
+    });
+
+    return {
+      constructorId,
+      constructorName: cons.name,
+      results: results,
+    };
+  });
+
+  const constructorsWithTotalPoints = constructorArray.map((constructor) => {
+    const totalPoints = constructor.results.reduce((accumulator, result) => {
+      return accumulator + result.points;
+    }, 0);
+
+    return {
+      ...constructor,
+      totalPoints,
+    };
+  });
 
   return (
     <div className="flex flex-wrap">
-      <div style={{ display: activeDriver === "overview" ? "block" : "none" }}>
-        <CurrentDriverStandings screenWidth={screenWidth} />
+      <div
+        style={{
+          display: activeTeam === "constructorsOverview" ? "block" : "none",
+        }}
+      >
+        <CurrentConstructorStandings screenWidth={screenWidth} />
       </div>
       <div
         style={{
-          display: activeDriver === "driverRaces" ? "block" : "none",
+          display: activeTeam === "constructorRaces" ? "block" : "none",
         }}
       >
-        <CurrentDriverRaceStandingsWidget
-          sprintResults={sprintResults as any}
+        <CurrentConstructorRaceStandingsWidget
+          // sprintResults={sprintResults as any}
           raceResults={raceResults as any}
-          screenWidth={screenWidth}
-        />
-      </div>
-      <div
-        style={{
-          display: activeDriver === "driverSprints" ? "block" : "none",
-        }}
-      >
-        <CurrentDriverSprintStandingsWidget
-          sprintResults={sprintResults as any}
           screenWidth={screenWidth}
         />
       </div>
       <div
         className="my-3 w-full"
         style={{
-          display: activeDriver === "specificDriver" ? "block" : "none",
+          display: activeTeam === "specificConstructor" ? "block" : "none",
         }}
       >
         <label htmlFor="standings-driver--widget-select"></label>
         <select
           id="standings-driver--widget-select"
-          value={activeSpecificDriver}
-          onChange={(event) => setActiveSpecificDriver(event.target.value)}
+          value={activeSpecificTeam}
+          onChange={(event) => setActiveSpecificTeam(event.target.value)}
           className="p-2 standings--widget-select rounded-lg w-full"
         >
-          {driverInfo.map((driver) => (
-            <option key={driver.id} value={driver.code}>
-              {driver.name}
+          {constructorInfo.map((team) => (
+            <option key={team.id} value={team.name}>
+              {team.name}
             </option>
           ))}
         </select>
-        <SpecificDriverStandingsWidget
-          sprintResults={sprintResults as any}
-          raceResults={raceResults as any}
+        <SpecificConstructorStandingsWidget
+          // sprintResults={sprintResults as any}
+          constructorResults={constructorsWithTotalPoints as any}
           screenWidth={screenWidth}
-          activeSpecificDriver={activeSpecificDriver}
-          raceSchedule={raceSchedule as any}
-          qualiStandings={qualiStandings as any}
+          activeSpecificTeam={activeSpecificTeam}
         />
       </div>
     </div>

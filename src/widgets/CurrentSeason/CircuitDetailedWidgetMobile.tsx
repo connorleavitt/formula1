@@ -226,7 +226,6 @@ export function CircuitDetailedWidgetMobile({
     const race = raceSchedule.find(
       (race) => race.Circuit.circuitId === circuit.circuitId
     );
-    console.log(raceSchedule);
     if (race) {
       setSelectedRace(race as RaceSchedule);
       setNextRace(race as RaceSchedule);

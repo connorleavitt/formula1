@@ -150,7 +150,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                           }`}
                         >
                           <FontAwesomeIcon icon="calendar" className="pr-2" />
-                          Race schedule
+                          Schedule
                         </Link>
                       </li>
                       <li className="">
@@ -165,7 +165,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                             icon="flag-checkered"
                             className="pr-2"
                           />
-                          Race results
+                          Previous results
                         </Link>
                       </li>
                     </ul>

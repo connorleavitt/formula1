@@ -347,7 +347,6 @@ type DriverDataProps = {
       raceName: string;
     }
   ];
-
   combinedPointsArray: [
     {
       round: string;
@@ -565,11 +564,9 @@ export function SpecificDriverStandingsWidget({
 [&:nth-child(even)]:bg-white border-2 border-t-0 border-gray-200"
           >
             <p className="w-28 pl-1">{selectedCountry.country}</p>
-            <p className="w-24 pl-2">{selectedCountry?.qualiInfo?.position}</p>
-            <p className="w-12 flex-auto pl-2">
-              {selectedCountry.racePosition}
-            </p>
-            <p className="w-8 text-center">{selectedCountry.combinedPoints}</p>
+            <p className="w-24">{selectedCountry?.qualiInfo?.position}</p>
+            <p className="w-12 flex-auto">{selectedCountry.racePosition}</p>
+            <p className="w-8">{selectedCountry.combinedPoints}</p>
           </div>
         ))}
       </div>
@@ -581,7 +578,7 @@ export function SpecificDriverStandingsWidget({
             display: activeSpecificDriver === driver.code ? "block" : "none",
           }}
         >
-          <div className="flex w-full mt-2">
+          <div className="flex w-full mt-4">
             <div className="flex flex-col w-1/2">
               <p className="w-full my-1 font-bold">Team:</p>
               <p className="w-full my-1 font-bold">Nationality:</p>

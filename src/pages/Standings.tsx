@@ -3,10 +3,10 @@ import { getRaceResults } from "../hooks/getRaceResults";
 import { getSprintResults } from "../hooks/getSprintResults";
 import { RaceStandings } from "../components/CurrentSeason/RaceStandings";
 import trackInfo from "../data/trackInfo.json";
-import driverInfo from "../data/driver.json";
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
 import { getQualiResults } from "../hooks/getQualiResults";
 import { DriverStandings } from "../components/CurrentSeason/DriverStandings";
+import { ConstructorStandings } from "../components/CurrentSeason/ConstructorStandings";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -113,6 +113,7 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
   const sprintResults = getSprintResults();
 
   const [activeDriver, setActiveDriver] = useState("overview");
+  const [activeTeam, setActiveTeam] = useState("constructorsOverview");
   const [activeRace, setActiveRace] = useState("bahrain");
   const [activePage, setActivePage] = useState("race");
 
@@ -252,29 +253,29 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
           qualiStandings={qualiStandings as any}
         />
       </div>
-      {/* <div
-            className="mt-4 w-full"
-            style={{ display: activePage === "constructors" ? "block" : "none" }}
-          >
-            <label htmlFor="standings--widget-select"></label>
-            <select
-              id="standings--widget-select"
-              value={activeWidget}
-              onChange={(event) => setActiveWidget(event.target.value)}
-              className="p-2 standings--widget-select rounded-lg w-full"
-            >
-              <option value="constructors">Constructor Overview</option>
-              <option value="constructorRaces">Constructor (by race)</option>
-              <option value="team1Name">team 1 Name</option>
-              <option value="team2Name">team 2 Name</option>
-            </select>
-            <ConstructorsStandings
-              sprintResults={sprintResults as any}
-              raceResults={raceResults as any}
-              screenWidth={screenWidth}
-              activeWidget={activeWidget}
-            />
-          </div> */}
+      <div
+        className="mt-4 w-full"
+        style={{ display: activePage === "constructors" ? "block" : "none" }}
+      >
+        <label htmlFor="standings--widget-select"></label>
+        <select
+          id="standings--widget-select"
+          value={activeTeam}
+          onChange={(event) => setActiveTeam(event.target.value)}
+          className="p-2 standings--widget-select rounded-lg w-full"
+        >
+          <option value="constructorsOverview">Constructor Overview</option>
+          <option value="constructorRaces">Constructor (by race)</option>
+          <option value="specificConstructor">Specific Constructor</option>
+        </select>
+        <ConstructorStandings
+          // sprintResults={sprintResults as any}
+          raceResults={updatedRaceSchedule as any}
+          screenWidth={screenWidth}
+          activeTeam={activeTeam}
+          qualiStandings={qualiStandings as any}
+        />
+      </div>
     </div>
   );
 }
