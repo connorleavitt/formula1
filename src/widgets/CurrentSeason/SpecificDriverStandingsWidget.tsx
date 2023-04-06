@@ -519,47 +519,85 @@ export function SpecificDriverStandingsWidget({
 
   return (
     <div className="flex flex-col">
-      <button
-        className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
-          screenWidth <= 450 ? "w-full " : "w-max"
-        }`}
-        onClick={handleClick}
-      >
-        {driverToggle ? "Show Driver Code" : "Show Driver Name"}
-      </button>
-      <div>Total Season Points: {driverData.totalPoints}</div>
-      <div className="flex justify-between text-xs text-gray-500 my-1">
-        <p className="w-28">GRAND PRIX</p>
-        <p className="w-24">QUALIFYING</p>
-        <p className="w-12 flex-auto">RACE POSITION</p>
-        <p className="w-8">PTS</p>
-      </div>
-      {updatedData.breakdownByCountry.map((selectedCountry) => (
-        <div
-          key={selectedCountry.round}
-          className="flex justify-between py-1 [&:nth-child(odd)]:bg-gray-100
-[&:nth-child(even)]:bg-gray-200"
-        >
-          <p className="w-28">{selectedCountry.country}</p>
-          <p className="w-24">{selectedCountry?.qualiInfo?.position}</p>
-          <p className="w-12 flex-auto">{selectedCountry.racePosition}</p>
-          <p className="w-8">{selectedCountry.combinedPoints}</p>
-        </div>
-      ))}
       {driverInfo.map((driver) => (
         <div
-          className="flex flex-col"
-          key={driver.id}
+          className="flex w-full my-4 pb-2 border-b-2 border-gray-300"
           style={{
             display: activeSpecificDriver === driver.code ? "block" : "none",
           }}
         >
-          <div>{driver.code}</div>
-          <div>{driver.dateOfBirth}</div>
-          <div>{driver.nationality}</div>
-          <div>{driver.permanentNumber}</div>
-          <div>{driver.team}</div>
-          <div>{driver.url}</div>
+          <img src={driver.imgUrl} alt="driver photo" className="rounded-lg" />
+          <div className="flex justify-between mt-2">
+            <div className="flex flex-col">
+              <div className="flex h-full gap-2 my-2 items-center">
+                <p className="font-light text-2xl">{driver.permanentNumber}</p>
+                <img
+                  src={driver.flagUrl}
+                  alt="driver photo"
+                  className="w-14 h-8 rounded-md"
+                />
+                <p className="font-bold text-xl">{driver.code}</p>
+              </div>
+              <p className="font-bold text-2xl">{driver.name}</p>
+            </div>
+            <img src={driver.hemletUrl} alt="driver photo" className="w-1/3" />
+          </div>
+        </div>
+      ))}
+      <div className="">
+        <div className="flex justify-between items-center">
+          <h3 className="text-lg font-bold">Current Season Stats</h3>
+          <div className="text-sm mr-2">
+            Season Total: {driverData.totalPoints}
+          </div>
+        </div>
+        <div className="flex justify-between text-xs text-gray-500 mt-2 py-1 border-2 border-gray-200">
+          <p className="w-28">GRAND PRIX</p>
+          <p className="w-24">QUALIFYING</p>
+          <p className="w-12 flex-auto">RACE POSITION</p>
+          <p className="w-8">PTS</p>
+        </div>
+        {updatedData.breakdownByCountry.map((selectedCountry) => (
+          <div
+            key={selectedCountry.round}
+            className="flex justify-between py-1 [&:nth-child(odd)]:bg-gray-100
+[&:nth-child(even)]:bg-white border-2 border-t-0 border-gray-200"
+          >
+            <p className="w-28">{selectedCountry.country}</p>
+            <p className="w-24">{selectedCountry?.qualiInfo?.position}</p>
+            <p className="w-12 flex-auto">{selectedCountry.racePosition}</p>
+            <p className="w-8">{selectedCountry.combinedPoints}</p>
+          </div>
+        ))}
+      </div>
+      {driverInfo.map((driver) => (
+        <div
+          className="flex w-full"
+          style={{
+            display: activeSpecificDriver === driver.code ? "block" : "none",
+          }}
+        >
+          <div className="flex w-full mt-2">
+            <div className="flex flex-col w-1/2">
+              <p className="w-full my-1 font-bold">Team:</p>
+              <p className="w-full my-1 font-bold">Nationality:</p>
+              <p className="w-full my-1 font-bold">Date of Birth:</p>
+              <p className="w-full my-1 font-bold">Place of Birth:</p>
+            </div>
+            <div className="flex flex-col w-1/2" key={driver.id}>
+              <p className="w-full my-1">{driver.teamName}</p>
+              <p className="w-full my-1">{driver.nationality}</p>
+              <p className="w-full my-1">{driver.dateOfBirth}</p>
+              <p className="w-full my-1">{driver.placeOfBirth}</p>
+            </div>
+          </div>
+          <p className="mt-4">
+            View {driver.name}'s{" "}
+            <a href={driver.url} className="text-blue-700">
+              Wikipedia
+            </a>{" "}
+            page to learn more!
+          </p>
         </div>
       ))}
     </div>
