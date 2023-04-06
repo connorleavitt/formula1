@@ -5,7 +5,12 @@
     "driverId": "max_verstappen",
     "code": "VER",
     "team": "red_bull",
-    "permanentNumber": "33"
+    "permanentNumber": "33",
+    "url": "http://en.wikipedia.org/wiki/Max_Verstappen",
+    "givenName": "Max",
+    "familyName": "Verstappen",
+    "dateOfBirth": "1997-09-30",
+    "nationality": "Dutch"
   },
   {
     "id": 2,
@@ -13,7 +18,12 @@
     "driverId": "perez",
     "code": "PER",
     "team": "red_bull",
-    "permanentNumber": "11"
+    "permanentNumber": "11",
+    "url": "http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez",
+    "givenName": "Sergio",
+    "familyName": "Pérez",
+    "dateOfBirth": "1990-01-26",
+    "nationality": "Mexican"
   },
   {
     "id": 3,
@@ -21,7 +31,12 @@
     "driverId": "leclerc",
     "code": "LEC",
     "team": "ferrari",
-    "permanentNumber": "16"
+    "permanentNumber": "16",
+    "url": "http://en.wikipedia.org/wiki/Charles_Leclerc",
+    "givenName": "Charles",
+    "familyName": "Leclerc",
+    "dateOfBirth": "1997-10-16",
+    "nationality": "Monegasque"
   },
   {
     "id": 4,
@@ -29,7 +44,12 @@
     "driverId": "sainz",
     "code": "SAI",
     "team": "ferrari",
-    "permanentNumber": "55"
+    "permanentNumber": "55",
+    "url": "http://en.wikipedia.org/wiki/Carlos_Sainz_Jr.",
+    "givenName": "Carlos",
+    "familyName": "Sainz",
+    "dateOfBirth": "1994-09-01",
+    "nationality": "Spanish"
   },
   {
     "id": 5,
@@ -37,7 +57,12 @@
     "driverId": "hamilton",
     "code": "HAM",
     "team": "mercedes",
-    "permanentNumber": "44"
+    "permanentNumber": "44",
+    "url": "http://en.wikipedia.org/wiki/Lewis_Hamilton",
+    "givenName": "Lewis",
+    "familyName": "Hamilton",
+    "dateOfBirth": "1985-01-07",
+    "nationality": "British"
   },
   {
     "id": 6,
@@ -45,7 +70,12 @@
     "driverId": "russell",
     "code": "RUS",
     "team": "mercedes",
-    "permanentNumber": "64"
+    "permanentNumber": "64",
+    "url": "http://en.wikipedia.org/wiki/George_Russell_%28racing_driver%29",
+    "givenName": "George",
+    "familyName": "Russell",
+    "dateOfBirth": "1998-02-15",
+    "nationality": "British"
   },
   {
     "id": 7,
@@ -53,7 +83,12 @@
     "driverId": "alonso",
     "code": "ALO",
     "team": "aston_martin",
-    "permanentNumber": "14"
+    "permanentNumber": "14",
+    "url": "http://en.wikipedia.org/wiki/Fernando_Alonso",
+    "givenName": "Fernando",
+    "familyName": "Alonso",
+    "dateOfBirth": "1981-07-29",
+    "nationality": "Spanish"
   },
   {
     "id": 8,
@@ -61,7 +96,12 @@
     "driverId": "stroll",
     "code": "STR",
     "team": "aston_martin",
-    "permanentNumber": "18"
+    "permanentNumber": "18",
+    "url": "http://en.wikipedia.org/wiki/Lance_Stroll",
+    "givenName": "Lance",
+    "familyName": "Stroll",
+    "dateOfBirth": "1998-10-29",
+    "nationality": "Canadian"
   },
   {
     "id": 9,
@@ -69,7 +109,12 @@
     "driverId": "bottas",
     "code": "BOT",
     "team": "alfa",
-    "permanentNumber": "77"
+    "permanentNumber": "77",
+    "url": "http://en.wikipedia.org/wiki/Valtteri_Bottas",
+    "givenName": "Valtteri",
+    "familyName": "Bottas",
+    "dateOfBirth": "1989-08-28",
+    "nationality": "Finnish"
   },
   {
     "id": 10,
@@ -77,7 +122,12 @@
     "driverId": "zhou",
     "code": "ZHO",
     "team": "alfa",
-    "permanentNumber": "24"
+    "permanentNumber": "24",
+    "url": "http://en.wikipedia.org/wiki/Guanyu_Zhou",
+    "givenName": "Guanyu",
+    "familyName": "Zhou",
+    "dateOfBirth": "1999-05-30",
+    "nationality": "Chinese"
   },
   {
     "id": 11,
@@ -85,7 +135,12 @@
     "driverId": "norris",
     "code": "NOR",
     "team": "mclaren",
-    "permanentNumber": "4"
+    "permanentNumber": "4",
+    "url": "http://en.wikipedia.org/wiki/Lando_Norris",
+    "givenName": "Lando",
+    "familyName": "Norris",
+    "dateOfBirth": "1999-11-13",
+    "nationality": "British"
   },
   {
     "id": 12,
@@ -93,7 +148,12 @@
     "driverId": "piastri",
     "code": "PIA",
     "team": "mclaren",
-    "permanentNumber": "81"
+    "permanentNumber": "81",
+    "url": "http://en.wikipedia.org/wiki/Oscar_Piastri",
+    "givenName": "Oscar",
+    "familyName": "Piastri",
+    "dateOfBirth": "2001-04-06",
+    "nationality": "Australian"
   },
   {
     "id": 13,
@@ -101,7 +161,12 @@
     "driverId": "gasly",
     "code": "GAS",
     "team": "alpine",
-    "permanentNumber": "10"
+    "permanentNumber": "10",
+    "url": "http://en.wikipedia.org/wiki/Pierre_Gasly",
+    "givenName": "Pierre",
+    "familyName": "Gasly",
+    "dateOfBirth": "1996-02-07",
+    "nationality": "French"
   },
   {
     "id": 14,
@@ -109,7 +174,12 @@
     "driverId": "ocon",
     "code": "OCO",
     "team": "alpine",
-    "permanentNumber": "31"
+    "permanentNumber": "31",
+    "url": "http://en.wikipedia.org/wiki/Esteban_Ocon",
+    "givenName": "Esteban",
+    "familyName": "Ocon",
+    "dateOfBirth": "1996-09-17",
+    "nationality": "French"
   },
   {
     "id": 15,
@@ -117,7 +187,12 @@
     "driverId": "hulkenberg",
     "code": "HUL",
     "team": "haas",
-    "permanentNumber": "27"
+    "permanentNumber": "27",
+    "url": "http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg",
+    "givenName": "Nico",
+    "familyName": "Hülkenberg",
+    "dateOfBirth": "1987-08-19",
+    "nationality": "German"
   },
   {
     "id": 16,
@@ -125,7 +200,12 @@
     "driverId": "kevin_magnussen",
     "code": "MAG",
     "team": "haas",
-    "permanentNumber": "20"
+    "permanentNumber": "20",
+    "url": "http://en.wikipedia.org/wiki/Kevin_Magnussen",
+    "givenName": "Kevin",
+    "familyName": "Magnussen",
+    "dateOfBirth": "1992-10-05",
+    "nationality": "Danish"
   },
   {
     "id": 17,
@@ -133,7 +213,12 @@
     "driverId": "tsunoda",
     "code": "TSU",
     "team": "alphatauri",
-    "permanentNumber": "22"
+    "permanentNumber": "22",
+    "url": "http://en.wikipedia.org/wiki/Yuki_Tsunoda",
+    "givenName": "Yuki",
+    "familyName": "Tsunoda",
+    "dateOfBirth": "2000-05-11",
+    "nationality": "Japanese"
   },
   {
     "id": 18,
@@ -141,7 +226,12 @@
     "driverId": "de_vries",
     "code": "DEV",
     "team": "alphatauri",
-    "permanentNumber": "45"
+    "permanentNumber": "21",
+    "url": "http://en.wikipedia.org/wiki/Nyck_de_Vries",
+    "givenName": "Nyck",
+    "familyName": "de Vries",
+    "dateOfBirth": "1995-02-06",
+    "nationality": "Dutch"
   },
   {
     "id": 19,
@@ -149,7 +239,12 @@
     "driverId": "albon",
     "code": "ALB",
     "team": "williams",
-    "permanentNumber": "23"
+    "permanentNumber": "23",
+    "url": "http://en.wikipedia.org/wiki/Alexander_Albon",
+    "givenName": "Alexander",
+    "familyName": "Albon",
+    "dateOfBirth": "1996-03-23",
+    "nationality": "Thai"
   },
   {
     "id": 20,
@@ -157,6 +252,11 @@
     "driverId": "sargeant",
     "code": "SAR",
     "team": "williams",
-    "permanentNumber": "2"
+    "permanentNumber": "2",
+    "url": "http://en.wikipedia.org/wiki/Logan_Sargeant",
+    "givenName": "Logan",
+    "familyName": "Sargeant",
+    "dateOfBirth": "2000-12-31",
+    "nationality": "American"
   }
 ]

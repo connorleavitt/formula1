@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
-import { CurrentConstructorRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentConstructorRaceStandingsWidget";
-import { CurrentDriverRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverRaceStandingsWidget";
-import { CurrentDriverSprintStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverSprintStandingsWidget";
 import { RaceResultsDriverWidget } from "../../widgets/CurrentSeason/RaceResultsDriverWidget";
 import { RaceResultsFastestLapsWidget } from "../../widgets/CurrentSeason/RaceResultsFastestLapsWidget";
 import { RaceResultsQualifyingWidget } from "../../widgets/CurrentSeason/RaceResultsQualifyingWidget";
 import { RaceResultsStartingGridWidget } from "../../widgets/CurrentSeason/RaceResultsStartingGridWidget";
-import { RaceResultsWidgetCopy } from "../../widgets/CurrentSeason/RaceResultsWidgetCopy";
-import { CurrentDriverStandings } from "./CurrentDriverStandings";
 type UpdatedRacesResults = {
   season: string;
   round: string;

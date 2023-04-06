@@ -1,8 +1,8 @@
-import { CurrentConstructorRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentConstructorRaceStandingsWidget";
 import { CurrentDriverRaceStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverRaceStandingsWidget";
 import { CurrentDriverSprintStandingsWidget } from "../../widgets/CurrentSeason/CurrentDriverSprintStandingsWidget";
-import { CurrentConstructorStandings } from "./CurrentConstructorStandings";
 import { CurrentDriverStandings } from "./CurrentDriverStandings";
+import driverInfo from "../../data/driver.json";
+
 type raceResultsProp = {
   season: string;
   round: string;
@@ -129,30 +129,23 @@ type ResultsProps = {
   raceResults: raceResultsProp[];
   sprintResults: sprintResultsProp[];
   screenWidth: number;
-  activeWidget: string;
+  activeDriver: string;
 };
 
 export function DriverStandings({
   raceResults,
   sprintResults,
   screenWidth,
-  activeWidget,
+  activeDriver,
 }: ResultsProps) {
   return (
     <div className="flex flex-wrap overflow-scroll">
-      <div style={{ display: activeWidget === "drivers" ? "block" : "none" }}>
+      <div style={{ display: activeDriver === "overview" ? "block" : "none" }}>
         <CurrentDriverStandings screenWidth={screenWidth} />
       </div>
       <div
         style={{
-          display: activeWidget === "constructors" ? "block" : "none",
-        }}
-      >
-        <CurrentConstructorStandings screenWidth={screenWidth} />
-      </div>
-      <div
-        style={{
-          display: activeWidget === "driverRaces" ? "block" : "none",
+          display: activeDriver === "driverRaces" ? "block" : "none",
         }}
       >
         <CurrentDriverRaceStandingsWidget
@@ -163,18 +156,7 @@ export function DriverStandings({
       </div>
       <div
         style={{
-          display: activeWidget === "constructorRaces" ? "block" : "none",
-        }}
-      >
-        <CurrentConstructorRaceStandingsWidget
-          raceResults={raceResults as any}
-          screenWidth={screenWidth}
-          // screenWidth={screenWidth}
-        />
-      </div>
-      <div
-        style={{
-          display: activeWidget === "driverSprints" ? "block" : "none",
+          display: activeDriver === "driverSprints" ? "block" : "none",
         }}
       >
         <CurrentDriverSprintStandingsWidget
@@ -182,6 +164,22 @@ export function DriverStandings({
           screenWidth={screenWidth}
         />
       </div>
+      {driverInfo.map((driver) => (
+        <div
+          className="flex flex-col"
+          key={driver.id}
+          style={{
+            display: activeDriver === driver.code ? "block" : "none",
+          }}
+        >
+          <div>{driver.code}</div>
+          <div>{driver.dateOfBirth}</div>
+          <div>{driver.nationality}</div>
+          <div>{driver.permanentNumber}</div>
+          <div>{driver.team}</div>
+          <div>{driver.url}</div>
+        </div>
+      ))}
     </div>
   );
 }

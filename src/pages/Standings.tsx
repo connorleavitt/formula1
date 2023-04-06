@@ -3,8 +3,10 @@ import { getRaceResults } from "../hooks/getRaceResults";
 import { getSprintResults } from "../hooks/getSprintResults";
 import { RaceStandings } from "../components/CurrentSeason/RaceStandings";
 import trackInfo from "../data/trackInfo.json";
+import driverInfo from "../data/driver.json";
 import { getRaceSchedule } from "../hooks/getRaceSchedule";
 import { getQualiResults } from "../hooks/getQualiResults";
+import { DriverStandings } from "../components/CurrentSeason/DriverStandings";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -96,9 +98,7 @@ type QualiResults = {
 };
 
 export function Standings({ screenWidth }: ScreenWidthProps) {
-  const [activeWidget, setActiveWidget] = useState("drivers");
-  const [activeRace, setActiveRace] = useState("bahrain");
-  const [activePage, setActivePage] = useState("race");
+  // const [activeWidget, setActiveWidget] = useState("drivers");
 
   const [loading, raceSchedule] = getRaceSchedule<RaceSchedule[]>({
     method: "get",
@@ -112,9 +112,11 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
   const raceResults = getRaceResults();
   const sprintResults = getSprintResults();
 
-  if (!raceResults) return null;
-  if (!sprintResults) return null;
-  if (loading || qualiLoading) {
+  const [activeDriver, setActiveDriver] = useState("overview");
+  const [activeRace, setActiveRace] = useState("bahrain");
+  const [activePage, setActivePage] = useState("race");
+
+  if (!raceResults || !sprintResults || loading || qualiLoading) {
     return (
       <div className="ml-8 mt-6">
         <p>Loading...</p>
@@ -199,9 +201,9 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
             className="my-2 w-full"
             style={{ display: activePage === "race" ? "block" : "none" }}
           >
-            <label htmlFor="standings--widget-select"></label>
+            <label htmlFor="standings-race--widget-select"></label>
             <select
-              id="standings--widget-select"
+              id="standings-race--widget-select"
               value={activeRace}
               onChange={(event) => setActiveRace(event.target.value)}
               className="p-2 standings--widget-select rounded-lg w-full"
@@ -220,30 +222,34 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
               activeRace={activeRace}
             />
           </div>
-          {/* <div
+          <div
             className="mt-4 w-full"
             style={{ display: activePage === "drivers" ? "block" : "none" }}
           >
-            <label htmlFor="standings--widget-select"></label>
+            <label htmlFor="standings-driver--widget-select"></label>
             <select
-              id="standings--widget-select"
-              value={activeWidget}
-              onChange={(event) => setActiveWidget(event.target.value)}
+              id="standings-driver--widget-select"
+              value={activeDriver}
+              onChange={(event) => setActiveDriver(event.target.value)}
               className="p-2 standings--widget-select rounded-lg w-full"
             >
-              <option value="driversOverview">Driver Overview</option>
+              <option value="overview">Driver Overview</option>
               <option value="driverRaces">Driver (by race)</option>
               <option value="driverSprints">Driver (by sprint)</option>
-              <option value="driver1Name">Driver 1 Name</option>
-              <option value="driver2Name">Driver 2 Name</option>
+              {driverInfo.map((driver) => (
+                <option key={driver.id} value={driver.code}>
+                  {driver.name}
+                </option>
+              ))}
             </select>
             <DriverStandings
+              //make a quali table
               sprintResults={sprintResults as any}
               raceResults={raceResults as any}
               screenWidth={screenWidth}
-              activeWidget={activeWidget}
+              activeDriver={activeDriver}
             />
-          </div> */}
+          </div>
           {/* <div
             className="mt-4 w-full"
             style={{ display: activePage === "constructors" ? "block" : "none" }}
