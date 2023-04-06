@@ -176,81 +176,85 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
   });
 
   return (
-    <>
-      {screenWidth <= 450 ? (
-        <div className="current-season--container-mobile m-4">
-          <div className="flex border-b-2 border-gray-400">
-            <h1 className="text-3xl w-full font-bold py-2 ">Standings</h1>
-          </div>
-          <div className="my-2 w-full">
-            <label htmlFor="results--widget-select"></label>
-            <select
-              id="results--widget-select"
-              value={activePage}
-              onChange={(event) => setActivePage(event.target.value)}
-              className="p-2 standings--widget-select rounded-lg w-full"
-            >
-              <option value="race">Races</option>
-              <option value="drivers">Drivers</option>
-              <option value="constructors">Constructors</option>
-              <option value="dhlfl">DHL Fastest Lap Award</option>
-              <option value="dotd">Driver of the Day Award</option>
-            </select>
-          </div>
-          <div
-            className="my-2 w-full"
-            style={{ display: activePage === "race" ? "block" : "none" }}
-          >
-            <label htmlFor="standings-race--widget-select"></label>
-            <select
-              id="standings-race--widget-select"
-              value={activeRace}
-              onChange={(event) => setActiveRace(event.target.value)}
-              className="p-2 standings--widget-select rounded-lg w-full"
-            >
-              {raceSchedule.map((track) => (
-                <option key={track.round} value={track.Circuit.circuitId}>
-                  {track.Circuit.Location.country}
-                </option>
-              ))}
-            </select>
-            <RaceStandings
-              sprintResults={sprintResults as any}
-              raceResults={updatedRaceSchedule as any}
-              qualiStandings={qualiStandings as any}
-              screenWidth={screenWidth}
-              activeRace={activeRace}
-            />
-          </div>
-          <div
-            className="mt-4 w-full"
-            style={{ display: activePage === "drivers" ? "block" : "none" }}
-          >
-            <label htmlFor="standings-driver--widget-select"></label>
-            <select
-              id="standings-driver--widget-select"
-              value={activeDriver}
-              onChange={(event) => setActiveDriver(event.target.value)}
-              className="p-2 standings--widget-select rounded-lg w-full"
-            >
-              <option value="overview">Driver Overview</option>
-              <option value="driverRaces">Driver (by race)</option>
-              <option value="driverSprints">Driver (by sprint)</option>
-              {driverInfo.map((driver) => (
-                <option key={driver.id} value={driver.code}>
-                  {driver.name}
-                </option>
-              ))}
-            </select>
-            <DriverStandings
-              //make a quali table
-              sprintResults={sprintResults as any}
-              raceResults={raceResults as any}
-              screenWidth={screenWidth}
-              activeDriver={activeDriver}
-            />
-          </div>
-          {/* <div
+    <div
+      className={
+        screenWidth <= 450
+          ? "current-season--container-mobile m-4"
+          : "current-season--container"
+      }
+    >
+      <div className="flex border-b-2 border-gray-400">
+        <h1 className="text-3xl w-full font-bold py-2 ">Standings</h1>
+      </div>
+      <div className="my-2 w-full">
+        <label htmlFor="results--widget-select"></label>
+        <select
+          id="results--widget-select"
+          value={activePage}
+          onChange={(event) => setActivePage(event.target.value)}
+          className="p-2 standings--widget-select rounded-lg w-full"
+        >
+          <option value="race">Races</option>
+          <option value="drivers">Drivers</option>
+          <option value="constructors">Constructors</option>
+          <option value="dhlfl">DHL Fastest Lap Award</option>
+          <option value="dotd">Driver of the Day Award</option>
+        </select>
+      </div>
+      <div
+        className="my-2 w-full"
+        style={{ display: activePage === "race" ? "block" : "none" }}
+      >
+        <label htmlFor="standings-race--widget-select"></label>
+        <select
+          id="standings-race--widget-select"
+          value={activeRace}
+          onChange={(event) => setActiveRace(event.target.value)}
+          className="p-2 standings--widget-select rounded-lg w-full"
+        >
+          {raceSchedule.map((track) => (
+            <option key={track.round} value={track.Circuit.circuitId}>
+              {track.Circuit.Location.country}
+            </option>
+          ))}
+        </select>
+        <RaceStandings
+          sprintResults={sprintResults as any}
+          raceResults={updatedRaceSchedule as any}
+          qualiStandings={qualiStandings as any}
+          screenWidth={screenWidth}
+          activeRace={activeRace}
+        />
+      </div>
+      <div
+        className="mt-4 w-full"
+        style={{ display: activePage === "drivers" ? "block" : "none" }}
+      >
+        <label htmlFor="standings-driver--widget-select"></label>
+        <select
+          id="standings-driver--widget-select"
+          value={activeDriver}
+          onChange={(event) => setActiveDriver(event.target.value)}
+          className="p-2 standings--widget-select rounded-lg w-full"
+        >
+          <option value="overview">Driver Overview</option>
+          <option value="driverRaces">Driver (by race)</option>
+          <option value="driverSprints">Driver (by sprint)</option>
+          {driverInfo.map((driver) => (
+            <option key={driver.id} value={driver.code}>
+              {driver.name}
+            </option>
+          ))}
+        </select>
+        <DriverStandings
+          //make a quali table
+          sprintResults={sprintResults as any}
+          raceResults={raceResults as any}
+          screenWidth={screenWidth}
+          activeDriver={activeDriver}
+        />
+      </div>
+      {/* <div
             className="mt-4 w-full"
             style={{ display: activePage === "constructors" ? "block" : "none" }}
           >
@@ -273,111 +277,6 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
               activeWidget={activeWidget}
             />
           </div> */}
-        </div>
-      ) : (
-        <div className="current-season--container">
-          {/* <div className="flex items-center justify-between w-full text-sm border-b-2 border-gray-400">
-            <h1 className="text-3xl font-bold pt-4 pb-4 mr-8">Standings</h1>
-            <div className="flex gap-4">
-              <button
-                className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
-                  activeWidget === "drivers"
-                    ? "bg-black text-white border-black hover:bg-gray-800"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setActiveWidget("drivers")}
-              >
-                Driver Overview
-              </button>
-              <button
-                className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
-                  activeWidget === "driverRaces"
-                    ? "bg-black text-white border-black hover:bg-gray-800"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setActiveWidget("driverRaces")}
-              >
-                Driver (by race)
-              </button>
-              <button
-                className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
-                  activeWidget === "driverSprints"
-                    ? "bg-black text-white border-black hover:bg-gray-800"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setActiveWidget("driverSprints")}
-              >
-                Driver (by sprint)
-              </button>
-              <button
-                className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
-                  activeWidget === "constructors"
-                    ? "bg-black text-white border-black hover:bg-gray-800"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setActiveWidget("constructors")}
-              >
-                Constructor Overview
-              </button>
-              <button
-                className={`my-1 py-1 px-2 h-8 border-2 rounded-lg hover:bg-gray-100 ${
-                  activeWidget === "constructorRaces"
-                    ? "bg-black text-white border-black hover:bg-gray-800"
-                    : "border-gray-300"
-                }`}
-                onClick={() => setActiveWidget("constructorRaces")}
-              >
-                Constructor (by race)
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-wrap">
-            <div
-              style={{ display: activeWidget === "drivers" ? "block" : "none" }}
-            >
-              <CurrentDriverStandings screenWidth={screenWidth} />
-            </div>
-            <div
-              style={{
-                display: activeWidget === "constructors" ? "block" : "none",
-              }}
-            >
-              <CurrentConstructorStandings screenWidth={screenWidth} />
-            </div>
-            <div
-              style={{
-                display: activeWidget === "driverRaces" ? "block" : "none",
-              }}
-            >
-              <CurrentDriverRaceStandingsWidget
-                sprintResults={sprintResults as any}
-                raceResults={raceResults as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              style={{
-                display: activeWidget === "constructorRaces" ? "block" : "none",
-              }}
-            >
-              <CurrentConstructorRaceStandingsWidget
-                raceResults={raceResults as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-            <div
-              style={{
-                display: activeWidget === "driverSprints" ? "block" : "none",
-              }}
-            >
-              <CurrentDriverSprintStandingsWidget
-                sprintResults={sprintResults as any}
-                screenWidth={screenWidth}
-              />
-            </div>
-          </div> */}
-        </div>
-      )}
-    </>
+    </div>
   );
 }
