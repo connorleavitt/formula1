@@ -336,7 +336,7 @@ export function NextRaceDetailedWidget({
   }
 
   return (
-    <div className={screenWidth <= 450 ? "mt-10 mb-20" : "mt-4"}>
+    <div className={screenWidth <= 568 ? "mt-10 mb-20" : "mt-4 w-[568px]"}>
       <div className="w-full">
         <h3 className="p-2 py-4 text-2xl font-bold leading-4">
           NEXT RACE
@@ -348,7 +348,7 @@ export function NextRaceDetailedWidget({
         <div className="home-next-race--container flex flex-col rounded-lg border-2 border-gray-700">
           <div
             className={`p-4 ${
-              screenWidth <= 450 ? "flex flex-col" : "flex justify-between"
+              screenWidth <= 568 ? "flex flex-col" : "flex justify-between"
             }`}
           >
             <div className="flex flex-col w-max h-max">

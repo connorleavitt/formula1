@@ -34,7 +34,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
   }, [location]);
   return (
     <>
-      {screenWidth <= 450 ? (
+      {screenWidth <= 768 ? (
         <nav
           className={
             isMobileOpen

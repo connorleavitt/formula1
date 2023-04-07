@@ -517,16 +517,20 @@ export function SpecificDriverStandingsWidget({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-md">
       {driverInfo.map((driver) => (
         <div
           key={driver.id}
-          className="flex w-full my-4 pb-2 border-b-2 border-gray-300"
+          className="flex  my-4 pb-2 border-b-2 border-gray-300"
           style={{
             display: activeSpecificDriver === driver.code ? "block" : "none",
           }}
         >
-          <img src={driver.imgUrl} alt="driver photo" className="rounded-lg" />
+          <img
+            src={driver.imgUrl}
+            alt="driver photo"
+            className="rounded-lg driver-img"
+          />
           <div className="flex justify-between mt-2">
             <div className="flex flex-col">
               <div className="flex h-full gap-2 my-2 items-center">
@@ -572,7 +576,7 @@ export function SpecificDriverStandingsWidget({
       </div>
       {driverInfo.map((driver) => (
         <div
-          className="flex w-full"
+          className="flex "
           key={driver.id}
           style={{
             display: activeSpecificDriver === driver.code ? "block" : "none",

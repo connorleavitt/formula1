@@ -110,20 +110,22 @@ export function FantasyPropsScoreboard({ screenWidth }: ScreenWidthProps) {
 
   return (
     <div className="">
-      {screenWidth <= 450 ? (
-        <div className="relative">
-          <h1 className="text-2xl font-bold ml-2 mb-4">Prop Bets</h1>
-          <div className="absolute -top-[2px] right-0 self-center">
-            <button
-              className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
-                seeAllActive
-                  ? "bg-black text-white border-black hover:bg-gray-800"
-                  : "border-gray-300"
-              }`}
-              onClick={() => seeAllFunction()}
-            >
-              {seeAllActive ? "COLLAPSE" : "VIEW ALL"}
-            </button>
+      {screenWidth <= 1000 ? (
+        <div className="flex flex-col">
+          <div className="flex justify-between">
+            <h1 className="text-2xl font-bold ml-2 mb-4">Prop Bets</h1>
+            <div className="self-start">
+              <button
+                className={`px-2 py-1 border-2 rounded-lg hover:bg-gray-100 ${
+                  seeAllActive
+                    ? "bg-black text-white border-black hover:bg-gray-800"
+                    : "border-gray-300"
+                }`}
+                onClick={() => seeAllFunction()}
+              >
+                {seeAllActive ? "VIEW ONE" : "VIEW ALL"}
+              </button>
+            </div>
           </div>
           <div
             className={

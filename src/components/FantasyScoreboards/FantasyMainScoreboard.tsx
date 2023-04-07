@@ -68,8 +68,8 @@ export function FantasyMainScoreboard({ screenWidth }: ScreenWidthProps) {
 
   return (
     <>
-      {screenWidth <= 450 ? (
-        <div className="mb-10">
+      {screenWidth <= 1200 ? (
+        <div className="mb-10 mx-auto">
           <h1 className="text-2xl font-bold ml-2">Main Scoreboard</h1>
           <div className="mt-2">
             <FantasyMainScoreboardWidgetMobile

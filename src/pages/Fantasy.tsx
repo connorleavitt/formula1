@@ -10,9 +10,9 @@ export function Fantasy({ screenWidth }: ScreenWidthProps) {
   return (
     <div
       className={
-        screenWidth <= 450
+        screenWidth <= 768
           ? "fantasy-mobile m-4 mb-10"
-          : "fantasy max-w-6xl ml-10 mt-4"
+          : "fantasy max-w-6xl ml-10 mt-4 mx-10"
       }
     >
       <FantasyMainScoreboard screenWidth={screenWidth} />

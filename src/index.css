@@ -82,8 +82,16 @@ nav > ul > li > a > svg {
 
 main.main {
   background-color: var(--clr-main-background);
-  width: calc(100vw - var(--w-nav));
+  /* width: calc(100vw - var(--w-nav)); */
   overflow-x: hidden;
+}
+
+@media (min-width: 768px) {
+  main.main {
+    background-color: var(--clr-main-background);
+    width: calc(100vw - var(--w-nav));
+    overflow-x: hidden;
+  }
 }
 
 main.main-mobile {
@@ -175,9 +183,16 @@ main.main-mobile {
 }
 
 /* .current-season-next-race--countdown-container */
-.race-schedule--main-container {
-  width: calc(100vw - var(--w-nav) - 80px);
-  max-width: 1300px;
+/* .race-schedule--main-container { */
+/* width: calc(100vw - var(--w-nav) - 80px); */
+/* max-width: 1300px; */
+/* } */
+
+@media (min-width: 750px) {
+  .race-schedule--main-container {
+    width: calc(100vw - var(--w-nav) - 80px);
+    max-width: 1300px;
+  }
 }
 
 .race-schedule--btn-back-to-next-race {
@@ -206,7 +221,7 @@ main.main-mobile {
   border-radius: 3px;
 }
 
-.slick-slider > .slick-dots > li > button:before {
+.slick-slider > .slick-dots > li > button::before {
   color: var(--clr-f1-red);
 }
 
@@ -792,4 +807,12 @@ main.main-mobile {
   top: calc(var(--h-header) + 0px);
   background-color: var(--clr-f1-red);
   color: white;
+}
+
+/* DRIVER STANDINGS */
+
+@media (min-width: 750px) {
+  .driver-img {
+    max-width: 400px;
+  }
 }

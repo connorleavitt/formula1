@@ -190,7 +190,7 @@ export function SpecificConstructorStandingsWidget({
   }, [activeSpecificTeam]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-md">
       {constructorInfo.map((team) => (
         <div
           key={team.id}
