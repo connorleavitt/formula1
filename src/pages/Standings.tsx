@@ -254,7 +254,7 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
         />
       </div>
       <div
-        className="mt-4 w-full"
+        className="my-3 w-full"
         style={{ display: activePage === "constructors" ? "block" : "none" }}
       >
         <label htmlFor="standings--widget-select"></label>
