@@ -359,6 +359,7 @@ export function ConstructorStandings({
           constructorResults={constructorsWithTotalPoints as any}
           screenWidth={screenWidth}
           activeSpecificTeam={activeSpecificTeam}
+          key={activeTeam} // Add key prop to force re-render
         />
       </div>
     </div>
