@@ -139,17 +139,33 @@ export function CurrentDriverRaceStandingsWidget({
   screenWidth,
 }: ResultsProps) {
   const mobilePinned = screenWidth <= 450 ? "left" : "";
-  const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 1162;
+  // const mobileWidth = screenWidth <= 450 ? screenWidth - 32 : 1162;
+  const mobileWidth =
+    screenWidth <= 1450
+      ? screenWidth <= 450
+        ? screenWidth - 32
+        : screenWidth - 308
+      : 1162;
 
   const [driverToggle, setDriverToggle] = useState(
     screenWidth <= 450 ? false : true
   );
+
+  const [pointsPositionToggle, setPointsPositionToggle] = useState(true);
+
   const [rowData, setRowData] = useState([]);
   const colData = [
     {
-      field: driverToggle ? "driverCode" : "driverName",
+      field:
+        screenWidth <= 450
+          ? driverToggle
+            ? "driverName"
+            : "driverCode"
+          : driverToggle
+          ? "driverName"
+          : "driverCode",
       headerName: "Driver",
-      width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
+      width: screenWidth <= 450 ? (driverToggle ? 135 : 70) : 135,
       cellClass: "cell-left",
       pinned: mobilePinned,
       headerClass: "sub-headers-name" as string,
@@ -158,7 +174,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "BHR" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.0.combinedPoints",
+      // field: "combinedPointsArray.0.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.0.combinedPoints"
+        : "raceResultsArray.0.position",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -166,7 +185,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "KSA" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.1.combinedPoints",
+      // field: "combinedPointsArray.1.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.1.combinedPoints"
+        : "raceResultsArray.1.position",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -174,7 +196,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "AUS" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.2.combinedPoints",
+      // field: "combinedPointsArray.2.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.2.combinedPoints"
+        : "raceResultsArray.2.position",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -182,7 +207,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "AZE" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.3.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.3.combinedPoints"
+        : "raceResultsArray.3.position",
+      // field: "combinedPointsArray.3.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -190,7 +218,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "MIA" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.4.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.4.combinedPoints"
+        : "raceResultsArray.4.position",
+      // field: "combinedPointsArray.4.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -198,7 +229,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "IMOL" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.5.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.5.combinedPoints"
+        : "raceResultsArray.5.position",
+      // field: "combinedPointsArray.5.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -206,7 +240,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "MON" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.6.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.6.combinedPoints"
+        : "raceResultsArray.6.position",
+      // field: "combinedPointsArray.6.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -214,7 +251,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "ESP" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.7.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.7.combinedPoints"
+        : "raceResultsArray.7.position",
+      // field: "combinedPointsArray.7.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -222,7 +262,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "CAN" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.8.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.8.combinedPoints"
+        : "raceResultsArray.8.position",
+      // field: "combinedPointsArray.8.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -230,7 +273,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "AUT" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.9.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.9.combinedPoints"
+        : "raceResultsArray.9.position",
+      // field: "combinedPointsArray.9.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -238,7 +284,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "ENG" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.10.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.10.combinedPoints"
+        : "raceResultsArray.10.position",
+      // field: "combinedPointsArray.10.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -246,7 +295,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "HUN" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.11.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.11.combinedPoints"
+        : "raceResultsArray.11.position",
+      // field: "combinedPointsArray.11.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -254,7 +306,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "BEL" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.12.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.12.combinedPoints"
+        : "raceResultsArray.12.position",
+      // field: "combinedPointsArray.12.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -262,7 +317,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "NED" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.13.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.13.combinedPoints"
+        : "raceResultsArray.13.position",
+      // field: "combinedPointsArray.13.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -270,7 +328,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "ITA" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.14.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.14.combinedPoints"
+        : "raceResultsArray.14.position",
+      // field: "combinedPointsArray.14.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -278,7 +339,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "SGP" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.15.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.15.combinedPoints"
+        : "raceResultsArray.15.position",
+      // field: "combinedPointsArray.15.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -286,7 +350,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "JPN" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.16.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.16.combinedPoints"
+        : "raceResultsArray.16.position",
+      // field: "combinedPointsArray.16.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -294,7 +361,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "QAT" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.17.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.17.combinedPoints"
+        : "raceResultsArray.17.position",
+      // field: "combinedPointsArray.17.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -302,7 +372,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "COTA" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.18.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.18.combinedPoints"
+        : "raceResultsArray.18.position",
+      // field: "combinedPointsArray.18.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -310,7 +383,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "MEX" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.19.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.19.combinedPoints"
+        : "raceResultsArray.19.position",
+      // field: "combinedPointsArray.19.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -318,7 +394,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "BRA" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.20.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.20.combinedPoints"
+        : "raceResultsArray.20.position",
+      // field: "combinedPointsArray.20.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -326,7 +405,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "VEG" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.21.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.21.combinedPoints"
+        : "raceResultsArray.21.position",
+      // field: "combinedPointsArray.21.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -334,7 +416,10 @@ export function CurrentDriverRaceStandingsWidget({
       headerName: "ABU" as string,
       headerClass: "sub-headers" as string,
       width: 42,
-      field: "combinedPointsArray.22.combinedPoints",
+      field: pointsPositionToggle
+        ? "combinedPointsArray.22.combinedPoints"
+        : "raceResultsArray.22.position",
+      // field: "combinedPointsArray.22.combinedPoints",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
       cellClass: "centered",
     },
@@ -350,9 +435,9 @@ export function CurrentDriverRaceStandingsWidget({
   ];
   const [columnDefs, setColumnDefs] = useState([
     {
-      field: screenWidth <= 450 ? "driverCode" : "driverName",
       headerName: "Driver",
       width: screenWidth <= 450 ? 70 : 135,
+      field: screenWidth <= 450 ? "driverCode" : "driverName",
       cellClass: "cell-left",
       pinned: mobilePinned,
       headerClass: "sub-headers-name" as string,
@@ -635,6 +720,7 @@ export function CurrentDriverRaceStandingsWidget({
         totalPoints,
       };
     });
+
     setRowData(driversWithTotalPoints as any);
   }, [raceResults, sprintResults]);
   const defaultColDef = useMemo(
@@ -645,21 +731,40 @@ export function CurrentDriverRaceStandingsWidget({
     []
   );
   if (!rowData) return null;
-  function handleClick() {
+  useEffect(() => {
     setColumnDefs(colData);
+  }, [driverToggle, pointsPositionToggle]);
+
+  const handleClick = () => {
     setDriverToggle(!driverToggle);
+  };
+
+  function handleClick2() {
+    setPointsPositionToggle(!pointsPositionToggle);
   }
 
   return (
     <div className="">
-      <button
-        className={`p-1 border-2 standings-btn rounded-lg my-4 mx-auto text-sm ${
-          screenWidth <= 450 ? "w-full " : "w-max"
-        }`}
-        onClick={handleClick}
+      <div
+        className={` my-3 ${screenWidth <= 450 ? "flex gap-2" : "flex-col"}`}
       >
-        {driverToggle ? "Show Driver Code" : "Show Driver Name"}
-      </button>
+        <button
+          className={`p-1 border-2 standings-btn rounded-lg text-sm  ${
+            screenWidth <= 450 ? "w-full" : "w-max mr-2"
+          }`}
+          onClick={handleClick}
+        >
+          {driverToggle ? "Show Driver Code" : "Show Driver Name"}
+        </button>
+        <button
+          className={`p-1 border-2 standings-btn rounded-lg text-sm ${
+            screenWidth <= 450 ? "w-full" : "w-max"
+          }`}
+          onClick={handleClick2}
+        >
+          {pointsPositionToggle ? "Show Position" : "Show Points"}
+        </button>
+      </div>
       <div
         className="ag-theme-f1-small"
         style={{ height: 661, width: mobileWidth }}
