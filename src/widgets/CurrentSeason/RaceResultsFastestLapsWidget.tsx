@@ -137,14 +137,6 @@ export function RaceResultsFastestLapsWidget({
       pinned: "left",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    // {
-    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
-    //   headerName: "Driver",
-    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
-    //   cellClass: "cell-left",
-    //   pinned: mobilePinned,
-    //   headerClass: "sub-headers-name" as string,
-    // },
     {
       field: "Driver.code",
       headerName: "Driver",
@@ -189,63 +181,62 @@ export function RaceResultsFastestLapsWidget({
   ];
   const fullScreenCol = [
     {
-      field: "position",
+      field: "placement",
       headerName: "",
       width: 50,
       headerClass: "sub-headers" as string,
       cellClass: "my-class",
       pinned: "left",
-      sort: "asc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
-    // {
-    //   field: driverToggle ? "Driver.code" : "Driver.familyName",
-    //   headerName: "Driver",
-    //   width: screenWidth <= 450 ? (driverToggle ? 70 : 135) : 135,
-    //   cellClass: "cell-left",
-    //   pinned: mobilePinned,
-    //   headerClass: "sub-headers-name" as string,
-    // },
     {
       field: "Driver.code",
       headerName: "Driver",
-      width: 80,
+      width: 50,
       pinned: "left",
       headerClass: "sub-headers" as string,
-      cellClass: "sub-headers-name-2",
+      cellClass: "left",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "laps",
-      headerName: "Laps",
-      width: 80,
-      headerClass: "sub-headers-name" as string,
-      cellClass: "sub-headers-name",
+      field: "FastestLap.lap",
+      headerName: "Lap",
+      width: 50,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "Time.time",
+      field: "FastestLap.Time.time",
       headerName: "Time",
-      width: 100,
+      width: 120,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
+      sort: "desc" as string,
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
-      field: "status",
-      headerName: "Status",
-      width: 100,
+      field: "FastestLap.AverageSpeed.speed",
+      headerName: "Avg Speed",
+      width: 120,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
+      comparator: (valueA: number, valueB: number) => valueA - valueB,
+    },
+    {
+      field: "position",
+      headerName: "Race Position",
+      width: 110,
+      headerClass: "sub-headers" as string,
+      cellClass: "centered",
       comparator: (valueA: number, valueB: number) => valueA - valueB,
     },
     {
       headerName: "Constructor",
       field: "Constructor.name",
       width: 140,
-    },
-    {
-      field: "points",
-      headerName: "Pts",
-      width: 50,
-      cellClass: "my-class",
-      comparator: (valueA: number, valueB: number) => valueA - valueB,
+      cellClass: "centered",
+      headerClass: "sub-headers" as string,
     },
   ];
   const [columnDefs, setColumnDefs] = useState(
@@ -271,7 +262,7 @@ export function RaceResultsFastestLapsWidget({
     setRowData(addNewPlacement as any);
   }, []);
 
-  // console.log(rowData);
+  console.log(rowData);
 
   const defaultColDef = useMemo(
     () => ({
