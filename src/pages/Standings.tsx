@@ -7,6 +7,8 @@ import { getRaceSchedule } from "../hooks/getRaceSchedule";
 import { getQualiResults } from "../hooks/getQualiResults";
 import { DriverStandings } from "../components/CurrentSeason/DriverStandings";
 import { ConstructorStandings } from "../components/CurrentSeason/ConstructorStandings";
+import { DHLFastestLapStandings } from "../widgets/CurrentSeason/DHLFastestLapStandings";
+import { DriverOfTheDayAwardStandings } from "../widgets/CurrentSeason/DriverOfTheDayAwardStandings";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -275,6 +277,18 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
           activeTeam={activeTeam}
           qualiStandings={qualiStandings as any}
         />
+      </div>
+      <div
+        className="my-3 w-full"
+        style={{ display: activePage === "dhlfl" ? "block" : "none" }}
+      >
+        <DHLFastestLapStandings screenWidth={screenWidth} />
+      </div>
+      <div
+        className="my-3 w-full"
+        style={{ display: activePage === "dotd" ? "block" : "none" }}
+      >
+        <DriverOfTheDayAwardStandings screenWidth={screenWidth} />
       </div>
     </div>
   );

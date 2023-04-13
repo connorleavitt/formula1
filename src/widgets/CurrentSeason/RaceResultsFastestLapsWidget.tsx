@@ -262,8 +262,6 @@ export function RaceResultsFastestLapsWidget({
     setRowData(addNewPlacement as any);
   }, []);
 
-  console.log(rowData);
-
   const defaultColDef = useMemo(
     () => ({
       sortable: true,
