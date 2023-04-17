@@ -9,6 +9,7 @@ import { DriverStandings } from "../components/CurrentSeason/DriverStandings";
 import { ConstructorStandings } from "../components/CurrentSeason/ConstructorStandings";
 import { DHLFastestLapStandings } from "../widgets/CurrentSeason/DHLFastestLapStandings";
 import { DriverOfTheDayAwardStandings } from "../widgets/CurrentSeason/DriverOfTheDayAwardStandings";
+import { StandingsOverview } from "../components/CurrentSeason/RaceResultsOverview";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -117,7 +118,7 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
   const [activeDriver, setActiveDriver] = useState("overview");
   const [activeTeam, setActiveTeam] = useState("constructorsOverview");
   const [activeRace, setActiveRace] = useState("bahrain");
-  const [activePage, setActivePage] = useState("race");
+  const [activePage, setActivePage] = useState("overview");
 
   if (!raceResults || !sprintResults || loading || qualiLoading) {
     return (
@@ -197,6 +198,7 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
           onChange={(event) => setActivePage(event.target.value)}
           className="p-2 standings--widget-select rounded-lg w-full"
         >
+          <option value="overview">Overview</option>
           <option value="race">Races</option>
           <option value="drivers">Drivers</option>
           <option value="constructors">Constructors</option>

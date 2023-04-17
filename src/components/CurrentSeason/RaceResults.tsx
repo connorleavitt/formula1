@@ -4,9 +4,96 @@ import { getRecentRaceResults } from "../../hooks/getRecentRaceResults";
 import { getSprintResults } from "../../hooks/getSprintResults";
 import { RaceResultsWidget } from "../../widgets/CurrentSeason/RaceResultsWidget";
 import trackInfo from "../../data/trackInfo.json";
+import { RaceResultsOverview } from "./RaceResultsOverview";
+import { getRaceSchedule } from "../../hooks/getRaceSchedule";
 
 type ScreenWidthProps = {
   screenWidth: number;
+};
+
+type RaceSchedule = {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  // localRaceDateTime: string;
+  FirstPractice: {
+    date: string;
+    time: string;
+  };
+  SecondPractice: {
+    date: string;
+    time: string;
+  };
+  ThirdPractice: {
+    date: string;
+    time: string;
+  };
+  Qualifying: {
+    date: string;
+    time: string;
+  };
+  Sprint: {
+    date: string;
+    time: string;
+  };
+};
+
+type QualiResults = {
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  QualifyingResults: [
+    {
+      number: string;
+      position: string;
+      Driver: {
+        driverId: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      Q1: string;
+      Q2: string;
+      Q3: string;
+    }
+  ];
 };
 
 export function RaceResults({ screenWidth }: ScreenWidthProps) {
@@ -31,7 +118,11 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
 
   // create a focused view for each grand prix but also table(s) to view all races at once for specific info (DOTD, pole, etc in one mega table)
 
-  const [qualiLoading, qualiStandings] = getQualiResults({
+  const [loading, raceSchedule] = getRaceSchedule<RaceSchedule[]>({
+    method: "get",
+    url: "https://ergast.com/api/f1/current.json",
+  });
+  const [qualiLoading, qualiStandings] = getQualiResults<QualiResults[]>({
     method: "get",
     url: "https://ergast.com/api/f1/current/qualifying.json?limit=500",
   });
@@ -42,7 +133,7 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
   if (!raceResults) return null;
   if (!sprintResults) return null;
 
-  if (qualiLoading) {
+  if (qualiLoading || loading) {
     return (
       <div className="ml-8 mt-6">
         <p>Loading...</p>
@@ -122,6 +213,13 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
           screenWidth={screenWidth}
         />
       )} */}
+      <RaceResultsOverview
+        sprintResults={sprintResults as any}
+        raceResults={updatedRaceSchedule as any}
+        raceSchedule={raceSchedule as any}
+        qualiStandings={qualiStandings as any}
+        screenWidth={screenWidth}
+      />
       <RaceResultsWidget
         qualiResults={qualiStandings as []}
         raceResults={updatedRaceSchedule}
