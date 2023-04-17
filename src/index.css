@@ -816,3 +816,32 @@ main.main-mobile {
     max-width: 400px;
   }
 }
+
+/* RESULTS */
+
+.race-results--warning-main-container-mobile,
+.race-results--warning-main-container {
+  background-color: transparent;
+  position: absolute;
+  top: 5rem;
+}
+
+.race-results--warning-main-container {
+  left: 5rem;
+}
+
+.race-results--warning-main-container-mobile {
+  left: 0;
+  right: 0;
+}
+
+.race-results--warning-btn {
+  background-color: var(--clr-f1-red);
+  color: white;
+}
+
+.race-results--warning-container,
+.race-results--warning-container-mobile {
+  background-color: var(--clr-f1-gray-background);
+  border: 2px solid var(--clr-f1-black);
+}

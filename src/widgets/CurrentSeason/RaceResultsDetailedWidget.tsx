@@ -401,7 +401,6 @@ export function RaceResultsDetailedWidget({
         </div>
       ) : (
         <div className="mb-10">
-          <h1 className="text-2xl font-bold mb-2">Prop Bets</h1>
           <div className="flex flex-col">
             <div className="flex justify-between">
               <div className="flex flex-col ml-2">

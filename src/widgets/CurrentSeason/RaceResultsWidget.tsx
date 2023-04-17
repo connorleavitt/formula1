@@ -5,13 +5,76 @@ import "slick-carousel/slick/slick-theme.css";
 import "../../index.css";
 import trackInfo from "../../data/trackInfo.json";
 import { RaceResultsDetailedWidget } from "./RaceResultsDetailedWidget";
+import { RaceStandings } from "../../components/CurrentSeason/RaceStandings";
 
 type RaceResultsWidgetProps = {
   raceResults: UpdatedRacesResults[];
   qualiResults: QualiResults[];
+  sprintResults: sprintResultsProp[];
   screenWidth: number;
+  raceSchedule: RaceSchedule[];
 };
-
+type sprintResultsProp = {
+  season: string;
+  round: string;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  SprintResults: [
+    {
+      number: string;
+      position: string;
+      positionText: string;
+      points: string;
+      Driver: {
+        driverId: string;
+        permanentNumber: string;
+        code: string;
+        url: string;
+        givenName: string;
+        familyName: string;
+        dateOfBirth: string;
+        nationality: string;
+      };
+      Constructor: {
+        constructorId: string;
+        url: string;
+        name: string;
+        nationality: string;
+      };
+      grid: string;
+      laps: string;
+      status: string;
+      Time: {
+        millis: string;
+        time: string;
+      };
+      FastestLap: {
+        rank: string;
+        lap: string;
+        Time: {
+          time: string;
+        };
+        AverageSpeed: {
+          units: string;
+          speed: string;
+        };
+      };
+    }
+  ];
+};
 type QualiResults = {
   season: string;
   round: string;
@@ -55,7 +118,6 @@ type QualiResults = {
     }
   ];
 };
-
 type UpdatedRacesResults = {
   season: string;
   round: string;
@@ -160,11 +222,94 @@ type UpdatedRacesResults = {
     };
   };
 };
+type RaceSchedule = {
+  season: number;
+  round: number;
+  url: string;
+  raceName: string;
+  Circuit: {
+    circuitId: string;
+    url: string;
+    circuitName: string;
+    Location: {
+      lat: number;
+      long: number;
+      locality: string;
+      country: string;
+    };
+  };
+  date: string;
+  time: string;
+  // localRaceDateTime: string;
+  FirstPractice: {
+    date: string;
+    time: string;
+  };
+  SecondPractice: {
+    date: string;
+    time: string;
+  };
+  ThirdPractice: {
+    date: string;
+    time: string;
+  };
+  Qualifying: {
+    date: string;
+    time: string;
+  };
+  Sprint: {
+    date: string;
+    time: string;
+  };
+  additionalInfo: {
+    circuitId: string;
+    imgUrl: string;
+    heroImgUrl: string;
+    flagUrl: string;
+    url: string;
+    circuitUrl: string;
+    circuitName: string;
+    laps: string;
+    circuitLength: string;
+    raceLength: string;
+    firstGrandPrix: string;
+    lapRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    qualiRecord: {
+      time: string;
+      driver: string;
+      year: string;
+    };
+    numberOfTimesHeld: string;
+    mostDriverWins: string;
+    mostConstructorWins: string;
+    trackType: string;
+    trackComments: string;
+    grandPrixComments: {
+      1: string;
+      2: string;
+      3: string;
+    };
+    Location: {
+      lat: string;
+      long: string;
+      locality: string;
+      country: string;
+      timezone: string;
+      gmtOffset: string;
+    };
+  };
+};
 
 export function RaceResultsWidget({
   raceResults,
   qualiResults,
+  sprintResults,
   screenWidth,
+  raceSchedule,
 }: RaceResultsWidgetProps) {
   const [raceResultsByCircuit, setRaceResultsByCircuit] =
     useState<UpdatedRacesResults[]>(raceResults);
@@ -204,7 +349,7 @@ export function RaceResultsWidget({
     slidesToShow: 1,
     slidesToScroll: 1,
   };
-
+  // console.log(selectedCircuit);
   return (
     <div className="flex flex-col race-schedule--main-container-mobile">
       <button
@@ -215,7 +360,7 @@ export function RaceResultsWidget({
       </button>
       <div
         className={
-          isListOpen ? "hidden" : "relative flex w-full justify-center mb-4"
+          isListOpen ? "hidden" : "relative flex w-full justify-center"
         }
       >
         <Slider
@@ -329,12 +474,20 @@ export function RaceResultsWidget({
         ))}
       </div>
       {selectedCircuit && (
-        <RaceResultsDetailedWidget
+        // <RaceResultsDetailedWidget
+        //   screenWidth={screenWidth}
+        //   circuit={selectedCircuit}
+        //   raceResults={raceResultsByCircuit}
+        //   qualiResults={qualiResults}
+        //   key={selectedCircuit.round} // Add key prop to force re-render
+        // />
+        <RaceStandings
+          sprintResults={sprintResults as any}
+          raceResults={raceResults as any}
+          raceSchedule={raceSchedule as any}
+          qualiStandings={qualiResults as any}
           screenWidth={screenWidth}
-          circuit={selectedCircuit}
-          raceResults={raceResultsByCircuit}
-          qualiResults={qualiResults}
-          key={selectedCircuit.round} // Add key prop to force re-render
+          activeRace={selectedCircuit.circuitId}
         />
       )}
     </div>

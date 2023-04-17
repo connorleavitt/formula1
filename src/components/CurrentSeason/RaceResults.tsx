@@ -6,6 +6,7 @@ import { RaceResultsWidget } from "../../widgets/CurrentSeason/RaceResultsWidget
 import trackInfo from "../../data/trackInfo.json";
 import { RaceResultsOverview } from "./RaceResultsOverview";
 import { getRaceSchedule } from "../../hooks/getRaceSchedule";
+import { useState } from "react";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -117,7 +118,6 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
   // - driver of the day: driver + voting results
 
   // create a focused view for each grand prix but also table(s) to view all races at once for specific info (DOTD, pole, etc in one mega table)
-
   const [loading, raceSchedule] = getRaceSchedule<RaceSchedule[]>({
     method: "get",
     url: "https://ergast.com/api/f1/current.json",
@@ -200,31 +200,15 @@ export function RaceResults({ screenWidth }: ScreenWidthProps) {
           : "race-schedule-container"
       }
     >
-      {/* {screenWidth <= 450 ? (
-        <RaceResultsWidgetMobile
-          raceSchedule={raceSchedule as any}
-          recentRacesResults={recentRacesResults as any}
-          screenWidth={screenWidth}
-        />
-      ) : (
+      <div>
         <RaceResultsWidget
+          qualiResults={qualiStandings as any}
+          sprintResults={sprintResults as any}
+          raceResults={updatedRaceSchedule as any}
           raceSchedule={raceSchedule as any}
-          recentRacesResults={recentRacesResults as any}
           screenWidth={screenWidth}
         />
-      )} */}
-      <RaceResultsOverview
-        sprintResults={sprintResults as any}
-        raceResults={updatedRaceSchedule as any}
-        raceSchedule={raceSchedule as any}
-        qualiStandings={qualiStandings as any}
-        screenWidth={screenWidth}
-      />
-      <RaceResultsWidget
-        qualiResults={qualiStandings as []}
-        raceResults={updatedRaceSchedule}
-        screenWidth={screenWidth}
-      />
+      </div>
     </div>
   );
 }

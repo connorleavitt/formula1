@@ -9,7 +9,6 @@ import { DriverStandings } from "../components/CurrentSeason/DriverStandings";
 import { ConstructorStandings } from "../components/CurrentSeason/ConstructorStandings";
 import { DHLFastestLapStandings } from "../widgets/CurrentSeason/DHLFastestLapStandings";
 import { DriverOfTheDayAwardStandings } from "../widgets/CurrentSeason/DriverOfTheDayAwardStandings";
-import { StandingsOverview } from "../components/CurrentSeason/RaceResultsOverview";
 
 type ScreenWidthProps = {
   screenWidth: number;
@@ -118,7 +117,7 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
   const [activeDriver, setActiveDriver] = useState("overview");
   const [activeTeam, setActiveTeam] = useState("constructorsOverview");
   const [activeRace, setActiveRace] = useState("bahrain");
-  const [activePage, setActivePage] = useState("overview");
+  const [activePage, setActivePage] = useState("drivers");
 
   if (!raceResults || !sprintResults || loading || qualiLoading) {
     return (
@@ -198,39 +197,11 @@ export function Standings({ screenWidth }: ScreenWidthProps) {
           onChange={(event) => setActivePage(event.target.value)}
           className="p-2 standings--widget-select rounded-lg w-full"
         >
-          <option value="overview">Overview</option>
-          <option value="race">Races</option>
           <option value="drivers">Drivers</option>
           <option value="constructors">Constructors</option>
           <option value="dhlfl">DHL Fastest Lap Award</option>
           <option value="dotd">Driver of the Day Award</option>
         </select>
-      </div>
-      <div
-        className="my-3 w-full"
-        style={{ display: activePage === "race" ? "block" : "none" }}
-      >
-        <label htmlFor="standings-race--widget-select"></label>
-        <select
-          id="standings-race--widget-select"
-          value={activeRace}
-          onChange={(event) => setActiveRace(event.target.value)}
-          className="p-2 standings--widget-select rounded-lg w-full"
-        >
-          {raceSchedule.map((track) => (
-            <option key={track.round} value={track.Circuit.circuitId}>
-              {track.Circuit.Location.country}
-            </option>
-          ))}
-        </select>
-        <RaceStandings
-          sprintResults={sprintResults as any}
-          raceResults={updatedRaceSchedule as any}
-          raceSchedule={raceSchedule as any}
-          qualiStandings={qualiStandings as any}
-          screenWidth={screenWidth}
-          activeRace={activeRace}
-        />
       </div>
       <div
         className="my-3 w-full"

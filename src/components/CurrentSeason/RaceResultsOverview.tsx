@@ -349,7 +349,6 @@ export function RaceResultsOverview({
   }, [raceResults, qualiStandings]);
 
   if (!raceTrackInfo) {
-    console.log("here");
     return null;
   }
 

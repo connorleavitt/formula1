@@ -165,7 +165,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                             icon="flag-checkered"
                             className="pr-2"
                           />
-                          Previous results
+                          Race results
                         </Link>
                       </li>
                     </ul>
