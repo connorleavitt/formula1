@@ -184,7 +184,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                   </Link>
                   {/* &#8595; */}
                 </li>
-                <li className="mb-2">
+                {/* <li className="mb-2">
                   <Link
                     to="/historical"
                     onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -198,7 +198,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                     />
                     Historical data
                   </Link>
-                </li>
+                </li> */}
                 <li className="mb-2">
                   <Link
                     to="/about"
@@ -296,7 +296,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
               </Link>
               {/* &#8595; */}
             </li>
-            <li className="mb-2">
+            {/* <li className="mb-2">
               <Link
                 to="/historical"
                 className={`block rounded-xl py-3 pl-4 ${
@@ -306,7 +306,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                 <FontAwesomeIcon icon="clock-rotate-left" className="pr-2" />
                 Historical data
               </Link>
-            </li>
+            </li> */}
             <li className="mb-2">
               <Link
                 to="/about"
