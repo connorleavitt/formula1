@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RaceResults } from "../components/CurrentSeason/RaceResults";
 
 type ScreenWidthProps = {
@@ -6,7 +6,20 @@ type ScreenWidthProps = {
 };
 
 export function RaceResultsPage({ screenWidth }: ScreenWidthProps) {
-  const [showWarning, setShowWarning] = useState(true);
+  const [showWarning, setShowWarning] = useState(
+    localStorage.getItem("showWarning") === null ? true : false
+  );
+
+  const handleAcknowledgment = () => {
+    setShowWarning(false);
+    localStorage.setItem("showWarning", "false");
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("showWarning") === "false") {
+      setShowWarning(false);
+    }
+  }, []);
 
   return (
     <div className={screenWidth <= 768 ? "h-full" : "relative h-full"}>
@@ -34,7 +47,7 @@ export function RaceResultsPage({ screenWidth }: ScreenWidthProps) {
             </p>
             <button
               className="px-3 py-2 race-results--warning-btn rounded-lg"
-              onClick={() => setShowWarning(false)}
+              onClick={handleAcknowledgment}
             >
               <p>I understand, show me the results!</p>
             </button>
