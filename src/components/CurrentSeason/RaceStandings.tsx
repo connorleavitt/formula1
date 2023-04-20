@@ -410,8 +410,11 @@ export function RaceStandings({
   );
 
   return (
-    <div className="">
-      <div className="my-3 w-full">
+    <div
+      className={`flex flex-col
+              ${screenWidth <= 768 ? `` : ""}`}
+    >
+      <div className="my-3">
         <div className="flex flex-col">
           <div className="flex justify-between">
             <p className="text-xs">Round {selectedRace.round}</p>
@@ -438,54 +441,53 @@ export function RaceStandings({
             />
           </div>
         </div>
-      </div>
-      <div className="my-3 w-full">
-        <div className="flex justify-between">
+        <div className="flex flex-col gap-2">
           <h2 className="font-bold text-lg">Results Overview</h2>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col">
-            <div>
-              <h3>Top 3</h3>
-              <p>
-                1. {top3[0].Driver.code}
-                {top3[0].Time.time}
-              </p>
-              <p>
-                2. {top3[1].Driver.code}
-                {top3[1].Time.time}
-              </p>
-              <p>
-                3. {top3[2].Driver.code}
-                {top3[2].Time.time}
-              </p>
+          <div className="">
+            <h3>Race Podium Positions</h3>
+            <div className="flex">
+              <p className="mx-1 w-4">1.</p>
+              <p className="font-bold w-12">{top3[0].Driver.code}</p>
+              <p className="w-28">{top3[0].Time.time}</p>
+            </div>
+            <div className="flex">
+              <p className="mx-1 w-4">2.</p>
+              <p className="font-bold w-12">{top3[1].Driver.code}</p>
+              <p className="w-28">{top3[1].Time.time}</p>
+            </div>
+            <div className="flex">
+              <p className="mx-1 w-4">3.</p>
+              <p className="font-bold w-12">{top3[2].Driver.code}</p>
+              <p className="w-28">{top3[2].Time.time}</p>
             </div>
           </div>
           <div className="flex flex-col">
-            <div>
-              <p>
-                Pole:
-                <span className="font-bold">
-                  {selectedQuali.QualifyingResults[0].Driver.code}
-                </span>
-                <span>{selectedQuali.QualifyingResults[0].Q3}</span>
+            <div className="flex">
+              <p className="w-40">Pole:</p>
+              <p className="font-bold w-12">
+                {selectedQuali.QualifyingResults[0].Driver.code}
               </p>
+              <p className="w-20">{selectedQuali.QualifyingResults[0].Q3}s</p>
             </div>
-            <div>
-              <p>
-                Driver of the Day:
-                <span className="font-bold">{driverAward?.driverName}</span>
-              </p>
+            <div className="flex">
+              <p className="w-40">Driver of the Day:</p>
+              <p className="font-bold">{driverAward?.driverName}</p>
             </div>
-            <div>
-              <p>
-                Fastest Lap Award:
-                <span className="font-bold">{fastestLapAward?.driverName}</span>
-              </p>
+            <div className="flex">
+              <p className="w-40">Fastest Lap Award:</p>
+              <p className="font-bold">{fastestLapAward?.driverName}</p>
             </div>
           </div>
         </div>
-        <div className="my-3 w-full">
+      </div>
+      <div
+        className={` 
+              ${screenWidth <= 768 ? "" : ""}`}
+      >
+        <div
+          className={`mb-3
+              ${screenWidth <= 768 ? "w-full" : "w-96"}`}
+        >
           <label htmlFor="results--widget-select"></label>
           <select
             id="results--widget-select"
