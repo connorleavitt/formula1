@@ -411,10 +411,10 @@ export function RaceStandings({
 
   return (
     <div
-      className={`flex flex-col
-              ${screenWidth <= 768 ? `` : ""}`}
+      className={`
+              ${screenWidth <= 768 ? "flex flex-col" : "flex gap-10 m-10"}`}
     >
-      <div className="my-3">
+      <div className="my-3 w-96">
         <div className="flex flex-col">
           <div className="flex justify-between">
             <p className="text-xs">Round {selectedRace.round}</p>
