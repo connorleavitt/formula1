@@ -41,7 +41,6 @@ const App: React.FC = () => {
       )}
       {/* <Header /> */}
       <div className={`${screenWidth <= 450 ? "flex flex-col" : "flex"}`}>
-        {/* {screenWidth <= 450 ? <MobileNav /> : <Nav screenWidth={screenWidth} />} */}
         <Nav screenWidth={screenWidth} />
         <main className={`${screenWidth <= 450 ? "main-mobile" : "main"}`}>
           <Routes>
