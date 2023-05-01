@@ -40,5 +40,19 @@
     "finishingPosition": "5",
     "lapSet": "53",
     "time": "1.20.235"
+  },
+  {
+    "round": 4,
+    "circuitId": "baku",
+    "circuitName": "Baku City Circuit",
+    "country": "Azerbaijan",
+    "driverName": "George Russell",
+    "driverId": "russell",
+    "code": "RUS",
+    "constructorId": "mercedes",
+    "constructorName": "Mercedes",
+    "finishingPosition": "8",
+    "lapSet": "51",
+    "time": "1.43.370"
   }
 ]

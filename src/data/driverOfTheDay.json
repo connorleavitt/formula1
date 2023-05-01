@@ -97,5 +97,38 @@
         "percentVote": "9.0"
       }
     }
+  },
+  {
+    "round": 4,
+    "circuitId": "baku",
+    "circuitName": "Baku City Circuit",
+    "country": "Azerbaijan",
+    "driverName": "Sergio Pérez",
+    "driverId": "perez",
+    "code": "PER",
+    "finishingPosition": "1",
+    "percentVote": "29.1",
+    "voting": {
+      "1": {
+        "driverName": "Sergio Pérez",
+        "percentVote": "29.1"
+      },
+      "2": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "14.3"
+      },
+      "3": {
+        "driverName": "Charles Leclerc",
+        "percentVote": "11.4"
+      },
+      "4": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "9.6"
+      },
+      "5": {
+        "driverName": "Max Verstappen",
+        "percentVote": "6.6"
+      }
+    }
   }
 ]
