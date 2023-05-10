@@ -17,7 +17,7 @@ export function DHLFastestLapStandings({ screenWidth }: ResultsProps) {
       ? screenWidth <= 450
         ? 50 + 30 * fastestLapData[fastestLapData.length - 1].round
         : 60 + 30 * fastestLapData[fastestLapData.length - 1].round
-      : 44 + 30 * fastestLapData[fastestLapData.length - 1].round;
+      : 44 + 31 * fastestLapData[fastestLapData.length - 1].round;
   const mobileWidth =
     screenWidth <= 1450
       ? screenWidth <= 450

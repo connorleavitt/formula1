@@ -130,5 +130,38 @@
         "percentVote": "6.6"
       }
     }
+  },
+  {
+    "round": 5,
+    "circuitId": "miami",
+    "circuitName": "Miami International Autodrome",
+    "country": "USA",
+    "driverName": "Max Verstappen",
+    "driverId": "max_verstappen",
+    "code": "VER",
+    "finishingPosition": "1",
+    "percentVote": "27.1",
+    "voting": {
+      "1": {
+        "driverName": "Max Verstappen",
+        "percentVote": "27.1"
+      },
+      "2": {
+        "driverName": "Sergio Pérez",
+        "percentVote": "12.5"
+      },
+      "3": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "9.8"
+      },
+      "4": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "8.6"
+      },
+      "5": {
+        "driverName": "George Russell",
+        "percentVote": "7.9"
+      }
+    }
   }
 ]

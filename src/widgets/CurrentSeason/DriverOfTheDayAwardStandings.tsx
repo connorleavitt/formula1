@@ -139,9 +139,9 @@ export function DriverOfTheDayAwardStandings({ screenWidth }: ResultsProps) {
   const mobileHeight =
     screenWidth <= 1450
       ? screenWidth <= 450
-        ? 50 + 30 * driverOfTheDayData[driverOfTheDayData.length - 1].round
-        : 60 + 30 * driverOfTheDayData[driverOfTheDayData.length - 1].round
-      : 44 + 30 * driverOfTheDayData[driverOfTheDayData.length - 1].round;
+        ? 50 + 31 * driverOfTheDayData[driverOfTheDayData.length - 1].round
+        : 60 + 31 * driverOfTheDayData[driverOfTheDayData.length - 1].round
+      : 44 + 31 * driverOfTheDayData[driverOfTheDayData.length - 1].round;
   const mobileWidth =
     screenWidth <= 1450
       ? screenWidth <= 450

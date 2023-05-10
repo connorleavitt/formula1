@@ -54,5 +54,19 @@
     "finishingPosition": "8",
     "lapSet": "51",
     "time": "1.43.370"
+  },
+  {
+    "round": 5,
+    "circuitId": "miami",
+    "circuitName": "Miami International Autodrome",
+    "country": "USA",
+    "driverName": "Max Verstappen",
+    "driverId": "max_verstappen",
+    "code": "VER",
+    "constructorId": "red_bull",
+    "constructorName": "Red Bull",
+    "finishingPosition": "1",
+    "lapSet": "56",
+    "time": "1.29.708"
   }
 ]
