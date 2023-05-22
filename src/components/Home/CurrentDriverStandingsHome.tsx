@@ -86,7 +86,7 @@ export function CurrentDriverStandingsHome() {
   }, []);
 
   return (
-    <div className="mt-4">
+    <div className="">
       <h3 className="p-2 text-2xl uppercase">Current Driver Standings</h3>
       <div className="ag-theme-f1-medium" style={{ height: 369, width: 530 }}>
         <AgGridReact

@@ -336,7 +336,7 @@ export function NextRaceDetailedWidget({
   }
 
   return (
-    <div className={screenWidth <= 568 ? "mb-20" : "mt-4 w-[568px]"}>
+    <div className={screenWidth <= 568 ? "mb-20" : "w-[568px]"}>
       <div className="w-full">
         <h3 className="p-2 py-4 text-2xl font-bold leading-4">
           NEXT RACE

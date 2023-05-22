@@ -86,7 +86,7 @@ export function Home({ screenWidth }: ScreenWidthProps) {
           <h1 className="text-3xl font-bold mb-4">Welcome!</h1>
           <FantasyMainScoreboardLeader screenWidth={screenWidth} />
           <RecentNotesWidget />
-          <div className="flex flex-wrap gap-4 justify-between mt-4">
+          <div className="flex flex-wrap gap-4 justify-between">
             <NextRaceDetailedWidget
               raceSchedule={raceSchedule as any}
               screenWidth={screenWidth}
