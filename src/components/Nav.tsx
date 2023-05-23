@@ -137,7 +137,10 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                             activeNav === "standings" ? "active" : ""
                           }`}
                         >
-                          <FontAwesomeIcon icon="trophy" className="pr-2" />
+                          <FontAwesomeIcon
+                            icon="trophy"
+                            className="pr-2 w-[18px]"
+                          />
                           Standings
                         </Link>
                       </li>
@@ -149,7 +152,10 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                             activeNav === "schedule" ? "active" : ""
                           }`}
                         >
-                          <FontAwesomeIcon icon="calendar" className="pr-2" />
+                          <FontAwesomeIcon
+                            icon="calendar"
+                            className="pr-2 w-[18px]"
+                          />
                           Schedule
                         </Link>
                       </li>
@@ -163,7 +169,7 @@ export function Nav({ screenWidth }: ScreenWidthProps) {
                         >
                           <FontAwesomeIcon
                             icon="flag-checkered"
-                            className="pr-2"
+                            className="pr-2 w-[18px]"
                           />
                           Race results
                         </Link>
