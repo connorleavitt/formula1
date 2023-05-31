@@ -163,5 +163,38 @@
         "percentVote": "7.9"
       }
     }
+  },
+  {
+    "round": 6,
+    "circuitId": "monaco",
+    "circuitName": "Circuit de Monaco",
+    "country": "Monaco",
+    "name": "Esteban Ocon",
+    "driverId": "ocon",
+    "code": "OCO",
+    "finishingPosition": "3",
+    "percentVote": "23.5",
+    "voting": {
+      "1": {
+        "driverName": "Esteban Ocon",
+        "percentVote": "23.5"
+      },
+      "2": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "22.6"
+      },
+      "3": {
+        "driverName": "Max Verstappen",
+        "percentVote": "16.5"
+      },
+      "4": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "7.5"
+      },
+      "5": {
+        "driverName": "Charles Leclerc",
+        "percentVote": "6.2"
+      }
+    }
   }
 ]
