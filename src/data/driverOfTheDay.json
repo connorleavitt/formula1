@@ -196,5 +196,38 @@
         "percentVote": "6.2"
       }
     }
+  },
+  {
+    "round": 7,
+    "circuitId": "catalunya",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "country": "Spain",
+    "driverName": "Lewis Hamilton",
+    "driverId": "hamilton",
+    "code": "HAM",
+    "finishingPosition": "2",
+    "percentVote": "24.7",
+    "voting": {
+      "1": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "24.7"
+      },
+      "2": {
+        "driverName": "Sergio Pérez",
+        "percentVote": "19.2"
+      },
+      "3": {
+        "driverName": "George Russell",
+        "percentVote": "11.3"
+      },
+      "4": {
+        "driverName": "Max Verstappen",
+        "percentVote": "10.6"
+      },
+      "5": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "5.4"
+      }
+    }
   }
 ]

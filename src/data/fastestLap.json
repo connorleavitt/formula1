@@ -82,5 +82,19 @@
     "finishingPosition": "4",
     "lapSet": "33",
     "time": "1.15.650"
+  },
+  {
+    "round": 7,
+    "circuitId": "catalunya",
+    "circuitName": "Circuit de Barcelona-Catalunya",
+    "country": "Spain",
+    "driverName": "Max Verstappen",
+    "driverId": "max_verstappen",
+    "code": "VER",
+    "constructorId": "red_bull",
+    "constructorName": "Red Bull",
+    "finishingPosition": "1",
+    "lapSet": "61",
+    "time": "1.16.330"
   }
 ]
