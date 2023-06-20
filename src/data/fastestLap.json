@@ -96,5 +96,19 @@
     "finishingPosition": "1",
     "lapSet": "61",
     "time": "1.16.330"
+  },
+  {
+    "round": 8,
+    "circuitId": "villeneuve",
+    "circuitName": "Circuit Gilles Villeneuve",
+    "country": "Canada",
+    "driverName": "Sergio Pérez",
+    "driverId": "perez",
+    "code": "PER",
+    "constructorId": "red_bull",
+    "constructorName": "Red Bull",
+    "finishingPosition": "6",
+    "lapSet": "70",
+    "time": "1.14.481"
   }
 ]

@@ -229,5 +229,38 @@
         "percentVote": "5.4"
       }
     }
+  },
+  {
+    "round": 8,
+    "circuitId": "villeneuve",
+    "circuitName": "Circuit Gilles Villeneuve",
+    "country": "Canada",
+    "driverName": "Alexander Albon",
+    "driverId": "albon",
+    "code": "ALB",
+    "finishingPosition": "7",
+    "percentVote": "28.7",
+    "voting": {
+      "1": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "28.7"
+      },
+      "2": {
+        "driverName": "Lewis Hamilton",
+        "percentVote": "16.4"
+      },
+      "3": {
+        "driverName": "Fernando Alonso",
+        "percentVote": "16.3"
+      },
+      "4": {
+        "driverName": "Max Verstappen",
+        "percentVote": "7.4"
+      },
+      "5": {
+        "driverName": "Charles Leclerc",
+        "percentVote": "7.3"
+      }
+    }
   }
 ]
