@@ -110,5 +110,19 @@
     "finishingPosition": "6",
     "lapSet": "70",
     "time": "1.14.481"
+  },
+  {
+    "round": 9,
+    "circuitId": "red_bull_ring",
+    "circuitName": "Red Bull Ring",
+    "country": "Austria",
+    "driverName": "Max Verstappen",
+    "driverId": "max_verstappen",
+    "code": "VER",
+    "constructorId": "red_bull",
+    "constructorName": "Red Bull",
+    "finishingPosition": "1",
+    "lapSet": "71",
+    "time": "1.07.012"
   }
 ]

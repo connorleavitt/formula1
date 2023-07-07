@@ -242,7 +242,7 @@
     "percentVote": "28.7",
     "voting": {
       "1": {
-        "driverName": "Lewis Hamilton",
+        "driverName": "Alexander Albon",
         "percentVote": "28.7"
       },
       "2": {
@@ -260,6 +260,39 @@
       "5": {
         "driverName": "Charles Leclerc",
         "percentVote": "7.3"
+      }
+    }
+  },
+  {
+    "round": 9,
+    "circuitId": "red_bull_ring",
+    "circuitName": "Red Bull Ring",
+    "country": "Austria",
+    "driverName": "Lando Norris",
+    "driverId": "norris",
+    "code": "NOR",
+    "finishingPosition": "4",
+    "percentVote": "26.1",
+    "voting": {
+      "1": {
+        "driverName": "Lando Norris",
+        "percentVote": "26.1"
+      },
+      "2": {
+        "driverName": "Carlos Sainz",
+        "percentVote": "22.4"
+      },
+      "3": {
+        "driverName": "Sergio Pérez",
+        "percentVote": "21.8"
+      },
+      "4": {
+        "driverName": "Charles Leclerc",
+        "percentVote": "7.6"
+      },
+      "5": {
+        "driverName": "Max Verstappen",
+        "percentVote": "6.5"
       }
     }
   }
